@@ -4,9 +4,8 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="VwKontragDeb"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
-  OrderBy='"FULLNAME"'
   BindingStyle="OracleName"
   CustomQuery="true"
   PageIterMode="Full"
@@ -25,7 +24,8 @@
     Name="u_name"
     Kind="where"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
@@ -100,6 +100,48 @@ FROM
     KONTRAGENTS.IS_MEASURER,
     KONTRAGENTS.USER_ID,
     VW_MOVES.DEB
+    union
+SELECT KONTRAGENTS.ID ID,
+    KONTRAGENTS.IS_GROUP IS_GROUP,
+    KONTRAGENTS.PARENT_ID PARENT_ID,
+    KONTRAGENTS.FULLNAME FULLNAME,
+    KONTRAGENTS.DELETED DELETED,
+    KONTRAGENTS.INN INN,
+    KONTRAGENTS.OKPO OKPO,
+    KONTRAGENTS.KPP KPP,
+    KONTRAGENTS.NAMEFULL NAMEFULL,
+    KONTRAGENTS.UR_FIZ UR_FIZ,
+    KONTRAGENTS.VERSION VERSION,
+    KONTRAGENTS.PREDEFINED PREDEFINED,
+    KONTRAGENTS.IS_SUPPLIER IS_SUPPLIER,
+    KONTRAGENTS.IS_BUYER IS_BUYER,
+    KONTRAGENTS.IS_MEASURER IS_MEASURER,
+    KONTRAGENTS.USER_ID USER_ID,
+    SUM(VW_MOVES.SUM_DEB) SUMM,
+    VW_MOVES.KRED
+  FROM KONTRAGENTS
+  INNER JOIN VW_MOVES
+  ON KONTRAGENTS.ID           = VW_MOVES.SUBCONTO1_KRED
+  WHERE KONTRAGENTS.IS_GROUP  = 0
+  AND KONTRAGENTS.IS_MEASURER = 0
+  AND VW_MOVES.KRED like '20711'
+  GROUP BY KONTRAGENTS.ID,
+    KONTRAGENTS.IS_GROUP,
+    KONTRAGENTS.PARENT_ID,
+    KONTRAGENTS.FULLNAME,
+    KONTRAGENTS.DELETED,
+    KONTRAGENTS.INN,
+    KONTRAGENTS.OKPO,
+    KONTRAGENTS.KPP,
+    KONTRAGENTS.NAMEFULL,
+    KONTRAGENTS.UR_FIZ,
+    KONTRAGENTS.VERSION,
+    KONTRAGENTS.PREDEFINED,
+    KONTRAGENTS.IS_SUPPLIER,
+    KONTRAGENTS.IS_BUYER,
+    KONTRAGENTS.IS_MEASURER,
+    KONTRAGENTS.USER_ID,
+    VW_MOVES.KRED
   ) 
 WHERE
 upper(USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as userTable)))  
@@ -416,8 +458,8 @@ GROUP BY ID,
     ColumnType="NUMBER"
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[viewObject.getBallans(Id,'20711')]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Properties>
       <SchemaBasedProperties>
         <LABEL
@@ -438,8 +480,8 @@ GROUP BY ID,
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC"
     IsQueriable="false">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[VwBuyerMoves.sum("SumCalc != null ? SumCalc : 0")]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
   </ViewAttribute>
   <ViewCriteria
     Name="VwKontragActive"
@@ -476,7 +518,6 @@ GROUP BY ID,
         Operator="STARTSWITH"
         Conjunction="AND"
         Value=":KonName"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
       <ViewCriteriaItem
@@ -485,7 +526,6 @@ GROUP BY ID,
         Operator="="
         Conjunction="AND"
         Value="0"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -524,7 +564,6 @@ GROUP BY ID,
         Operator="STARTSWITH"
         Conjunction="AND"
         Value=":KonName"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>
