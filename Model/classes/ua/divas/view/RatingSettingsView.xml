@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RatingSettingsView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ua.divas.view.RatingSettingsViewRowImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <SQLQuery><![CDATA[SELECT RatingSettings.ID, 
+       RatingSettings.SUM_DIVIDER, 
+       RatingSettings.SUM_BAL, 
+       RatingSettings.CNT_DIVIDER, 
+       RatingSettings.CNT_BAL,
+       (select 0 from dual) Editable
+FROM  RATING_SETTINGS RatingSettings]]></SQLQuery>
+  <EntityUsage
+    Name="RatingSettings"
+    Entity="ua.divas.model.RatingSettings"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="RatingSettings"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="SumDivider"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SumDivider"
+    EntityUsage="RatingSettings"
+    AliasName="SUM_DIVIDER"/>
+  <ViewAttribute
+    Name="SumBal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SumBal"
+    EntityUsage="RatingSettings"
+    AliasName="SUM_BAL"/>
+  <ViewAttribute
+    Name="CntDivider"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CntDivider"
+    EntityUsage="RatingSettings"
+    AliasName="CNT_DIVIDER"/>
+  <ViewAttribute
+    Name="CntBal"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CntBal"
+    EntityUsage="RatingSettings"
+    AliasName="CNT_BAL"/>
+  <ViewAttribute
+    Name="Editable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="EDITABLE"
+    Expression="EDITABLE"
+    SQLType="NUMERIC"/>
+</ViewObject>

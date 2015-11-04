@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="indexPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="call_center1" taskFlowId="/WEB-INF/call_center.xml#call_center" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="direct1" taskFlowId="/WEB-INF/directories.xml#direct" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="users1" taskFlowId="/WEB-INF/users.xml#users" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="zamerconfig1" taskFlowId="/WEB-INF/zamer-config.xml#zamer-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="importpriceconfig1" taskFlowId="/WEB-INF/import-price-config.xml#import-price-config"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="entry1" taskFlowId="/WEB-INF/entry.xml#entry" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="plan_acc1" taskFlowId="/WEB-INF/plan_acc.xml#plan_acc" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="kassaconfig1" taskFlowId="/WEB-INF/kassa-config.xml#kassa-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="zamer_debtconfig1" taskFlowId="/WEB-INF/zamer_debt-config.xml#zamer_debt-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="buyer_debtconfig1" taskFlowId="/WEB-INF/buyer_debt-config.xml#buyer_debt-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="other_zatrconfig1" taskFlowId="/WEB-INF/other_zatr-config.xml#other_zatr-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="ballansconfig1" taskFlowId="/WEB-INF/ballans-config.xml#ballans-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="salesconfig1" taskFlowId="/WEB-INF/sales-config.xml#sales-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="zatratyconfig1" taskFlowId="/WEB-INF/zatraty-config.xml#zatraty-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="NotificationView1" RangeSize="6" DataControl="AppModuleDataControl"
+              id="NotificationView1Iterator"/>
+    <taskFlow id="moneyconfig1" taskFlowId="/WEB-INF/money-config.xml#money-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="calendarconfig1" taskFlowId="/WEB-INF/calendar-config.xml#calendar-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="supplier_debtconfig1" taskFlowId="/WEB-INF/supplier_debt-config.xml#supplier_debt-config"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="prorabconfig1" taskFlowId="/WEB-INF/prorab-config.xml#prorab-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="kontrag_calcconfig1" taskFlowId="/WEB-INF/kontrag_calc-config.xml#kontrag_calc-config"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="payconfig1" taskFlowId="/WEB-INF/pay-config.xml#pay-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="ordersconfig1" taskFlowId="/WEB-INF/orders.xml#orders" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="start_ostconfig1" taskFlowId="/WEB-INF/start_ost-config.xml#start_ost-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="profitconfig1" taskFlowId="/WEB-INF/profit-config.xml#profit-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="programconfig1" taskFlowId="/WEB-INF/program-config.xml#program-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="ratingconfig1" taskFlowId="/WEB-INF/rating-config.xml#rating-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="inside_debt1" taskFlowId="/WEB-INF/inside_debt.xml#inside_debt" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="NotificationView1Iterator" id="CountUnread">
+      <AttrNames>
+        <Item Value="CountUnread"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <action id="Rollback" DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <tree IterBinding="NotificationView1Iterator" id="NotificationView1">
+      <nodeDefinition DefName="ua.divas.view.NotificationView" Name="NotificationView10">
+        <AttrNames>
+          <Item Value="Dat"/>
+          <Item Value="Description"/>
+          <Item Value="Server" Binds="Server"/>
+          <Item Value="Client" Binds="Client"/>
+          <Item Value="TrgName"/>
+          <Item Value="UserLogin"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="NotificationView1Iterator" id="Client" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Client"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <button IterBinding="NotificationView1Iterator" id="Server" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Server"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

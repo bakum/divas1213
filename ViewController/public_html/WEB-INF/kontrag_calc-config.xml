@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="kontrag_calc-config">
+    <default-activity>kontrag_calc</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>kontrag_calc</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.KontragCalcBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="kontrag_calc">
+      <page>/kontrag_calc.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

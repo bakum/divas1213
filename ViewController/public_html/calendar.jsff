@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:calendar value="#{bindings.VwNotificationCalendarView1.calendarModel}" id="c1"
+                             availableViews="all" startDayOfWeek="mon"
+                             calendarActivityListener="#{calendar.activityListener}" binding="#{calendar.calendar}"
+                             toolboxLayout="all" listCount="30" view="list">
+                    <f:facet name="activityDetail">
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="pDetail"
+                                  contentDelivery="lazyUncached">
+                            <af:dialog id="d1" title="Задание" type="ok">
+                                <af:panelFormLayout id="pfl1">
+                                    <af:group id="g3" title="Основные реквизиты" startBoundary="show"
+                                              endBoundary="show">
+                                        <af:inputDate value="#{bindings.Dat.inputValue}"
+                                                      label="#{bindings.Dat.hints.label}"
+                                                      required="#{bindings.Dat.hints.mandatory}"
+                                                      columns="#{bindings.Dat.hints.displayWidth}"
+                                                      shortDesc="#{bindings.Dat.hints.tooltip}" id="id3"
+                                                      readOnly="true">
+                                            <f:validator binding="#{bindings.Dat.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                        </af:inputDate>
+                                        <af:inputText value="#{bindings.Description.inputValue}"
+                                                      label="#{bindings.Description.hints.label}"
+                                                      required="#{bindings.Description.hints.mandatory}"
+                                                      columns="#{bindings.Description.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Description.hints.precision}"
+                                                      shortDesc="#{bindings.Description.hints.tooltip}" id="it4"
+                                                      rows="5" readOnly="true" inlineStyle="font-size:large;">
+                                            <f:validator binding="#{bindings.Description.validator}"/>
+                                        </af:inputText>
+                                        <af:panelLabelAndMessage label="#{bindings.StartDate.hints.label}" id="plam1"
+                                                                 visible="false">
+                                            <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                                <af:inputDate value="#{bindings.StartDate.inputValue}"
+                                                              required="#{bindings.StartDate.hints.mandatory}"
+                                                              columns="#{bindings.StartDate.hints.displayWidth}"
+                                                              shortDesc="#{bindings.StartDate.hints.tooltip}" id="id4">
+                                                    <f:validator binding="#{bindings.StartDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.StartDate.format}"/>
+                                                </af:inputDate>
+                                                <af:inputDate value="#{bindings.EndDate.inputValue}"
+                                                              label="#{bindings.EndDate.hints.label}"
+                                                              required="#{bindings.EndDate.hints.mandatory}"
+                                                              columns="#{bindings.EndDate.hints.displayWidth}"
+                                                              shortDesc="#{bindings.EndDate.hints.tooltip}" id="id5">
+                                                    <f:validator binding="#{bindings.EndDate.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.EndDate.format}"/>
+                                                </af:inputDate>
+                                            </af:panelGroupLayout>
+                                        </af:panelLabelAndMessage>
+                                        <af:inputText value="#{bindings.Id.inputValue}"
+                                                      label="#{bindings.Id.hints.label}"
+                                                      required="#{bindings.Id.hints.mandatory}"
+                                                      columns="#{bindings.Id.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Id.hints.precision}"
+                                                      shortDesc="#{bindings.Id.hints.tooltip}" id="it1" visible="false">
+                                            <f:validator binding="#{bindings.Id.validator}"/>
+                                        </af:inputText>
+                                    </af:group>
+                                    <af:group id="g2">
+                                        <af:inputText value="#{bindings.UserLogin.inputValue}"
+                                                      label="#{bindings.UserLogin.hints.label}"
+                                                      required="#{bindings.UserLogin.hints.mandatory}"
+                                                      columns="#{bindings.UserLogin.hints.displayWidth}"
+                                                      maximumLength="#{bindings.UserLogin.hints.precision}"
+                                                      shortDesc="#{bindings.UserLogin.hints.tooltip}" id="it8"
+                                                      visible="false">
+                                            <f:validator binding="#{bindings.UserLogin.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.Contact.inputValue}"
+                                                      label="#{bindings.Contact.hints.label}"
+                                                      required="#{bindings.Contact.hints.mandatory}"
+                                                      columns="#{bindings.Contact.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Contact.hints.precision}"
+                                                      shortDesc="#{bindings.Contact.hints.tooltip}" id="it5"
+                                                      visible="false">
+                                            <f:validator binding="#{bindings.Contact.validator}"/>
+                                        </af:inputText>
+                                        <af:inputText value="#{bindings.ObjectId.inputValue}"
+                                                      label="#{bindings.ObjectId.hints.label}"
+                                                      required="#{bindings.ObjectId.hints.mandatory}"
+                                                      columns="#{bindings.ObjectId.hints.displayWidth}"
+                                                      maximumLength="#{bindings.ObjectId.hints.precision}"
+                                                      shortDesc="#{bindings.ObjectId.hints.tooltip}" id="it9"
+                                                      visible="false">
+                                            <f:validator binding="#{bindings.ObjectId.validator}"/>
+                                        </af:inputText>
+                                        <af:panelLabelAndMessage label="#{bindings.UserId.label}" id="plam2">
+                                            <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                                <af:selectOneChoice value="#{bindings.UserId.inputValue}"
+                                                                    required="#{bindings.UserId.hints.mandatory}"
+                                                                    shortDesc="#{bindings.UserId.hints.tooltip}"
+                                                                    id="soc1" readOnly="true">
+                                                    <f:selectItems value="#{bindings.UserId.items}" id="si1"/>
+                                                    <f:validator binding="#{bindings.UserId.validator}"/>
+                                                </af:selectOneChoice>
+                                                <af:selectBooleanCheckbox value="#{bindings.Server1.inputValue}"
+                                                                          shortDesc="#{bindings.Server1.hints.tooltip}"
+                                                                          id="sbc2" label="#{bindings.Server1.label}"
+                                                                          readOnly="true"/>
+                                                <af:selectBooleanCheckbox value="#{bindings.Client.inputValue}"
+                                                                          label="#{bindings.Client.label}"
+                                                                          shortDesc="#{bindings.Client.hints.tooltip}"
+                                                                          id="sbc1" readOnly="true"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelLabelAndMessage>
+                                    </af:group>
+                                    <af:group id="g1" title="Планировщик"
+                                              rendered="#{bindings.CronExpression.inputValue == null ? false : true}">
+                                        <af:inputText value="#{bindings.SchedName.inputValue}"
+                                                      label="#{bindings.SchedName.hints.label}"
+                                                      required="#{bindings.SchedName.hints.mandatory}"
+                                                      columns="#{bindings.SchedName.hints.displayWidth}"
+                                                      maximumLength="#{bindings.SchedName.hints.precision}"
+                                                      shortDesc="#{bindings.SchedName.hints.tooltip}" id="it2"
+                                                      readOnly="true">
+                                            <f:validator binding="#{bindings.SchedName.validator}"/>
+                                        </af:inputText>
+                                        <af:panelLabelAndMessage label="#{bindings.PrevFireTime.hints.label}" id="plam3">
+                                            <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                                <af:inputDate value="#{bindings.PrevFireTime.inputValue}"
+                                                              required="#{bindings.PrevFireTime.hints.mandatory}"
+                                                              columns="#{bindings.PrevFireTime.hints.displayWidth}"
+                                                              shortDesc="#{bindings.PrevFireTime.hints.tooltip}"
+                                                              id="id2" readOnly="true">
+                                                    <f:validator binding="#{bindings.PrevFireTime.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.PrevFireTime.format}"/>
+                                                </af:inputDate>
+                                                <af:inputDate value="#{bindings.NextFireTime.inputValue}"
+                                                              label="#{bindings.NextFireTime.hints.label}"
+                                                              required="#{bindings.NextFireTime.hints.mandatory}"
+                                                              columns="#{bindings.NextFireTime.hints.displayWidth}"
+                                                              shortDesc="#{bindings.NextFireTime.hints.tooltip}"
+                                                              id="id1" readOnly="true">
+                                                    <f:validator binding="#{bindings.NextFireTime.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.NextFireTime.format}"/>
+                                                </af:inputDate>
+                                            </af:panelGroupLayout>
+                                        </af:panelLabelAndMessage>
+                                        <af:inputText value="#{bindings.CronExpression.inputValue}"
+                                                      label="#{bindings.CronExpression.hints.label}"
+                                                      required="#{bindings.CronExpression.hints.mandatory}"
+                                                      columns="#{bindings.CronExpression.hints.displayWidth}"
+                                                      maximumLength="#{bindings.CronExpression.hints.precision}"
+                                                      shortDesc="#{bindings.CronExpression.hints.tooltip}" id="it3"
+                                                      readOnly="true">
+                                            <f:validator binding="#{bindings.CronExpression.validator}"/>
+                                        </af:inputText>
+                                    </af:group>
+                                </af:panelFormLayout>
+                                <f:facet name="buttonBar"/>
+                            </af:dialog>
+                        </af:popup>
+                    </f:facet>
+                    <f:facet name="create">
+                        <af:popup childCreation="deferred" id="pCreate"
+                                  contentDelivery="lazyUncached" resetEditableValues="whenCanceled">
+                            <af:dialog id="d2" title="Новое напоминание"
+                                       dialogListener="#{calendar.onCreateDialogListener}">
+                                <af:panelFormLayout id="pfl2">
+                                    <af:inputText value="#{bindings.cutid.inputValue}"
+                                                  label="#{bindings.cutid.hints.label}"
+                                                  required="#{bindings.cutid.hints.mandatory}"
+                                                  columns="#{bindings.cutid.hints.displayWidth}"
+                                                  maximumLength="#{bindings.cutid.hints.precision}"
+                                                  shortDesc="#{bindings.cutid.hints.tooltip}" id="it6" visible="false">
+                                        <f:validator binding="#{bindings.cutid.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.dat.inputValue}" label="Дата напоминания"
+                                                  required="#{bindings.dat.hints.mandatory}"
+                                                  columns="#{bindings.dat.hints.displayWidth}"
+                                                  shortDesc="#{bindings.dat.hints.tooltip}" id="id6">
+                                        <f:validator binding="#{bindings.dat.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.dat.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.desc.inputValue}"
+                                                  label="Напоминание"
+                                                  required="#{bindings.desc.hints.mandatory}"
+                                                  columns="#{bindings.desc.hints.displayWidth}"
+                                                  maximumLength="#{bindings.desc.hints.precision}"
+                                                  shortDesc="#{bindings.desc.hints.tooltip}" id="it7" rows="5">
+                                        <f:validator binding="#{bindings.desc.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ObjId.inputValue}"
+                                                  label="#{bindings.ObjId.hints.label}"
+                                                  required="#{bindings.ObjId.hints.mandatory}"
+                                                  columns="#{bindings.ObjId.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ObjId.hints.precision}"
+                                                  shortDesc="#{bindings.ObjId.hints.tooltip}" id="it10" visible="false">
+                                        <f:validator binding="#{bindings.ObjId.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ContId.inputValue}"
+                                                  label="#{bindings.ContId.hints.label}"
+                                                  required="#{bindings.ContId.hints.mandatory}"
+                                                  columns="#{bindings.ContId.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ContId.hints.precision}"
+                                                  shortDesc="#{bindings.ContId.hints.tooltip}" id="it11"
+                                                  visible="false">
+                                        <f:validator binding="#{bindings.ContId.validator}"/>
+                                    </af:inputText>
+                                    <af:button actionListener="#{bindings.addNotification.execute}"
+                                               text="addNotification" disabled="#{!bindings.addNotification.enabled}"
+                                               id="b1" visible="false"/>
+                                    <af:selectBooleanCheckbox id="sbc3"
+                                                              value="#{bindings.regular1.inputValue}" autoSubmit="true" immediate="true"
+                                                              text="Периодическое"
+                                                              valueChangeListener="#{calendar.onCangeRegular}"/>
+                                    <af:group id="g4" title="Расписание">
+                                        <af:panelLabelAndMessage label="Установки" id="plam4">
+                                            <af:panelGroupLayout id="pgl6" layout="horizontal">
+                                                <af:panelGroupLayout id="pgl5" layout="vertical">
+                                                    <af:selectBooleanCheckbox text="Один раз" id="sbc4"/>
+                                                    <af:selectBooleanCheckbox text="Каждый день" id="sbc5"/>
+                                                </af:panelGroupLayout>
+                                                <af:panelGroupLayout id="pgl7" layout="vertical"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelLabelAndMessage>
+                                    </af:group>
+                                </af:panelFormLayout>
+                                <f:facet name="buttonBar"/>
+                            </af:dialog>
+                            <af:resetListener type="popupCanceled"/>
+                        </af:popup>
+                    </f:facet>
+                    <f:facet name="contextMenu">
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                            <af:menu text="menu 1" id="m1">
+                                <af:commandMenuItem text="Добавить напоминание" id="cmi1">
+                                    <af:showPopupBehavior popupId="pCreate"/>
+                                </af:commandMenuItem>
+                            </af:menu>
+                        </af:popup>
+                    </f:facet>
+                    <f:facet name="activityHover">
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                                  contentDelivery="lazyUncached">
+                            <af:noteWindow id="nw1">
+                                <af:panelFormLayout id="pfl3">
+                                    <af:inputDate value="#{bindings.Dat.inputValue}" readOnly="true"
+                                                  label="#{bindings.Dat.hints.label}"
+                                                  required="#{bindings.Dat.hints.mandatory}"
+                                                  columns="#{bindings.Dat.hints.displayWidth}"
+                                                  shortDesc="#{bindings.Dat.hints.tooltip}" id="id7">
+                                        <f:validator binding="#{bindings.Dat.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                    </af:inputDate>
+                                    <af:inputDate value="#{bindings.NextFireTime.inputValue}" readOnly="true"
+                                                  label="#{bindings.NextFireTime.hints.label}"
+                                                  required="#{bindings.NextFireTime.hints.mandatory}"
+                                                  columns="#{bindings.NextFireTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.NextFireTime.hints.tooltip}" id="id8">
+                                        <f:validator binding="#{bindings.NextFireTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.NextFireTime.format}"/>
+                                    </af:inputDate>
+                                    <af:inputDate value="#{bindings.PrevFireTime.inputValue}" readOnly="true"
+                                                  label="#{bindings.PrevFireTime.hints.label}"
+                                                  required="#{bindings.PrevFireTime.hints.mandatory}"
+                                                  columns="#{bindings.PrevFireTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PrevFireTime.hints.tooltip}" id="id9">
+                                        <f:validator binding="#{bindings.PrevFireTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PrevFireTime.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.Description.inputValue}"
+                                                  label="#{bindings.Description.hints.label}"
+                                                  required="#{bindings.Description.hints.mandatory}" readOnly="true"
+                                                  columns="#{bindings.Description.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Description.hints.precision}"
+                                                  shortDesc="#{bindings.Description.hints.tooltip}" id="it12" rows="5">
+                                        <f:validator binding="#{bindings.Description.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </af:noteWindow>
+                        </af:popup>
+                    </f:facet>
+                </af:calendar>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

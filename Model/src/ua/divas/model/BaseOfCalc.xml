@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="BaseOfCalc"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="BASE_OF_CALC"
+  AliasName="BaseOfCalc"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="BASE_OF_CALC"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Name"
+    IsNotNull="true"
+    Precision="100"
+    ColumnName="NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="BASE_OF_CALC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Fullname"
+    IsNotNull="true"
+    Precision="100"
+    ColumnName="FULLNAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="BASE_OF_CALC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="OrdersTpNachislenia"
+    Association="ua.divas.model.OrdersTpNachislBaseOfCalcFkAssoc"
+    AssociationEnd="ua.divas.model.OrdersTpNachislBaseOfCalcFkAssoc.OrdersTpNachislenia"
+    AssociationOtherEnd="ua.divas.model.OrdersTpNachislBaseOfCalcFkAssoc.BaseOfCalc"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="PaySettings"
+    Association="ua.divas.model.PaySettingsFk1Assoc"
+    AssociationEnd="ua.divas.model.PaySettingsFk1Assoc.PaySettings"
+    AssociationOtherEnd="ua.divas.model.PaySettingsFk1Assoc.BaseOfCalc"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="ProfitDistribTp"
+    Association="ua.divas.model.ProfitDistribTpFk3Assoc"
+    AssociationEnd="ua.divas.model.ProfitDistribTpFk3Assoc.ProfitDistribTp"
+    AssociationOtherEnd="ua.divas.model.ProfitDistribTpFk3Assoc.BaseOfCalc"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="BaseOfCalcPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="BASE_OF_CALC_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.BaseOfCalc.Id"/>
+    </AttrArray>
+  </Key>
+</Entity>

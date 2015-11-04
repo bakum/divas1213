@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PlanAccGroupView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.PlanAccGroupView_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="EnumAccountTypeView1"
+    ViewObjectName="ua.divas.view.EnumAccountTypeView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_AccType"
+    ListVOName="EnumAccountTypeView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AccType"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT PlanAcc.ACC_TYPE, 
+       PlanAcc.CODE, 
+       PlanAcc.DELETED, 
+       PlanAcc.FULLNAME, 
+       PlanAcc.ID, 
+       PlanAcc.KOLISHESTV, 
+       PlanAcc.PARENT_ID, 
+       PlanAcc.VALUTN, 
+       PlanAcc.VERSION, 
+       PlanAcc.ZABALANSOV
+FROM  PLAN_ACC PlanAcc
+where PlanAcc.PARENT_ID is null]]></SQLQuery>
+  <EntityUsage
+    Name="PlanAcc"
+    Entity="ua.divas.model.PlanAcc"/>
+  <ViewAttribute
+    Name="AccType"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="AccType"
+    EntityUsage="PlanAcc"
+    AliasName="ACC_TYPE"
+    LOVName="LOV_AccType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Code"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Code"
+    EntityUsage="PlanAcc"
+    AliasName="CODE"/>
+  <ViewAttribute
+    Name="Deleted"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Deleted"
+    EntityUsage="PlanAcc"
+    AliasName="DELETED"/>
+  <ViewAttribute
+    Name="Fullname"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Fullname"
+    EntityUsage="PlanAcc"
+    AliasName="FULLNAME"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="PlanAcc"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Kolishestv"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Kolishestv"
+    EntityUsage="PlanAcc"
+    AliasName="KOLISHESTV"/>
+  <ViewAttribute
+    Name="ParentId"
+    PrecisionRule="true"
+    EntityAttrName="ParentId"
+    EntityUsage="PlanAcc"
+    AliasName="PARENT_ID"/>
+  <ViewAttribute
+    Name="Valutn"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Valutn"
+    EntityUsage="PlanAcc"
+    AliasName="VALUTN"/>
+  <ViewAttribute
+    Name="Version"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="PlanAcc"
+    AliasName="VERSION"/>
+  <ViewAttribute
+    Name="Zabalansov"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Zabalansov"
+    EntityUsage="PlanAcc"
+    AliasName="ZABALANSOV"/>
+  <ViewLinkAccessor
+    Name="PlanAccView"
+    ViewLink="ua.divas.view.PlanAccGroupParentIdFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="StartOstTpView"
+    ViewLink="ua.divas.view.StartOstTpFk2Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="StartOstTpView1"
+    ViewLink="ua.divas.view.StartOstTpFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

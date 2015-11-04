@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="newProfit">
+    <default-activity>CreateInsert</default-activity>
+    <transaction>
+      <new-transaction/>
+    </transaction>
+    <return-value-definition id="__6">
+      <name>ProfitId</name>
+      <value>#{pageFlowScope.ProfitId}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__7">
+      <managed-bean-name>profit_jsf</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ProfitJsfBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="editProfit">
+      <page>/editProfit.jsf</page>
+      <train-stop/>
+    </view>
+    <task-flow-return id="ok">
+      <outcome>
+        <name>ok</name>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="cancel">
+      <outcome>
+        <name>cancel</name>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <train/>
+    <control-flow-rule id="__1">
+      <from-activity-id>CreateInsert</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>CreateInsert</from-outcome>
+        <to-activity-id>editProfit</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>editProfit</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>ok</from-outcome>
+        <to-activity-id>ok</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__5">
+        <from-outcome>cancel</from-outcome>
+        <to-activity-id>cancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

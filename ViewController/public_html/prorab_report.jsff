@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="График выполнения работ" id="pb1">
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t1">
+                            <af:group id="g1">
+                                <af:link text="Прорабы" id="l1" action="to_prorab"/>
+                            </af:group>
+                        </af:toolbar>
+                    </f:facet>
+                    <af:panelCollection id="pc1">
+                        <f:facet name="menus"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t4">
+                                <af:button text="Обновить" id="b5" actionListener="#{prorab_report.onRefresh}"/>
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="statusbar"/>
+                        <af:treeTable value="#{bindings.ProrabView1.treeModel}" var="node"
+                                      selectionListener="#{bindings.ProrabView1.treeModel.makeCurrent}"
+                                      rowSelection="single" id="tt1" binding="#{prorab_report.treeTable}">
+                            <f:facet name="nodeStamp">
+                                <af:column id="c1" headerText="Ф.И.О." width="200">
+                                    <af:outputText value="#{node.Fullname}" id="ot1" inlineStyle="font-weight:bold;"/>
+                                </af:column>
+                            </f:facet>
+                            <f:facet name="pathStamp">
+                                <af:outputText value="#{node}" id="ot2"/>
+                            </f:facet>
+                            <af:column id="c2" width="250" headerText="Заказ">
+                                <af:outputText value="#{node.bindings.RegStr}" id="ot3"/>
+                            </af:column>
+                            <af:column id="c3" headerText="Дата сдачи">
+                                <af:outputText value="#{node.bindings.DatStr}" id="ot4"/>
+                            </af:column>
+                            <af:column id="c4" headerText="Сумма заказа" align="right">
+                                <af:outputText value="#{node.TotalOrderSumm}" id="ot7" inlineStyle="font-weight:bold;"/>
+                                <af:outputText value="#{node.bindings.SummOrder}" id="ot5"/>
+                            </af:column>
+                            <af:column id="c5" headerText="Комиссионные" align="right">
+                                <af:outputText value="#{node.TotalSumm}" id="ot8" inlineStyle="font-weight:bold;"/>
+                                <af:outputText value="#{node.bindings.Summ}" id="ot6"/>
+                            </af:column>
+                            <af:column id="c6" headerText="Задолженность" align="right">
+                                <af:outputText value="#{node.DebtSupplier}" id="ot9"
+                                               rendered="#{node.DebtSupplier == '0' ? true : false}"
+                                               inlineStyle="#{node.DebtSupplier &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}"/>
+                                <af:panelGroupLayout id="pgl2" layout="horizontal" halign="right">
+                                    <af:toolbar id="t2"
+                                                rendered="#{node.DebtSupplier == null ? false : node.DebtSupplier == '0' ? false : node.DebtSupplier > '0' ? false : true}">
+                                        <af:button id="b1" icon="/img/coins.png" text="#{node.DebtSupplier}"
+                                                   inlineStyle="#{node.DebtSupplier &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}"
+                                                   shortDesc="Оформить РКО">
+                                            <af:showPopupBehavior popupId="::p1"/>
+                                        </af:button>
+                                    </af:toolbar>
+                                    <af:toolbar id="t3"
+                                                rendered="#{node.DebtSupplier == null ? false : node.DebtSupplier == '0' ? false : node.DebtSupplier &lt; '0' ? false : true}">
+                                        <af:button id="b2" icon="/img/coins.png" text="#{node.DebtSupplier}"
+                                                   inlineStyle="font-weight:bold;" shortDesc="Оформить ПКО">
+                                            <af:showPopupBehavior popupId="::p2"/>
+                                        </af:button>
+                                    </af:toolbar>
+                                </af:panelGroupLayout>
+                            </af:column>
+                        </af:treeTable>
+                        <af:popup childCreation="deferred" id="p1"
+                                  contentDelivery="lazyUncached" popupFetchListener="#{prorab_report.onPopupRko}"
+                                  resetEditableValues="whenCanceled">
+                            <af:dialog id="d1" title="Расход из кассы" dialogListener="#{prorab_report.onDialogRko}">
+                                <af:panelFormLayout id="pfl1">
+                                    <af:selectOneChoice label="Касса для оплаты" id="soc1"
+                                                        value="#{bindings.addRko_kassaId1.inputValue}" required="true">
+                                        <f:selectItems value="#{bindings.addRko_kassaId1.items}" id="si1"/>
+                                    </af:selectOneChoice>
+                                    <af:inputNumberSpinbox value="#{bindings.Summa.inputValue}" label="Cумма"
+                                                           columns="#{bindings.Summa.hints.displayWidth}"
+                                                           shortDesc="#{bindings.Summa.hints.tooltip}" id="it2"
+                                                           required="true" validator="#{prorab_report.onValidateSumm}">
+                                        <f:validator binding="#{bindings.Summa.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.Summa.format}"/>
+                                    </af:inputNumberSpinbox>
+                                    <af:button actionListener="#{bindings.addRko.execute}" text="addRko"
+                                               disabled="#{!bindings.addRko.enabled}" id="b3" visible="false"/>
+                                </af:panelFormLayout>
+                                <f:facet name="buttonBar"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" id="p2"
+                                  contentDelivery="lazyUncached" resetEditableValues="whenCanceled"
+                                  popupFetchListener="#{prorab_report.onPopupPko}">
+                            <af:dialog id="d2" title="Приход в кассу" dialogListener="#{prorab_report.onDialogPko}">
+                                <f:facet name="buttonBar"/>
+                                <af:panelFormLayout id="pfl2">
+                                    <af:selectOneChoice label="Касса для оплаты" id="soc2"
+                                                        value="#{bindings.addPkoFromZamer_kassaId1.inputValue}"
+                                                        required="true">
+                                        <f:selectItems value="#{bindings.addPkoFromZamer_kassaId1.items}" id="si2"/>
+                                    </af:selectOneChoice>
+                                    <af:inputNumberSpinbox value="#{bindings.Summa1.inputValue}" label="Сумма"
+                                                           columns="#{bindings.Summa1.hints.displayWidth}"
+                                                           shortDesc="#{bindings.Summa1.hints.tooltip}" id="it3"
+                                                           required="true" validator="#{prorab_report.onValidateSumm}">
+                                        <f:validator binding="#{bindings.Summa1.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.Summa1.format}"/>
+                                    </af:inputNumberSpinbox>
+                                    <af:button actionListener="#{bindings.addPkoFromZamer.execute}"
+                                               text="addPkoFromZamer" disabled="#{!bindings.addPkoFromZamer.enabled}"
+                                               id="b4" visible="false"/>
+                                </af:panelFormLayout>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelCollection>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

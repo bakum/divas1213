@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="buyer_debt-config">
+    <default-activity>buyer_debt</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>buyer_debt</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.BuyerDebtBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="buyer_debt">
+      <page>/buyer_debt.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

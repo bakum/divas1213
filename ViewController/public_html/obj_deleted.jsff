@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium" topHeight="25px">
+                    <f:facet name="center">
+                        <af:panelCollection id="pc1" featuresOff="columnsMenuItem">
+                            <f:facet name="menus"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t2">
+                                    <af:button text="Обновить" id="b1" actionListener="#{del.onRefresh}">
+                                        <af:clientListener method="enforcePreventUserInput" type="action"/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                               disabled="#{!bindings.Commit.enabled}" id="b3" visible="false"/>
+                                    <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                               disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b4">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                    <af:group id="g1">
+                                        <af:button text="Удалить все помеченные" id="b2">
+                                            <af:showPopupBehavior popupId="pDelete"/>
+                                        </af:button>
+                                    </af:group>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="statusbar">
+                                <af:toolbar id="t1">
+                                    <af:outputText value="Нет ссылок на объект. Можно удалять" id="ot4"
+                                                   inlineStyle="color:Green;"/>
+                                    <af:spacer width="10" height="10" id="s1"/>
+                                    <af:outputText value="Есть ссылки на объект. Требуется вмешательство." id="ot5"
+                                                   inlineStyle="color:Red;font-weight:bold;"/>
+                                </af:toolbar>
+                            </f:facet>
+                            <af:treeTable value="#{bindings.ObjectDeleted1.treeModel}" var="node"
+                                          rowSelection="single" id="tt1" binding="#{del.treeTable}"
+                                          selectionListener="#{del.onTreeSelect}">
+                                <f:facet name="nodeStamp">
+                                    <af:column id="c1" width="500" headerText="Объекты для удаления/Связанные объекты">
+                                        <af:outputText value="#{node.RefStr}" id="ot1"
+                                                       inlineStyle="#{node.Enabled_del == 0 ? 'color:Green;' : node.MainId == null ? 'color:Red;font-weight:bold;' : 'font-style:italic;'}"/>
+                                    </af:column>
+                                </f:facet>
+                                <f:facet name="pathStamp">
+                                    <af:outputText value="#{node}" id="ot2"/>
+                                </f:facet>
+                                <af:column id="c2" visible="false">
+                                    <af:outputText value="#{node.Enabled_del}" id="ot3"
+                                                   inlineStyle="#{node.Enabled_del == 0 ? 'color:Green;' : 'color:Red;font-weight:bold;'}"/>
+                                </af:column>
+                                <af:column id="c3" headerText="Удалить">
+                                    <af:selectBooleanCheckbox value="#{node.MarkForDelete}" id="ot6"
+                                                              readOnly="#{node.Enabled_del == 0 ? false : node.MainId == null ? true : false}"
+                                                              rendered="#{node.MainId == null ? true : false}"
+                                                              autoSubmit="true"/>
+                                </af:column>
+                            </af:treeTable>
+                            <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete"
+                                      contentDelivery="lazyUncached">
+                                <af:dialog id="d1" title="Внимание!" dialogListener="#{del.onDeleteDialog}">
+                                    <f:facet name="buttonBar"/>
+                                    <af:outputText value="Выбранные объекты будут удалены безвозвратно! Хотите продолжить?" id="ot7"
+                                                   inlineStyle="font-size:large; Color : Red;"/>
+                                </af:dialog>
+                            </af:popup>
+                        </af:panelCollection>
+                    </f:facet>
+                    <f:facet name="top">
+                        <af:navigationPane id="np1" hint="bar">
+                            <af:commandNavigationItem text="Настройки" id="cni1" action="to_config"/>
+                            <af:commandNavigationItem text="Удаление помеченных объектов" id="cni2" selected="true">
+                                <af:clientListener method="enforcePreventUserInput" type="action"/>
+                            </af:commandNavigationItem>
+                        </af:navigationPane>
+                    </f:facet>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

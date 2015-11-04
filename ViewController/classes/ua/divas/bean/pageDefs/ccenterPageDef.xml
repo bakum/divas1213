@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="ccenterPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="KontragentsView1" RangeSize="12" DataControl="AppModuleDataControl" id="KontragentsView1Iterator"
+              Refresh="deferred" ChangeEventPolicy="ppr"/>
+    <searchRegion Binds="KontragentsView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="KontragentsView1Query"/>
+    <iterator Binds="KontragentsItemsLookupVO1" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="KontragentsItemsLookupVO1Iterator"/>
+    <iterator Binds="ContactDetailsView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ContactDetailsView2Iterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="ContactDetailsView1_1" RangeSize="10" DataControl="AppModuleDataControl"
+              id="ContactDetailsView1_1Iterator"/>
+    <searchRegion Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="KontragentsView1Iterator" id="KontragentsItemsQuery" Criteria="KontragentsItems"/>
+    <iterator Binds="OrdersViewKontragent" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OrdersViewKontragentIterator" ChangeEventPolicy="ppr">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="CallLogView5" RangeSize="5" DataControl="AppModuleDataControl" id="CallLogView5Iterator"
+              ChangeEventPolicy="ppr">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="OrdersView1" RangeSize="10" DataControl="AppModuleDataControl" id="OrdersView1Iterator"/>
+    <iterator Binds="KontragentsRep1" RangeSize="-1" DataControl="AppModuleDataControl" id="KontragentsRep1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="KontragentsView1Iterator" id="KontragentsView1">
+      <nodeDefinition DefName="ua.divas.view.KontragentsView" Name="KontragentsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="ParentId"/>
+          <Item Value="Fullname"/>
+          <Item Value="Namefull"/>
+          <Item Value="Inn"/>
+          <Item Value="Okpo"/>
+          <Item Value="Kpp"/>
+          <Item Value="UrFiz" Binds="UrFiz"/>
+          <Item Value="Editable"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="ContactDetailsView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.ContactDetailsView" Name="KontragentsView11">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Adress"/>
+          <Item Value="Editable"/>
+          <Item Value="Email"/>
+          <Item Value="KontragId"/>
+          <Item Value="KontragName"/>
+          <Item Value="Phone"/>
+          <Item Value="Version"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="KontragentsView1Iterator" id="UrFiz" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="UrFiz"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" Action="rollbackTransaction" DataControl="AppModuleDataControl" RequiresUpdateModel="false"/>
+    <tree IterBinding="KontragentsItemsLookupVO1Iterator" id="KontragentsItemsLookupVO1">
+      <nodeDefinition DefName="ua.divas.view.ro.KontragentsItemsLookupVO" Name="KontragentsItemsLookupVO10">
+        <AttrNames>
+          <Item Value="Fullname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="setStartCriteria" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setStartCriteria"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.KontragentsItemsLookupVO1">
+      <NamedData NDName="value" NDValue="" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="KontragentsView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getRowStatus" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getRowStatus"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.KontragentsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getRowStatus_AppModuleDataControl_KontragentsView1_getRowStatus_result">
+      <NamedData NDName="row" NDType="oracle.jbo.Row"/>
+    </methodAction>
+    <action IterBinding="KontragentsView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <methodAction id="getRowStatusColor" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getRowStatus"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.KontragentsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getRowStatus_AppModuleDataControl_KontragentsView1_getRowStatus_result">
+      <NamedData NDName="row" NDType="oracle.jbo.Row"/>
+    </methodAction>
+    <action IterBinding="KontragentsView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <listOfValues IterBinding="ContactDetailsView2Iterator" StaticList="false" Uses="LOV_KontragId" id="KontragId"/>
+    <listOfValues IterBinding="ContactDetailsView2Iterator" StaticList="false" Uses="LOV_KontragName" id="KontragName"/>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Adress">
+      <AttrNames>
+        <Item Value="Adress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Phone">
+      <AttrNames>
+        <Item Value="Phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Email">
+      <AttrNames>
+        <Item Value="Email"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Version">
+      <AttrNames>
+        <Item Value="Version"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Editable1">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ContactDetailsView2Iterator" id="First" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="ContactDetailsView2Iterator" id="Previous" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="ContactDetailsView2Iterator" id="Next" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="ContactDetailsView2Iterator" id="Last" RequiresUpdateModel="true" Action="last"/>
+    <action IterBinding="ContactDetailsView2Iterator" id="CreateInsert1"
+            InstanceName="AppModuleDataControl.ContactDetailsView2" DataControl="AppModuleDataControl"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="KontragentsView1Iterator" id="Fullname">
+      <AttrNames>
+        <Item Value="Fullname"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="addKonragentToCallList" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addKonragentToCallList" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.CompaignsView1">
+      <NamedData NDName="KonId" NDType="java.lang.String"/>
+      <NamedData NDName="CompId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removeKonragentFromCallList" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="removeKonragentFromCallList" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.CompaignsView1">
+      <NamedData NDName="KonId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="retrieveCustomersFirstParentId" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="retrieveCustomersFirstParentId" IsViewObjectMethod="true"
+                  DataControl="AppModuleDataControl" InstanceName="data.AppModuleDataControl.KontragentsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.retrieveCustomersFirstParentId_AppModuleDataControl_KontragentsView1_retrieveCustomersFirstParentId_result"/>
+    <tree IterBinding="OrdersViewKontragentIterator" id="OrdersViewKontragent">
+      <nodeDefinition DefName="ua.divas.view.OrdersView" Name="OrdersViewKontragent0">
+        <AttrNames>
+          <Item Value="Num"/>
+          <Item Value="Dat"/>
+          <Item Value="DivisionId"/>
+          <Item Value="TotalSumUslugi"/>
+          <Item Value="UserId"/>
+          <Item Value="TotalSumOplaty"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="ContactDetailsView2Iterator" id="ContactDetailsView2">
+      <nodeDefinition DefName="ua.divas.view.ContactDetailsView" Name="ContactDetailsView20">
+        <AttrNames>
+          <Item Value="Adress"/>
+          <Item Value="Phone"/>
+          <Item Value="Email"/>
+          <Item Value="Editable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="KontragentsView1Iterator" id="TotalSumm">
+      <AttrNames>
+        <Item Value="TotalSumm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="KontragentsView1Iterator" id="TotalOplat">
+      <AttrNames>
+        <Item Value="TotalOplat"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_KontragId" id="KontragId1"/>
+    <listOfValues IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_Kontragname"
+                  id="Kontragname"/>
+    <listOfValues IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_ZamerId" id="ZamerId"/>
+    <listOfValues IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_Zamername" id="Zamername"/>
+    <attributeValues IterBinding="OrdersViewKontragentIterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersViewKontragentIterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_CurrId" id="CurrId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_KassaId" id="KassaId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_UserId" id="UserId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OrdersViewKontragentIterator" id="Kurs">
+      <AttrNames>
+        <Item Value="Kurs"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersViewKontragentIterator" id="Kratnost">
+      <AttrNames>
+        <Item Value="Kratnost"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersViewKontragentIterator" id="Discription">
+      <AttrNames>
+        <Item Value="Discription"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_FirmId" id="FirmId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OrdersViewKontragentIterator" StaticList="false" Uses="LOV_StatusId" id="StatusId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="KontragentsView1Iterator" id="CountContacts">
+      <AttrNames>
+        <Item Value="CountContacts"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CallLogView5Iterator" id="CallLogView5">
+      <nodeDefinition DefName="ua.divas.view.CallLogView" Name="CallLogView50">
+        <AttrNames>
+          <Item Value="Dat"/>
+          <Item Value="CallStatus"/>
+          <Item Value="CallResults"/>
+          <Item Value="ContactId"/>
+          <Item Value="KontragId"/>
+          <Item Value="Memo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CallLogView5Iterator" id="Id1">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CallLogView5Iterator" id="Dat1">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CallLogView5Iterator" StaticList="false" Uses="LOV_CallStatus" id="CallStatus"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CallLogView5Iterator" StaticList="false" Uses="LOV_CallResults" id="CallResults"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CallLogView5Iterator" StaticList="false" Uses="LOV_ContactId" id="ContactId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CallLogView5Iterator" StaticList="false" Uses="LOV_CompDetId" id="CompDetId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CallLogView5Iterator" StaticList="false" Uses="LOV_KontragId" id="KontragId2"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CallLogView5Iterator" id="Memo">
+      <AttrNames>
+        <Item Value="Memo"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="CallLogView5Iterator" id="CreateInsert2" InstanceName="AppModuleDataControl.CallLogView5"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <tree IterBinding="OrdersView1Iterator" id="OrdersView1">
+      <nodeDefinition DefName="ua.divas.view.OrdersView" Name="OrdersView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="ActivitiesId"/>
+          <Item Value="AgentId"/>
+          <Item Value="AgentName"/>
+          <Item Value="CountUslug"/>
+          <Item Value="CurrId"/>
+          <Item Value="Dat"/>
+          <Item Value="DatComplete"/>
+          <Item Value="DatZam"/>
+          <Item Value="Deleted"/>
+          <Item Value="Discription"/>
+          <Item Value="DivisionId"/>
+          <Item Value="Enbl"/>
+          <Item Value="FirmId"/>
+          <Item Value="KassaId"/>
+          <Item Value="KontragId"/>
+          <Item Value="Kontragname"/>
+          <Item Value="Kratnost"/>
+          <Item Value="Kurs"/>
+          <Item Value="Num"/>
+          <Item Value="Objname"/>
+          <Item Value="OEditable"/>
+          <Item Value="Posted"/>
+          <Item Value="StatusId"/>
+          <Item Value="SummPlan"/>
+          <Item Value="TotalSumm"/>
+          <Item Value="TotalSummUslugiAdd"/>
+          <Item Value="TotalSumOplaty"/>
+          <Item Value="TotalSumUslugi"/>
+          <Item Value="UserId"/>
+          <Item Value="Version"/>
+          <Item Value="ZamerId"/>
+          <Item Value="Zamername"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="KontragentsRep1Iterator" id="KontragentsRep1">
+      <nodeDefinition DefName="ua.divas.view.KontragentsRep" Name="KontragentsRep10">
+        <AttrNames>
+          <Item Value="Fullname"/>
+          <Item Value="Adress"/>
+          <Item Value="Email"/>
+          <Item Value="IsBuyer"/>
+          <Item Value="Phone"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

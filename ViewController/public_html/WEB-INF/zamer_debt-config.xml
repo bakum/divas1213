@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="zamer_debt-config">
+    <default-activity>zamer_debt</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>zamer_debt</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ZamerDebtBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="zamer_debt">
+      <page>/zamer_debt.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

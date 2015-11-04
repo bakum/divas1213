@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">ballans</property>
+      <property
+         name="page">/ballans.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>ballans&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">97.046875</property>
+      <property
+         name="x">69.0</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">ballans_detail</property>
+      <property
+         name="page">/ballans_detail.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>ballans_detail&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">95.109375</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">230.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">to_detail</property>
+      <property
+         name="sdm:polyPoints">R50,110.0,97.0625,189.0,95.125,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">to_main</property>
+      <property
+         name="sdm:polyPoints">L54,189.0,98.625,110.08582,100.5625,R54</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="KassaSettingsView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  ComponentClass="ua.divas.view.KassaSettingsViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="user_id"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[viewObject.getSessionUserId()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="Curr"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[viewObject.retrieveCurrencyId()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <SQLQuery><![CDATA[SELECT KassaSettings.ID, 
+       KassaSettings.USER_ID, 
+       KassaSettings.KASSA_ID,
+       (select Kassa.CURR_ID from kassa Kassa where Kassa.ID = KassaSettings.KASSA_ID) Curr_Id,
+       (select fullname from kassa where id = KassaSettings.KASSA_ID) Kassa_Name
+FROM  KASSA_SETTINGS KassaSettings]]></SQLQuery>
+  <EntityUsage
+    Name="KassaSettings"
+    Entity="ua.divas.model.KassaSettings"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="KassaSettings"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="UserId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="KassaSettings"
+    AliasName="USER_ID"/>
+  <ViewAttribute
+    Name="KassaId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="KassaId"
+    EntityUsage="KassaSettings"
+    AliasName="KASSA_ID"/>
+  <ViewAttribute
+    Name="CurrId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CURR_ID"
+    Expression="CURR_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KassaName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KASSA_NAME"
+    Expression="KASSA_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="KassaSettingsByUser"
+    ViewObjectName="ua.divas.view.KassaSettingsView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="KassaSettingsViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="UserId"
+        ViewAttribute="UserId"
+        Operator="="
+        Conjunction="AND"
+        Value=":user_id"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="KassaSettingsByUser_KassaSettingsViewCriteria_row_0_CurrId"
+        ViewAttribute="CurrId"
+        Operator="="
+        Conjunction="AND"
+        Value=":Curr"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+</ViewObject>

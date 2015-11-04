@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelCollection id="pc1">
+                    <f:facet name="menus"/>
+                    <f:facet name="toolbar"/>
+                    <f:facet name="statusbar"/>
+                    <af:treeTable value="#{bindings.PlanAccGroupView1.treeModel}" var="node"
+                                  selectionListener="#{plan_acc.onTreeSelect}"
+                                  rowSelection="single" id="tt1" binding="#{plan_acc.treeTable}">
+                        <f:facet name="nodeStamp">
+                            <af:column id="c1" width="150">
+                                <af:outputText value="#{node.Code}" id="ot1"/>
+                                <f:facet name="header">
+                                    <af:outputText value="Код" id="ot5"/>
+                                </f:facet>
+                            </af:column>
+                        </f:facet>
+                        <f:facet name="pathStamp">
+                            <af:outputText value="#{node}" id="ot2"/>
+                        </f:facet>
+                        <af:column id="c2" width="450">
+                            <af:outputText value="#{node.Fullname}" id="ot3"/>
+                            <f:facet name="header">
+                                <af:outputText value="Наименование" id="ot4"/>
+                            </f:facet>
+                        </af:column>
+                        <af:column id="c3" width="200">
+                            <af:selectOneChoice id="soc1" value="#{node.bindings.AccType.inputValue}" readOnly="true">
+                                <f:selectItems value="#{node.bindings.AccType.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <f:facet name="header">
+                                <af:outputText value="Тип" id="ot6"/>
+                            </f:facet>
+                        </af:column>
+                        <af:column id="c4" width="60">
+                            <af:toolbar id="t1">
+                                <af:button id="b1" icon="/img/view1.png">
+                                    <af:showPopupBehavior popupId="::pView"/>
+                                </af:button>
+                            </af:toolbar>
+                        </af:column>
+                    </af:treeTable>
+                    <af:popup childCreation="deferred" autoCancel="disabled" id="pView" contentDelivery="lazyUncached">
+                        <af:dialog id="d1" title="План счетов: #{bindings.Code.inputValue}" contentWidth="600"
+                                   contentHeight="300" resize="on">
+                            <af:panelHeader text="Реквизиты" id="ph2">
+                                <f:facet name="context"/>
+                                <f:facet name="menuBar"/>
+                                <f:facet name="toolbar"/>
+                                <f:facet name="legend"/>
+                                <f:facet name="info"/>
+                                <af:panelFormLayout id="pfl1">
+                                    <af:inputText value="#{bindings.Code.inputValue}"
+                                                  label="#{bindings.Code.hints.label}"
+                                                  required="#{bindings.Code.hints.mandatory}" readOnly="true"
+                                                  columns="#{bindings.Code.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Code.hints.precision}"
+                                                  shortDesc="#{bindings.Code.hints.tooltip}" id="it1">
+                                        <f:validator binding="#{bindings.Code.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.AccType.inputValue}"
+                                                        label="#{bindings.AccType.label}"
+                                                        required="#{bindings.AccType.hints.mandatory}"
+                                                        shortDesc="#{bindings.AccType.hints.tooltip}" readOnly="true"
+                                                        id="soc2">
+                                        <f:selectItems value="#{bindings.AccType.items}" id="si2"/>
+                                        <f:validator binding="#{bindings.AccType.validator}"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.ParentId.inputValue}"
+                                                        label="#{bindings.ParentId.label}"
+                                                        required="#{bindings.ParentId.hints.mandatory}"
+                                                        shortDesc="#{bindings.ParentId.hints.tooltip}" readOnly="true"
+                                                        id="soc3">
+                                        <f:selectItems value="#{bindings.ParentId.items}" id="si3"/>
+                                        <f:validator binding="#{bindings.ParentId.validator}"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Fullname.inputValue}"
+                                                  label="#{bindings.Fullname.hints.label}"
+                                                  required="#{bindings.Fullname.hints.mandatory}" readOnly="true"
+                                                  columns="#{bindings.Fullname.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Fullname.hints.precision}"
+                                                  shortDesc="#{bindings.Fullname.hints.tooltip}" id="it2"
+                                                  inlineStyle="font-weight:bold;">
+                                        <f:validator binding="#{bindings.Fullname.validator}"/>
+                                    </af:inputText>
+                                    <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                        <af:selectBooleanCheckbox value="#{bindings.Zabalansov.inputValue}"
+                                                                  label="#{bindings.Zabalansov.label}"
+                                                                  shortDesc="#{bindings.Zabalansov.hints.tooltip}"
+                                                                  id="sbc1" readOnly="true"/>
+                                        <af:selectBooleanCheckbox value="#{bindings.Valutn.inputValue}"
+                                                                  label="#{bindings.Valutn.label}"
+                                                                  shortDesc="#{bindings.Valutn.hints.tooltip}"
+                                                                  id="sbc2" readOnly="true"/>
+                                        <af:selectBooleanCheckbox value="#{bindings.Kolishestv.inputValue}"
+                                                                  label="#{bindings.Kolishestv.label}"
+                                                                  shortDesc="#{bindings.Kolishestv.hints.tooltip}"
+                                                                  id="sbc3" readOnly="true"/>
+                                    </af:panelGroupLayout>
+                                </af:panelFormLayout>
+                            </af:panelHeader>
+                            <f:facet name="buttonBar"/>
+                            <af:panelHeader text="Субконто" id="ph1">
+                                <f:facet name="context"/>
+                                <f:facet name="menuBar"/>
+                                <f:facet name="toolbar"/>
+                                <f:facet name="legend"/>
+                                <f:facet name="info"/>
+                                <af:table value="#{bindings.PlanAccSubcontoView2.collectionModel}" var="row"
+                                          rows="#{bindings.PlanAccSubcontoView2.rangeSize}"
+                                          emptyText="#{bindings.PlanAccSubcontoView2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.PlanAccSubcontoView2.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.PlanAccSubcontoView2.collectionModel.makeCurrent}"
+                                          rowSelection="single" fetchSize="#{bindings.PlanAccSubcontoView2.rangeSize}"
+                                          id="t2">
+                                    <af:column headerText="#{bindings.PlanAccSubcontoView2.hints.Id.label}" id="c5"
+                                               visible="false">
+                                        <af:outputText value="#{row.Id}"
+                                                       shortDesc="#{bindings.PlanAccSubcontoView2.hints.Id.tooltip}"
+                                                       id="ot7"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.PlanAccSubcontoView2.hints.PlanAccId.label}"
+                                               id="c6" visible="false">
+                                        <af:selectOneChoice value="#{row.bindings.PlanAccId.inputValue}"
+                                                            label="#{row.bindings.PlanAccId.label}"
+                                                            required="#{bindings.PlanAccSubcontoView2.hints.PlanAccId.mandatory}"
+                                                            shortDesc="#{bindings.PlanAccSubcontoView2.hints.PlanAccId.tooltip}"
+                                                            readOnly="true" id="soc4">
+                                            <f:selectItems value="#{row.bindings.PlanAccId.items}" id="si4"/>
+                                            <f:validator binding="#{row.bindings.PlanAccId.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.PlanAccSubcontoView2.hints.PlanTypeSubc.label}"
+                                               id="c7">
+                                        <af:selectOneChoice value="#{row.bindings.PlanTypeSubc.inputValue}"
+                                                            label="#{row.bindings.PlanTypeSubc.label}"
+                                                            required="#{bindings.PlanAccSubcontoView2.hints.PlanTypeSubc.mandatory}"
+                                                            shortDesc="#{bindings.PlanAccSubcontoView2.hints.PlanTypeSubc.tooltip}"
+                                                            readOnly="true" id="soc5">
+                                            <f:selectItems value="#{row.bindings.PlanTypeSubc.items}" id="si5"/>
+                                            <f:validator binding="#{row.bindings.PlanTypeSubc.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.PlanAccSubcontoView2.hints.OborotOnly.label}"
+                                               id="c8">
+                                        <af:selectBooleanCheckbox value="#{row.bindings.OborotOnly.inputValue}"
+                                                                  label="#{row.bindings.OborotOnly.label}"
+                                                                  shortDesc="#{bindings.PlanAccSubcontoView2.hints.OborotOnly.tooltip}"
+                                                                  id="sbc4" readOnly="true"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.PlanAccSubcontoView2.hints.Summovoy.label}"
+                                               id="c9">
+                                        <af:selectBooleanCheckbox value="#{row.bindings.Summovoy.inputValue}"
+                                                                  label="#{row.bindings.Summovoy.label}"
+                                                                  shortDesc="#{bindings.PlanAccSubcontoView2.hints.Summovoy.tooltip}"
+                                                                  id="sbc5" readOnly="true"/>
+                                    </af:column>
+                                    <af:column headerText="#{bindings.PlanAccSubcontoView2.hints.Version.label}"
+                                               id="c10" visible="false">
+                                        <af:outputText value="#{row.Version}"
+                                                       shortDesc="#{bindings.PlanAccSubcontoView2.hints.Version.tooltip}"
+                                                       id="ot10">
+                                            <af:convertDateTime pattern="#{bindings.PlanAccSubcontoView2.hints.Version.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                </af:table>
+                            </af:panelHeader>
+                        </af:dialog>
+                    </af:popup>
+                </af:panelCollection>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

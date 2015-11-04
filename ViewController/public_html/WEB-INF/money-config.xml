@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="money-config">
+    <default-activity>rko</default-activity>
+    <managed-bean id="__7">
+      <managed-bean-name>rko</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.RkoBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__14">
+      <managed-bean-name>pko</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.PkoBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="rko">
+      <page>/rko.jsff</page>
+    </view>
+    <view id="pko">
+      <page>/pko.jsff</page>
+    </view>
+    <task-flow-call id="EditPko">
+      <task-flow-reference>
+        <document>/WEB-INF/EditPko.xml</document>
+        <id>EditPko</id>
+      </task-flow-reference>
+      <return-value id="__6">
+        <name>PkoId</name>
+        <value>#{pageFlowScope.PkoId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.PkoId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="EditRko">
+      <task-flow-reference>
+        <document>/WEB-INF/EditRko.xml</document>
+        <id>EditRko</id>
+      </task-flow-reference>
+      <return-value id="__10">
+        <name>RkoId</name>
+        <value>#{pageFlowScope.RkoId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.RkoId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="newRko">
+      <task-flow-reference>
+        <document>/WEB-INF/newRko.xml</document>
+        <id>newRko</id>
+      </task-flow-reference>
+      <return-value id="__11">
+        <name>RkoId</name>
+        <value>#{pageFlowScope.RkoId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.RkoId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="newPko">
+      <task-flow-reference>
+        <document>/WEB-INF/newPko.xml</document>
+        <id>newPko</id>
+      </task-flow-reference>
+      <return-value id="__8">
+        <name>PkoId</name>
+        <value>#{pageFlowScope.PkoId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.PkoId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>rko</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>to_pko</from-outcome>
+        <to-activity-id>pko</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome>editRko</from-outcome>
+        <to-activity-id>EditRko</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__12">
+        <from-outcome>addRko</from-outcome>
+        <to-activity-id>newRko</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>pko</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>to_rko</from-outcome>
+        <to-activity-id>rko</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__5">
+        <from-outcome>editPko</from-outcome>
+        <to-activity-id>EditPko</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__13">
+        <from-outcome>addPko</from-outcome>
+        <to-activity-id>newPko</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

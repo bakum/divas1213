@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">order</property>
+      <property
+         name="page">/order.jsf</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>order&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">138.07812</property>
+      <property
+         name="x">106.0</property>
+   </View>
+   <TaskFlowReturn
+      id="TaskFlowReturn3">
+      <property
+         name="activityId">Return</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Return&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  Return&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">106.21875</property>
+      <property
+         name="x">283.0</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="TaskFlowReturn3">
+      <property
+         name="fromOutcome">ok</property>
+      <property
+         name="sdm:polyPoints">R46,146.0,134.57812,242.0,106.234375,L50</property>
+   </ControlFlowCase>
+   <TaskFlowReturn
+      id="TaskFlowReturn5">
+      <property
+         name="activityId">cancel</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>cancel&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  cancel&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">210.04688</property>
+      <property
+         name="x">283.0</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View2"
+      to="TaskFlowReturn5">
+      <property
+         name="fromOutcome">cancel</property>
+      <property
+         name="sdm:polyPoints">R54,146.0,141.57812,242.0,210.0625,L50</property>
+   </ControlFlowCase>
+</SDM>

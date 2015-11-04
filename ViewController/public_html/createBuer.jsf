@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Новый клиент" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:panelBox text="Создание нового клиента" id="pb1">
+                            <f:facet name="toolbar"/>
+                            <af:panelFormLayout id="pfl1">
+                                <af:inputText value="#{bindings.p_name.inputValue}"
+                                              label="Клиент"
+                                              columns="#{bindings.p_name.hints.displayWidth}"
+                                              maximumLength="#{bindings.p_name.hints.precision}"
+                                              shortDesc="#{bindings.p_name.hints.tooltip}" id="it1" required="true">
+                                    <f:validator binding="#{bindings.p_name.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.contact.inputValue}"
+                                              label="Адрес"
+                                              columns="#{bindings.contact.hints.displayWidth}"
+                                              maximumLength="#{bindings.contact.hints.precision}"
+                                              shortDesc="#{bindings.contact.hints.tooltip}" id="it2" rows="5"
+                                              required="true">
+                                    <f:validator binding="#{bindings.contact.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.phone.inputValue}" label="Телефон"
+                                              columns="#{bindings.phone.hints.displayWidth}"
+                                              maximumLength="#{bindings.phone.hints.precision}"
+                                              shortDesc="#{bindings.phone.hints.tooltip}" id="it3" required="true">
+                                    <f:validator binding="#{bindings.phone.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.mail.inputValue}" label="E-Mail"
+                                              columns="#{bindings.mail.hints.displayWidth}"
+                                              maximumLength="#{bindings.mail.hints.precision}"
+                                              shortDesc="#{bindings.mail.hints.tooltip}" id="it4" required="false">
+                                    <f:validator binding="#{bindings.mail.validator}"/>
+                                </af:inputText>
+                                <f:facet name="footer">
+                                    <af:panelGroupLayout id="pgl2" halign="right" layout="horizontal">
+                                        <af:toolbar id="t1">
+                                            <af:button actionListener="#{createkont.onExecute}" text="Ok"
+                                                       disabled="#{!bindings.createByer.enabled}" id="b1" action="ok"/>
+                                            <af:button text="Отмена" id="b2" action="cancel" immediate="true"/>
+                                        </af:toolbar>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:panelFormLayout>
+                        </af:panelBox>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

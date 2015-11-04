@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwZatratyOtherZatratyFkLink"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwZatratyOtherZatratyFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="OtherZatratyView"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.OtherZatratyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OtherZatratyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.OtherZatratyView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="VwZatraty"
+    Cardinality="-1"
+    Owner="ua.divas.view.VwZatraty">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwZatraty"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.VwZatraty.RegistratorId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

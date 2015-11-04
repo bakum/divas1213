@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces" xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Баланс за период по подразделению" id="pb1" type="flow">
+                    <f:facet name="toolbar">
+                        <af:panelGroupLayout id="pgl4" layout="horizontal">
+                            <af:link text="Развернутый баланс" id="l1" action="to_detail"/>
+                            <af:spacer width="10" height="10" id="s1"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <af:table value="#{bindings.VwBallansAp1.collectionModel}" var="row"
+                              rows="#{bindings.VwBallansAp1.rangeSize}"
+                              emptyText="#{bindings.VwBallansAp1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.VwBallansAp1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VwBallansAp1.collectionModel.makeCurrent}"
+                              rowSelection="single" fetchSize="#{bindings.VwBallansAp1.rangeSize}" id="t1"
+                              allDetailsEnabled="true" partialTriggers="::b3">
+                        <af:column headerText="#{bindings.VwBallansAp1.hints.Id.label}" id="c1" visible="false">
+                            <af:outputText value="#{row.Id}" shortDesc="#{bindings.VwBallansAp1.hints.Id.tooltip}"
+                                           id="ot1"/>
+                        </af:column>
+                        <af:column headerText="#{bindings.VwBallansAp1.hints.Code.label}" id="c2" visible="false">
+                            <af:outputText value="#{row.Code}" shortDesc="#{bindings.VwBallansAp1.hints.Code.tooltip}"
+                                           id="ot2"/>
+                        </af:column>
+                        <af:column headerText="#{bindings.VwBallansAp1.hints.Fullname.label}" id="c3" width="350"
+                                   inlineStyle="border-right-width:medium; border-right-color:#151515;">
+                            <af:outputText value="#{row.Fullname}"
+                                           shortDesc="#{bindings.VwBallansAp1.hints.Fullname.tooltip}" id="ot3"/>
+                            <f:facet name="footer">
+                                <af:outputText value="Итого:" id="ot16"/>
+                            </f:facet>
+                        </af:column>
+                        <af:column id="c11" headerText="Актив" align="center"
+                                   headerClass="MyHeaderBoldClass">
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.ActiveStart.label}" id="c4"
+                                       align="right" headerClass="MyHeaderItalicClass">
+                                <af:outputText value="#{row.ActiveStart}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.ActiveStart.tooltip}" id="ot4"
+                                               inlineStyle="#{row.ActiveStart &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.ActiveStart.format}"/>
+                                </af:outputText>
+                                <f:facet name="footer">
+                                    <af:outputText value="#{bindings.VwBallansAp1Iterator.viewObject.sum['ActiveStart']}"
+                                                   id="ot10" inlineStyle="font-weight:bold;"/>
+                                </f:facet>
+                            </af:column>
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.ActiveDeb.label}" id="c5"
+                                       align="right" headerClass="MyHeaderItalicClass">
+                                <af:outputText value="#{row.bindings.ActiveDeb.inputValue}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.ActiveDeb.tooltip}" id="it1"
+                                               inlineStyle="#{row.ActiveDeb &lt; '0' ? 'color:Red;' : ''}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.ActiveDeb.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.ActiveKred.label}" id="c8"
+                                       align="right" headerClass="MyHeaderItalicClass">
+                                <af:outputText value="#{row.bindings.ActiveKred.inputValue}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.ActiveKred.tooltip}" id="it2"
+                                               inlineStyle="#{row.ActiveKred &lt; '0' ? 'color:Red;' : ''}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.ActiveKred.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.ActiveEnd.label}" id="c6"
+                                       align="right" headerClass="MyHeaderItalicClass"
+                                       inlineStyle="border-right-width:medium; border-right-color:#151515;">
+                                <af:outputText value="#{row.ActiveEnd}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.ActiveEnd.tooltip}" id="ot6"
+                                               inlineStyle="#{row.ActiveEnd &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.ActiveEnd.format}"/>
+                                </af:outputText>
+                                <f:facet name="footer">
+                                    <af:outputText value="#{bindings.VwBallansAp1Iterator.viewObject.sum['ActiveEnd']}"
+                                                   id="ot12" inlineStyle="font-weight:bold;"/>
+                                </f:facet>
+                            </af:column>
+                        </af:column>
+                        <af:column id="c12" headerText="Пассив" align="center" headerClass="MyHeaderBoldClass">
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.PassiveStart.label}" id="c7"
+                                       align="right" headerClass="MyHeaderItalicClass"
+                                       inlineStyle="#{row.Code == '600' or row.Code == '900' ? 'background-color: #B2CA7E;' : ''}">
+                                <af:outputText value="#{row.PassiveStart}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.PassiveStart.tooltip}" id="ot7"
+                                               inlineStyle="#{row.PassiveStart &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.PassiveStart.format}"/>
+                                </af:outputText>
+                                <f:facet name="footer">
+                                    <af:outputText value="#{bindings.VwBallansAp1Iterator.viewObject.sum['PassiveStart']}"
+                                                   id="ot13" inlineStyle="font-weight:bold;"/>
+                                </f:facet>
+                            </af:column>
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.PassiveDeb.label}" id="c13"
+                                       align="right" headerClass="MyHeaderItalicClass"
+                                       inlineStyle="#{row.Code == '600' or row.Code == '900' ? 'background-color: #B2CA7E;' : ''}">
+                                <af:outputText value="#{row.PassiveDeb}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.PassiveDeb.tooltip}" id="ot5"
+                                               inlineStyle="#{row.PassiveDeb &lt; '0' ? 'color:Red;' : ''}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.PassiveDeb.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.PassiveKred.label}" id="c14"
+                                       align="right" headerClass="MyHeaderItalicClass"
+                                       inlineStyle="#{row.Code == '600' or row.Code == '900' ? 'background-color: #B2CA7E;' : ''}">
+                                <af:outputText value="#{row.PassiveKred}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.PassiveKred.tooltip}" id="ot8"
+                                               inlineStyle="#{row.PassiveKred &lt; '0' ? 'color:Red;' : ''}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.PassiveKred.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.VwBallansAp1.hints.PassiveEnd.label}" id="c9"
+                                       align="right" headerClass="MyHeaderItalicClass"
+                                       inlineStyle="#{row.Code == '600' or row.Code == '900' ? 'border-right-width:medium; border-right-color:#151515;background-color: #B2CA7E;' : 'border-right-width:medium; border-right-color:#151515;'}"
+                                       width="120">
+                                <af:outputText value="#{row.PassiveEnd}"
+                                               shortDesc="#{bindings.VwBallansAp1.hints.PassiveEnd.tooltip}" id="ot9"
+                                               inlineStyle="#{row.PassiveEnd &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}"
+                                               rendered="#{row.PassiveEnd &lt;=0 ? true : row.Code == '900' ? false : true}">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwBallansAp1.hints.PassiveEnd.format}"/>
+                                </af:outputText>
+                                <f:facet name="footer">
+                                    <af:outputText value="#{bindings.VwBallansAp1Iterator.viewObject.sum['PassiveEnd']}"
+                                                   id="ot15" inlineStyle="font-weight:bold;"/>
+                                </f:facet>
+                                <af:panelGroupLayout id="pgl2" layout="horizontal" halign="right">
+                                    <af:toolbar id="t2"
+                                                rendered="#{row.PassiveEnd &lt;= 0 ? false : row.Code == '900' ? true : false}">
+                                        <af:button text="#{row.PassiveEnd}" id="b1" icon="/img/coins.png"
+                                                   shortDesc="Распределить сумму" inlineStyle="font-weight:bold;"/>
+                                    </af:toolbar>
+                                </af:panelGroupLayout>
+                            </af:column>
+                        </af:column>
+                        <f:facet name="footer"/>
+                    </af:table>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

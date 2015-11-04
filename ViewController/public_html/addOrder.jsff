@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Новый заказ" id="pb1">
+                    <f:facet name="toolbar"/>
+                    <af:panelHeader text="Детали заказа" id="ph1" type="flow">
+                        <f:facet name="context"/>
+                        <f:facet name="menuBar"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                                <af:group id="g1">
+                                    <af:train value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                              id="t2"/>
+                                </af:group>
+                                <af:group id="g2">
+                                    <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                                       id="tbb1"/>
+                                </af:group>
+                                <af:button text="Сохранить" id="b1" action="save"/>
+                                <af:button text="Отменить" id="b2" action="noSave"/>
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="legend">
+                            <af:outputFormatted value="Шаг 3. Добавьте подробности заказа и нажмите Сохранить." id="of1"
+                                                inlineStyle="font-size:large;"/>
+                        </f:facet>
+                        <f:facet name="info"/>
+                    </af:panelHeader>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

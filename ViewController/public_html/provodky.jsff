@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Настройки проводок" id="pb1" type="stretch">
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t3">
+                            <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                       disabled="#{bindings.Commit.enabled}" id="b4"/>
+                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                       disabled="#{!bindings.Commit.enabled}" id="b2"
+                                       action="#{provodki.commitChange}"/>
+                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                       disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b3">
+                                <af:resetActionListener/>
+                            </af:button>
+                            <af:button text="Обновить" id="b5" actionListener="#{provodki.onRefresh}"
+                                       disabled="#{bindings.Commit.enabled}"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <af:panelSplitter id="ps1" splitterPosition="300">
+                        <f:facet name="first">
+                            <af:listView value="#{bindings.TypeDefView1.collectionModel}" var="item"
+                                         emptyText="#{bindings.TypeDefView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                         fetchSize="#{bindings.TypeDefView1.rangeSize}" id="lv1" selection="single"
+                                         selectionListener="#{bindings.TypeDefView1.treeModel.makeCurrent}">
+                                <af:listItem id="li1">
+                                    <af:panelGroupLayout id="pgl2">
+                                        <af:outputFormatted value="#{item.bindings.TableName.inputValue}" id="of1"/>
+                                    </af:panelGroupLayout>
+                                </af:listItem>
+                            </af:listView>
+                        </f:facet>
+                        <f:facet name="second">
+                            <af:table value="#{bindings.EntrySettingsView4.collectionModel}" var="row"
+                                      rows="#{bindings.EntrySettingsView4.rangeSize}"
+                                      emptyText="#{bindings.EntrySettingsView4.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.EntrySettingsView4.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.EntrySettingsView4.collectionModel.makeCurrent}"
+                                      rowSelection="single" fetchSize="#{bindings.EntrySettingsView4.rangeSize}"
+                                      id="t1" editingMode="clickToEdit" partialTriggers="::b4">
+                                <af:column id="c10" width="60" rowHeader="true">
+                                    <af:toolbar id="t2">
+                                        <af:button id="b1" icon="/img/edit-16.gif"
+                                                   disabled="#{bindings.Commit.enabled}">
+                                            <af:setPropertyListener from="#{1}" to="#{bindings.EsEditable.inputValue}"
+                                                                    type="action"/>
+                                        </af:button>
+                                    </af:toolbar>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.Id.label}" id="c1"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                  label="#{bindings.EntrySettingsView4.hints.Id.label}"
+                                                  required="#{bindings.EntrySettingsView4.hints.Id.mandatory}"
+                                                  columns="#{bindings.EntrySettingsView4.hints.Id.displayWidth}"
+                                                  maximumLength="#{bindings.EntrySettingsView4.hints.Id.precision}"
+                                                  shortDesc="#{bindings.EntrySettingsView4.hints.Id.tooltip}" id="it1">
+                                        <f:validator binding="#{row.bindings.Id.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.TypedefId.label}" id="c2"
+                                           visible="false">
+                                    <af:inputListOfValues id="typedefIdId"
+                                                          popupTitle="Search and Select: #{bindings.EntrySettingsView4.hints.TypedefId.label}"
+                                                          value="#{row.bindings.TypedefId.inputValue}"
+                                                          model="#{row.bindings.TypedefId.listOfValuesModel}"
+                                                          required="#{bindings.EntrySettingsView4.hints.TypedefId.mandatory}"
+                                                          columns="#{bindings.EntrySettingsView4.hints.TypedefId.displayWidth}"
+                                                          shortDesc="#{bindings.EntrySettingsView4.hints.TypedefId.tooltip}">
+                                        <f:validator binding="#{row.bindings.TypedefId.validator}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.TypedefName.label}" id="c3"
+                                           visible="false">
+                                    <af:inputListOfValues id="typedefNameId"
+                                                          popupTitle="Search and Select: #{bindings.EntrySettingsView4.hints.TypedefName.label}"
+                                                          value="#{row.bindings.TypedefName.inputValue}"
+                                                          model="#{row.bindings.TypedefName.listOfValuesModel}"
+                                                          required="#{bindings.EntrySettingsView4.hints.TypedefName.mandatory}"
+                                                          columns="#{bindings.EntrySettingsView4.hints.TypedefName.displayWidth}"
+                                                          shortDesc="#{bindings.EntrySettingsView4.hints.TypedefName.tooltip}">
+                                        <f:validator binding="#{row.bindings.TypedefName.validator}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.PlanAccDebId.label}" id="c4"
+                                           visible="false">
+                                    <af:inputListOfValues id="planAccDebIdId"
+                                                          popupTitle="Search and Select: #{bindings.EntrySettingsView4.hints.PlanAccDebId.label}"
+                                                          value="#{row.bindings.PlanAccDebId.inputValue}"
+                                                          model="#{row.bindings.PlanAccDebId.listOfValuesModel}"
+                                                          required="#{bindings.EntrySettingsView4.hints.PlanAccDebId.mandatory}"
+                                                          columns="#{bindings.EntrySettingsView4.hints.PlanAccDebId.displayWidth}"
+                                                          shortDesc="#{bindings.EntrySettingsView4.hints.PlanAccDebId.tooltip}"
+                                                          partialTriggers="planaccdebnameId">
+                                        <f:validator binding="#{row.bindings.PlanAccDebId.validator}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.Planaccdebname.label}"
+                                           id="c5">
+                                    <af:inputListOfValues id="planaccdebnameId"
+                                                          popupTitle="Найти и выбрать: #{bindings.EntrySettingsView4.hints.Planaccdebname.label}"
+                                                          value="#{row.bindings.Planaccdebname.inputValue}"
+                                                          model="#{row.bindings.Planaccdebname.listOfValuesModel}"
+                                                          required="#{bindings.EntrySettingsView4.hints.Planaccdebname.mandatory}"
+                                                          columns="#{bindings.EntrySettingsView4.hints.Planaccdebname.displayWidth}"
+                                                          shortDesc="#{bindings.EntrySettingsView4.hints.Planaccdebname.tooltip}"
+                                                          autoSubmit="true"
+                                                          launchPopupListener="#{provodki.onLaunchLov}">
+                                        <f:validator binding="#{row.bindings.Planaccdebname.validator}"/>
+                                        <af:autoSuggestBehavior suggestedItems="#{bindings.Planaccdebname.suggestedItems}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.PlanAccKredId.label}"
+                                           id="c6" visible="false">
+                                    <af:inputListOfValues id="planAccKredIdId"
+                                                          popupTitle="Search and Select: #{bindings.EntrySettingsView4.hints.PlanAccKredId.label}"
+                                                          value="#{row.bindings.PlanAccKredId.inputValue}"
+                                                          model="#{row.bindings.PlanAccKredId.listOfValuesModel}"
+                                                          required="#{bindings.EntrySettingsView4.hints.PlanAccKredId.mandatory}"
+                                                          columns="#{bindings.EntrySettingsView4.hints.PlanAccKredId.displayWidth}"
+                                                          shortDesc="#{bindings.EntrySettingsView4.hints.PlanAccKredId.tooltip}">
+                                        <f:validator binding="#{row.bindings.PlanAccKredId.validator}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.Planacckredname.label}"
+                                           id="c7">
+                                    <af:inputListOfValues id="planacckrednameId"
+                                                          popupTitle="Найти и выбрать: #{bindings.EntrySettingsView4.hints.Planacckredname.label}"
+                                                          value="#{row.bindings.Planacckredname.inputValue}"
+                                                          model="#{row.bindings.Planacckredname.listOfValuesModel}"
+                                                          required="#{bindings.EntrySettingsView4.hints.Planacckredname.mandatory}"
+                                                          columns="#{bindings.EntrySettingsView4.hints.Planacckredname.displayWidth}"
+                                                          shortDesc="#{bindings.EntrySettingsView4.hints.Planacckredname.tooltip}"
+                                                          autoSubmit="true"
+                                                          launchPopupListener="#{provodki.onLaunchLov}">
+                                        <f:validator binding="#{row.bindings.Planacckredname.validator}"/>
+                                        <af:autoSuggestBehavior suggestedItems="#{bindings.Planacckredname.suggestedItems}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.Version.label}" id="c8"
+                                           visible="false">
+                                    <af:inputDate value="#{row.bindings.Version.inputValue}"
+                                                  label="#{bindings.EntrySettingsView4.hints.Version.label}"
+                                                  required="#{bindings.EntrySettingsView4.hints.Version.mandatory}"
+                                                  columns="#{bindings.EntrySettingsView4.hints.Version.displayWidth}"
+                                                  shortDesc="#{bindings.EntrySettingsView4.hints.Version.tooltip}"
+                                                  id="id1">
+                                        <f:validator binding="#{row.bindings.Version.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.EntrySettingsView4.hints.Version.format}"/>
+                                    </af:inputDate>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.EsEditable.label}" id="c9"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.EsEditable.inputValue}"
+                                                  label="#{bindings.EntrySettingsView4.hints.EsEditable.label}"
+                                                  required="#{bindings.EntrySettingsView4.hints.EsEditable.mandatory}"
+                                                  columns="#{bindings.EntrySettingsView4.hints.EsEditable.displayWidth}"
+                                                  maximumLength="#{bindings.EntrySettingsView4.hints.EsEditable.precision}"
+                                                  shortDesc="#{bindings.EntrySettingsView4.hints.EsEditable.tooltip}"
+                                                  id="it2">
+                                        <f:validator binding="#{row.bindings.EsEditable.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.EntrySettingsView4.hints.EsEditable.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.Chain.label}" id="c11"
+                                           width="120">
+                                    <af:inputText value="#{row.bindings.Chain.inputValue}"
+                                                  label="#{bindings.EntrySettingsView4.hints.Chain.label}"
+                                                  required="#{bindings.EntrySettingsView4.hints.Chain.mandatory}"
+                                                  columns="#{bindings.EntrySettingsView4.hints.Chain.displayWidth}"
+                                                  maximumLength="#{bindings.EntrySettingsView4.hints.Chain.precision}"
+                                                  shortDesc="#{bindings.EntrySettingsView4.hints.Chain.tooltip}"
+                                                  id="it3">
+                                        <f:validator binding="#{row.bindings.Chain.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.EntrySettingsView4.hints.Chain.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column headerText="#{bindings.EntrySettingsView4.hints.Description.label}" id="c12"
+                                           width="300">
+                                    <af:inputText value="#{row.bindings.Description.inputValue}"
+                                                  label="#{bindings.EntrySettingsView4.hints.Description.label}"
+                                                  required="#{bindings.EntrySettingsView4.hints.Description.mandatory}"
+                                                  columns="#{bindings.EntrySettingsView4.hints.Description.displayWidth}"
+                                                  maximumLength="#{bindings.EntrySettingsView4.hints.Description.precision}"
+                                                  shortDesc="#{bindings.EntrySettingsView4.hints.Description.tooltip}"
+                                                  id="it4">
+                                        <f:validator binding="#{row.bindings.Description.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                            </af:table>
+                        </f:facet>
+                    </af:panelSplitter>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

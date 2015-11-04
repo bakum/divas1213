@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="Подтверждение (активация) доступа" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:decorativeBox id="db1" theme="dark">
+                            <f:facet name="center">
+                                <af:panelStretchLayout id="psl1" topHeight="100px">
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="center">
+                                        <af:decorativeBox id="db2" theme="medium">
+                                            <f:facet name="center">
+                                                <af:panelGroupLayout id="pgl4" layout="horizontal" halign="center"
+                                                                     valign="middle">
+                                                    <af:panelFormLayout id="pfl1" fieldWidth="100px" labelWidth="100px"
+                                                                        labelAlignment="start">
+                                                        <af:inputText value="#{bindings.u_login.inputValue}"
+                                                                      label="Ваш логин"
+                                                                      columns="#{bindings.u_login.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.u_login.hints.precision}"
+                                                                      shortDesc="#{bindings.u_login.hints.tooltip}"
+                                                                      id="it1" required="true" disabled="true">
+                                                            <f:validator binding="#{bindings.u_login.validator}"/>
+                                                        </af:inputText>
+                                                        <af:inputText value="#{bindings.p_code.inputValue}"
+                                                                      label="Код, полученный от администратора"
+                                                                      columns="#{bindings.p_code.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.p_code.hints.precision}"
+                                                                      shortDesc="#{bindings.p_code.hints.tooltip}"
+                                                                      id="it2" required="true">
+                                                            <f:validator binding="#{bindings.p_code.validator}"/>
+                                                        </af:inputText>
+                                                        <af:button actionListener="#{bindings.acceptCode.execute}"
+                                                                   text="Подтвердить код"
+                                                                   disabled="#{!bindings.acceptCode.enabled}" id="b1"
+                                                                   visible="false"/>
+                                                        <af:button text="Подтвердить код" id="b2"
+                                                                   actionListener="#{login.onComplete}"/>
+                                                    </af:panelFormLayout>
+                                                    <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                                              contentDelivery="lazyUncached" binding="#{login.popup}">
+                                                        <af:dialog id="d2" type="ok" closeIconVisible="false"
+                                                                   title="Внимание!"
+                                                                   dialogListener="#{login.onCodeComplete}">
+                                                            <f:facet name="buttonBar"/>
+                                                            <af:outputText value="Код подтвержден!
+Вы будете перенаправлены на страницу авторизации." id="ot2" inlineStyle="font-size:large;"/>
+                                                        </af:dialog>
+                                                    </af:popup>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                            <f:facet name="top"/>
+                                        </af:decorativeBox>
+                                    </f:facet>
+                                    <f:facet name="start"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top">
+                                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                            <af:spacer width="10" height="10" id="s5"/>
+                                            <af:activeImage id="ai1" source="/img/logo.png"/>
+                                            <af:spacer width="100" height="10" id="s3" inlineStyle="font-size:large;"/>
+                                            <af:outputText value="Активация доступа к системе" id="ot1"
+                                                           inlineStyle="font-size:x-large;"/>
+                                        </af:panelGroupLayout>
+                                    </f:facet>
+                                </af:panelStretchLayout>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                    <af:spacer width="10" height="10" id="s2"/>
+                                    <af:link text="Выйти" id="l2" icon="/img/glbl_logout.gif" action="#{login.logout}"
+                                             rendered="#{securityContext.authenticated}" immediate="true"/>
+                                    <af:spacer width="20" height="10" id="s4"/>
+                                    <af:outputFormatted value="Пользователь: #{securityContext.userName}" id="of1"
+                                                        styleClass="Linkclass"/>
+                                    <af:spacer width="50" height="10" id="s1"/>
+                                    <af:link text="#{login.versionStr}" id="l1"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:decorativeBox>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">prog_config</property>
+      <property
+         name="page">/prog_config.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>prog_config&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">121.046875</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">106.0</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">obj_deleted</property>
+      <property
+         name="page">/obj_deleted.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>obj_deleted&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">121.125</property>
+      <property
+         name="x">305.0</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">to_deleted</property>
+      <property
+         name="sdm:polyPoints">R46,147.00233,117.5625,264.0,117.640625,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">to_config</property>
+      <property
+         name="sdm:polyPoints">L54,263.99765,124.640625,147.0,124.5625,R54</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="index">
+    <page>/index.jsf</page>
+  </view>
+  <view id="home">
+    <page>/home.jsf</page>
+  </view>
+  <view id="reg_code">
+    <page>/reg_code.jsf</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id>index</from-activity-id>
+    <control-flow-case id="__2">
+      <from-outcome>home</from-outcome>
+      <to-activity-id>home</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__3">
+    <from-activity-id>home</from-activity-id>
+    <control-flow-case id="__4">
+      <from-outcome>index</from-outcome>
+      <to-activity-id>index</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__6">
+    <managed-bean-name>mainBean</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.Main</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__5">
+    <managed-bean-name>IndxListBean</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.IndxListBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__7">
+    <managed-bean-name>login</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.LoginBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__8">
+    <managed-bean-name>orders</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.OrdersBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__9">
+    <managed-bean-name>import_price</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.ImportPriceBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__10">
+    <managed-bean-name>notification</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.control.NotificationBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__11">
+    <managed-bean-name>reminder</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.control.ReminderBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__12">
+    <managed-bean-name>rks</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.RksBean</managed-bean-class>
+    <managed-bean-scope>pageFlow</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

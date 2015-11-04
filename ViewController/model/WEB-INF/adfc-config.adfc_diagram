@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="linkStyle">Direct</property>
+      <property
+         name="y">250.46875</property>
+      <property
+         name="x">93.90918</property>
+   </OverallProperties>
+   <View
+      id="View2">
+      <property
+         name="activityId">index</property>
+      <property
+         name="page">/index.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>index&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">83.5</property>
+      <property
+         name="x">93.90918</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">home</property>
+      <property
+         name="page">/home.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>home&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">83.5</property>
+      <property
+         name="x">258.31836</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">home</property>
+      <property
+         name="sdm:polyPoints">R46,134.90918,80.015625,217.31836,80.015625,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">index</property>
+      <property
+         name="sdm:polyPoints">L54,217.31836,87.015625,134.90918,87.015625,R54</property>
+   </ControlFlowCase>
+   <View
+      id="View6">
+      <property
+         name="activityId">reg_code</property>
+      <property
+         name="page">/reg_code.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>reg_code&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">88.09375</property>
+      <property
+         name="x">-122.0</property>
+   </View>
+</SDM>

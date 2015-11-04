@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UsersGroupsView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="UsersGroups.ID, 
+       UsersGroups.USER_ID, 
+       UsersGroups.GROUPS_ID"
+  FromList="USERS_GROUPS UsersGroups"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full">
+  <EntityUsage
+    Name="UsersGroups"
+    Entity="ua.divas.model.UsersGroups"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="UsersGroups"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="UserId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="UsersGroups"
+    AliasName="USER_ID"/>
+  <ViewAttribute
+    Name="GroupsId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="GroupsId"
+    EntityUsage="UsersGroups"
+    AliasName="GROUPS_ID"/>
+</ViewObject>

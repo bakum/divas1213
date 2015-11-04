@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="other_zatr-config">
+    <default-activity>other_zatr</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>other</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.OtherBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="other_zatr">
+      <page>/other_zatr.jsff</page>
+    </view>
+    <task-flow-call id="other-dialod-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/other-dialod-flow.xml</document>
+        <id>other-dialod-flow</id>
+      </task-flow-reference>
+      <return-value id="__4">
+        <name>otherId</name>
+        <value>#{pageFlowScope.OtherId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.OtherId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="newOther">
+      <task-flow-reference>
+        <document>/WEB-INF/newOther.xml</document>
+        <id>newOther</id>
+      </task-flow-reference>
+      <return-value id="__6">
+        <name>otherId</name>
+        <value>#{pageFlowScope.OtherId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.OtherId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>other_zatr</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>editOther</from-outcome>
+        <to-activity-id>other-dialod-flow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__5">
+        <from-outcome>newOther</from-outcome>
+        <to-activity-id>newOther</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

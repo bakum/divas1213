@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Создание контрагента" id="pb1">
+                    <f:facet name="toolbar"/>
+                    <af:panelHeader text="Новый контрагент" id="ph1" type="flow">
+                        <f:facet name="context"/>
+                        <f:facet name="menuBar"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                                <af:group id="g2">
+                                    <af:train value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                              id="t2" var="nv">
+                                        <f:facet name="nodeStamp"/>
+                                    </af:train>
+                                </af:group>
+                                <af:group id="g1">
+                                    <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                                       id="tbb1"/>
+                                </af:group>
+                                <af:button text="Отменить" id="b1" action="cancel1" immediate="true"/>
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="legend">
+                            <af:outputFormatted value="Шаг.1 Введите ФИО клиента и нажмите Далее" id="of1"
+                                                inlineStyle="font-size:large;"/>
+                        </f:facet>
+                        <f:facet name="info"/>
+                        <af:panelFormLayout id="pfl1">
+                            <af:inputText value="#{bindings.Id.inputValue}" label="#{bindings.Id.hints.label}"
+                                          required="#{bindings.Id.hints.mandatory}"
+                                          columns="#{bindings.Id.hints.displayWidth}"
+                                          maximumLength="#{bindings.Id.hints.precision}"
+                                          shortDesc="#{bindings.Id.hints.tooltip}" id="it1" visible="false">
+                                <f:validator binding="#{bindings.Id.validator}"/>
+                            </af:inputText>
+                            <af:inputComboboxListOfValues id="parentIdId"
+                                                          popupTitle="Search and Select: #{bindings.ParentId.hints.label}"
+                                                          value="#{bindings.ParentId.inputValue}"
+                                                          label="#{bindings.ParentId.hints.label}"
+                                                          model="#{bindings.ParentId.listOfValuesModel}"
+                                                          required="#{bindings.ParentId.hints.mandatory}"
+                                                          columns="#{bindings.ParentId.hints.displayWidth}"
+                                                          shortDesc="#{bindings.ParentId.hints.tooltip}"
+                                                          visible="false">
+                                <f:validator binding="#{bindings.ParentId.validator}"/>
+                            </af:inputComboboxListOfValues>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:inputText value="#{bindings.Fullname.inputValue}"
+                                          label="#{bindings.Fullname.hints.label}"
+                                          columns="#{bindings.Fullname.hints.displayWidth}"
+                                          maximumLength="#{bindings.Fullname.hints.precision}"
+                                          shortDesc="#{bindings.Fullname.hints.tooltip}" id="it2"
+                                          valueChangeListener="#{new_kontrag.onKonNameChange}"
+                                          required="#{bindings.Fullname.hints.mandatory}"
+                                          binding="#{new_kontrag.kontragId}">
+                                <f:validator binding="#{bindings.Fullname.validator}"/>
+                            </af:inputText>
+                            <af:selectBooleanCheckbox value="#{bindings.IsBuyer.inputValue}"
+                                                      label="#{bindings.IsBuyer.label}"
+                                                      shortDesc="#{bindings.IsBuyer.hints.tooltip}" id="sbc1"
+                                                      visible="false"/>
+                        </af:panelFormLayout>
+                    </af:panelHeader>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

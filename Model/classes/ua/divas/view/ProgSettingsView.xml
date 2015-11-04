@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ProgSettingsView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ua.divas.view.ProgSettingsViewRowImpl"
+  ComponentClass="ua.divas.view.ProgSettingsViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <SQLQuery><![CDATA[SELECT ProgSettings.ID, 
+       ProgSettings.DATE_AFTER,
+       ProgSettings.DATE_AFTER_PROFIT,
+       (select 0 from dual) Editable
+FROM  PROG_SETTINGS ProgSettings]]></SQLQuery>
+  <EntityUsage
+    Name="ProgSettings"
+    Entity="ua.divas.model.ProgSettings"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="ProgSettings"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="DateAfter"
+    PrecisionRule="true"
+    EntityAttrName="DateAfter"
+    EntityUsage="ProgSettings"
+    AliasName="DATE_AFTER">
+    <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DateAfterProfit"
+    PrecisionRule="true"
+    EntityAttrName="DateAfterProfit"
+    EntityUsage="ProgSettings"
+    AliasName="DATE_AFTER_PROFIT">
+    <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Editable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="EDITABLE"
+    Expression="EDITABLE"
+    SQLType="NUMERIC"/>
+</ViewObject>

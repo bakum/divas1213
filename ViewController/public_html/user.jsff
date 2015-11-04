@@ -1,0 +1,1005 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="dark">
+                    <f:facet name="center">
+                        <af:panelTabbed id="pt1">
+                            <af:showDetailItem text="Пользователи" id="sdi1" stretchChildren="first">
+                                <af:panelBox id="pb1" type="flow" text="Пользователи">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t7">
+                                            <af:button actionListener="#{bindings.CreateInsert.execute}"
+                                                       text="Добавить" disabled="#{bindings.Commit.enabled}"
+                                                       id="b3">
+                                                <af:showPopupBehavior popupId="pCreateUser"/>
+                                            </af:button>
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="b6"
+                                                       action="#{shuttle_group.commitChange}"/>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="b7">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                            <af:button text="Обновить" id="b12"
+                                                       actionListener="#{shuttle_group.onRefresh}"
+                                                       disabled="#{bindings.Commit.enabled}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:table value="#{bindings.UsersView1.collectionModel}" var="row"
+                                              rows="#{bindings.UsersView1.rangeSize}"
+                                              emptyText="#{bindings.UsersView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.UsersView1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.UsersView1.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.UsersView1.rangeSize}"
+                                              filterModel="#{bindings.UsersView1Query.queryDescriptor}"
+                                              queryListener="#{bindings.UsersView1Query.processQuery}"
+                                              filterVisible="true" varStatus="vs" id="t1" scrollPolicy="page"
+                                              editingMode="clickToEdit" partialTriggers="::b3"
+                                              binding="#{shuttle_group.userTable}">
+                                        <af:column id="c7" filterable="true" width="60">
+                                            <af:toolbar id="t2">
+                                                <af:button id="b1" icon="/img/edit-16.gif"
+                                                           disabled="#{bindings.Commit.enabled}"
+                                                           shortDesc="Редактировать запись">
+                                                    <af:showPopupBehavior popupId="::pCreateInsert"/>
+                                                </af:button>
+                                                <af:button id="b10"
+                                                           disabled="#{bindings.Commit.enabled}"
+                                                           shortDesc="Изменить пароль" icon="/img/glbl_login_msg.gif">
+                                                    <af:showPopupBehavior popupId="::pResetPwd"/>
+                                                </af:button>
+                                            </af:toolbar>
+                                            <f:facet name="filter">
+                                                <af:button id="b8"
+                                                           icon="/img/filter_(delete)_16x16.gif"
+                                                           actionListener="#{shuttle_group.resetTableFilter}"/>
+                                            </f:facet>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.UsersView1.hints.Id.name}"
+                                                   sortable="true" headerText="#{bindings.UsersView1.hints.Id.label}"
+                                                   id="c1" visible="false">
+                                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.Id.label}"
+                                                          required="#{bindings.UsersView1.hints.Id.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.Id.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.Id.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.Id.tooltip}" id="it5"
+                                                          readOnly="true">
+                                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.UsersView1.hints.Login.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.UsersView1.hints.Login.label}" id="c2">
+                                            <af:inputText value="#{row.bindings.Login.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.Login.label}"
+                                                          required="#{bindings.UsersView1.hints.Login.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.Login.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.Login.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.Login.tooltip}"
+                                                          id="it6" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Login.validator}"/>
+                                            </af:inputText>
+                                            <f:facet name="filter">
+                                                <af:inputText id="it18"
+                                                              value="#{vs.filterCriteria.Login}" autoSubmit="true">
+                                                    <af:autoSuggestBehavior suggestedItems="#{users.onSuggest}"/>
+                                                </af:inputText>
+                                            </f:facet>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.UsersView1.hints.LastName.name}" sortable="true"
+                                                   headerText="#{bindings.UsersView1.hints.LastName.label}" id="c3">
+                                            <af:inputText value="#{row.bindings.LastName.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.LastName.label}"
+                                                          required="#{bindings.UsersView1.hints.LastName.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.LastName.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.LastName.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.LastName.tooltip}"
+                                                          id="it7" readOnly="true">
+                                                <f:validator binding="#{row.bindings.LastName.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.UsersView1.hints.FirstName.name}" sortable="true"
+                                                   headerText="#{bindings.UsersView1.hints.FirstName.label}" id="c4">
+                                            <af:inputText value="#{row.bindings.FirstName.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.FirstName.label}"
+                                                          required="#{bindings.UsersView1.hints.FirstName.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.FirstName.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.FirstName.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.FirstName.tooltip}"
+                                                          id="it8" readOnly="true">
+                                                <f:validator binding="#{row.bindings.FirstName.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.UsersView1.hints.Email.name}" sortable="true"
+                                                   headerText="#{bindings.UsersView1.hints.Email.label}" id="c5"
+                                                   width="200">
+                                            <af:inputText value="#{row.bindings.Email.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.Email.label}"
+                                                          required="#{bindings.UsersView1.hints.Email.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.Email.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.Email.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.Email.tooltip}"
+                                                          id="it9" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Email.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.UsersView1.hints.IsAdmin.label}" id="c8">
+                                            <af:selectBooleanCheckbox value="#{row.bindings.IsAdmin.inputValue}"
+                                                                      label="#{row.bindings.IsAdmin.label}"
+                                                                      shortDesc="#{bindings.UsersView1.hints.IsAdmin.tooltip}"
+                                                                      id="sbc2" readOnly="true"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.UsersView1.hints.PassWd.name}" sortable="true"
+                                                   headerText="#{bindings.UsersView1.hints.PassWd.label}" id="c6"
+                                                   visible="false">
+                                            <af:inputText value="#{row.bindings.PassWd.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.PassWd.label}"
+                                                          required="#{bindings.UsersView1.hints.PassWd.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.PassWd.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.PassWd.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.PassWd.tooltip}"
+                                                          id="it10" readOnly="true">
+                                                <f:validator binding="#{row.bindings.PassWd.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.UsersView1.hints.UEditable.label}" id="c9"
+                                                   visible="false">
+                                            <af:inputText value="#{row.bindings.UEditable.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.UEditable.label}"
+                                                          required="#{bindings.UsersView1.hints.UEditable.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.UEditable.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.UEditable.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.UEditable.tooltip}"
+                                                          id="it11" readOnly="true">
+                                                <f:validator binding="#{row.bindings.UEditable.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.UsersView1.hints.UEditable.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.UsersView1.hints.IsZamer.label}" id="c10">
+                                            <af:selectBooleanCheckbox value="#{row.bindings.IsZamer.inputValue}"
+                                                                      label="#{row.bindings.IsZamer.label}"
+                                                                      shortDesc="#{bindings.UsersView1.hints.IsZamer.tooltip}"
+                                                                      id="sbc5" readOnly="true"/>
+                                        </af:column>
+                                        <f:facet name="detailStamp">
+                                            <af:panelLabelAndMessage label="#{bindings.UsersView1.hints.UDescription.label}"
+                                                                     id="plam2">
+                                                <af:outputFormatted value="#{row.bindings.UDescription.inputValue}"
+                                                                    id="of1"/>
+                                            </af:panelLabelAndMessage>
+                                        </f:facet>
+                                        <af:column headerText="#{bindings.UsersView1.hints.IsActive.label}" id="c19">
+                                            <af:selectBooleanCheckbox value="#{row.bindings.IsActive.inputValue}"
+                                                                      label="#{row.bindings.IsActive.label}"
+                                                                      shortDesc="#{bindings.UsersView1.hints.IsActive.tooltip}"
+                                                                      id="sbc6" readOnly="true"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.UsersView1.hints.DateBefore.label}" id="c20"
+                                                   sortProperty="#{bindings.UsersView1.hints.DateBefore.name}"
+                                                   sortable="true" align="center" width="200"
+                                                   inlineStyle="#{row.IsAdmin == 1 ? 'background-color:#b5ffb5' : row.DateBeforeAccept == 0 ? 'background-color:#ffded6;' : row.UsrEnbl == 0 ? 'background-color:#ffded6;' : 'background-color:#b5ffb5'}"
+                                                   shortDesc="#{row.DateBeforeAccept == 1 ? 'Доступ подтвержден пользователем' : 'Доступ не подтвержден'}">
+                                            <af:inputDate value="#{row.bindings.DateBefore.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.DateBefore.label}"
+                                                          required="#{bindings.UsersView1.hints.DateBefore.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.DateBefore.displayWidth}"
+                                                          shortDesc="#{bindings.UsersView1.hints.DateBefore.tooltip}"
+                                                          id="id1" inlineStyle="color:Red;" readOnly="true">
+                                                <f:validator binding="#{row.bindings.DateBefore.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.UsersView1.hints.DateBefore.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.UsersView1.hints.DateBeforeAccept.label}"
+                                                   id="c21" visible="false" sortable="true">
+                                            <af:selectBooleanCheckbox value="#{row.bindings.DateBeforeAccept.inputValue}"
+                                                                      label="#{row.bindings.DateBeforeAccept.label}"
+                                                                      shortDesc="#{bindings.UsersView1.hints.DateBeforeAccept.tooltip}"
+                                                                      id="sbc8" readOnly="true"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.UsersView1.hints.UsrEnbl.label}" id="c22"
+                                                   visible="false">
+                                            <af:inputText value="#{row.bindings.UsrEnbl.inputValue}"
+                                                          label="#{bindings.UsersView1.hints.UsrEnbl.label}"
+                                                          required="#{bindings.UsersView1.hints.UsrEnbl.mandatory}"
+                                                          columns="#{bindings.UsersView1.hints.UsrEnbl.displayWidth}"
+                                                          maximumLength="#{bindings.UsersView1.hints.UsrEnbl.precision}"
+                                                          shortDesc="#{bindings.UsersView1.hints.UsrEnbl.tooltip}"
+                                                          id="it29" readOnly="true">
+                                                <f:validator binding="#{row.bindings.UsrEnbl.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.UsersView1.hints.UsrEnbl.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelBox>
+                                <af:popup childCreation="deferred" id="pCreateInsert"
+                                          contentDelivery="lazyUncached" resetEditableValues="whenCanceled"
+                                          popupFetchListener="#{shuttle_group.onPopupFetch}"
+                                          popupCanceledListener="#{shuttle_group.onCancelPopup}">
+                                    <af:dialog id="d1" title="Редактирование пользователя #{bindings.Login.inputValue}" resize="on"
+                                               contentWidth="630" contentHeight="530"
+                                               dialogListener="#{shuttle_group.dialogListener}">
+                                        <f:facet name="buttonBar"/>
+                                        <af:panelAccordion id="pt2">
+                                            <af:showDetailItem text="Главная" id="sdi4" stretchChildren="none">
+                                                <af:panelFormLayout id="pfl1">
+                                                    <af:inputText value="#{bindings.Login.inputValue}"
+                                                                  label="#{bindings.Login.hints.label}"
+                                                                  required="#{bindings.Login.hints.mandatory}"
+                                                                  columns="#{bindings.Login.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.Login.hints.precision}"
+                                                                  shortDesc="#{bindings.Login.hints.tooltip}" id="it1"
+                                                                  readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}">
+                                                        <f:validator binding="#{bindings.Login.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.FirstName.inputValue}"
+                                                                  label="#{bindings.FirstName.hints.label}"
+                                                                  required="#{bindings.FirstName.hints.mandatory}"
+                                                                  columns="#{bindings.FirstName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.FirstName.hints.precision}"
+                                                                  shortDesc="#{bindings.FirstName.hints.tooltip}"
+                                                                  id="it2"
+                                                                  readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}">
+                                                        <f:validator binding="#{bindings.FirstName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.LastName.inputValue}"
+                                                                  label="#{bindings.LastName.hints.label}"
+                                                                  required="#{bindings.LastName.hints.mandatory}"
+                                                                  columns="#{bindings.LastName.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.LastName.hints.precision}"
+                                                                  shortDesc="#{bindings.LastName.hints.tooltip}"
+                                                                  id="it3"
+                                                                  readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}">
+                                                        <f:validator binding="#{bindings.LastName.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputText value="#{bindings.Email.inputValue}"
+                                                                  label="#{bindings.Email.hints.label}"
+                                                                  required="#{bindings.Email.hints.mandatory}"
+                                                                  columns="#{bindings.Email.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.Email.hints.precision}"
+                                                                  shortDesc="#{bindings.Email.hints.tooltip}" id="it4"
+                                                                  readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}">
+                                                        <f:validator binding="#{bindings.Email.validator}"/>
+                                                    </af:inputText>
+                                                    <af:panelLabelAndMessage label="#{bindings.IsAdmin.label}" id="plam3">
+                                                        <af:panelGroupLayout id="pgl5" layout="horizontal">
+                                                            <af:selectBooleanCheckbox value="#{bindings.IsAdmin.inputValue}"
+                                                                                      shortDesc="#{bindings.IsAdmin.hints.tooltip}"
+                                                                                      id="sbc1"
+                                                                                      readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}"/>
+                                                            <af:selectBooleanCheckbox value="#{bindings.IsActive.inputValue}"
+                                                                                      label="#{bindings.IsActive.label}"
+                                                                                      shortDesc="#{bindings.IsActive.hints.tooltip}"
+                                                                                      id="sbc7"
+                                                                                      readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}"/>
+                                                        </af:panelGroupLayout>
+                                                    </af:panelLabelAndMessage>
+                                                    <af:inputText value="#{bindings.UDescription.inputValue}"
+                                                                  label="#{bindings.UDescription.hints.label}"
+                                                                  required="#{bindings.UDescription.hints.mandatory}"
+                                                                  columns="#{bindings.UDescription.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.UDescription.hints.precision}"
+                                                                  shortDesc="#{bindings.UDescription.hints.tooltip}"
+                                                                  id="it12" rows="2"
+                                                                  readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}">
+                                                        <f:validator binding="#{bindings.UDescription.validator}"/>
+                                                    </af:inputText>
+                                                    <af:selectBooleanCheckbox value="#{bindings.IsZamer.inputValue}"
+                                                                              label="#{bindings.IsZamer.label}"
+                                                                              shortDesc="#{bindings.IsZamer.hints.tooltip}"
+                                                                              id="sbc4"
+                                                                              readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}"/>
+                                                    <f:facet name="footer"/>
+                                                    <af:spacer width="10" height="10" id="s1"/>
+                                                    <af:group id="g2" title="Настройки доступа">
+                                                        <af:panelLabelAndMessage label="#{bindings.DateBefore.hints.label}" id="plam4">
+                                                            <af:panelGroupLayout id="pgl6" layout="horizontal">
+                                                                <af:inputDate value="#{bindings.DateBefore.inputValue}"
+                                                                              required="#{bindings.DateBefore.hints.mandatory}"
+                                                                              columns="#{bindings.DateBefore.hints.displayWidth}"
+                                                                              shortDesc="#{bindings.DateBefore.hints.tooltip}"
+                                                                              id="id2"
+                                                                              readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}"
+                                                                              autoSubmit="true"
+                                                                              valueChangeListener="#{users.onDateChange}">
+                                                                    <f:validator binding="#{bindings.DateBefore.validator}"/>
+                                                                    <af:convertDateTime pattern="#{bindings.DateBefore.format}"/>
+                                                                </af:inputDate>
+                                                                <af:spacer width="10" height="10" id="s3"/>
+                                                                <af:outputFormatted value="#{users.codeLabel}" id="of2"
+                                                                                    shortDesc="Код доступа"
+                                                                                    inlineStyle="font-size:large;"
+                                                                                    binding="#{users.code}"
+                                                                                    partialTriggers="id2"/>
+                                                            </af:panelGroupLayout>
+                                                        </af:panelLabelAndMessage>
+                                                        <af:selectBooleanCheckbox value="#{bindings.DateBeforeAccept.inputValue}"
+                                                                                  label="#{bindings.DateBeforeAccept.label}"
+                                                                                  shortDesc="#{bindings.DateBeforeAccept.hints.tooltip}"
+                                                                                  id="sbc9"
+                                                                                  readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}"/>
+                                                    </af:group>
+                                                </af:panelFormLayout>
+                                                <f:facet name="toolbar">
+                                                    <af:button text="Редактировать" id="b2" icon="/img/edit-16.gif"
+                                                               disabled="#{bindings.UEditable.inputValue == 1 ? true : false}">
+                                                        <af:setPropertyListener from="#{1}"
+                                                                                to="#{bindings.UEditable.inputValue}"
+                                                                                type="action"/>
+                                                    </af:button>
+                                                </f:facet>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Группы" id="sdi5" stretchChildren="none">
+                                                <af:panelBox id="pb2">
+                                                    <f:facet name="toolbar"/>
+                                                    <af:selectManyShuttle value="#{shuttle_group.selectedValues}"
+                                                                          id="sms1"
+                                                                          valueChangeListener="#{shuttle_group.onGroupChange}"
+                                                                          trailingHeader="Участвует в группах:"
+                                                                          leadingHeader="Все группы:">
+                                                        <f:selectItems value="#{shuttle_group.allValues}" id="si1"/>
+                                                    </af:selectManyShuttle>
+                                                </af:panelBox>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Филиалы" id="sdi2">
+                                                <af:panelBox id="pb3">
+                                                    <f:facet name="toolbar"/>
+                                                    <af:selectManyShuttle id="sms2"
+                                                                          value="#{shuttle_departament.selectedValues}"
+                                                                          leadingHeader="Филиалы:"
+                                                                          trailingHeader="В филиале:"
+                                                                          valueChangeListener="#{shuttle_departament.onDepartamentChange}">
+                                                        <f:selectItems value="#{shuttle_departament.allValues}"
+                                                                       id="si2"/>
+                                                    </af:selectManyShuttle>
+                                                </af:panelBox>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Настройки" id="sdi3">
+                                                <af:panelFormLayout id="pfl2">
+                                                    <af:inputText value="#{bindings.Id.inputValue}"
+                                                                  label="#{bindings.Id.hints.label}"
+                                                                  required="#{bindings.Id.hints.mandatory}"
+                                                                  columns="#{bindings.Id.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.Id.hints.precision}"
+                                                                  shortDesc="#{bindings.Id.hints.tooltip}" id="it13"
+                                                                  readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}"
+                                                                  rendered="false">
+                                                        <f:validator binding="#{bindings.Id.validator}"/>
+                                                    </af:inputText>
+                                                    <af:selectOneChoice value="#{bindings.UserId.inputValue}"
+                                                                        label="#{bindings.UserId.label}"
+                                                                        required="#{bindings.UserId.hints.mandatory}"
+                                                                        shortDesc="#{bindings.UserId.hints.tooltip}"
+                                                                        id="soc1" readOnly="true">
+                                                        <f:selectItems value="#{bindings.UserId.items}" id="si3"/>
+                                                        <f:validator binding="#{bindings.UserId.validator}"/>
+                                                    </af:selectOneChoice>
+                                                    <af:selectOneChoice value="#{bindings.DivisionId.inputValue}"
+                                                                        label="#{bindings.DivisionId.label}"
+                                                                        required="#{bindings.DivisionId.hints.mandatory}"
+                                                                        shortDesc="#{bindings.DivisionId.hints.tooltip}"
+                                                                        id="divId"
+                                                                        valueChangeListener="#{shuttle_group.onDepChange}"
+                                                                        autoSubmit="true"
+                                                                        binding="#{shuttle_group.division}">
+                                                        <f:selectItems value="#{bindings.DivisionId.items}" id="si4"/>
+                                                        <f:validator binding="#{bindings.DivisionId.validator}"/>
+                                                    </af:selectOneChoice>
+                                                    <af:selectOneChoice value="#{bindings.FirmaId.inputValue}"
+                                                                        label="#{bindings.FirmaId.label}"
+                                                                        required="#{bindings.FirmaId.hints.mandatory}"
+                                                                        shortDesc="#{bindings.FirmaId.hints.tooltip}"
+                                                                        id="soc3">
+                                                        <f:selectItems value="#{bindings.FirmaId.items}" id="si5"/>
+                                                        <f:validator binding="#{bindings.FirmaId.validator}"/>
+                                                    </af:selectOneChoice>
+                                                    <af:panelLabelAndMessage label="#{bindings.CurrencyId.label}" id="plam1">
+                                                        <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                                            <af:selectOneChoice value="#{bindings.CurrencyId.inputValue}"
+                                                                                required="#{bindings.CurrencyId.hints.mandatory}"
+                                                                                shortDesc="#{bindings.CurrencyId.hints.tooltip}"
+                                                                                id="curId"
+                                                                                valueChangeListener="#{shuttle_group.onDepChange}"
+                                                                                autoSubmit="true"
+                                                                                binding="#{shuttle_group.currency}">
+                                                                <f:selectItems value="#{bindings.CurrencyId.items}"
+                                                                               id="si6"/>
+                                                                <f:validator binding="#{bindings.CurrencyId.validator}"/>
+                                                            </af:selectOneChoice>
+                                                            <af:selectOneChoice value="#{bindings.KassaId.inputValue}"
+                                                                                label="#{bindings.KassaId.label}"
+                                                                                required="#{bindings.KassaId.hints.mandatory}"
+                                                                                shortDesc="#{bindings.KassaId.hints.tooltip}"
+                                                                                id="soc5">
+                                                                <f:selectItems value="#{bindings.KassaId.items}"
+                                                                               id="si7"/>
+                                                                <f:validator binding="#{bindings.KassaId.validator}"/>
+                                                            </af:selectOneChoice>
+                                                        </af:panelGroupLayout>
+                                                    </af:panelLabelAndMessage>
+                                                    <af:inputListOfValues id="mainUslugaId"
+                                                                          popupTitle="Search and Select: #{bindings.MainUsluga.hints.label}"
+                                                                          value="#{bindings.MainUsluga.inputValue}"
+                                                                          label="#{bindings.MainUsluga.hints.label}"
+                                                                          model="#{bindings.MainUsluga.listOfValuesModel}"
+                                                                          required="#{bindings.MainUsluga.hints.mandatory}"
+                                                                          columns="#{bindings.MainUsluga.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.MainUsluga.hints.tooltip}"
+                                                                          partialTriggers="musluganameId"
+                                                                          visible="false">
+                                                        <f:validator binding="#{bindings.MainUsluga.validator}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputListOfValues id="musluganameId"
+                                                                          popupTitle="Найти и выбрать: #{bindings.Musluganame.hints.label}"
+                                                                          value="#{bindings.Musluganame.inputValue}"
+                                                                          label="#{bindings.Musluganame.hints.label}"
+                                                                          model="#{bindings.Musluganame.listOfValuesModel}"
+                                                                          required="#{bindings.MainUsluga.hints.mandatory}"
+                                                                          columns="#{bindings.Musluganame.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.Musluganame.hints.tooltip}"
+                                                                          partialTriggers="mainUslugaId"
+                                                                          createPopupId="pCreateNom" visible="false">
+                                                        <f:validator binding="#{bindings.Musluganame.validator}"/>
+                                                        <af:autoSuggestBehavior suggestedItems="#{bindings.Musluganame.suggestedItems}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputListOfValues id="activitiesIdId"
+                                                                          popupTitle="Search and Select: #{bindings.ActivitiesId.hints.label}"
+                                                                          value="#{bindings.ActivitiesId.inputValue}"
+                                                                          label="#{bindings.ActivitiesId.hints.label}"
+                                                                          model="#{bindings.ActivitiesId.listOfValuesModel}"
+                                                                          required="#{bindings.ActivitiesId.hints.mandatory}"
+                                                                          columns="#{bindings.ActivitiesId.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.ActivitiesId.hints.tooltip}"
+                                                                          partialTriggers="activitiesNameId"
+                                                                          visible="false">
+                                                        <f:validator binding="#{bindings.ActivitiesId.validator}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputListOfValues id="activitiesNameId"
+                                                                          popupTitle="Найти и выбрать: #{bindings.ActivitiesName.hints.label}"
+                                                                          value="#{bindings.ActivitiesName.inputValue}"
+                                                                          label="#{bindings.ActivitiesName.hints.label}"
+                                                                          model="#{bindings.ActivitiesName.listOfValuesModel}"
+                                                                          required="#{bindings.ActivitiesName.hints.mandatory}"
+                                                                          columns="#{bindings.ActivitiesName.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.ActivitiesName.hints.tooltip}"
+                                                                          partialTriggers="activitiesIdId">
+                                                        <f:validator binding="#{bindings.ActivitiesName.validator}"/>
+                                                        <af:autoSuggestBehavior suggestedItems="#{bindings.ActivitiesName.suggestedItems}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputListOfValues id="zamerkontragIdId"
+                                                                          popupTitle="Search and Select: #{bindings.ZamerkontragId.hints.label}"
+                                                                          value="#{bindings.ZamerkontragId.inputValue}"
+                                                                          label="#{bindings.ZamerkontragId.hints.label}"
+                                                                          model="#{bindings.ZamerkontragId.listOfValuesModel}"
+                                                                          required="#{bindings.ZamerkontragId.hints.mandatory}"
+                                                                          columns="#{bindings.ZamerkontragId.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.ZamerkontragId.hints.tooltip}"
+                                                                          visible="false"
+                                                                          binding="#{shuttle_group.zamerId}">
+                                                        <f:validator binding="#{bindings.ZamerkontragId.validator}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputListOfValues id="zamerkontragNameId"
+                                                                          popupTitle="Найти и выбрать: #{bindings.ZamerkontragName.hints.label}"
+                                                                          value="#{bindings.ZamerkontragName.inputValue}"
+                                                                          label="#{bindings.ZamerkontragName.hints.label}"
+                                                                          model="#{bindings.ZamerkontragName.listOfValuesModel}"
+                                                                          required="#{bindings.ZamerkontragName.hints.mandatory}"
+                                                                          columns="#{bindings.ZamerkontragName.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.ZamerkontragName.hints.tooltip}"
+                                                                          autoSubmit="true" createPopupId="pZamer"
+                                                                          disabled="#{shuttle_group.zamerInUse}"
+                                                                          binding="#{shuttle_group.zamerName}"
+                                                                          rendered="#{bindings.IsZamer.inputValue == '1' ? false: true}">
+                                                        <f:validator binding="#{bindings.ZamerkontragName.validator}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputListOfValues id="kontragNameId"
+                                                                          popupTitle="Найти и выбрать: #{bindings.KontragName.hints.label}"
+                                                                          value="#{bindings.KontragName.inputValue}"
+                                                                          label="#{bindings.KontragName.hints.label}"
+                                                                          model="#{bindings.KontragName.listOfValuesModel}"
+                                                                          required="#{bindings.KontragName.hints.mandatory}"
+                                                                          columns="#{bindings.KontragName.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.KontragName.hints.tooltip}"
+                                                                          autoSubmit="true" createPopupId="pKontrag"
+                                                                          rendered="#{bindings.IsZamer.inputValue == '1' ? true: false}">
+                                                        <f:validator binding="#{bindings.KontragName.validator}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputListOfValues id="kontragIdId"
+                                                                          popupTitle="Search and Select: #{bindings.KontragId.hints.label}"
+                                                                          value="#{bindings.KontragId.inputValue}"
+                                                                          label="#{bindings.KontragId.hints.label}"
+                                                                          model="#{bindings.KontragId.listOfValuesModel}"
+                                                                          required="#{bindings.KontragId.hints.mandatory}"
+                                                                          columns="#{bindings.KontragId.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.KontragId.hints.tooltip}"
+                                                                          visible="false">
+                                                        <f:validator binding="#{bindings.KontragId.validator}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:inputText value="#{bindings.NetId.inputValue}"
+                                                                  label="#{bindings.NetId.hints.label}"
+                                                                  required="#{bindings.NetId.hints.mandatory}"
+                                                                  columns="#{bindings.NetId.hints.displayWidth}"
+                                                                  maximumLength="#{bindings.NetId.hints.precision}"
+                                                                  shortDesc="#{bindings.NetId.hints.tooltip}" id="it30"
+                                                                  visible="false">
+                                                        <f:validator binding="#{bindings.NetId.validator}"/>
+                                                    </af:inputText>
+                                                    <af:inputListOfValues id="netNameId"
+                                                                          popupTitle="Найти и выбрать: #{bindings.NetName.hints.label}"
+                                                                          value="#{bindings.NetName.inputValue}"
+                                                                          label="#{bindings.NetName.hints.label}"
+                                                                          model="#{bindings.NetName.listOfValuesModel}"
+                                                                          required="#{bindings.NetName.hints.mandatory}"
+                                                                          columns="#{bindings.NetName.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.NetName.hints.tooltip}"
+                                                                          autoSubmit="true" createPopupId="pKontrag">
+                                                        <f:validator binding="#{bindings.NetName.validator}"/>
+                                                    </af:inputListOfValues>
+                                                    <af:group id="g1"
+                                                              title="Предоставлен доступ к использованию следующих касс">
+                                                        <af:selectManyShuttle value="#{shuttle_kassa.selectedValues}"
+                                                                              id="sms3"
+                                                                              valueChangeListener="#{shuttle_kassa.onKassaChange}"
+                                                                              trailingHeader="Доступные кассы"
+                                                                              leadingHeader="Все кассы">
+                                                            <f:selectItems value="#{shuttle_kassa.allValues}" id="si9"/>
+                                                            <f:validator binding="#{bindings.KassaView1.validator}"/>
+                                                        </af:selectManyShuttle>
+                                                    </af:group>
+                                                    <af:spacer width="10" height="10" id="s2"/>
+                                                </af:panelFormLayout>
+                                                <f:facet name="toolbar">
+                                                    <af:toolbar id="t3">
+                                                        <af:button actionListener="#{bindings.CreateInsert1.execute}"
+                                                                   text="Добавить"
+                                                                   id="b4"
+                                                                   disabled="#{!bindings.CreateInsert1.enabled}"
+                                                                   rendered="#{bindings.UserId.inputValue == null ? true : false}"
+                                                                   immediate="true"/>
+                                                        <af:button text="Редактировать" id="b5"
+                                                                   icon="/img/edit-16.gif" rendered="false">
+                                                            <af:setPropertyListener from="#{1}"
+                                                                                    to="#{bindings.UEditable.inputValue}"
+                                                                                    type="action"/>
+                                                        </af:button>
+                                                    </af:toolbar>
+                                                </f:facet>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Начисления" id="sdi6" stretchChildren="first"
+                                                               rendered="false">
+                                                <af:panelBox text="Настройки начислений" id="pb4" type="flow">
+                                                    <f:facet name="toolbar">
+                                                        <af:toolbar id="t6">
+                                                            <af:button actionListener="#{bindings.CreateInsert5.execute}"
+                                                                       text="Добавить"
+                                                                       disabled="#{bindings.Editable.inputValue == '1' ? true : false}"
+                                                                       id="b14"/>
+                                                        </af:toolbar>
+                                                    </f:facet>
+                                                    <af:table value="#{bindings.NachislSettingsView2.collectionModel}"
+                                                              var="row"
+                                                              rows="#{bindings.NachislSettingsView2.rangeSize}"
+                                                              emptyText="#{bindings.NachislSettingsView2.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                                              rowBandingInterval="0"
+                                                              selectedRowKeys="#{bindings.NachislSettingsView2.collectionModel.selectedRow}"
+                                                              selectionListener="#{bindings.NachislSettingsView2.collectionModel.makeCurrent}"
+                                                              rowSelection="#{bindings.Editable.inputValue == 1 ? 'none' : 'single'}"
+                                                              fetchSize="#{bindings.NachislSettingsView2.rangeSize}"
+                                                              id="t4" scrollPolicy="page" editingMode="clickToEdit"
+                                                              partialTriggers="::b14 b15">
+                                                        <af:column id="c18" width="80"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:toolbar id="t5">
+                                                                <af:button id="b13" icon="/img/edit-16.gif"
+                                                                           disabled="#{bindings.Editable.inputValue == '1' ? true : false}">
+                                                                    <af:setPropertyListener from="#{1}"
+                                                                                            to="#{bindings.Editable.inputValue}"
+                                                                                            type="action"/>
+                                                                </af:button>
+                                                                <af:button id="b16" icon="/img/icon_save.png"
+                                                                           disabled="#{bindings.Editable.inputValue == '1' ? false : true}">
+                                                                    <af:setPropertyListener from="#{0}"
+                                                                                            to="#{bindings.Editable.inputValue}"
+                                                                                            type="action"/>
+                                                                </af:button>
+                                                                <af:button actionListener="#{bindings.Delete.execute}"
+                                                                           disabled="#{bindings.Editable.inputValue == '1' ? true : false}"
+                                                                           id="b15" icon="/img/delete.png"/>
+                                                            </af:toolbar>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.NachislSettingsView2.hints.Id.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.NachislSettingsView2.hints.Id.label}"
+                                                                   id="c11" visible="false"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                                          label="#{bindings.NachislSettingsView2.hints.Id.label}"
+                                                                          required="#{bindings.NachislSettingsView2.hints.Id.mandatory}"
+                                                                          columns="#{bindings.NachislSettingsView2.hints.Id.displayWidth}"
+                                                                          maximumLength="#{bindings.NachislSettingsView2.hints.Id.precision}"
+                                                                          shortDesc="#{bindings.NachislSettingsView2.hints.Id.tooltip}"
+                                                                          id="it26">
+                                                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                                                            </af:inputText>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.NachislSettingsView2.hints.UserId.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.NachislSettingsView2.hints.UserId.label}"
+                                                                   id="c12" visible="false"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                                label="#{row.bindings.UserId.label}"
+                                                                                required="#{bindings.NachislSettingsView2.hints.UserId.mandatory}"
+                                                                                shortDesc="#{bindings.NachislSettingsView2.hints.UserId.tooltip}"
+                                                                                id="soc4">
+                                                                <f:selectItems value="#{row.bindings.UserId.items}"
+                                                                               id="si10"/>
+                                                                <f:validator binding="#{row.bindings.UserId.validator}"/>
+                                                            </af:selectOneChoice>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.NachislSettingsView2.hints.PayId.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.NachislSettingsView2.hints.PayId.label}"
+                                                                   id="c13" width="150"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:selectOneChoice value="#{row.bindings.PayId.inputValue}"
+                                                                                label="#{row.bindings.PayId.label}"
+                                                                                required="#{bindings.NachislSettingsView2.hints.PayId.mandatory}"
+                                                                                shortDesc="#{bindings.NachislSettingsView2.hints.PayId.tooltip}"
+                                                                                id="soc6"
+                                                                                valueChangeListener="#{shuttle_group.onPaySettChange}"
+                                                                                autoSubmit="true">
+                                                                <f:selectItems value="#{row.bindings.PayId.items}"
+                                                                               id="si11"/>
+                                                                <f:validator binding="#{row.bindings.PayId.validator}"/>
+                                                            </af:selectOneChoice>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.NachislSettingsView2.hints.BaseId.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.NachislSettingsView2.hints.BaseId.label}"
+                                                                   id="c14" width="150"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:selectOneChoice value="#{row.bindings.BaseId.inputValue}"
+                                                                                label="#{row.bindings.BaseId.label}"
+                                                                                required="#{bindings.NachislSettingsView2.hints.BaseId.mandatory}"
+                                                                                shortDesc="#{bindings.NachislSettingsView2.hints.BaseId.tooltip}"
+                                                                                id="soc7">
+                                                                <f:selectItems value="#{row.bindings.BaseId.items}"
+                                                                               id="si12"/>
+                                                                <f:validator binding="#{row.bindings.BaseId.validator}"/>
+                                                            </af:selectOneChoice>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.NachislSettingsView2.hints.Summa.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.NachislSettingsView2.hints.Summa.label}"
+                                                                   id="c15"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:inputNumberSpinbox value="#{row.bindings.Summa.inputValue}"
+                                                                                   label="#{bindings.NachislSettingsView2.hints.Summa.label}"
+                                                                                   required="#{bindings.NachislSettingsView2.hints.Summa.mandatory}"
+                                                                                   columns="#{bindings.NachislSettingsView2.hints.Summa.displayWidth}"
+                                                                                   shortDesc="#{bindings.NachislSettingsView2.hints.Summa.tooltip}"
+                                                                                   id="it27">
+                                                                <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.NachislSettingsView2.hints.Summa.format}"/>
+                                                            </af:inputNumberSpinbox>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.NachislSettingsView2.hints.DivisionId.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.NachislSettingsView2.hints.DivisionId.label}"
+                                                                   id="c16"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                                                label="#{row.bindings.DivisionId.label}"
+                                                                                required="#{bindings.NachislSettingsView2.hints.DivisionId.mandatory}"
+                                                                                shortDesc="#{bindings.NachislSettingsView2.hints.DivisionId.tooltip}"
+                                                                                id="soc8">
+                                                                <f:selectItems value="#{row.bindings.DivisionId.items}"
+                                                                               id="si13"/>
+                                                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                                                            </af:selectOneChoice>
+                                                        </af:column>
+                                                        <af:column sortProperty="#{bindings.NachislSettingsView2.hints.Editable.name}"
+                                                                   sortable="true"
+                                                                   headerText="#{bindings.NachislSettingsView2.hints.Editable.label}"
+                                                                   id="c17" visible="false"
+                                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                            <af:inputText value="#{row.bindings.Editable.inputValue}"
+                                                                          label="#{bindings.NachislSettingsView2.hints.Editable.label}"
+                                                                          required="#{bindings.NachislSettingsView2.hints.Editable.mandatory}"
+                                                                          columns="#{bindings.NachislSettingsView2.hints.Editable.displayWidth}"
+                                                                          maximumLength="#{bindings.NachislSettingsView2.hints.Editable.precision}"
+                                                                          shortDesc="#{bindings.NachislSettingsView2.hints.Editable.tooltip}"
+                                                                          id="it28">
+                                                                <f:validator binding="#{row.bindings.Editable.validator}"/>
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.NachislSettingsView2.hints.Editable.format}"/>
+                                                            </af:inputText>
+                                                        </af:column>
+                                                    </af:table>
+                                                </af:panelBox>
+                                            </af:showDetailItem>
+                                        </af:panelAccordion>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="pCreateNom"
+                                          contentDelivery="lazyUncached"
+                                          popupFetchListener="#{shuttle_group.onPopupNomenklatura}">
+                                    <af:dialog id="d2" title="Создать номенклатуру"
+                                               dialogListener="#{shuttle_group.onNomenklaturaDialogListener}">
+                                        <af:panelFormLayout id="pfl4">
+                                            <af:inputText value="#{bindings.Id2.inputValue}"
+                                                          label="#{bindings.Id2.hints.label}"
+                                                          required="#{bindings.Id2.hints.mandatory}"
+                                                          columns="#{bindings.Id2.hints.displayWidth}"
+                                                          maximumLength="#{bindings.Id2.hints.precision}"
+                                                          shortDesc="#{bindings.Id2.hints.tooltip}" id="it16"
+                                                          rendered="false">
+                                                <f:validator binding="#{bindings.Id2.validator}"/>
+                                            </af:inputText>
+                                            <af:selectOneChoice value="#{bindings.ParentId.inputValue}"
+                                                                label="#{bindings.ParentId.label}"
+                                                                required="#{bindings.ParentId.hints.mandatory}"
+                                                                shortDesc="#{bindings.ParentId.hints.tooltip}"
+                                                                id="soc2" partialTriggers="parentnameId"
+                                                                visible="false">
+                                                <f:selectItems value="#{bindings.ParentId.items}" id="si8"/>
+                                                <f:validator binding="#{bindings.ParentId.validator}"/>
+                                            </af:selectOneChoice>
+                                            <af:inputComboboxListOfValues id="parentnameId"
+                                                                          popupTitle="Search and Select: #{bindings.Parentname.hints.label}"
+                                                                          value="#{bindings.Parentname.inputValue}"
+                                                                          label="#{bindings.Parentname.hints.label}"
+                                                                          model="#{bindings.Parentname.listOfValuesModel}"
+                                                                          required="#{bindings.Parentname.hints.mandatory}"
+                                                                          columns="#{bindings.Parentname.hints.displayWidth}"
+                                                                          shortDesc="#{bindings.Parentname.hints.tooltip}"
+                                                                          partialTriggers="soc2">
+                                                <f:validator binding="#{bindings.Parentname.validator}"/>
+                                            </af:inputComboboxListOfValues>
+                                            <af:inputText value="#{bindings.Fullname1.inputValue}"
+                                                          label="#{bindings.Fullname1.hints.label}"
+                                                          required="#{bindings.Fullname1.hints.mandatory}"
+                                                          columns="#{bindings.Fullname1.hints.displayWidth}"
+                                                          maximumLength="#{bindings.Fullname1.hints.precision}"
+                                                          shortDesc="#{bindings.Fullname1.hints.tooltip}" id="it17">
+                                                <f:validator binding="#{bindings.Fullname1.validator}"/>
+                                            </af:inputText>
+                                            <af:selectBooleanCheckbox value="#{bindings.Usluga.inputValue}"
+                                                                      label="#{bindings.Usluga.label}"
+                                                                      shortDesc="#{bindings.Usluga.hints.tooltip}"
+                                                                      id="sbc3"/>
+                                        </af:panelFormLayout>
+                                        <f:facet name="buttonBar"/>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="pCreateActiv"
+                                          contentDelivery="lazyUncached"
+                                          popupFetchListener="#{shuttle_group.onPopupActivities}">
+                                    <af:dialog id="d3" title="Добавить вид деятельности"
+                                               dialogListener="#{shuttle_group.onActivitiesDialogListener}">
+                                        <af:panelFormLayout id="pfl3">
+                                            <af:inputText value="#{bindings.Id1.inputValue}"
+                                                          label="#{bindings.Id1.hints.label}"
+                                                          required="#{bindings.Id1.hints.mandatory}"
+                                                          columns="#{bindings.Id1.hints.displayWidth}"
+                                                          maximumLength="#{bindings.Id1.hints.precision}"
+                                                          shortDesc="#{bindings.Id1.hints.tooltip}" id="it14"
+                                                          readOnly="true" rendered="false">
+                                                <f:validator binding="#{bindings.Id1.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.Fullname.inputValue}"
+                                                          label="#{bindings.Fullname.hints.label}"
+                                                          required="#{bindings.Fullname.hints.mandatory}"
+                                                          columns="#{bindings.Fullname.hints.displayWidth}"
+                                                          maximumLength="#{bindings.Fullname.hints.precision}"
+                                                          shortDesc="#{bindings.Fullname.hints.tooltip}" id="it15">
+                                                <f:validator binding="#{bindings.Fullname.validator}"/>
+                                            </af:inputText>
+                                        </af:panelFormLayout>
+                                        <f:facet name="buttonBar"/>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="pResetPwd"
+                                          contentDelivery="lazyUncached"
+                                          popupFetchListener="#{shuttle_group.onResetPasswdPopup}">
+                                    <af:dialog id="d4" title="Установить пароль"
+                                               dialogListener="#{shuttle_group.onSetPwdDlgListener}">
+                                        <f:facet name="buttonBar"/>
+                                        <af:panelFormLayout id="pfl5">
+                                            <af:inputText value="#{bindings.username.inputValue}"
+                                                          label="Логин"
+                                                          required="#{bindings.username.hints.mandatory}"
+                                                          columns="#{bindings.username.hints.displayWidth}"
+                                                          maximumLength="#{bindings.username.hints.precision}"
+                                                          shortDesc="#{bindings.username.hints.tooltip}" id="it19">
+                                                <f:validator binding="#{bindings.username.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.newPassword.inputValue}"
+                                                          label="Пароль"
+                                                          required="#{bindings.newPassword.hints.mandatory}"
+                                                          columns="#{bindings.newPassword.hints.displayWidth}"
+                                                          maximumLength="#{bindings.newPassword.hints.precision}"
+                                                          shortDesc="#{bindings.newPassword.hints.tooltip}" id="it20"
+                                                          secret="true" binding="#{shuttle_group.newPasswd}">
+                                                <f:validator binding="#{bindings.newPassword.validator}"/>
+                                            </af:inputText>
+                                            <af:button actionListener="#{bindings.resetUserPwdToWls.execute}"
+                                                       text="resetUserPwdToWls"
+                                                       disabled="#{!bindings.resetUserPwdToWls.enabled}" id="b9"
+                                                       rendered="false"/>
+                                        </af:panelFormLayout>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="pCreateUser"
+                                          contentDelivery="lazyUncached"
+                                          popupFetchListener="#{shuttle_group.onNewUserPopup}">
+                                    <af:dialog id="d5" title="Добавить пользователя"
+                                               dialogListener="#{shuttle_group.onNewUserDialogListener}">
+                                        <f:facet name="buttonBar"/>
+                                        <af:panelFormLayout id="pfl6">
+                                            <af:inputText value="#{bindings.username1.inputValue}"
+                                                          label="Логин"
+                                                          required="#{bindings.username1.hints.mandatory}"
+                                                          columns="#{bindings.username1.hints.displayWidth}"
+                                                          maximumLength="#{bindings.username1.hints.precision}"
+                                                          shortDesc="#{bindings.username1.hints.tooltip}" id="it21"
+                                                          showRequired="true" binding="#{shuttle_group.login}">
+                                                <f:validator binding="#{bindings.username1.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.psw.inputValue}"
+                                                          label="Пароль"
+                                                          required="#{bindings.psw.hints.mandatory}"
+                                                          columns="#{bindings.psw.hints.displayWidth}"
+                                                          maximumLength="#{bindings.psw.hints.precision}"
+                                                          shortDesc="#{bindings.psw.hints.tooltip}" id="it22"
+                                                          secret="true" showRequired="true"
+                                                          binding="#{shuttle_group.passwd}">
+                                                <f:validator binding="#{bindings.psw.validator}"/>
+                                            </af:inputText>
+                                            <af:inputText value="#{bindings.desc.inputValue}"
+                                                          label="Примечание"
+                                                          required="#{bindings.desc.hints.mandatory}"
+                                                          columns="#{bindings.desc.hints.displayWidth}"
+                                                          maximumLength="#{bindings.desc.hints.precision}"
+                                                          shortDesc="#{bindings.desc.hints.tooltip}" id="it23" rows="2"
+                                                          binding="#{shuttle_group.desc}">
+                                                <f:validator binding="#{bindings.desc.validator}"/>
+                                            </af:inputText>
+                                            <af:button actionListener="#{bindings.addUserToWls.execute}"
+                                                       text="addUserToWls" disabled="#{!bindings.addUserToWls.enabled}"
+                                                       id="b11" rendered="false"/>
+                                        </af:panelFormLayout>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="pZamer"
+                                          contentDelivery="lazyUncached"
+                                          popupFetchListener="#{shuttle_group.onPopupCreateZamer}"
+                                          binding="#{shuttle_group.newZamerPopup}" resetEditableValues="whenCanceled">
+                                    <af:dialog id="d6" title="Новый контрагент для замеров"
+                                               dialogListener="#{shuttle_group.onNewZamerDialogListener}"
+                                               closeIconVisible="false" type="none">
+                                        <f:facet name="buttonBar">
+                                            <af:panelGroupLayout id="pgl4" layout="horizontal" halign="right">
+                                                <af:toolbar id="t9">
+                                                    <af:button text="Ok" id="bNewZamer" immediate="true"
+                                                               actionListener="#{shuttle_group.onSaveZamer}"/>
+                                                    <af:button text="Отмена" id="b19" immediate="true"
+                                                               actionListener="#{shuttle_group.onCancelZamer}"/>
+                                                </af:toolbar>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                        <af:inputText label="Наименование" id="it24"
+                                                      value="#{bindings.KonName1.inputValue}" columns="30"
+                                                      binding="#{shuttle_group.konName}" required="true"
+                                                      autoSubmit="true"/>
+                                    </af:dialog>
+                                    <af:resetListener type="popupCanceled"/>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="pKontrag"
+                                          contentDelivery="lazyUncached"
+                                          popupFetchListener="#{shuttle_group.onPopupCreateKontrag}"
+                                          binding="#{shuttle_group.newKontragPopup}">
+                                    <af:dialog id="d7" title="Новый контрагент для расчетов"
+                                               dialogListener="#{shuttle_group.onNewKontragDialogListener}" type="none"
+                                               closeIconVisible="false">
+                                        <f:facet name="buttonBar">
+                                            <af:panelGroupLayout id="pgl3" layout="horizontal" halign="right">
+                                                <af:toolbar id="t8">
+                                                    <af:button text="Ok" id="bNewKontrag" immediate="true"
+                                                               actionListener="#{shuttle_group.onSaveKontrag}"/>
+                                                    <af:button text="Отмена" id="b18" immediate="true"
+                                                               actionListener="#{shuttle_group.onCancelKontrag}"/>
+                                                </af:toolbar>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                        <af:inputText label="Имя" id="it25" required="true"
+                                                      value="#{bindings.KontragName1.inputValue}" columns="30"
+                                                      binding="#{shuttle_group.kontragName}" autoSubmit="true"/>
+                                    </af:dialog>
+                                </af:popup>
+                            </af:showDetailItem>
+                            <af:showDetailItem text="Активные пользователи" id="sdi7" stretchChildren="first">
+                                <af:panelCollection id="pc1">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t11">
+                                            <af:button actionListener="#{bindings.Execute.execute}" text="Обновить"
+                                                       disabled="#{!bindings.Execute.enabled}" id="b17"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:table value="#{bindings.onlineUserList.collectionModel}" var="row"
+                                              rows="#{bindings.onlineUserList.rangeSize}"
+                                              emptyText="#{bindings.onlineUserList.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.onlineUserList.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.onlineUserList.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.onlineUserList.rangeSize}"
+                                              id="t10" partialTriggers="::b17">
+                                        <af:column sortProperty="#{bindings.onlineUserList.hints.id.name}"
+                                                   sortable="true"
+                                                   headerText="GUID" id="c23"
+                                                   width="270">
+                                            <af:outputText value="#{row.id}"
+                                                           shortDesc="#{bindings.onlineUserList.hints.id.tooltip}"
+                                                           id="ot1"
+                                                           inlineStyle="#{securityContext.userName == row.login ? 'font-weight:bold;' : ''}"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.onlineUserList.hints.login.name}"
+                                                   sortable="true" headerText="Логин" id="c24" width="150">
+                                            <af:outputText value="#{row.login}"
+                                                           shortDesc="#{bindings.onlineUserList.hints.login.tooltip}"
+                                                           id="ot2"
+                                                           inlineStyle="#{securityContext.userName == row.login ? 'font-weight:bold;' : ''}"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.onlineUserList.hints.logDate.name}"
+                                                   sortable="true" headerText="Дата входа" id="c25" width="150">
+                                            <af:outputText value="#{row.logDate}"
+                                                           shortDesc="#{bindings.onlineUserList.hints.logDate.tooltip}"
+                                                           id="ot3"
+                                                           inlineStyle="#{securityContext.userName == row.login ? 'font-weight:bold;' : ''}">
+                                                <af:convertDateTime pattern="dd-MMM-yyy HH:mm:ss"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column headerText="IP сервера"
+                                                   id="c26" width="200">
+                                            <af:outputText value="#{row.ipAdress}"
+                                                           shortDesc="#{bindings.onlineUserList.hints.ipAdress.tooltip}"
+                                                           id="ot4"
+                                                           inlineStyle="#{securityContext.userName == row.login ? 'font-weight:bold;' : ''}"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.onlineUserList.hints.ipAdressLocal.label}"
+                                                   id="c27" width="200">
+                                            <af:outputText value="#{row.ipAdressLocal}"
+                                                           shortDesc="#{bindings.onlineUserList.hints.ipAdressLocal.tooltip}"
+                                                           id="ot5"
+                                                           inlineStyle="#{securityContext.userName == row.login ? 'font-weight:bold;' : ''}"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.onlineUserList.hints.ipAdressNAT.label}"
+                                                   id="c28" width="200">
+                                            <af:outputText value="#{row.ipAdressNAT}"
+                                                           shortDesc="#{bindings.onlineUserList.hints.ipAdressNAT.tooltip}"
+                                                           id="ot6"
+                                                           inlineStyle="#{securityContext.userName == row.login ? 'font-weight:bold;' : ''}"/>
+                                        </af:column>
+                                    </af:table>
+                                    <f:facet name="statusbar"/>
+                                </af:panelCollection>
+                            </af:showDetailItem>
+                        </af:panelTabbed>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

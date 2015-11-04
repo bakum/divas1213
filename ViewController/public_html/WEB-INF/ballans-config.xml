@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ballans-config">
+    <default-activity>ballans_detail</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name>ballans</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.BallansBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="ballans">
+      <page>/ballans.jsff</page>
+    </view>
+    <view id="ballans_detail">
+      <page>/ballans_detail.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>ballans</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>to_detail</from-outcome>
+        <to-activity-id>ballans_detail</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>ballans_detail</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>to_main</from-outcome>
+        <to-activity-id>ballans</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium" topHeight="25px">
+                    <f:facet name="center">
+                        <af:panelBox text="Настройки программы" id="pb1">
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t1">
+                                    <af:button text="Редактировать" id="b1" icon="/img/edit-16.gif"
+                                               shortDesc="Редактировать настройки"
+                                               disabled="#{bindings.Editable.inputValue == 1 ? true : false}"
+                                               rendered="#{bindings.Id.inputValue == null ? false : true}">
+                                        <af:setPropertyListener from="#{1}" to="#{bindings.Editable.inputValue}"
+                                                                type="action"/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                               disabled="#{!bindings.CreateInsert.enabled}" id="b2"
+                                               rendered="#{bindings.Id.inputValue == null ? true : false}"/>
+                                    <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                               disabled="#{!bindings.Commit.enabled}" id="b3">
+                                        <af:setPropertyListener from="#{0}" to="#{bindings.Editable.inputValue}"
+                                                                type="action"/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                               disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b4">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                </af:toolbar>
+                            </f:facet>
+                            <af:panelFormLayout id="pfl1">
+                                <af:inputText value="#{bindings.Id.inputValue}" label="#{bindings.Id.hints.label}"
+                                              required="#{bindings.Id.hints.mandatory}"
+                                              columns="#{bindings.Id.hints.displayWidth}"
+                                              maximumLength="#{bindings.Id.hints.precision}"
+                                              shortDesc="#{bindings.Id.hints.tooltip}" id="it1"
+                                              readOnly="#{bindings.Editable.inputValue == 1 ? false : true}"
+                                              visible="false">
+                                    <f:validator binding="#{bindings.Id.validator}"/>
+                                </af:inputText>
+                                <af:inputDate value="#{bindings.DateAfter.inputValue}"
+                                              label="#{bindings.DateAfter.hints.label}"
+                                              required="#{bindings.DateAfter.hints.mandatory}"
+                                              columns="#{bindings.DateAfter.hints.displayWidth}"
+                                              shortDesc="#{bindings.DateAfter.hints.tooltip}" id="id1"
+                                              readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:validator binding="#{bindings.DateAfter.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.DateAfter.format}"/>
+                                </af:inputDate>
+                                <af:inputDate value="#{bindings.DateAfterProfit.inputValue}"
+                                              label="#{bindings.DateAfterProfit.hints.label}"
+                                              required="#{bindings.DateAfterProfit.hints.mandatory}"
+                                              columns="#{bindings.DateAfterProfit.hints.displayWidth}"
+                                              shortDesc="#{bindings.DateAfterProfit.hints.tooltip}" id="id2"
+                                              readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:validator binding="#{bindings.DateAfterProfit.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.DateAfterProfit.format}"/>
+                                </af:inputDate>
+                                <af:inputText value="#{bindings.Editable.inputValue}"
+                                              label="#{bindings.Editable.hints.label}"
+                                              required="#{bindings.Editable.hints.mandatory}"
+                                              columns="#{bindings.Editable.hints.displayWidth}"
+                                              maximumLength="#{bindings.Editable.hints.precision}"
+                                              shortDesc="#{bindings.Editable.hints.tooltip}" id="it2" visible="false">
+                                    <f:validator binding="#{bindings.Editable.validator}"/>
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Editable.format}"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:panelHeader text="Настройки внутренних задолженностей" id="ph1" type="flow">
+                                <f:facet name="context"/>
+                                <f:facet name="menuBar"/>
+                                <f:facet name="toolbar"/>
+                                <f:facet name="legend">
+                                    <af:outputText value="*Эти начисления попадут в задолженность" id="ot1"
+                                                   inlineStyle="color:Red;"
+                                                   visible="#{bindings.Editable.inputValue == 1 ? false : true}"/>
+                                </f:facet>
+                                <f:facet name="info"/>
+                                <af:selectManyShuttle value="#{prog_settings.selectedValues}" id="sms1"
+                                                      leadingHeader="Все начисления" trailingHeader="В задолженности"
+                                                      valueChangeListener="#{prog_settings.onInsChange}"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:selectItems value="#{prog_settings.allValues}" id="si1"/>
+                                    <f:validator binding="#{bindings.InsideSettingsView1.validator}"/>
+                                </af:selectManyShuttle>
+                            </af:panelHeader>
+                        </af:panelBox>
+                    </f:facet>
+                    <f:facet name="top">
+                        <af:navigationPane id="np1" hint="bar">
+                            <af:commandNavigationItem text="Настройки" id="cni1" selected="true"/>
+                            <af:commandNavigationItem text="Удаление помеченных объектов" id="cni2"
+                                                      action="to_deleted">
+                                <af:clientListener method="enforcePreventUserInput" type="action"/>
+                            </af:commandNavigationItem>
+                        </af:navigationPane>
+                    </f:facet>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelBox text="Взаиморасчеты с дебеторами" id="pb1" showDisclosure="false"
+                                             icon="/img/cash.png" type="flow">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t1">
+                                            <af:button text="Обновить" id="b1"
+                                                       actionListener="#{buyer_debt.onRefresh}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:treeTable value="#{bindings.VwKontragDeb1.treeModel}" var="node"
+                                                  rowSelection="single" id="tt1" binding="#{buyer_debt.treeTable}"
+                                                  scrollPolicy="page" fetchSize="19">
+                                        <f:facet name="nodeStamp">
+                                            <af:column id="c1" headerText="Наименование" width="250"
+                                                       inlineStyle="font-weight:bold;">
+                                                <af:outputText value="#{node.Fullname}" id="ot1"/>
+                                            </af:column>
+                                        </f:facet>
+                                        <f:facet name="pathStamp">
+                                            <af:outputText value="#{node}" id="ot2"/>
+                                        </f:facet>
+                                        <af:column id="c2" headerText="Счет" visible="false">
+                                            <af:outputText value="#{node.bindings.Code}" id="ot3"/>
+                                        </af:column>
+                                        <af:column id="c6" headerText="Регистратор" width="200">
+                                            <af:outputText value="#{node.bindings.RegString}" id="ot7"/>
+                                        </af:column>
+                                        <af:column id="c7" headerText="Опл, %" width="60" align="right">
+                                            <af:outputText value="#{node.Payed}" id="ot12"
+                                                           inlineStyle="font-weight:bold;color:Blue;"/>
+                                        </af:column>
+                                        <af:column id="c3" headerText="Начисления" align="right">
+                                            <af:outputText value="#{node.bindings.SumSummPrihod}" id="ot4"/>
+                                            <af:outputText value="#{node.bindings.Summa}" id="ot8"/>
+                                            <af:outputText value="#{node.bindings.SumRko}" id="ot10"/>
+                                        </af:column>
+                                        <af:column id="c4" headerText="Оплаты" align="right">
+                                            <af:outputText value="#{node.bindings.SumSummRashod}" id="ot5"/>
+                                            <af:outputText value="#{node.bindings.SummaRash}" id="ot9"/>
+                                            <af:outputText value="#{node.bindings.SumPko}" id="ot11"/>
+                                        </af:column>
+                                        <af:column id="c5" headerText="Задолженность" align="right">
+                                            <af:outputText value="#{node.DebtBuyer}" id="ot6"
+                                                           inlineStyle="#{node.DebtBuyer &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}"/>
+                                        </af:column>
+                                    </af:treeTable>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="start">
+                                <af:panelDrawer id="pd1" position="start" height="60%" width="60%">
+                                    <af:showDetailItem text="Поиск" id="sdi1" stretchChildren="first"
+                                                       icon="/img/search.png">
+                                        <af:panelGroupLayout layout="vertical" id="pgl2">
+                                            <af:panelHeader text="Дебеторы" id="ph1">
+                                                <af:query id="qryId1" headerText="Поиск" disclosed="true"
+                                                          value="#{bindings.VwKontragActiveQuery.queryDescriptor}"
+                                                          model="#{bindings.VwKontragActiveQuery.queryModel}"
+                                                          queryListener="#{bindings.VwKontragActiveQuery.processQuery}"
+                                                          queryOperationListener="#{bindings.VwKontragActiveQuery.processQueryOperation}"
+                                                          resultComponentId="::tt1" saveResultsLayout="never"/>
+                                            </af:panelHeader>
+                                        </af:panelGroupLayout>
+                                    </af:showDetailItem>
+                                </af:panelDrawer>
+                            </f:facet>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

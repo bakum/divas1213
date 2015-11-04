@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelCollection id="pc1">
+                    <f:facet name="menus"/>
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t1">
+                            <af:button text="Обновить" id="b1" actionListener="#{kontrag_calc.onRefresh}"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="statusbar"/>
+                    <af:treeTable value="#{bindings.KontragentsInOrdersView1.treeModel}" var="node"
+                                  selectionListener="#{bindings.KontragentsInOrdersView1.treeModel.makeCurrent}"
+                                  rowSelection="single" id="tt1" binding="#{kontrag_calc.treeTable}">
+                        <f:facet name="nodeStamp">
+                            <af:column id="c1" headerText="Клиент" width="250" inlineStyle="font-weight:bold;">
+                                <af:outputText value="#{node.Fullname}" id="ot1"/>
+                            </af:column>
+                        </f:facet>
+                        <f:facet name="pathStamp">
+                            <af:outputText value="#{node}" id="ot2"/>
+                        </f:facet>
+                        <af:column id="c5" headerText="Регистратор" width="250">
+                            <af:outputText value="#{node.bindings.Regstring}" id="ot6"/>
+                        </af:column>
+                        <af:column id="c2" headerText="Объем работ" align="right">
+                            <af:outputText value="#{node.bindings.Uslugiall}" id="ot3"/>
+                        </af:column>
+                        <af:column id="c3" headerText="Оплата" align="right">
+                            <af:outputText value="#{node.bindings.Oplaty}" id="ot4"/>
+                        </af:column>
+                        <af:column id="c4" headerText="Задолженность" align="right">
+                            <af:outputText value="#{node.bindings.Debt}" id="ot5"
+                                           inlineStyle="#{node.bindings.Debt &lt; '0' ? 'color:Red' : ''}"/>
+                            <af:outputText value="#{node.SumDebt}" id="ot7"
+                                           inlineStyle="#{node.SumDebt &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}"/>
+                        </af:column>
+                    </af:treeTable>
+                </af:panelCollection>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

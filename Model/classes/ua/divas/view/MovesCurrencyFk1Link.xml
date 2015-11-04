@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MovesCurrencyFk1Link"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  EntityAssociation="ua.divas.model.MovesCurrencyFk1Assoc">
+  <ViewLinkDefEnd
+    Name="CurrencyView"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.CurrencyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CurrencyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.CurrencyView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MovesView"
+    Cardinality="-1"
+    Owner="ua.divas.view.MovesView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MovesView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.MovesView.CurrDeb"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

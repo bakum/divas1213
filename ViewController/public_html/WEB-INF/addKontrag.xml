@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="addKontrag">
+    <default-activity>CreateInsert</default-activity>
+    <transaction>
+      <requires-transaction/>
+    </transaction>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <input-parameter-definition id="__10">
+      <name>ContactId</name>
+      <value>#{pageFlowScope.ContactId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <return-value-definition id="__9">
+      <name>KontragId</name>
+      <value>#{pageFlowScope.KontragId}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__8">
+      <managed-bean-name>new_kontrag</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.NewKontragBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="newKontrag">
+      <display-name>Шаг.1</display-name>
+      <page>/newKontrag.jsff</page>
+      <train-stop/>
+    </view>
+    <task-flow-return id="ok">
+      <outcome>
+        <name>ok</name>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="cancel">
+      <outcome>
+        <name>cancel</name>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <view id="detail">
+      <display-name>Шаг 2</display-name>
+      <page>/detail.jsff</page>
+      <train-stop/>
+    </view>
+    <view id="addOrder">
+      <display-name>Шаг 3</display-name>
+      <page>/addOrder.jsff</page>
+      <train-stop>
+        <skip>#{pageFlowScope.ContactId == null ? true : false}</skip>
+      </train-stop>
+    </view>
+    <train/>
+    <control-flow-rule id="__1">
+      <from-activity-id>CreateInsert</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>CreateInsert</from-outcome>
+        <to-activity-id>newKontrag</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id>newKontrag</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>cancel1</from-outcome>
+        <to-activity-id>cancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__14">
+      <from-activity-id>detail</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome>ok</from-outcome>
+        <to-activity-id>ok</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__16">
+        <from-outcome>cancel</from-outcome>
+        <to-activity-id>cancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__17">
+      <from-activity-id>addOrder</from-activity-id>
+      <control-flow-case id="__18">
+        <from-outcome>save</from-outcome>
+        <to-activity-id>ok</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__19">
+        <from-outcome>noSave</from-outcome>
+        <to-activity-id>cancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

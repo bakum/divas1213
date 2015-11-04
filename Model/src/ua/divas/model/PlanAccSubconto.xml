@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PlanAccSubconto"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="PLAN_ACC_SUBCONTO"
+  AliasName="PlanAccSubconto"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PLAN_ACC_SUBCONTO"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.PlanAccSubconto.Id_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.PlanAccSubconto.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PlanAccId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="PLAN_ACC_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PLAN_ACC_SUBCONTO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.PlanAccSubconto.PlanAccId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.PlanAccSubconto.PlanAccId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PlanTypeSubc"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="PLAN_TYPE_SUBC"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PLAN_ACC_SUBCONTO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.PlanAccSubconto.PlanTypeSubc_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.PlanAccSubconto.PlanTypeSubc_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="OborotOnly"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="OBOROT_ONLY"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="PLAN_ACC_SUBCONTO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.PlanAccSubconto.OborotOnly_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.PlanAccSubconto.OborotOnly_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Summovoy"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="SUMMOVOY"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="PLAN_ACC_SUBCONTO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.PlanAccSubconto.Summovoy_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.PlanAccSubconto.Summovoy_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Version"
+    IsNotNull="true"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="PLAN_ACC_SUBCONTO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.PlanAccSubconto.Version_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.PlanAccSubconto.Version_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="PlanAcc"
+    Association="ua.divas.model.PlanAccSubcontoFk1Assoc"
+    AssociationEnd="ua.divas.model.PlanAccSubcontoFk1Assoc.PlanAcc"
+    AssociationOtherEnd="ua.divas.model.PlanAccSubcontoFk1Assoc.PlanAccSubconto"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="PlanTypeSubconto"
+    Association="ua.divas.model.PlanAccSubcontoFk2Assoc"
+    AssociationEnd="ua.divas.model.PlanAccSubcontoFk2Assoc.PlanTypeSubconto"
+    AssociationOtherEnd="ua.divas.model.PlanAccSubcontoFk2Assoc.PlanAccSubconto"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="PlanAccSubcontoChk1">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PLAN_ACC_SUBCONTO_CHK1"/>
+      <Attr Name="_checkCondition" Value="OBOROT_ONLY IN (1, 0)"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="PlanAccSubcontoChk2">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PLAN_ACC_SUBCONTO_CHK2"/>
+      <Attr Name="_checkCondition" Value="SUMMOVOY IN (1, 0)"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="PlanAccSubcontoPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PLAN_ACC_SUBCONTO_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.PlanAccSubconto.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PlanAccSubcontoFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PLAN_ACC_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PLAN_ACC_SUBCONTO_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.PlanAccSubconto.PlanAccId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PlanAccSubcontoFk2">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PLAN_TYPE_SUBCONTO_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PLAN_ACC_SUBCONTO_FK2"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.PlanAccSubconto.PlanTypeSubc"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="prorab-config">
+    <default-activity>prorab</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>prorab</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ProrabBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__6">
+      <managed-bean-name>prorab_report</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ProrabReportBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="prorab">
+      <page>/prorab.jsff</page>
+    </view>
+    <view id="prorab_report">
+      <page>/prorab_report.jsff</page>
+    </view>
+    <control-flow-rule id="__2">
+      <from-activity-id>prorab</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>to_report</from-outcome>
+        <to-activity-id>prorab_report</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>prorab_report</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>to_prorab</from-outcome>
+        <to-activity-id>prorab</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

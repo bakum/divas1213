@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="light">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" topHeight="10%" bottomHeight="60%">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelCollection id="pc1" featuresOff="statusBar columnsMenuItem">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2">
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="b1"/>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="b2">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                            <af:button text="Обновить" id="b3"
+                                                       actionListener="#{import_price.onRefresh}"
+                                                       disabled="#{bindings.Commit.enabled}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.ImportedPriceView1.collectionModel}" var="row"
+                                              rows="#{bindings.ImportedPriceView1.rangeSize}"
+                                              emptyText="#{bindings.ImportedPriceView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.ImportedPriceView1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.ImportedPriceView1.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.ImportedPriceView1.rangeSize}"
+                                              filterModel="#{bindings.ImportedPriceView1Query.queryDescriptor}"
+                                              queryListener="#{bindings.ImportedPriceView1Query.processQuery}"
+                                              filterVisible="false" varStatus="vs" id="t1"
+                                              binding="#{import_price.staffTable}">
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.Id.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.Id.label}" id="c1"
+                                                   visible="false">
+                                            <af:outputText value="#{row.Id}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.Id.tooltip}"
+                                                           id="ot1"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.Dat.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.Dat.label}" id="c2">
+                                            <f:facet name="filter">
+                                                <af:inputDate value="#{bindings.ImportedPriceView1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.Dat.value}"
+                                                              id="id1">
+                                                    <af:convertDateTime pattern="#{bindings.ImportedPriceView1.hints.Dat.format}"/>
+                                                </af:inputDate>
+                                            </f:facet>
+                                            <af:outputText value="#{row.Dat}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.Dat.tooltip}"
+                                                           id="ot2">
+                                                <af:convertDateTime pattern="#{bindings.ImportedPriceView1.hints.Dat.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.Artikul.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.Artikul.label}"
+                                                   id="c3">
+                                            <af:outputText value="#{row.Artikul}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.Artikul.tooltip}"
+                                                           id="ot3"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.Groups.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.Groups.label}"
+                                                   id="c4" width="200">
+                                            <af:outputText value="#{row.Groups}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.Groups.tooltip}"
+                                                           id="ot4"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.NomName.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.NomName.label}"
+                                                   id="c5" width="350">
+                                            <af:outputText value="#{row.NomName}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.NomName.tooltip}"
+                                                           id="ot5"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.EdIzm.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.EdIzm.label}"
+                                                   id="c6">
+                                            <af:outputText value="#{row.EdIzm}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.EdIzm.tooltip}"
+                                                           id="ot6"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.PriceUsl.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.PriceUsl.label}"
+                                                   id="c7">
+                                            <af:outputText value="#{row.PriceUsl}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.PriceUsl.tooltip}"
+                                                           id="ot7">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.ImportedPriceView1.hints.PriceUsl.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ImportedPriceView1.hints.PriceGoods.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ImportedPriceView1.hints.PriceGoods.label}"
+                                                   id="c8">
+                                            <af:outputText value="#{row.PriceGoods}"
+                                                           shortDesc="#{bindings.ImportedPriceView1.hints.PriceGoods.tooltip}"
+                                                           id="ot8">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.ImportedPriceView1.hints.PriceGoods.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </f:facet>
+                            <f:facet name="start"/>
+                            <f:facet name="end"/>
+                            <f:facet name="top">
+                                <af:inputFile label="Выберите csv файл" id="if1"
+                                              valueChangeListener="#{import_price.fileUploaded}"
+                                              autoSubmit="true"/>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

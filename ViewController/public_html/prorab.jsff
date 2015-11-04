@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Производители работ" id="pb1" type="flow">
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t3">
+                            <af:group id="g1">
+                                <af:link text="График выполнения работ" id="l1" action="to_report"/>
+                            </af:group>
+                            <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                       disabled="#{bindings.Commit.enabled}" id="b2"/>
+                            <af:button text="Сохранить"
+                                       disabled="#{!bindings.Commit.enabled}" id="b3" action="#{prorab.commitChange}"/>
+                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                       disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b4">
+                                <af:resetActionListener/>
+                            </af:button>
+                            <af:button text="Обновить" id="b5" actionListener="#{prorab.onRefresh}"
+                                       disabled="#{bindings.Commit.enabled}"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <af:table value="#{bindings.ProrabView1.collectionModel}" var="row"
+                              rows="#{bindings.ProrabView1.rangeSize}"
+                              emptyText="#{bindings.ProrabView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.ProrabView1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.ProrabView1.collectionModel.makeCurrent}"
+                              rowSelection="#{bindings.Editable.inputValue == 1 ? 'none' : 'single'}" fetchSize="#{bindings.ProrabView1.rangeSize}"
+                              filterModel="#{bindings.ProrabView1Query.queryDescriptor}"
+                              queryListener="#{bindings.ProrabView1Query.processQuery}" filterVisible="true"
+                              varStatus="vs" id="t1" scrollPolicy="page" editingMode="clickToEdit"
+                              partialTriggers="::b2" binding="#{prorab.table}">
+                        <af:column id="c5" width="60"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                   filterable="true" rowHeader="true">
+                            <af:toolbar id="t2">
+                                <af:button id="b1" icon="/img/edit-16.gif" disabled="#{bindings.Commit.enabled}">
+                                    <af:setPropertyListener from="#{1}" to="#{bindings.Editable.inputValue}"
+                                                            type="action"/>
+                                </af:button>
+                            </af:toolbar>
+                            <f:facet name="filter">
+                                <af:button id="b6" actionListener="#{prorab.resetTableFilter}"
+                                           icon="/img/filter_(delete)_16x16.gif" shortDesc="Сбросить все фильтры"/>
+                            </f:facet>
+                        </af:column>
+                        <af:column id="c7" width="30"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:image id="i1" source="#{row.Deleted == 1 ? '/img/delete-1.png' : '/img/minus.png'}"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.ProrabView1.hints.Fullname.name}" filterable="true"
+                                   sortable="true" headerText="#{bindings.ProrabView1.hints.Fullname.label}" id="c1"
+                                   width="250"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Fullname.inputValue}"
+                                          label="#{bindings.ProrabView1.hints.Fullname.label}"
+                                          required="#{bindings.ProrabView1.hints.Fullname.mandatory}"
+                                          columns="#{bindings.ProrabView1.hints.Fullname.displayWidth}"
+                                          maximumLength="#{bindings.ProrabView1.hints.Fullname.precision}"
+                                          shortDesc="#{bindings.ProrabView1.hints.Fullname.tooltip}" id="it1">
+                                <f:validator binding="#{row.bindings.Fullname.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.ProrabView1.hints.Id.name}" filterable="true"
+                                   sortable="true" headerText="#{bindings.ProrabView1.hints.Id.label}" id="c2"
+                                   visible="false"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                          label="#{bindings.ProrabView1.hints.Id.label}"
+                                          required="#{bindings.ProrabView1.hints.Id.mandatory}"
+                                          columns="#{bindings.ProrabView1.hints.Id.displayWidth}"
+                                          maximumLength="#{bindings.ProrabView1.hints.Id.precision}"
+                                          shortDesc="#{bindings.ProrabView1.hints.Id.tooltip}" id="it2">
+                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.ProrabView1.hints.Okpo.name}" filterable="true"
+                                   sortable="true" headerText="#{bindings.ProrabView1.hints.Okpo.label}" id="c3"
+                                   visible="false"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Okpo.inputValue}"
+                                          label="#{bindings.ProrabView1.hints.Okpo.label}"
+                                          required="#{bindings.ProrabView1.hints.Okpo.mandatory}"
+                                          columns="#{bindings.ProrabView1.hints.Okpo.displayWidth}"
+                                          maximumLength="#{bindings.ProrabView1.hints.Okpo.precision}"
+                                          shortDesc="#{bindings.ProrabView1.hints.Okpo.tooltip}" id="it3">
+                                <f:validator binding="#{row.bindings.Okpo.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.ProrabView1.hints.Editable.name}" filterable="true"
+                                   sortable="true" headerText="#{bindings.ProrabView1.hints.Editable.label}" id="c4"
+                                   visible="false"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Editable.inputValue}"
+                                          label="#{bindings.ProrabView1.hints.Editable.label}"
+                                          required="#{bindings.ProrabView1.hints.Editable.mandatory}"
+                                          columns="#{bindings.ProrabView1.hints.Editable.displayWidth}"
+                                          maximumLength="#{bindings.ProrabView1.hints.Editable.precision}"
+                                          shortDesc="#{bindings.ProrabView1.hints.Editable.tooltip}" id="it4">
+                                <f:validator binding="#{row.bindings.Editable.validator}"/>
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.ProrabView1.hints.Editable.format}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column headerText="#{bindings.ProrabView1.hints.IsSupplier.label}" id="c6" visible="false"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:selectBooleanCheckbox value="#{row.bindings.IsSupplier.inputValue}"
+                                                      label="#{row.bindings.IsSupplier.label}"
+                                                      shortDesc="#{bindings.ProrabView1.hints.IsSupplier.tooltip}"
+                                                      id="sbc1"/>
+                        </af:column>
+                        <af:column headerText="#{bindings.ProrabView1.hints.Deleted.label}" id="c8" visible="false">
+                            <af:selectOneChoice value="#{row.bindings.Deleted.inputValue}"
+                                                label="#{row.bindings.Deleted.label}"
+                                                required="#{bindings.ProrabView1.hints.Deleted.mandatory}"
+                                                shortDesc="#{bindings.ProrabView1.hints.Deleted.tooltip}"
+                                                readOnly="true" id="soc1">
+                                <f:selectItems value="#{row.bindings.Deleted.items}" id="si1"/>
+                                <f:validator binding="#{row.bindings.Deleted.validator}"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                        <f:facet name="contextMenu">
+                            <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                      contentDelivery="lazyUncached">
+                                <af:menu text="menu 1" id="m1">
+                                    <af:commandMenuItem text="#{prorab.del_label}" id="cmi1" icon="/img/delete-1.png">
+                                        <af:showPopupBehavior popupId="::pDelete"/>
+                                    </af:commandMenuItem>
+                                </af:menu>
+                            </af:popup>
+                        </f:facet>
+                    </af:table>
+                    <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete" contentDelivery="lazyUncached">
+                        <af:dialog id="d1" title="Внимание!" closeIconVisible="false"
+                                   dialogListener="#{prorab.onDeleteDialog}">
+                            <f:facet name="buttonBar"/>
+                            <af:outputText value="#{prorab.del_title}" id="ot1" inlineStyle="#{prorab.del_style}"/>
+                        </af:dialog>
+                    </af:popup>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

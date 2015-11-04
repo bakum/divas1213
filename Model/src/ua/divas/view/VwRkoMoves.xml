@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwRkoMoves"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwRkoMoves_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT 
+    VW_MOVE_RKO.REGISTRATOR_ID REGISTRATOR_ID, 
+    VW_MOVE_RKO.DEB DEB, 
+    VW_MOVE_RKO.SUM_DEB SUM_DEB, 
+    VW_MOVE_RKO.KRED KRED, 
+    VW_MOVE_RKO.SUM_KRED SUM_KRED, 
+    VW_MOVE_RKO.SUBCONTO_DEB1 SUBCONTO_DEB1, 
+    VW_MOVE_RKO.SUBCONTO_KRED1 SUBCONTO_KRED1 
+FROM 
+    VW_MOVE_RKO]]></SQLQuery>
+  <ViewAttribute
+    Name="RegistratorId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REGISTRATOR_ID"
+    Expression="REGISTRATOR_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwRkoMoves.RegistratorId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwRkoMoves.RegistratorId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Deb"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="6"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DEB"
+    Expression="DEB"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwRkoMoves.Deb_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwRkoMoves.Deb_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SumDeb"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUM_DEB"
+    Expression="SUM_DEB"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwRkoMoves.SumDeb_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwRkoMoves.SumDeb_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Kred"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="6"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KRED"
+    Expression="KRED"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwRkoMoves.Kred_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwRkoMoves.Kred_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SumKred"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUM_KRED"
+    Expression="SUM_KRED"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwRkoMoves.SumKred_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwRkoMoves.SumKred_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SubcontoDeb1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUBCONTO_DEB1"
+    Expression="SUBCONTO_DEB1"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwRkoMoves.SubcontoDeb1_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwRkoMoves.SubcontoDeb1_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SubcontoKred1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUBCONTO_KRED1"
+    Expression="SUBCONTO_KRED1"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwRkoMoves.SubcontoKred1_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwRkoMoves.SubcontoKred1_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

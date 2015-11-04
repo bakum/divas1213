@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelCollection id="pc1">
+                    <f:facet name="menus"/>
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t2">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                <af:link text="Настройки рейтинга" id="l1" action="to_setting"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:inputDate value="#{bindings.f_dat.inputValue}" label="#{bindings.f_dat.hints.label}"
+                                              required="#{bindings.f_dat.hints.mandatory}"
+                                              columns="#{bindings.f_dat.hints.displayWidth}"
+                                              shortDesc="#{bindings.f_dat.hints.tooltip}" id="id1">
+                                    <f:validator binding="#{bindings.f_dat.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.f_dat.format}"/>
+                                </af:inputDate>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:inputDate value="#{bindings.l_dat.inputValue}" label="#{bindings.l_dat.hints.label}"
+                                              required="#{bindings.l_dat.hints.mandatory}"
+                                              columns="#{bindings.l_dat.hints.displayWidth}"
+                                              shortDesc="#{bindings.l_dat.hints.tooltip}" id="id2">
+                                    <f:validator binding="#{bindings.l_dat.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.l_dat.format}"/>
+                                </af:inputDate>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:button actionListener="#{bindings.ExecuteWithParams.execute}" text="Обновить"
+                                           disabled="#{!bindings.ExecuteWithParams.enabled}" id="b1"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:menuBar id="mb1">
+                                    <af:menu text="Экспорт" id="m1">
+                                        <af:commandMenuItem text="Печать в Excel" id="cmi1" icon="/img/excel.png">
+                                            <af:fileDownloadActionListener contentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                                                           filename="Raitings.xls"
+                                                                           method="#{raitings.generateExcel}"/>
+                                        </af:commandMenuItem>
+                                    </af:menu>
+                                </af:menuBar>
+                            </af:panelGroupLayout>
+                        </af:toolbar>
+                    </f:facet>
+                    <f:facet name="statusbar"/>
+                    <af:table value="#{bindings.VwRating1.collectionModel}" var="row"
+                              rows="#{bindings.VwRating1.rangeSize}"
+                              emptyText="#{bindings.VwRating1.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                              rowBandingInterval="0" selectedRowKeys="#{bindings.VwRating1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VwRating1.collectionModel.makeCurrent}"
+                              rowSelection="single" fetchSize="#{bindings.VwRating1.rangeSize}" id="t1"
+                              partialTriggers="::b1" scrollPolicy="scroll">
+                        <af:column sortProperty="#{bindings.VwRating1.hints.Place.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.Place.label}" id="c1" align="center">
+                            <af:outputText value="#{row.Place}" shortDesc="#{bindings.VwRating1.hints.Place.tooltip}"
+                                           id="ot1" inlineStyle="font-weight:bold; font-size:larger;">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwRating1.hints.Place.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwRating1.hints.DivisionId.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.DivisionId.label}" id="c2" align="center">
+                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                label="#{row.bindings.DivisionId.label}"
+                                                required="#{bindings.VwRating1.hints.DivisionId.mandatory}"
+                                                shortDesc="#{bindings.VwRating1.hints.DivisionId.tooltip}"
+                                                readOnly="true" id="soc1">
+                                <f:selectItems value="#{row.bindings.DivisionId.items}" id="si1"/>
+                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwRating1.hints.Cnt.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.Cnt.label}" id="c3" align="center">
+                            <af:outputText value="#{row.Cnt}" shortDesc="#{bindings.VwRating1.hints.Cnt.tooltip}"
+                                           id="ot2">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwRating1.hints.Cnt.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwRating1.hints.Total.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.Total.label}" id="c4" align="center">
+                            <af:outputText value="#{row.Total}" shortDesc="#{bindings.VwRating1.hints.Total.tooltip}"
+                                           id="ot3">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwRating1.hints.Total.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwRating1.hints.BallSum.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.BallSum.label}" id="c5" width="100"
+                                   align="center">
+                            <af:outputText value="#{row.BallSum}"
+                                           shortDesc="#{bindings.VwRating1.hints.BallSum.tooltip}" id="ot4">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwRating1.hints.BallSum.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwRating1.hints.BallCnt.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.BallCnt.label}" id="c6" align="center">
+                            <af:outputText value="#{row.BallCnt}"
+                                           shortDesc="#{bindings.VwRating1.hints.BallCnt.tooltip}" id="ot5">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwRating1.hints.BallCnt.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwRating1.hints.BallTotal.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.BallTotal.label}" id="c7" width="200">
+                            <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                <dvt:gauge id="gauge1" value="#{row.bindings.BallTotal.inputValue}"
+                                           gaugeType="STATUSMETER" inlineStyle="height:50px; width:140px;"
+                                           maxValue="#{bindings.BallTotal.inputValue}"
+                                           shortDesc="#{bindings.VwRating1.hints.BallTotal.tooltip}"
+                                           gaugeSetAlignment="GSA_CENTER" dynamicResize="DYNAMIC_SIZE">
+                                    <dvt:gaugeBackground>
+                                        <dvt:specialEffects/>
+                                    </dvt:gaugeBackground>
+                                    <dvt:thresholdSet>
+                                        <dvt:threshold thresholdMaxValue="#{bindings.BallSum.inputValue}"/>
+                                        <dvt:threshold thresholdMaxValue="#{bindings.BallSum.inputValue + bindings.BallCnt.inputValue}"/>
+                                        <dvt:threshold/>
+                                    </dvt:thresholdSet>
+                                    <dvt:indicatorBar/>
+                                    <dvt:gaugePlotArea/>
+                                    <dvt:tickLabel scaling="none"/>
+                                    <dvt:tickMark/>
+                                    <dvt:topLabel position="LP_NONE"/>
+                                    <dvt:metricLabel position="LP_NONE" scaling="none"/>
+                                    <dvt:bottomLabel position="LP_NONE"/>
+                                </dvt:gauge>
+                                <af:outputText value="#{row.BallTotal}"
+                                               shortDesc="#{bindings.VwRating1.hints.BallTotal.tooltip}" id="ot6"
+                                               inlineStyle="font-weight:bold;">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.VwRating1.hints.BallTotal.format}"/>
+                                </af:outputText>
+                            </af:panelGroupLayout>
+                        </af:column>
+                    </af:table>
+                    <f:facet name="viewMenu"/>
+                </af:panelCollection>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

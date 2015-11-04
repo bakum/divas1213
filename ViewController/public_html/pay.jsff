@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Автоматические начисления" id="pb1" type="flow">
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t3">
+                            <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                       disabled="#{bindings.Commit.enabled}" id="b2"/>
+                            <af:button text="Сохранить"
+                                       disabled="#{!bindings.Commit.enabled}" id="b3" action="#{pay.commitWork}"/>
+                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                       disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b4">
+                                <af:resetActionListener/>
+                            </af:button>
+                            <af:button text="Обновить" id="b5" actionListener="#{pay.onRefresh}"
+                                       disabled="#{bindings.Commit.enabled}"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <af:table value="#{bindings.PaySettingsView1.collectionModel}" var="row"
+                              rows="#{bindings.PaySettingsView1.rangeSize}"
+                              emptyText="#{bindings.PaySettingsView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.PaySettingsView1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.PaySettingsView1.collectionModel.makeCurrent}"
+                              rowSelection="#{bindings.Editable.inputValue == 1 ? 'none' : 'single'}" fetchSize="#{bindings.PaySettingsView1.rangeSize}" id="t1"
+                              scrollPolicy="page" editingMode="clickToEdit" partialTriggers="::b2"
+                              binding="#{pay.table}">
+                        <af:column id="c8" width="60"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:toolbar id="t2">
+                                <af:button id="b1" icon="/img/edit-16.gif" shortDesc="Редактировать"
+                                           disabled="#{bindings.Commit.enabled}">
+                                    <af:setPropertyListener from="#{1}" to="#{bindings.Editable.inputValue}"
+                                                            type="action"/>
+                                </af:button>
+                            </af:toolbar>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.PaySettingsView1.hints.Id.name}" sortable="true"
+                                   headerText="#{bindings.PaySettingsView1.hints.Id.label}" id="c1" visible="false"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                          label="#{bindings.PaySettingsView1.hints.Id.label}"
+                                          required="#{bindings.PaySettingsView1.hints.Id.mandatory}"
+                                          columns="#{bindings.PaySettingsView1.hints.Id.displayWidth}"
+                                          maximumLength="#{bindings.PaySettingsView1.hints.Id.precision}"
+                                          shortDesc="#{bindings.PaySettingsView1.hints.Id.tooltip}" id="it1">
+                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.PaySettingsView1.hints.Name.name}" sortable="true"
+                                   headerText="#{bindings.PaySettingsView1.hints.Name.label}" id="c2"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Name.inputValue}"
+                                          label="#{bindings.PaySettingsView1.hints.Name.label}"
+                                          required="#{bindings.PaySettingsView1.hints.Name.mandatory}"
+                                          columns="#{bindings.PaySettingsView1.hints.Name.displayWidth}"
+                                          maximumLength="#{bindings.PaySettingsView1.hints.Name.precision}"
+                                          shortDesc="#{bindings.PaySettingsView1.hints.Name.tooltip}" id="it2">
+                                <f:validator binding="#{row.bindings.Name.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.PaySettingsView1.hints.Fullname.name}" sortable="true"
+                                   headerText="#{bindings.PaySettingsView1.hints.Fullname.label}" id="c3" width="200"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Fullname.inputValue}"
+                                          label="#{bindings.PaySettingsView1.hints.Fullname.label}"
+                                          required="#{bindings.PaySettingsView1.hints.Fullname.mandatory}"
+                                          columns="#{bindings.PaySettingsView1.hints.Fullname.displayWidth}"
+                                          maximumLength="#{bindings.PaySettingsView1.hints.Fullname.precision}"
+                                          shortDesc="#{bindings.PaySettingsView1.hints.Fullname.tooltip}" id="it3">
+                                <f:validator binding="#{row.bindings.Fullname.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column headerText="#{bindings.PaySettingsView1.hints.InProfit.label}" id="c9" align="right">
+                            <af:selectBooleanCheckbox value="#{row.bindings.InProfit.inputValue}"
+                                                      label="#{row.bindings.InProfit.label}"
+                                                      shortDesc="#{bindings.PaySettingsView1.hints.InProfit.tooltip}"
+                                                      id="sbc1"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.PaySettingsView1.hints.Stavka.name}" sortable="true"
+                                   headerText="#{bindings.PaySettingsView1.hints.Stavka.label}" id="c4"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputText value="#{row.bindings.Stavka.inputValue}"
+                                          label="#{bindings.PaySettingsView1.hints.Stavka.label}"
+                                          required="#{bindings.PaySettingsView1.hints.Stavka.mandatory}"
+                                          columns="#{bindings.PaySettingsView1.hints.Stavka.displayWidth}"
+                                          maximumLength="#{bindings.PaySettingsView1.hints.Stavka.precision}"
+                                          shortDesc="#{bindings.PaySettingsView1.hints.Stavka.tooltip}" id="it4">
+                                <f:validator binding="#{row.bindings.Stavka.validator}"/>
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.PaySettingsView1.hints.Stavka.format}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.PaySettingsView1.hints.BaseId.name}" sortable="true"
+                                   headerText="#{bindings.PaySettingsView1.hints.BaseId.label}" id="c5"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:selectOneChoice value="#{row.bindings.BaseId.inputValue}"
+                                                label="#{row.bindings.BaseId.label}"
+                                                required="#{bindings.PaySettingsView1.hints.BaseId.mandatory}"
+                                                shortDesc="#{bindings.PaySettingsView1.hints.BaseId.tooltip}" id="soc1"
+                                                autoSubmit="true">
+                                <f:selectItems value="#{row.bindings.BaseId.items}" id="si1"/>
+                                <f:validator binding="#{row.bindings.BaseId.validator}"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.PaySettingsView1.hints.Summa.name}" sortable="true"
+                                   headerText="#{bindings.PaySettingsView1.hints.Summa.label}" id="c6"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                            <af:inputNumberSpinbox value="#{row.bindings.Summa.inputValue}"
+                                                   label="#{bindings.PaySettingsView1.hints.Summa.label}"
+                                                   required="#{bindings.PaySettingsView1.hints.Summa.mandatory}"
+                                                   columns="#{bindings.PaySettingsView1.hints.Summa.displayWidth}"
+                                                   shortDesc="#{bindings.PaySettingsView1.hints.Summa.tooltip}"
+                                                   id="it5">
+                                <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.PaySettingsView1.hints.Summa.format}"/>
+                            </af:inputNumberSpinbox>
+                        </af:column>
+                        <af:column headerText="#{bindings.PaySettingsView1.hints.Editable.label}" id="c7"
+                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                   visible="false">
+                            <af:inputText value="#{row.bindings.Editable.inputValue}"
+                                          label="#{bindings.PaySettingsView1.hints.Editable.label}"
+                                          required="#{bindings.PaySettingsView1.hints.Editable.mandatory}"
+                                          columns="#{bindings.PaySettingsView1.hints.Editable.displayWidth}"
+                                          maximumLength="#{bindings.PaySettingsView1.hints.Editable.precision}"
+                                          shortDesc="#{bindings.PaySettingsView1.hints.Editable.tooltip}" id="it6">
+                                <f:validator binding="#{row.bindings.Editable.validator}"/>
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.PaySettingsView1.hints.Editable.format}"/>
+                            </af:inputText>
+                        </af:column>
+                    </af:table>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

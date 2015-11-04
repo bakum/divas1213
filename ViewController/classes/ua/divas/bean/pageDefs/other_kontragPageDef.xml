@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="other_kontragPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="KontragOtherView1" RangeSize="12" DataControl="AppModuleDataControl"
+              id="KontragOtherView1Iterator">
+      <sortCriteria>
+        <sort attribute="Fullname" ascending="true"/>
+      </sortCriteria>
+    </iterator>
+    <searchRegion Binds="KontragOtherView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="KontragOtherView1Query"/>
+    <iterator Binds="KontragSettingsView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="KontragSettingsView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="KontragOtherView1Iterator" id="KontragOtherView1">
+      <nodeDefinition DefName="ua.divas.view.KontragOtherView" Name="KontragOtherView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="Inn"/>
+          <Item Value="Kpp"/>
+          <Item Value="Okpo"/>
+          <Item Value="UserId"/>
+          <Item Value="Version"/>
+          <Item Value="KEditable"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="KontragOtherView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="KontragOtherView1Iterator" id="KEditable">
+      <AttrNames>
+        <Item Value="KEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="KontragSettingsView1Iterator" id="KontragSettingsView1">
+      <nodeDefinition DefName="ua.divas.view.KontragSettingsView" Name="KontragSettingsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="KontragId"/>
+          <Item Value="PayId"/>
+          <Item Value="BaseId"/>
+          <Item Value="DivisionId"/>
+          <Item Value="Summa"/>
+          <Item Value="KsEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="KontragSettingsView1Iterator" id="CreateInsert1" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="KontragSettingsView1Iterator" id="Delete"
+            InstanceName="AppModuleDataControl.KontragSettingsView1" DataControl="AppModuleDataControl"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="KontragSettingsView1Iterator" id="KsEditable">
+      <AttrNames>
+        <Item Value="KsEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="retrieveSumm" RequiresUpdateModel="true" Action="invokeMethod" MethodName="retrieveSumm"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.NachislSettingsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.retrieveSumm_AppModuleDataControl_NachislSettingsView1_retrieveSumm_result">
+      <NamedData NDName="pId" NDType="java.lang.String"/>
+    </methodAction>
+    <action IterBinding="KontragOtherView1Iterator" id="Delete1" InstanceName="AppModuleDataControl.KontragOtherView1"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

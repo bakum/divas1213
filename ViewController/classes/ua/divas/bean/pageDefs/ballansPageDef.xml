@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="ballansPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="VwBallansAp1" RangeSize="25" DataControl="AppModuleDataControl" id="VwBallansAp1Iterator"/>
+    <iterator Binds="VwBallansApDetail1" RangeSize="10" DataControl="AppModuleDataControl"
+              id="VwBallansApDetail1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VwBallansAp1Iterator" id="VwBallansAp1">
+      <nodeDefinition DefName="ua.divas.view.VwBallansAp" Name="VwBallansAp10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Code"/>
+          <Item Value="Fullname"/>
+          <Item Value="ActiveStart"/>
+          <Item Value="ActiveOborot"/>
+          <Item Value="ActiveEnd"/>
+          <Item Value="PassiveStart"/>
+          <Item Value="PassiveOborot"/>
+          <Item Value="PassiveEnd"/>
+          <Item Value="ActiveDeb"/>
+          <Item Value="ActiveKred"/>
+          <Item Value="PassiveDeb"/>
+          <Item Value="PassiveKred"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+.ModClass {
+   background-color: Red; 
+}
+
+.RedClass {
+   color: Red;
+   font-weight:bold;
+}
+
+.MyHeaderBoldClass {
+    color: Black; 
+    font-weight: bold; 
+}
+
+.MyHeaderItalicClass {
+    color: Black; 
+    font-style: italic; 
+}
+
+.UnModClass {
+   background-color: transparent; 
+}
+
+.Linkclass {
+    color: #C3EAF3;
+    font-size: 11px;
+}
+af|panelSpringboard::body {
+    background-color: transparent; 
+    padding: inherit; 
+}
+
+/*af|table::data-row:highlighted af|column::data-cell,
+af|table::data-row:highlighted af|column::banded-data-cell {
+background-color: #DCF0AB;
+}
+
+af|table::data-row:selected:focused af|column::data-cell,
+af|table::data-row:selected:focused af|column::banded-data-cell,
+af|table::data-row:selected:inactive af|column::data-cell,
+af|table::data-row:selected:inactive af|column::banded-data-cell,
+af|table::data-row:selected af|column::data-cell,
+af|table::data-row:selected af|column::banded-data-cell{
+background-color: #B2CA7E;
+} */
+
+af|decorativeBox::top-content[theme="dark"] {
+    background-color: #1466B2; 
+}
+
+af|menu.RedClass::bar-item-text {
+    color: red;
+    font-weight:bold;
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="rkoPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RkoView1" RangeSize="11" DataControl="AppModuleDataControl" id="RkoView1Iterator">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="VwRkoMoves2" RangeSize="25" DataControl="AppModuleDataControl" id="VwRkoMoves2Iterator"/>
+    <searchRegion Criteria="RkoViewCriteriaDate" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="RkoView1Iterator" id="RkoViewCriteriaDateQuery"/>
+  </executables>
+  <bindings>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <tree IterBinding="RkoView1Iterator" id="RkoView1">
+      <nodeDefinition DefName="ua.divas.view.RkoView" Name="RkoView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Dat"/>
+          <Item Value="Num"/>
+          <Item Value="OperationId"/>
+          <Item Value="Kontragname"/>
+          <Item Value="Summa"/>
+          <Item Value="CurrId"/>
+          <Item Value="KassaId"/>
+          <Item Value="DivisionId"/>
+          <Item Value="UserId"/>
+          <Item Value="Posted"/>
+          <Item Value="Comments"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="addEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.RkoView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removeEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.RkoView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="VwRkoMoves2Iterator" id="VwRkoMoves2">
+      <nodeDefinition DefName="ua.divas.view.VwRkoMoves" Name="VwRkoMoves20">
+        <AttrNames>
+          <Item Value="Deb"/>
+          <Item Value="SumDeb"/>
+          <Item Value="Kred"/>
+          <Item Value="SumKred"/>
+          <Item Value="SubcontoDeb1"/>
+          <Item Value="SubcontoKred1"/>
+          <Item Value="RegistratorId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="RkoView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

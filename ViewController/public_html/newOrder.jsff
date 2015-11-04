@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Новый заказ" id="pb1">
+                    <f:facet name="toolbar"/>
+                    <af:panelHeader text="Детали заказа" id="ph1" type="flow">
+                        <f:facet name="context"/>
+                        <f:facet name="menuBar"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                                <af:group id="g1">
+                                    <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                                       id="tbb1"/>
+                                </af:group>
+                                <af:button text="Сохранить" id="b1" action="ok"/>
+                                <af:button text="Отменить" id="b2" action="cancel"/>
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="legend">
+                            <af:outputFormatted value="Заполните подробности заказа и нажмите Сохранить" id="of1"
+                                                inlineStyle="font-size:large;"/>
+                        </f:facet>
+                        <f:facet name="info"/>
+                        <af:panelFormLayout id="pfl1">
+                            <af:panelLabelAndMessage label="#{bindings.Dat.hints.label}" id="plam1">
+                                <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                    <af:inputText value="#{bindings.Id.inputValue}" label="#{bindings.Id.hints.label}"
+                                                  required="#{bindings.Id.hints.mandatory}"
+                                                  columns="#{bindings.Id.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Id.hints.precision}"
+                                                  shortDesc="#{bindings.Id.hints.tooltip}" id="it1" visible="false">
+                                        <f:validator binding="#{bindings.Id.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.Dat.inputValue}"
+                                                  required="#{bindings.Dat.hints.mandatory}"
+                                                  columns="#{bindings.Dat.hints.displayWidth}"
+                                                  shortDesc="#{bindings.Dat.hints.tooltip}" id="id1"
+                                                  readOnly="#{bindings.Kontragname.inputValue == null ? true : false}">
+                                        <f:validator binding="#{bindings.Dat.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.Num.inputValue}" label="#{bindings.Num.hints.label}"
+                                                  required="#{bindings.Num.hints.mandatory}"
+                                                  columns="#{bindings.Num.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Num.hints.precision}"
+                                                  shortDesc="#{bindings.Num.hints.tooltip}" id="it2" readOnly="true">
+                                        <f:validator binding="#{bindings.Num.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.StatusId.inputValue}"
+                                                        label="#{bindings.StatusId.label}"
+                                                        required="#{bindings.StatusId.hints.mandatory}"
+                                                        shortDesc="#{bindings.StatusId.hints.tooltip}" id="soc1"
+                                                        readOnly="true">
+                                        <f:selectItems value="#{bindings.StatusId.items}" id="si1"/>
+                                        <f:validator binding="#{bindings.StatusId.validator}"/>
+                                    </af:selectOneChoice>
+                                </af:panelGroupLayout>
+                            </af:panelLabelAndMessage>
+                            <af:inputText label="#{bindings.KontragId1.hints.label}" id="it5"
+                                          value="#{bindings.KontragId1.inputValue}" visible="false"/>
+                            <af:inputListOfValues id="kontragIdId"
+                                                  popupTitle="Search and Select: #{bindings.KontragId.hints.label}"
+                                                  value="#{bindings.KontragId.inputValue}"
+                                                  label="#{bindings.KontragId.hints.label}"
+                                                  model="#{bindings.KontragId.listOfValuesModel}"
+                                                  columns="#{bindings.KontragId.hints.displayWidth}"
+                                                  shortDesc="#{bindings.KontragId.hints.tooltip}"
+                                                  binding="#{new_order.kontragId}" visible="false">
+                                <f:validator binding="#{bindings.KontragId.validator}"/>
+                            </af:inputListOfValues>
+                            <af:panelLabelAndMessage label="#{bindings.Kontragname.hints.label}" id="plam2">
+                                <af:panelGroupLayout id="pglKontragId" layout="horizontal">
+                                    <af:inputListOfValues id="kontragnameId"
+                                                          popupTitle="Найти и выбрать: #{bindings.Kontragname.hints.label}"
+                                                          value="#{bindings.Kontragname.inputValue}"
+                                                          model="#{bindings.Kontragname.listOfValuesModel}"
+                                                          columns="#{bindings.Kontragname.hints.displayWidth}"
+                                                          shortDesc="#{bindings.Kontragname.hints.tooltip}"
+                                                          launchPopupListener="#{new_order.onLaunchLov}"
+                                                          editMode="select" contentStyle="font-weight:bold;"
+                                                          autoSubmit="true" binding="#{new_order.kontragName}">
+                                        <f:validator binding="#{bindings.Kontragname.validator}"/>
+                                        <af:autoSuggestBehavior suggestedItems="#{bindings.Kontragname.suggestedItems}"/>
+                                    </af:inputListOfValues>
+                                    <af:spacer width="10" height="10" id="s3"/>
+                                    <af:button text="Новый клиент" id="b3" icon="/img/Symbol_Add.png"
+                                               action="newKontrag" useWindow="true" windowHeight="300"
+                                               windowWidth="300" returnListener="#{new_order.onReturn}"/>
+                                </af:panelGroupLayout>
+                                <af:outputFormatted value="1. Выберите существующего клиента или создайте нового" id="of2"
+                                                    inlineStyle="color:Red;"/>
+                            </af:panelLabelAndMessage>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:separator id="s2"/>
+                            <af:panelLabelAndMessage label="#{bindings.DatZam.hints.label}" id="plam3">
+                                <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                    <af:inputDate value="#{bindings.DatZam.inputValue}"
+                                                  columns="#{bindings.DatZam.hints.displayWidth}"
+                                                  shortDesc="#{bindings.DatZam.hints.tooltip}" id="id2"
+                                                  readOnly="#{bindings.Kontragname.inputValue == null ? true : false}"
+                                                  contentStyle="font-weight:bold;">
+                                        <f:validator binding="#{bindings.DatZam.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.DatZam.format}"/>
+                                    </af:inputDate>
+                                    <af:inputNumberSpinbox value="#{bindings.SummPlan.inputValue}"
+                                                           label="#{bindings.SummPlan.hints.label}"
+                                                           required="#{bindings.SummPlan.hints.mandatory}"
+                                                           columns="#{bindings.SummPlan.hints.displayWidth}"
+                                                           shortDesc="#{bindings.SummPlan.hints.tooltip}" id="it4"
+                                                           readOnly="#{bindings.Kontragname.inputValue == null ? true : false}">
+                                        <f:validator binding="#{bindings.SummPlan.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.SummPlan.format}"/>
+                                    </af:inputNumberSpinbox>
+                                </af:panelGroupLayout>
+                            </af:panelLabelAndMessage>
+                            <af:outputFormatted value="2. Установите дату и время замера" id="of4"
+                                                inlineStyle="color:Red;"/>
+                            <af:inputText value="#{bindings.Discription.inputValue}"
+                                          label="#{bindings.Discription.hints.label}"
+                                          columns="#{bindings.Discription.hints.displayWidth}"
+                                          maximumLength="#{bindings.Discription.hints.precision}"
+                                          shortDesc="#{bindings.Discription.hints.tooltip}" id="it3" rows="5"
+                                          readOnly="#{bindings.Kontragname.inputValue == null ? true : false}">
+                                <f:validator binding="#{bindings.Discription.validator}"/>
+                            </af:inputText>
+                            <af:outputFormatted value="3. Оставьте комментарий для замерщика" id="of3"
+                                                inlineStyle="color:Red;"/>
+                            <af:outputFormatted value="#{pageFlowScope.KontragId}" id="ot1"/>
+                        </af:panelFormLayout>
+                    </af:panelHeader>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

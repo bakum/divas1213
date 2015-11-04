@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwZamerRkoVOFkLink"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwZamerRkoVOFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="VwZamerMoves"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.VwZamerMoves">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwZamerMoves"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.VwZamerMoves.RegistratorId"/>
+      <Item Value="ua.divas.view.VwZamerMoves.KontragId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="RkoVOSuppl"
+    Cardinality="-1"
+    Owner="ua.divas.view.RkoVOSuppl">
+    <DesignTime>
+      <Attr Name="_finderName" Value="RkoVOSuppl"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.RkoVOSuppl.OrderId"/>
+      <Item Value="ua.divas.view.RkoVOSuppl.KontragId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

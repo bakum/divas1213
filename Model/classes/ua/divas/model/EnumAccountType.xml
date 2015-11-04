@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="EnumAccountType"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="ENUM_ACCOUNT_TYPE"
+  AliasName="EnumAccountType"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="ENUM_ACCOUNT_TYPE"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Fullname"
+    IsUnique="true"
+    IsNotNull="true"
+    Precision="20"
+    ColumnName="FULLNAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="ENUM_ACCOUNT_TYPE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Version"
+    IsNotNull="true"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="ENUM_ACCOUNT_TYPE"/>
+  <AccessorAttribute
+    Name="PlanAcc"
+    Association="ua.divas.model.PlanAccFk2Assoc"
+    AssociationEnd="ua.divas.model.PlanAccFk2Assoc.PlanAcc"
+    AssociationOtherEnd="ua.divas.model.PlanAccFk2Assoc.EnumAccountType"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="EnumAccountTypeChk1">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="ENUM_ACCOUNT_TYPE_CHK1"/>
+      <Attr Name="_checkCondition" Value="FULLNAME IN ('Активный', 'Пассивный', 'Активный/Пассивный')"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="EnumAccountTypePk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="ENUM_ACCOUNT_TYPE_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.EnumAccountType.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="EnumAccountTypeUk1">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value="ENUM_ACCOUNT_TYPE_UK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.EnumAccountType.Fullname"/>
+    </AttrArray>
+  </Key>
+</Entity>

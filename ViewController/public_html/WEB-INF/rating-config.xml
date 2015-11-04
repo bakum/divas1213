@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="rating-config">
+    <default-activity>rating</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name>raitings</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.RaitingsBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="rating">
+      <page>/rating.jsff</page>
+    </view>
+    <view id="rating_sett">
+      <page>/rating_sett.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>rating</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>to_setting</from-outcome>
+        <to-activity-id>rating_sett</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>rating_sett</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>to_rating</from-outcome>
+        <to-activity-id>rating</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

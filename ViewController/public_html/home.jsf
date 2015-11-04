@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="Divas CRM - Авторизация" id="d1" inlineStyle="background-color:Scrollbar;">
+        <af:messages id="m1"/>
+        <af:form id="f1" defaultCommand="b1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:decorativeBox id="db1" topHeight="18%" inlineStyle="background-color:Black;">
+                            <f:facet name="center">
+                                <af:panelBorderLayout id="pbl1" inlineStyle="background-color:#848484;">
+                                    <f:facet name="start"/>
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top"/>
+                                    <af:image source="/img/bg.jpg" id="i1"/>
+                                </af:panelBorderLayout>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelGroupLayout id="pgl3" layout="vertical">
+                                    <af:spacer width="10" height="10" id="s1"/>
+                                    <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                        <af:panelFormLayout id="pfl1">
+                                            <f:facet name="footer">
+                                                <af:toolbar id="t1">
+                                                    <af:button text="Войти" id="b1" actionListener="#{login.onLogin}"
+                                                               inlineStyle="background-color:#0094e7;"/>
+                                                </af:toolbar>
+                                            </f:facet>
+                                            <af:inputText id="it1" value="#{login.username}" required="true"
+                                                          inlineStyle="color:White;" placeholder="Логин"
+                                                          showRequired="false"/>
+                                            <af:inputText id="it2" value="#{login.password}" secret="true"
+                                                          required="true" inlineStyle="color:White;"
+                                                          placeholder="Пароль" showRequired="false"/>
+                                        </af:panelFormLayout>
+                                        <af:spacer width="20" height="10" id="s2"/>
+                                        <af:link id="i2" icon="/img/logo.png" destination="http://divas.imx.net.ua"/>
+                                    </af:panelGroupLayout>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:decorativeBox>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Настройки расчета рейтинга" id="pb1">
+                    <f:facet name="toolbar">
+                        <af:panelGroupLayout id="pgl5" layout="horizontal">
+                            <af:link text="Рейтинг" id="l1" action="to_rating"/>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:toolbar id="t1">
+                                <af:button text="Редактировать" id="b2" icon="/img/edit-16.gif"
+                                           rendered="#{bindings.Id.inputValue == null ? false : true}"
+                                           disabled="#{bindings.Editable.inputValue == 1 ? true : false}">
+                                    <af:setPropertyListener from="#{1}" to="#{bindings.Editable.inputValue}"
+                                                            type="action"/>
+                                </af:button>
+                                <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                           disabled="#{!bindings.CreateInsert.enabled}" id="b1"
+                                           rendered="#{bindings.Id.inputValue == null ? true : false}"/>
+                                <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                           disabled="#{!bindings.Commit.enabled}" id="b3">
+                                    <af:setPropertyListener from="#{0}" to="#{bindings.Editable.inputValue}"
+                                                            type="action"/>
+                                </af:button>
+                                <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                           disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b4">
+                                    <af:resetActionListener/>
+                                </af:button>
+                            </af:toolbar>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <af:panelGridLayout id="pgl2">
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr2">
+                            <af:gridCell marginStart="5px" width="50%" id="gc2">
+                                <af:panelHeader text="Настройки количества" id="ph1">
+                                    <f:facet name="context"/>
+                                    <f:facet name="menuBar"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="legend"/>
+                                    <f:facet name="info"/>
+                                    <af:panelGroupLayout id="pgl3">
+                                        <af:inputNumberSpinbox value="#{bindings.CntDivider.inputValue}"
+                                                               label="#{bindings.CntDivider.hints.label}"
+                                                               required="#{bindings.CntDivider.hints.mandatory}"
+                                                               columns="#{bindings.CntDivider.hints.displayWidth}"
+                                                               shortDesc="#{bindings.CntDivider.hints.tooltip}"
+                                                               id="it1"
+                                                               readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.CntDivider.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.CntDivider.format}"/>
+                                        </af:inputNumberSpinbox>
+                                        <af:inputNumberSpinbox value="#{bindings.CntBal.inputValue}"
+                                                               label="#{bindings.CntBal.hints.label}"
+                                                               required="#{bindings.CntBal.hints.mandatory}"
+                                                               columns="#{bindings.CntBal.hints.displayWidth}"
+                                                               shortDesc="#{bindings.CntBal.hints.tooltip}" id="it2"
+                                                               readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.CntBal.validator}"/>
+                                            <af:convertNumber groupingUsed="false" pattern="#{bindings.CntBal.format}"/>
+                                        </af:inputNumberSpinbox>
+                                        <af:inputText value="#{bindings.Id.inputValue}"
+                                                      label="#{bindings.Id.hints.label}"
+                                                      required="#{bindings.Id.hints.mandatory}"
+                                                      columns="#{bindings.Id.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Id.hints.precision}"
+                                                      shortDesc="#{bindings.Id.hints.tooltip}" id="it5" visible="false"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.Id.validator}"/>
+                                        </af:inputText>
+                                    </af:panelGroupLayout>
+                                </af:panelHeader>
+                            </af:gridCell>
+                            <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc3">
+                                <af:panelHeader text="Настройки суммы" id="ph2">
+                                    <f:facet name="context"/>
+                                    <f:facet name="menuBar"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="legend"/>
+                                    <f:facet name="info"/>
+                                    <af:panelGroupLayout id="pgl4">
+                                        <af:inputNumberSpinbox value="#{bindings.SumDivider.inputValue}"
+                                                               label="#{bindings.SumDivider.hints.label}"
+                                                               required="#{bindings.SumDivider.hints.mandatory}"
+                                                               columns="#{bindings.SumDivider.hints.displayWidth}"
+                                                               shortDesc="#{bindings.SumDivider.hints.tooltip}"
+                                                               id="it3"
+                                                               readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.SumDivider.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.SumDivider.format}"/>
+                                        </af:inputNumberSpinbox>
+                                        <af:inputNumberSpinbox value="#{bindings.SumBal.inputValue}"
+                                                               label="#{bindings.SumBal.hints.label}"
+                                                               required="#{bindings.SumBal.hints.mandatory}"
+                                                               columns="#{bindings.SumBal.hints.displayWidth}"
+                                                               shortDesc="#{bindings.SumBal.hints.tooltip}" id="it4"
+                                                               readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.SumBal.validator}"/>
+                                            <af:convertNumber groupingUsed="false" pattern="#{bindings.SumBal.format}"/>
+                                        </af:inputNumberSpinbox>
+                                        <af:inputText value="#{bindings.Editable.inputValue}"
+                                                      label="#{bindings.Editable.hints.label}"
+                                                      required="#{bindings.Editable.hints.mandatory}"
+                                                      columns="#{bindings.Editable.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Editable.hints.precision}"
+                                                      shortDesc="#{bindings.Editable.hints.tooltip}" id="it6"
+                                                      visible="false"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.Editable.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.Editable.format}"/>
+                                        </af:inputText>
+                                    </af:panelGroupLayout>
+                                </af:panelHeader>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

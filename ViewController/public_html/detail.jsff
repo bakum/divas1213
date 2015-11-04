@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelBox text="Новый контакт" id="pb1">
+                    <f:facet name="toolbar"/>
+                    <af:panelHeader text="Контактная информация" id="ph1" type="flow">
+                        <f:facet name="context"/>
+                        <f:facet name="menuBar"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t1">
+                                <af:group id="g2">
+                                    <af:train value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                              id="t2"/>
+                                </af:group>
+                                <af:group id="g1">
+                                    <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}"
+                                                       id="tbb1"/>
+                                </af:group>
+                                <af:button text="Сохранить" id="b1" action="ok"
+                                           disabled="#{pageFlowScope.ContactId != null ? true : bindings.KontragId.inputValue == null ? true : false}">
+                                    <af:setPropertyListener from="#{bindings.KontragId.inputValue}"
+                                                            to="#{pageFlowScope.KontragId}" type="action"/>
+                                </af:button>
+                                <af:button text="Отменить" id="b2" action="cancel" immediate="true"/>
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="legend">
+                            <af:outputFormatted value="Шаг 2. Добавьте контактные данные клиента." id="of1"
+                                                inlineStyle="font-size:large;"/>
+                        </f:facet>
+                        <f:facet name="info"/>
+                        <af:inputText value="#{bindings.KontragId.inputValue}" label="#{bindings.KontragId.hints.label}"
+                                      required="#{bindings.KontragId.hints.mandatory}"
+                                      columns="#{bindings.KontragId.hints.displayWidth}"
+                                      maximumLength="#{bindings.KontragId.hints.precision}"
+                                      shortDesc="#{bindings.KontragId.hints.tooltip}" id="it5" visible="false">
+                            <f:validator binding="#{bindings.KontragId.validator}"/>
+                        </af:inputText>
+                        <af:panelFormLayout id="pfl1">
+                            <af:spacer width="10" height="10" id="s2"/>
+                            <af:inputText value="#{bindings.Adress.inputValue}" label="#{bindings.Adress.hints.label}"
+                                          columns="#{bindings.Adress.hints.displayWidth}"
+                                          shortDesc="#{bindings.Adress.hints.tooltip}" id="it1" rows="4"
+                                          required="true"/>
+                            <af:inputText value="#{bindings.Phone.inputValue}" label="#{bindings.Phone.hints.label}"
+                                          columns="#{bindings.Phone.hints.displayWidth}"
+                                          maximumLength="#{bindings.Phone.hints.precision}"
+                                          shortDesc="#{bindings.Phone.hints.tooltip}" id="it2" required="true">
+                                <f:validator binding="#{bindings.Phone.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Email.inputValue}" label="#{bindings.Email.hints.label}"
+                                          required="#{bindings.Email.hints.mandatory}"
+                                          columns="#{bindings.Email.hints.displayWidth}"
+                                          maximumLength="#{bindings.Email.hints.precision}"
+                                          shortDesc="#{bindings.Email.hints.tooltip}" id="it3">
+                                <f:validator binding="#{bindings.Email.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Editable.inputValue}"
+                                          label="#{bindings.Editable.hints.label}"
+                                          required="#{bindings.Editable.hints.mandatory}"
+                                          columns="#{bindings.Editable.hints.displayWidth}"
+                                          maximumLength="#{bindings.Editable.hints.precision}"
+                                          shortDesc="#{bindings.Editable.hints.tooltip}" id="it4" visible="false">
+                                <f:validator binding="#{bindings.Editable.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.Editable.format}"/>
+                            </af:inputText>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <f:facet name="footer">
+                                <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                           disabled="#{bindings.KontragId.inputValue != null}" id="b3"
+                                           icon="/img/Symbol_Add.png"/>
+                            </f:facet>
+                        </af:panelFormLayout>
+                    </af:panelHeader>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

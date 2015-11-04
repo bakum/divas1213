@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="Распределение прибыли #{bindings.Num.inputValue == null ? '(Новый)': bindings.Num.inputValue}" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:panelHeader text="Основные реквизиты" id="ph1">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t3">
+                                    <af:button text="Редактировать" id="b3" icon="/img/edit-16.gif"
+                                               disabled="#{bindings.Enbl.inputValue == 0 ? true : bindings.Editable.inputValue == '1' ? true : false}">
+                                        <af:setPropertyListener from="#{1}" to="#{bindings.Editable.inputValue}"
+                                                                type="action"/>
+                                    </af:button>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:panelFormLayout id="pfl1">
+                                <af:inputText value="#{bindings.Id.inputValue}" label="#{bindings.Id.hints.label}"
+                                              required="#{bindings.Id.hints.mandatory}"
+                                              columns="#{bindings.Id.hints.displayWidth}"
+                                              maximumLength="#{bindings.Id.hints.precision}"
+                                              shortDesc="#{bindings.Id.hints.tooltip}" id="it1"
+                                              readOnly="#{bindings.Editable.inputValue == 1 ? false : true}"
+                                              visible="false">
+                                    <f:validator binding="#{bindings.Id.validator}"/>
+                                </af:inputText>
+                                <af:panelLabelAndMessage label="#{bindings.Dat.hints.label}" id="plam1">
+                                    <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                        <af:inputDate value="#{bindings.Dat.inputValue}"
+                                                      required="#{bindings.Dat.hints.mandatory}"
+                                                      columns="#{bindings.Dat.hints.displayWidth}"
+                                                      shortDesc="#{bindings.Dat.hints.tooltip}" id="id1"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.Dat.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                        </af:inputDate>
+                                        <af:inputText value="#{bindings.Num.inputValue}"
+                                                      label="#{bindings.Num.hints.label}"
+                                                      required="#{bindings.Num.hints.mandatory}"
+                                                      columns="#{bindings.Num.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Num.hints.precision}"
+                                                      shortDesc="#{bindings.Num.hints.tooltip}" id="it2"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.Num.validator}"/>
+                                        </af:inputText>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.DivisionId.label}" id="plam2">
+                                    <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                        <af:selectOneChoice value="#{bindings.DivisionId.inputValue}"
+                                                            required="#{bindings.DivisionId.hints.mandatory}"
+                                                            shortDesc="#{bindings.DivisionId.hints.tooltip}" id="soc1"
+                                                            readOnly="#{bindings.Editable.inputValue == 1 ? false : true}"
+                                                            autoSubmit="true">
+                                            <f:selectItems value="#{bindings.DivisionId.items}" id="si1"/>
+                                            <f:validator binding="#{bindings.DivisionId.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:selectOneChoice value="#{bindings.UserId.inputValue}"
+                                                            label="#{bindings.UserId.label}"
+                                                            required="#{bindings.UserId.hints.mandatory}"
+                                                            shortDesc="#{bindings.UserId.hints.tooltip}" id="soc2"
+                                                            readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:selectItems value="#{bindings.UserId.items}" id="si2"/>
+                                            <f:validator binding="#{bindings.UserId.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Summ.hints.label}" id="plam3">
+                                    <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                        <af:inputNumberSpinbox value="#{bindings.Summ.inputValue}"
+                                                               required="#{bindings.Summ.hints.mandatory}"
+                                                               columns="#{bindings.Summ.hints.displayWidth}"
+                                                               shortDesc="#{bindings.Summ.hints.tooltip}" id="it4"
+                                                               readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.Summ.validator}"/>
+                                            <af:convertNumber groupingUsed="false" pattern="#{bindings.Summ.format}"/>
+                                        </af:inputNumberSpinbox>
+                                        <af:spacer width="10" height="10" id="s2"/>
+                                        <af:link id="l1" actionListener="#{profit_jsf.onGetProfit}"
+                                                 icon="/img/coins.png"
+                                                 disabled="#{bindings.Posted.inputValue == 1 ? true : bindings.Editable.inputValue == 1 ? false : true}"
+                                                 shortDesc="Получить сумму по балансу на текущий момент"/>
+                                        <af:selectOneChoice value="#{bindings.CurrId.inputValue}"
+                                                            label="#{bindings.CurrId.label}"
+                                                            required="#{bindings.CurrId.hints.mandatory}"
+                                                            shortDesc="#{bindings.CurrId.hints.tooltip}" id="soc3"
+                                                            readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:selectItems value="#{bindings.CurrId.items}" id="si3"/>
+                                            <f:validator binding="#{bindings.CurrId.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:inputText value="#{bindings.Comments.inputValue}"
+                                              label="#{bindings.Comments.hints.label}"
+                                              required="#{bindings.Comments.hints.mandatory}"
+                                              columns="#{bindings.Comments.hints.displayWidth}"
+                                              maximumLength="#{bindings.Comments.hints.precision}"
+                                              shortDesc="#{bindings.Comments.hints.tooltip}" id="it3" rows="5"
+                                              readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:validator binding="#{bindings.Comments.validator}"/>
+                                </af:inputText>
+                                <af:selectOneChoice value="#{bindings.ActivitiesId.inputValue}"
+                                                    label="#{bindings.ActivitiesId.label}"
+                                                    required="#{bindings.ActivitiesId.hints.mandatory}"
+                                                    shortDesc="#{bindings.ActivitiesId.hints.tooltip}" id="soc4"
+                                                    readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:selectItems value="#{bindings.ActivitiesId.items}" id="si4"/>
+                                    <f:validator binding="#{bindings.ActivitiesId.validator}"/>
+                                </af:selectOneChoice>
+                                <af:inputText value="#{bindings.Editable.inputValue}"
+                                              label="#{bindings.Editable.hints.label}"
+                                              required="#{bindings.Editable.hints.mandatory}"
+                                              columns="#{bindings.Editable.hints.displayWidth}"
+                                              maximumLength="#{bindings.Editable.hints.precision}"
+                                              shortDesc="#{bindings.Editable.hints.tooltip}" id="it5" visible="false">
+                                    <f:validator binding="#{bindings.Editable.validator}"/>
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Editable.format}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.Enbl.inputValue}" label="#{bindings.Enbl.hints.label}"
+                                              required="#{bindings.Enbl.hints.mandatory}"
+                                              columns="#{bindings.Enbl.hints.displayWidth}"
+                                              maximumLength="#{bindings.Enbl.hints.precision}"
+                                              shortDesc="#{bindings.Enbl.hints.tooltip}" id="it6" visible="false">
+                                    <f:validator binding="#{bindings.Enbl.validator}"/>
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Enbl.format}"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                        </af:panelHeader>
+                        <af:panelHeader text="Распределение" id="ph2" type="flow">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t4">
+                                    <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                               disabled="#{bindings.Enbl.inputValue == 0 ? true : !bindings.CreateInsert.enabled}" id="b4"/>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:table value="#{bindings.ProfitDistribTpView2.collectionModel}" var="row"
+                                      rows="#{bindings.ProfitDistribTpView2.rangeSize}"
+                                      emptyText="#{bindings.ProfitDistribTpView2.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                      rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.ProfitDistribTpView2.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.ProfitDistribTpView2.collectionModel.makeCurrent}"
+                                      rowSelection="single" fetchSize="#{bindings.ProfitDistribTpView2.rangeSize}"
+                                      id="t1" scrollPolicy="page" editingMode="clickToEdit" partialTriggers="::b4 b6">
+                                <af:column id="c13" width="60">
+                                    <af:toolbar id="t5">
+                                        <af:button id="b5" icon="/img/edit-16.gif"
+                                                   disabled="#{bindings.Enbl.inputValue == 0 ? true : false}">
+                                            <af:setPropertyListener from="#{1}" to="#{bindings.TpEditable.inputValue}"
+                                                                    type="action"/>
+                                        </af:button>
+                                        <af:button actionListener="#{bindings.Delete.execute}"
+                                                   disabled="#{bindings.Enbl.inputValue == 0 ? true : !bindings.Delete.enabled}" id="b6"
+                                                   icon="/img/delete.png"/>
+                                    </af:toolbar>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.Id.name}" sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.Id.label}" id="c1"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.Id.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.Id.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.Id.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.Id.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.Id.tooltip}"
+                                                  id="it7">
+                                        <f:validator binding="#{row.bindings.Id.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.ProfitId.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.ProfitId.label}" id="c2"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.ProfitId.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.ProfitId.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.ProfitId.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.ProfitId.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.ProfitId.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.ProfitId.tooltip}"
+                                                  id="it8">
+                                        <f:validator binding="#{row.bindings.ProfitId.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.DatNach.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.DatNach.label}" id="c3">
+                                    <af:inputDate value="#{row.bindings.DatNach.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.DatNach.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.DatNach.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.DatNach.displayWidth}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.DatNach.tooltip}"
+                                                  id="id2">
+                                        <f:validator binding="#{row.bindings.DatNach.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.ProfitDistribTpView2.hints.DatNach.format}"/>
+                                    </af:inputDate>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.KontrId.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.KontrId.label}" id="c4"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.KontrId.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.KontrId.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.KontrId.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.KontrId.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.KontrId.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.KontrId.tooltip}"
+                                                  id="it9">
+                                        <f:validator binding="#{row.bindings.KontrId.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.Kontname.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.Kontname.label}" id="c5">
+                                    <af:inputListOfValues id="kontnameId"
+                                                          popupTitle="Search and Select: #{bindings.ProfitDistribTpView2.hints.Kontname.label}"
+                                                          value="#{row.bindings.Kontname.inputValue}"
+                                                          model="#{row.bindings.Kontname.listOfValuesModel}"
+                                                          required="#{bindings.ProfitDistribTpView2.hints.Kontname.mandatory}"
+                                                          columns="#{bindings.ProfitDistribTpView2.hints.Kontname.displayWidth}"
+                                                          shortDesc="#{bindings.ProfitDistribTpView2.hints.Kontname.tooltip}"
+                                                          autoSubmit="true">
+                                        <f:validator binding="#{row.bindings.Kontname.validator}"/>
+                                    </af:inputListOfValues>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.PayId.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.PayId.label}" id="c10">
+                                    <af:selectOneChoice value="#{row.bindings.PayId.inputValue}"
+                                                        label="#{row.bindings.PayId.label}"
+                                                        required="#{bindings.ProfitDistribTpView2.hints.PayId.mandatory}"
+                                                        shortDesc="#{bindings.ProfitDistribTpView2.hints.PayId.tooltip}"
+                                                        id="soc6" autoSubmit="true"
+                                                        valueChangeListener="#{profit_jsf.onPayChange}">
+                                        <f:selectItems value="#{row.bindings.PayId.items}" id="si6"/>
+                                        <f:validator binding="#{row.bindings.PayId.validator}"/>
+                                    </af:selectOneChoice>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.CalcId.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.CalcId.label}" id="c7">
+                                    <af:selectOneChoice value="#{row.bindings.CalcId.inputValue}"
+                                                        label="#{row.bindings.CalcId.label}"
+                                                        required="#{bindings.ProfitDistribTpView2.hints.CalcId.mandatory}"
+                                                        shortDesc="#{bindings.ProfitDistribTpView2.hints.CalcId.tooltip}"
+                                                        id="soc5" autoSubmit="true"
+                                                        valueChangeListener="#{profit_jsf.onCalcChange}">
+                                        <f:selectItems value="#{row.bindings.CalcId.items}" id="si5"/>
+                                        <f:validator binding="#{row.bindings.CalcId.validator}"/>
+                                    </af:selectOneChoice>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.Summ.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.Summ.label}" id="c6">
+                                    <af:inputText value="#{row.bindings.Summ.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.Summ.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.Summ.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.Summ.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.Summ.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.Summ.tooltip}"
+                                                  id="it10">
+                                        <f:validator binding="#{row.bindings.Summ.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.ProfitDistribTpView2.hints.Summ.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.TpEditable.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.TpEditable.label}" id="c8"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.TpEditable.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.TpEditable.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.TpEditable.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.TpEditable.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.TpEditable.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.TpEditable.tooltip}"
+                                                  id="it11">
+                                        <f:validator binding="#{row.bindings.TpEditable.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.ProfitDistribTpView2.hints.TpEditable.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.Percent.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.Percent.label}" id="c9">
+                                    <af:inputText value="#{row.bindings.Percent.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.Percent.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.Percent.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.Percent.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.Percent.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.Percent.tooltip}"
+                                                  id="it12" autoSubmit="true">
+                                        <f:validator binding="#{row.bindings.Percent.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.ProfitDistribTpView2.hints.Percent.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.PayName.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.PayName.label}" id="c11"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.PayName.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.PayName.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.PayName.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.PayName.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.PayName.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.PayName.tooltip}"
+                                                  id="it13">
+                                        <f:validator binding="#{row.bindings.PayName.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.ProfitDistribTpView2.hints.Manual.name}"
+                                           sortable="true"
+                                           headerText="#{bindings.ProfitDistribTpView2.hints.Manual.label}" id="c12"
+                                           visible="false">
+                                    <af:inputText value="#{row.bindings.Manual.inputValue}"
+                                                  label="#{bindings.ProfitDistribTpView2.hints.Manual.label}"
+                                                  required="#{bindings.ProfitDistribTpView2.hints.Manual.mandatory}"
+                                                  columns="#{bindings.ProfitDistribTpView2.hints.Manual.displayWidth}"
+                                                  maximumLength="#{bindings.ProfitDistribTpView2.hints.Manual.precision}"
+                                                  shortDesc="#{bindings.ProfitDistribTpView2.hints.Manual.tooltip}"
+                                                  id="it14">
+                                        <f:validator binding="#{row.bindings.Manual.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.ProfitDistribTpView2.hints.Manual.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                            </af:table>
+                        </af:panelHeader>
+                        <af:spacer width="10" height="20" id="s1"/>
+                        <af:panelGroupLayout id="pgl5" layout="horizontal" halign="right"
+                                             inlineStyle="background-color:#e7e7e7;">
+                            <af:toolbar id="t2">
+                                <af:button text="Ok" id="b1" action="ok"/>
+                                <af:button text="Отмена" id="b2" action="cancel" immediate="true"/>
+                            </af:toolbar>
+                        </af:panelGroupLayout>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

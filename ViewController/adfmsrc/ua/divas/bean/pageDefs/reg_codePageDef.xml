@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="reg_codePageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="acceptCode_u_login" IsQueriable="false"
+                DefaultValue="#{securityContext.userName}"/>
+      <variable Type="java.lang.String" Name="acceptCode_p_code" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="acceptCode" RequiresUpdateModel="true" Action="invokeMethod" MethodName="acceptCode"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.UsersView1">
+      <NamedData NDName="u_login" NDType="java.lang.String" NDValue="${bindings.acceptCode_u_login}"/>
+      <NamedData NDName="p_code" NDType="java.lang.String" NDValue="${bindings.acceptCode_p_code}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="u_login">
+      <AttrNames>
+        <Item Value="acceptCode_u_login"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="p_code">
+      <AttrNames>
+        <Item Value="acceptCode_p_code"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

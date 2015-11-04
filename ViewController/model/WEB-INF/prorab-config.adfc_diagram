@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View4">
+      <property
+         name="activityId">prorab</property>
+      <property
+         name="page">/prorab.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>prorab&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">103.046875</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">91.0</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">prorab_report</property>
+      <property
+         name="page">/prorab_report.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>prorab_report&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">106.09375</property>
+      <property
+         name="x">265.0</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View4"
+      to="View3">
+      <property
+         name="fromOutcome">to_report</property>
+      <property
+         name="sdm:polyPoints">R50,132.0,103.0625,224.0,106.109375,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View4">
+      <property
+         name="fromOutcome">to_prorab</property>
+      <property
+         name="sdm:polyPoints">L54,223.88405,109.609375,132.0,106.5625,R54</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelBox text="Расходные кассовые ордера" id="pb1" type="flow">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2">
+                                            <af:group id="g1">
+                                                <af:link text="Приходные кассовые ордера" id="l1" action="to_pko"
+                                                         icon="/img/coins.png"/>
+                                            </af:group>
+                                            <af:button text="Добавить" id="b1" useWindow="true"
+                                                       windowHeight="500" windowWidth="550"
+                                                       disabled="#{bindings.Commit.enabled}" action="addRko"
+                                                       returnListener="#{rko.onReturn}"/>
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="b3"/>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="b4">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                            <af:button text="Обновить" id="b5" action="#{rko.refresh}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:table value="#{bindings.RkoView1.collectionModel}" var="row"
+                                              rows="#{bindings.RkoView1.rangeSize}"
+                                              emptyText="#{bindings.RkoView1.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.RkoView1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.RkoView1.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.RkoView1.rangeSize}" id="t1"
+                                              scrollPolicy="page" binding="#{rko.table}" partialTriggers="cmi4">
+                                        <af:column id="c11" width="60" rowHeader="true">
+                                            <af:toolbar id="t3">
+                                                <af:button id="b2" icon="/img/edit-16.gif" useWindow="true"
+                                                           disabled="#{bindings.Commit.enabled}" windowHeight="500"
+                                                           windowWidth="550" returnListener="#{rko.onReturn}"
+                                                           action="editRko"/>
+                                            </af:toolbar>
+                                        </af:column>
+                                        <af:column id="c12" width="30">
+                                            <af:image id="i1"
+                                                      source="#{row.Posted==1 ? '/img/icon_commit.png' :  row.Deleted == 1 ? '/img/file_delete.png' : '/img/document.png'}"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.Id.name}" sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.Id.label}" id="c1"
+                                                   visible="false">
+                                            <af:outputText value="#{row.Id}"
+                                                           shortDesc="#{bindings.RkoView1.hints.Id.tooltip}" id="ot1"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.Dat.name}" sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.Dat.label}" id="c2">
+                                            <af:outputText value="#{row.Dat}"
+                                                           shortDesc="#{bindings.RkoView1.hints.Dat.tooltip}" id="ot2">
+                                                <af:convertDateTime pattern="#{bindings.RkoView1.hints.Dat.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.Num.name}" sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.Num.label}" id="c3" width="80">
+                                            <af:outputText value="#{row.Num}"
+                                                           shortDesc="#{bindings.RkoView1.hints.Num.tooltip}" id="ot3"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.OperationId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.OperationId.label}" id="c4"
+                                                   width="150">
+                                            <af:selectOneChoice value="#{row.bindings.OperationId.inputValue}"
+                                                                label="#{row.bindings.OperationId.label}"
+                                                                required="#{bindings.RkoView1.hints.OperationId.mandatory}"
+                                                                shortDesc="#{bindings.RkoView1.hints.OperationId.tooltip}"
+                                                                readOnly="true" id="soc1">
+                                                <f:selectItems value="#{row.bindings.OperationId.items}" id="si1"/>
+                                                <f:validator binding="#{row.bindings.OperationId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.Kontragname.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.Kontragname.label}" id="c5"
+                                                   width="250">
+                                            <af:outputText value="#{row.Kontragname}"
+                                                           shortDesc="#{bindings.RkoView1.hints.Kontragname.tooltip}"
+                                                           id="ot4"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.Summa.name}" sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.Summa.label}" id="c6"
+                                                   align="right">
+                                            <f:facet name="footer">
+                                                <af:outputText value="#{bindings.RkoView1Iterator.viewObject.sum['Summa']}" id="ot13"
+                                                               inlineStyle="font-weight: bold;"/>
+                                            </f:facet>
+                                            <af:outputText value="#{row.Summa}"
+                                                           shortDesc="#{bindings.RkoView1.hints.Summa.tooltip}"
+                                                           id="ot5">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.RkoView1.hints.Summa.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.CurrId.name}" sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.CurrId.label}" id="c7"
+                                                   visible="false">
+                                            <af:selectOneChoice value="#{row.bindings.CurrId.inputValue}"
+                                                                label="#{row.bindings.CurrId.label}"
+                                                                required="#{bindings.RkoView1.hints.CurrId.mandatory}"
+                                                                shortDesc="#{bindings.RkoView1.hints.CurrId.tooltip}"
+                                                                readOnly="true" id="soc2">
+                                                <f:selectItems value="#{row.bindings.CurrId.items}" id="si2"/>
+                                                <f:validator binding="#{row.bindings.CurrId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.KassaId.name}"
+                                                   sortable="true" headerText="#{bindings.RkoView1.hints.KassaId.label}"
+                                                   id="c8" width="150">
+                                            <af:selectOneChoice value="#{row.bindings.KassaId.inputValue}"
+                                                                label="#{row.bindings.KassaId.label}"
+                                                                required="#{bindings.RkoView1.hints.KassaId.mandatory}"
+                                                                shortDesc="#{bindings.RkoView1.hints.KassaId.tooltip}"
+                                                                readOnly="true" id="soc3">
+                                                <f:selectItems value="#{row.bindings.KassaId.items}" id="si3"/>
+                                                <f:validator binding="#{row.bindings.KassaId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.DivisionId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.DivisionId.label}" id="c9">
+                                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                                label="#{row.bindings.DivisionId.label}"
+                                                                required="#{bindings.RkoView1.hints.DivisionId.mandatory}"
+                                                                shortDesc="#{bindings.RkoView1.hints.DivisionId.tooltip}"
+                                                                readOnly="true" id="soc4">
+                                                <f:selectItems value="#{row.bindings.DivisionId.items}" id="si4"/>
+                                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.RkoView1.hints.UserId.name}" sortable="true"
+                                                   headerText="#{bindings.RkoView1.hints.UserId.label}" id="c10">
+                                            <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                label="#{row.bindings.UserId.label}"
+                                                                required="#{bindings.RkoView1.hints.UserId.mandatory}"
+                                                                shortDesc="#{bindings.RkoView1.hints.UserId.tooltip}"
+                                                                readOnly="true" id="soc5">
+                                                <f:selectItems value="#{row.bindings.UserId.items}" id="si5"/>
+                                                <f:validator binding="#{row.bindings.UserId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.RkoView1.hints.Posted.label}" id="c13"
+                                                   visible="false">
+                                            <af:inputText value="#{row.bindings.Posted.inputValue}"
+                                                          label="#{bindings.RkoView1.hints.Posted.label}"
+                                                          required="#{bindings.RkoView1.hints.Posted.mandatory}"
+                                                          columns="#{bindings.RkoView1.hints.Posted.displayWidth}"
+                                                          maximumLength="#{bindings.RkoView1.hints.Posted.precision}"
+                                                          shortDesc="#{bindings.RkoView1.hints.Posted.tooltip}"
+                                                          id="it1" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Posted.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.RkoView1.hints.Posted.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <f:facet name="contextMenu">
+                                            <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                                                <af:menu text="menu 1" id="m1">
+                                                    <af:group id="g2">
+                                                        <af:commandMenuItem text="Провести" id="cmi2"
+                                                                            icon="/img/icon_commit.png"
+                                                                            actionListener="#{rko.onAddEntry}"/>
+                                                        <af:commandMenuItem text="Отменить проведение" id="cmi3"
+                                                                            icon="/img/icon_rollback.png"
+                                                                            actionListener="#{rko.onRemoveEntry}"/>
+                                                    </af:group>
+                                                    <af:group id="g3">
+                                                        <af:commandMenuItem text="#{rko.del_label}"
+                                                                            disabled="#{!bindings.Delete.enabled}"
+                                                                            id="cmi4" icon="/img/file_delete.png">
+                                                            <af:showPopupBehavior popupId="::pDelete"/>
+                                                        </af:commandMenuItem>
+                                                    </af:group>
+                                                    <af:commandMenuItem text="Проводки" id="cmi1">
+                                                        <af:showPopupBehavior popupId="::pEntryRko"/>
+                                                    </af:commandMenuItem>
+                                                </af:menu>
+                                            </af:popup>
+                                        </f:facet><f:facet name="detailStamp">
+                                            <af:panelLabelAndMessage label="#{bindings.RkoView1.hints.Comments.label}"
+                                                                     id="plam1">
+                                                <af:outputFormatted value="#{row.bindings.Comments.inputValue}"
+                                                                    id="of1" inlineStyle="font-size:large;"/>
+                                            </af:panelLabelAndMessage>
+                                        </f:facet><f:facet name="footer"/>
+                                        <af:column headerText="#{bindings.RkoView1.hints.Deleted.label}" id="c21"
+                                                   visible="false">
+                                            <af:selectOneChoice value="#{row.bindings.Deleted.inputValue}"
+                                                                label="#{row.bindings.Deleted.label}"
+                                                                required="#{bindings.RkoView1.hints.Deleted.mandatory}"
+                                                                shortDesc="#{bindings.RkoView1.hints.Deleted.tooltip}"
+                                                                readOnly="true" id="soc6">
+                                                <f:selectItems value="#{row.bindings.Deleted.items}" id="si6"/>
+                                                <f:validator binding="#{row.bindings.Deleted.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                    </af:table>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pEntryRko"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d1" title="Проводки">
+                                            <f:facet name="buttonBar"/>
+                                            <af:table value="#{bindings.VwRkoMoves2.collectionModel}" var="row"
+                                                      rows="#{bindings.VwRkoMoves2.rangeSize}"
+                                                      emptyText="#{bindings.VwRkoMoves2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.VwRkoMoves2.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.VwRkoMoves2.collectionModel.makeCurrent}"
+                                                      rowSelection="single"
+                                                      fetchSize="#{bindings.VwRkoMoves2.rangeSize}" id="t4">
+                                                <af:column headerText="#{bindings.VwRkoMoves2.hints.Deb.label}"
+                                                           id="c14">
+                                                    <af:outputText value="#{row.Deb}"
+                                                                   shortDesc="#{bindings.VwRkoMoves2.hints.Deb.tooltip}"
+                                                                   id="ot6"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwRkoMoves2.hints.SumDeb.label}"
+                                                           id="c15"
+                                                           inlineStyle="#{row.SumDeb &lt; 0 ? 'color: Red' : 'color: Black'}">
+                                                    <af:outputText value="#{row.SumDeb}"
+                                                                   shortDesc="#{bindings.VwRkoMoves2.hints.SumDeb.tooltip}"
+                                                                   id="ot7">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.VwRkoMoves2.hints.SumDeb.format}"/>
+                                                    </af:outputText>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwRkoMoves2.hints.Kred.label}"
+                                                           id="c16">
+                                                    <af:outputText value="#{row.Kred}"
+                                                                   shortDesc="#{bindings.VwRkoMoves2.hints.Kred.tooltip}"
+                                                                   id="ot8"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwRkoMoves2.hints.SumKred.label}"
+                                                           id="c17"
+                                                           inlineStyle="#{row.SumKred &lt; 0 ? 'color: Red' : 'color: Black'}">
+                                                    <af:outputText value="#{row.SumKred}"
+                                                                   shortDesc="#{bindings.VwRkoMoves2.hints.SumKred.tooltip}"
+                                                                   id="ot9">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.VwRkoMoves2.hints.SumKred.format}"/>
+                                                    </af:outputText>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwRkoMoves2.hints.SubcontoDeb1.label}"
+                                                           id="c18">
+                                                    <af:outputText value="#{row.SubcontoDeb1}"
+                                                                   shortDesc="#{bindings.VwRkoMoves2.hints.SubcontoDeb1.tooltip}"
+                                                                   id="ot10"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwRkoMoves2.hints.SubcontoKred1.label}"
+                                                           id="c19">
+                                                    <af:outputText value="#{row.SubcontoKred1}"
+                                                                   shortDesc="#{bindings.VwRkoMoves2.hints.SubcontoKred1.tooltip}"
+                                                                   id="ot11"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwRkoMoves2.hints.RegistratorId.label}"
+                                                           id="c20" visible="false">
+                                                    <af:outputText value="#{row.RegistratorId}"
+                                                                   shortDesc="#{bindings.VwRkoMoves2.hints.RegistratorId.tooltip}"
+                                                                   id="ot12"/>
+                                                </af:column>
+                                            </af:table>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d2" title="Внимание!" closeIconVisible="false"
+                                                   dialogListener="#{rko.onDeleteDialog}">
+                                            <f:facet name="buttonBar"/>
+                                            <af:outputText value="#{rko.del_title}" id="ot14"
+                                                           inlineStyle="#{rko.del_style}"/>
+                                        </af:dialog>
+                                    </af:popup>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="start">
+                                <af:panelDrawer id="pd1" height="60%" width="60%" position="left">
+                                    <af:showDetailItem text="РКО" id="sdi1" icon="/img/search.png">
+                                        <af:panelGroupLayout layout="vertical" id="pgl2">
+                                            <af:panelHeader text="Расходные кассовые ордера" id="ph1">
+                                                <af:query id="qryId1" headerText="Фильтр" disclosed="true"
+                                                          value="#{bindings.RkoViewCriteriaDateQuery.queryDescriptor}"
+                                                          model="#{bindings.RkoViewCriteriaDateQuery.queryModel}"
+                                                          queryListener="#{bindings.RkoViewCriteriaDateQuery.processQuery}"
+                                                          queryOperationListener="#{bindings.RkoViewCriteriaDateQuery.processQueryOperation}"
+                                                          resultComponentId="::t1"/>
+                                            </af:panelHeader>
+                                        </af:panelGroupLayout>
+                                    </af:showDetailItem>
+                                </af:panelDrawer>
+                            </f:facet>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

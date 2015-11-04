@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelBox text="Административные затраты" id="pb1" type="flow">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2">
+                                            <af:button actionListener="#{bindings.Execute.execute}" text="Обновить"
+                                                       disabled="#{!bindings.Execute.enabled}" id="b1"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:table value="#{bindings.VwZatraty1.collectionModel}" var="row"
+                                              rows="#{bindings.VwZatraty1.rangeSize}"
+                                              emptyText="#{bindings.VwZatraty1.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.VwZatraty1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.VwZatraty1.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.VwZatraty1.rangeSize}"
+                                              filterModel="#{bindings.VwZatraty1Query.queryDescriptor}"
+                                              queryListener="#{bindings.VwZatraty1Query.processQuery}" varStatus="vs" id="t1" scrollPolicy="page"
+                                              binding="#{ZatrBean.tb}" partialTriggers="::b1">
+                                        <af:column sortProperty="#{bindings.VwZatraty1.hints.ZatratyId.name}"
+                                                   headerText="#{bindings.VwZatraty1.hints.ZatratyId.label}" id="c1"
+                                                   width="250">
+                                            <af:selectOneChoice value="#{row.bindings.ZatratyId.inputValue}"
+                                                                label="#{row.bindings.ZatratyId.label}"
+                                                                required="#{bindings.VwZatraty1.hints.ZatratyId.mandatory}"
+                                                                shortDesc="#{bindings.VwZatraty1.hints.ZatratyId.tooltip}"
+                                                                readOnly="true" id="soc1">
+                                                <f:selectItems value="#{row.bindings.ZatratyId.items}" id="si1"/>
+                                                <f:validator binding="#{row.bindings.ZatratyId.validator}"/>
+                                            </af:selectOneChoice>
+                                            <f:facet name="filter">
+                                                <af:selectOneChoice label="Label 2" id="soc5"
+                                                                    value="#{vs.filterCriteria.ZatratyId}"
+                                                                    autoSubmit="true">
+                                                    <f:selectItems value="#{bindings.ZatratyId.items}" id="si5"/>
+                                                </af:selectOneChoice>
+                                            </f:facet>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.VwZatraty1.hints.RegistratorId.name}"
+                                                   filterable="true"
+                                                   headerText="#{bindings.VwZatraty1.hints.RegistratorId.label}" id="c2"
+                                                   width="300">
+                                            <af:selectOneChoice value="#{row.bindings.RegistratorId.inputValue}"
+                                                                label="#{row.bindings.RegistratorId.label}"
+                                                                required="#{bindings.VwZatraty1.hints.RegistratorId.mandatory}"
+                                                                shortDesc="#{bindings.VwZatraty1.hints.RegistratorId.tooltip}"
+                                                                readOnly="true" id="soc2">
+                                                <f:selectItems value="#{row.bindings.RegistratorId.items}" id="si2"/>
+                                                <f:validator binding="#{row.bindings.RegistratorId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.VwZatraty1.hints.Code.name}"
+                                                   filterable="true"
+                                                   headerText="#{bindings.VwZatraty1.hints.Code.label}" id="c3"
+                                                   visible="false">
+                                            <af:outputText value="#{row.Code}"
+                                                           shortDesc="#{bindings.VwZatraty1.hints.Code.tooltip}"
+                                                           id="ot1"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.VwZatraty1.hints.Period.name}"
+                                                   headerText="#{bindings.VwZatraty1.hints.Period.label}" id="c4"
+                                                   width="130">
+                                            <af:outputText value="#{row.Period}"
+                                                           shortDesc="#{bindings.VwZatraty1.hints.Period.tooltip}"
+                                                           id="ot2">
+                                                <af:convertDateTime pattern="#{bindings.VwZatraty1.hints.Period.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.VwZatraty1.hints.Summa.name}"
+                                                   filterable="true"
+                                                   headerText="#{bindings.VwZatraty1.hints.Summa.label}" id="c5"
+                                                   align="right">
+                                            <af:outputText value="#{row.Summa}"
+                                                           shortDesc="#{bindings.VwZatraty1.hints.Summa.tooltip}"
+                                                           id="ot3" inlineStyle="font-weight:bold;">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.VwZatraty1.hints.Summa.format}"/>
+                                            </af:outputText>
+                                            <f:facet name="footer">
+                                                <af:outputText value="#{bindings.VwZatraty1Iterator.viewObject.sum['Summa']}"
+                                                               id="ot4" inlineStyle="font-weight:bold;"/>
+                                            </f:facet>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.VwZatraty1.hints.DivisionId.name}"
+                                                   headerText="#{bindings.VwZatraty1.hints.DivisionId.label}" id="c6"
+                                                   align="center" width="200">
+                                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                                label="#{row.bindings.DivisionId.label}"
+                                                                required="#{bindings.VwZatraty1.hints.DivisionId.mandatory}"
+                                                                shortDesc="#{bindings.VwZatraty1.hints.DivisionId.tooltip}"
+                                                                readOnly="true" id="soc3" autoSubmit="true">
+                                                <f:selectItems value="#{row.bindings.DivisionId.items}" id="si3"/>
+                                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                                            </af:selectOneChoice>
+                                            <f:facet name="filter"/>
+                                        </af:column>
+                                        <f:facet name="footer"/>
+                                    </af:table>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="start">
+                                <af:panelDrawer id="pd1" height="60%" width="60%" position="left">
+                                    <af:showDetailItem text="Фильтр" id="sdi1" icon="/img/search.png">
+                                        <af:panelGroupLayout layout="vertical" id="pgl2">
+                                            <af:panelHeader text="Административные затраты" id="ph1">
+                                                <af:query id="qryId1" headerText="Фильтр" disclosed="true"
+                                                          value="#{bindings.VwZatratyCriteriaDateQuery.queryDescriptor}"
+                                                          model="#{bindings.VwZatratyCriteriaDateQuery.queryModel}"
+                                                          queryListener="#{bindings.VwZatratyCriteriaDateQuery.processQuery}"
+                                                          queryOperationListener="#{bindings.VwZatratyCriteriaDateQuery.processQueryOperation}"
+                                                          resultComponentId="::t1"/>
+                                            </af:panelHeader>
+                                        </af:panelGroupLayout>
+                                    </af:showDetailItem>
+                                </af:panelDrawer>
+                            </f:facet>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

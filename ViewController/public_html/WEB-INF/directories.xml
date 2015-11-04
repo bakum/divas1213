@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="direct">
+    <default-activity>director</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>currency</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.CurrencyBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__2">
+      <managed-bean-name>firms</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.FirmsBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__3">
+      <managed-bean-name>division</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.DivisionBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__8">
+      <managed-bean-name>zatraty</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ZatratyBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__14">
+      <managed-bean-name>kon_dir</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.KontragDirBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__15">
+      <managed-bean-name>net</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.NetBeans</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="director">
+      <page>/director.jsff</page>
+    </view>
+    <view id="zatraty_dir">
+      <page>/zatraty_dir.jsff</page>
+    </view>
+    <view id="kontrag_dir">
+      <page>/kontrag_dir.jsff</page>
+    </view>
+    <control-flow-rule id="__4">
+      <from-activity-id>director</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>to_zatraty</from-outcome>
+        <to-activity-id>zatraty_dir</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__11">
+        <from-outcome>to_kontrag</from-outcome>
+        <to-activity-id>kontrag_dir</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id>zatraty_dir</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>to_director</from-outcome>
+        <to-activity-id>director</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__13">
+        <from-outcome>to_kontrag</from-outcome>
+        <to-activity-id>kontrag_dir</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id>kontrag_dir</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>to_director</from-outcome>
+        <to-activity-id>director</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__12">
+        <from-outcome>to_zatraty</from-outcome>
+        <to-activity-id>zatraty_dir</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

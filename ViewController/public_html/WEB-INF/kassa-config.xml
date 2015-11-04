@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="kassa-config">
+    <default-activity>kassa</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name>kassa</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.KassaBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="kassa">
+      <page>/kassa.jsff</page>
+    </view>
+    <task-flow-call id="order-dialog-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/order-dialog-flow.xml</document>
+        <id>order-dialog-flow</id>
+      </task-flow-reference>
+      <after-listener>#{kassa.afterListener}</after-listener>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <router id="routerCase">
+      <case id="__6">
+        <expression>#{pageFlowScope.case == 'orders'}</expression>
+        <outcome>onOrder</outcome>
+      </case>
+      <case id="__8">
+        <expression>#{pageFlowScope.case == 'other'}</expression>
+        <outcome>onOther</outcome>
+      </case>
+      <case id="__10">
+        <expression>#{pageFlowScope.case == 'pko'}</expression>
+        <outcome>onPko</outcome>
+      </case>
+      <case id="__14">
+        <expression>#{pageFlowScope.case == 'rko'}</expression>
+        <outcome>onRko</outcome>
+      </case>
+      <case id="__17">
+        <expression>#{pageFlowScope.case == 'start'}</expression>
+        <outcome>onStart</outcome>
+      </case>
+      <default-outcome>onOrder</default-outcome>
+    </router>
+    <task-flow-call id="other-dialod-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/other-dialod-flow.xml</document>
+        <id>other-dialod-flow</id>
+      </task-flow-reference>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="EditPko">
+      <task-flow-reference>
+        <document>/WEB-INF/EditPko.xml</document>
+        <id>EditPko</id>
+      </task-flow-reference>
+      <return-value id="__11">
+        <name>PkoId</name>
+        <value>#{pageFlowScope.PkoId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.PkoId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="EditRko">
+      <task-flow-reference>
+        <document>/WEB-INF/EditRko.xml</document>
+        <id>EditRko</id>
+      </task-flow-reference>
+      <return-value id="__12">
+        <name>RkoId</name>
+        <value>#{pageFlowScope.RkoId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.RkoId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="editStart">
+      <task-flow-reference>
+        <document>/WEB-INF/editStart.xml</document>
+        <id>editStart</id>
+      </task-flow-reference>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>kassa</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>onCase</from-outcome>
+        <to-activity-id>routerCase</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>routerCase</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>onOrder</from-outcome>
+        <to-activity-id>order-dialog-flow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__7">
+        <from-outcome>onOther</from-outcome>
+        <to-activity-id>other-dialod-flow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome>onPko</from-outcome>
+        <to-activity-id>EditPko</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__13">
+        <from-outcome>onRko</from-outcome>
+        <to-activity-id>EditRko</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__16">
+        <from-outcome>onStart</from-outcome>
+        <to-activity-id>editStart</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

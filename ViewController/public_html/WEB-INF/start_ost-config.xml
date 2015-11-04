@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="start_ost-config">
+    <default-activity>start_ost</default-activity>
+    <managed-bean id="__6">
+      <managed-bean-name>start_ost</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.StartBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="start_ost">
+      <page>/start_ost.jsff</page>
+    </view>
+    <task-flow-call id="newStart">
+      <task-flow-reference>
+        <document>/WEB-INF/newStart.xml</document>
+        <id>newStart</id>
+      </task-flow-reference>
+      <return-value id="__5">
+        <name>StartId</name>
+        <value>#{pageFlowScope.StartId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.StartId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="editStart">
+      <task-flow-reference>
+        <document>/WEB-INF/editStart.xml</document>
+        <id>editStart</id>
+      </task-flow-reference>
+      <return-value id="__4">
+        <name>StartId</name>
+        <value>#{pageFlowScope.StartId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.StartId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>start_ost</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>newStart</from-outcome>
+        <to-activity-id>newStart</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__3">
+        <from-outcome>editStart</from-outcome>
+        <to-activity-id>editStart</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

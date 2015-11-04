@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="kassaPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="KassaView1" RangeSize="-1" DataControl="AppModuleDataControl" id="KassaView1Iterator"/>
+    <iterator Binds="VwKassaMoves1" RangeSize="10" DataControl="AppModuleDataControl" id="VwKassaMoves1Iterator"/>
+    <iterator id="OrdersView1Iterator" Binds="OrdersView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator id="OtherZatratyView1Iterator" Binds="OtherZatratyView1" DataControl="AppModuleDataControl"
+              RangeSize="25"/>
+    <iterator id="PkoView1Iterator" Binds="PkoView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator id="RkoView1Iterator" Binds="RkoView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator id="StartOstView1Iterator" Binds="StartOstView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <searchRegion Criteria="KassaViewActive" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="KassaView1Iterator" id="KassaViewActiveQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="KassaView1Iterator" id="KassaView1">
+      <nodeDefinition DefName="ua.divas.view.KassaView" Name="KassaView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="TotalSumm"/>
+          <Item Value="TotalPrihod"/>
+          <Item Value="TotalRashod"/>
+          <Item Value="TotalSummFirst"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwKassaMoves"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.VwKassaMoves" Name="KassaView11">
+        <AttrNames>
+          <Item Value="Code"/>
+          <Item Value="Id"/>
+          <Item Value="Kassa"/>
+          <Item Value="KassaId"/>
+          <Item Value="Period"/>
+          <Item Value="RegistratorId"/>
+          <Item Value="Summ"/>
+          <Item Value="SummPrihod"/>
+          <Item Value="SummRashod"/>
+          <Item Value="TableName"/>
+          <Item Value="RegString"/>
+          <Item Value="PeriodName"/>
+          <Item Value="Discription"/>
+          <Item Value="Payed"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="VwKassaMoves1Iterator" id="VwKassaMoves1">
+      <nodeDefinition DefName="ua.divas.view.VwKassaMoves" Name="VwKassaMoves10">
+        <AttrNames>
+          <Item Value="KassaId"/>
+          <Item Value="Code"/>
+          <Item Value="Kassa"/>
+          <Item Value="Period"/>
+          <Item Value="RegistratorId"/>
+          <Item Value="Summ"/>
+          <Item Value="SummPrihod"/>
+          <Item Value="SummRashod"/>
+          <Item Value="Id"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

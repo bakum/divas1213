@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="Divas CRM" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1" usesUpload="true">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:decorativeBox id="db1" theme="dark" topHeight="18px">
+                            <f:facet name="center">
+                                <af:panelSpringboard id="ps1" displayMode="grid">
+                                    <af:showDetailItem text="Реестр заказов" id="sdi1" icon="/img/fork-1-icon.png"
+                                                       stretchChildren="first"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/orders.xml#orders']}">
+                                        <af:region value="#{bindings.ordersconfig1.regionModel}" id="r3"/>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Клиенты" id="sdi2" stretchChildren="first"
+                                                       icon="/img/Customer.png" flex="0"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/call_center.xml#call_center']}">
+                                        <af:region value="#{bindings.call_center1.regionModel}" id="r1"/>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Управление замерами" id="sdi3" stretchChildren="first"
+                                                       icon="/img/st.png"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/zamer-config.xml#zamer-config']}">
+                                        <af:region value="#{bindings.zamerconfig1.regionModel}" id="r5"
+                                                   uncommittedDataWarning="on"/>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Управление затратами" id="sdi15"
+                                                       icon="/img/sovmest_work-icon.png" stretchChildren="first"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/other_zatr-config.xml#other_zatr-config']}">
+                                        <af:region value="#{bindings.other_zatrconfig1.regionModel}" id="r12"/>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Касса" id="sdi19" stretchChildren="first"
+                                                       icon="/img/money.png"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/money-config.xml#money-config']}">
+                                        <af:region value="#{bindings.moneyconfig1.regionModel}" id="r16"/>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Справочники" id="sdi4" stretchChildren="first"
+                                                       icon="/img/tSystCmp_picture_52.png"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/directories.xml#direct']}">
+                                        <af:region value="#{bindings.direct1.regionModel}" id="r2"
+                                                   uncommittedDataWarning="on"/>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Аналитика" id="sdi5" stretchChildren="first"
+                                                       icon="/img/analytics.png"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/supplier_debt-config.xml#supplier_debt-config']}">
+                                        <af:panelTabbed id="pt2">
+                                            <af:showDetailItem text="Денежные средства" id="sdi11"
+                                                               stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/kassa-config.xml#kassa-config']}">
+                                                <af:region value="#{bindings.kassaconfig1.regionModel}" id="r9"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Взаиморасчеты" id="sdi12" stretchChildren="first">
+                                                <af:panelTabbed id="pt3">
+                                                    <af:showDetailItem text="Замерщики" id="sdi14"
+                                                                       stretchChildren="first"
+                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/zamer_debt-config.xml#zamer_debt-config']}">
+                                                        <af:region value="#{bindings.zamer_debtconfig1.regionModel}"
+                                                                   id="r10"/>
+                                                    </af:showDetailItem>
+                                                    <af:showDetailItem text="Дебеторская задолженность" id="sdi13" stretchChildren="first"
+                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/buyer_debt-config.xml#buyer_debt-config']}">
+                                                        <af:region value="#{bindings.buyer_debtconfig1.regionModel}"
+                                                                   id="r11"/>
+                                                    </af:showDetailItem>
+                                                    <af:showDetailItem text="Кредиторская задолженность" id="sdi21"
+                                                                       stretchChildren="first"
+                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/supplier_debt-config.xml#supplier_debt-config']}">
+                                                        <af:region value="#{bindings.supplier_debtconfig1.regionModel}"
+                                                                   id="r18"/>
+                                                    </af:showDetailItem>
+                                                    <af:showDetailItem text="Расчеты с контрагентами" id="sdi23"
+                                                                       stretchChildren="first"
+                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/kontrag_calc-config.xml#kontrag_calc-config']}">
+                                                        <af:region value="#{bindings.kontrag_calcconfig1.regionModel}"
+                                                                   id="r20"/>
+                                                    </af:showDetailItem>
+                                                    <af:showDetailItem text="Расчеты между филиалами" id="sdi29"
+                                                                       stretchChildren="first"
+                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/inside_debt.xml#inside_debt']}">
+                                                        <af:region value="#{bindings.inside_debt1.regionModel}"
+                                                                   id="r26"/>
+                                                    </af:showDetailItem>
+                                                </af:panelTabbed>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Продажи" id="sdi17" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/sales-config.xml#sales-config']}">
+                                                <af:region value="#{bindings.salesconfig1.regionModel}" id="r14"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Прорабы" id="sdi22" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/prorab-config.xml#prorab-config']}">
+                                                <af:region value="#{bindings.prorabconfig1.regionModel}" id="r19"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Затраты" id="sdi18" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/zatraty-config.xml#zatraty-config']}">
+                                                <af:region value="#{bindings.zatratyconfig1.regionModel}" id="r15"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Рейтинги" id="sdi28"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/rating-config.xml#rating-config']}"
+                                                               stretchChildren="first">
+                                                <af:region value="#{bindings.ratingconfig1.regionModel}" id="r25"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Баланс" id="sdi16" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/ballans-config.xml#ballans-config']}">
+                                                <af:region value="#{bindings.ballansconfig1.regionModel}" id="r13"/>
+                                            </af:showDetailItem>
+                                        </af:panelTabbed>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Пользователи" id="sdi6" stretchChildren="first"
+                                                       icon="/img/people.png"
+                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/users.xml#users']}">
+                                        <af:region value="#{bindings.users1.regionModel}" id="r4"/>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Настройки" id="sdi7" stretchChildren="first"
+                                                       icon="/img/options.png">
+                                        <af:panelTabbed id="pt1">
+                                            <af:showDetailItem text="Настройки начислений" id="sdi24"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/pay-config.xml#pay-config']}"
+                                                               stretchChildren="first">
+                                                <af:region value="#{bindings.payconfig1.regionModel}" id="r21"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Программные настройки" id="sdi27"
+                                                               stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/program-config.xml#program-config']}">
+                                                <af:region value="#{bindings.programconfig1.regionModel}" id="r24"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Начальные остатки" id="sdi25"
+                                                               stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/start_ost-config.xml#start_ost-config']}">
+                                                <af:region value="#{bindings.start_ostconfig1.regionModel}" id="r22"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Распределение прибыли" id="sdi26"
+                                                               stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/profit-config.xml#profit-config']}">
+                                                <af:region value="#{bindings.profitconfig1.regionModel}" id="r23"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Прайс-лист" id="sdi8" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/import-price-config.xml#import-price-config']}">
+                                                <af:region value="#{bindings.importpriceconfig1.regionModel}" id="r6"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Проводки" id="sdi9" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/entry.xml#entry']}">
+                                                <af:region value="#{bindings.entry1.regionModel}" id="r7"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="План счетов" id="sdi10" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/plan_acc.xml#plan_acc']}">
+                                                <af:region value="#{bindings.plan_acc1.regionModel}" id="r8"/>
+                                            </af:showDetailItem>
+                                            <af:showDetailItem text="Календарь" id="sdi20" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/calendar-config.xml#calendar-config']}">
+                                                <af:region value="#{bindings.calendarconfig1.regionModel}" id="r17"/>
+                                            </af:showDetailItem>
+                                        </af:panelTabbed>
+                                    </af:showDetailItem>
+                                </af:panelSpringboard>
+                            </f:facet>
+                            <f:facet name="top">
+                                <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                    <af:spacer width="30" height="10" id="s3"/>
+                                    <af:link text="Войти" id="l1" icon="/img/glbl_login_msg.gif"
+                                             rendered="#{!securityContext.authenticated}">
+                                        <af:showPopupBehavior popupId="pLogin" triggerType="action" align="endBefore"
+                                                              alignId="l1"/>
+                                    </af:link>
+                                    <af:spacer width="10" height="10" id="s1"/>
+                                    <af:link text="Выйти" id="l2" icon="/img/glbl_logout.gif"
+                                             rendered="#{securityContext.authenticated}" action="#{login.logout}"
+                                             immediate="true"/>
+                                    <af:spacer width="50" height="10" id="s2"/>
+                                    <af:outputFormatted value="Пользователь: #{securityContext.userName}" id="of1"
+                                                        styleClass="Linkclass"/>
+                                    <af:spacer width="10" height="10" id="s4"/>
+                                    <af:outputFormatted value="Права: #{login.roleUser}" id="of2" styleClass="Linkclass"/>
+                                    <af:spacer width="30" height="10" id="s5"/>
+                                    <af:link text="Непрочитанных оповещений: #{bindings.CountUnread.inputValue == null ? 0 : bindings.CountUnread.inputValue}" id="l3" icon="/img/bell.png"
+                                             inlineStyle="#{bindings.CountUnread.inputValue != null ? 'color:Lime;' : ''}">
+                                        <af:showPopupBehavior popupId="p1"/>
+                                    </af:link>
+                                    <af:spacer width="10" height="10" id="s7"/>
+                                    <af:link id="l4" targetFrame="_blank"
+                                             destination="http://bmexp.com" text="#{login.versionStr}"/>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pLogin">
+                                        <af:dialog id="d2" title="Авторизация" dialogListener="#{login.OnLoginAction}">
+                                            <f:facet name="buttonBar"/>
+                                            <af:panelFormLayout id="pfl1">
+                                                <f:facet name="footer"/>
+                                                <af:inputText label="Пользователь" id="it1" value="#{login.username}"/>
+                                                <af:inputText label="Пароль" id="it2" secret="true"
+                                                              value="#{login.password}"/>
+                                            </af:panelFormLayout>
+                                        </af:dialog>
+                                        <af:resetListener type="popupCanceled"/>
+                                    </af:popup>
+                                    <af:serverListener type="customEvent" method="#{notification.onCustomEvent}"/>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d3" title="Панель уведомлений"
+                                                   dialogListener="#{notification.onDialogListener}"
+                                                   closeIconVisible="false" contentWidth="700" contentHeight="400"
+                                                   resize="on">
+                                            <f:facet name="buttonBar">
+                                                <af:button text="Тест уведомления" id="b1"
+                                                           actionListener="#{reminder.onReminder}" visible="false"/>
+                                                <af:button text="Обновить" id="b2"
+                                                           actionListener="#{notification.onRefresh}"/>
+                                            </f:facet>
+                                            <af:panelBox text="Протокол планировщика" id="pb1" type="flow">
+                                                <f:facet name="toolbar"/>
+                                                <af:table value="#{bindings.NotificationView1.collectionModel}"
+                                                          var="row" rows="#{bindings.NotificationView1.rangeSize}"
+                                                          emptyText="#{bindings.NotificationView1.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                                          rowBandingInterval="0"
+                                                          selectedRowKeys="#{bindings.NotificationView1.collectionModel.selectedRow}"
+                                                          selectionListener="#{bindings.NotificationView1.collectionModel.makeCurrent}"
+                                                          rowSelection="single"
+                                                          fetchSize="#{bindings.NotificationView1.rangeSize}" id="t1"
+                                                          scrollPolicy="page"
+                                                          disclosedRowKeys="#{pageFlowScope.rks.rks}">
+                                                    <af:column headerText="#{bindings.NotificationView1.hints.Dat.label}"
+                                                               id="c1" width="200">
+                                                        <af:outputText value="#{row.Dat}"
+                                                                       shortDesc="#{bindings.NotificationView1.hints.Dat.tooltip}"
+                                                                       id="ot1">
+                                                            <af:convertDateTime pattern="#{bindings.NotificationView1.hints.Dat.format}"/>
+                                                        </af:outputText>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.NotificationView1.hints.Server.label}"
+                                                               id="c3" width="200">
+                                                        <af:selectBooleanCheckbox value="#{row.bindings.Server.inputValue}"
+                                                                                  label="#{row.bindings.Server.label}"
+                                                                                  shortDesc="#{bindings.NotificationView1.hints.Server.tooltip}"
+                                                                                  id="sbc2" readOnly="true"/>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.NotificationView1.hints.TrgName.label}"
+                                                               id="c5" visible="false">
+                                                        <af:outputText value="#{row.TrgName}"
+                                                                       shortDesc="#{bindings.NotificationView1.hints.TrgName.tooltip}"
+                                                                       id="ot5"/>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.NotificationView1.hints.UserLogin.label}"
+                                                               id="c6" visible="false">
+                                                        <af:outputText value="#{row.UserLogin}"
+                                                                       shortDesc="#{bindings.NotificationView1.hints.UserLogin.tooltip}"
+                                                                       id="ot6"/>
+                                                    </af:column>
+                                                    <f:facet name="detailStamp">
+                                                        <af:panelGroupLayout id="pgl3" layout="vertical">
+                                                            <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Description.label}"
+                                                                                     id="plam1">
+                                                                <af:outputFormatted value="#{row.bindings.Description.inputValue}"
+                                                                                    id="of3"
+                                                                                    styleUsage="inContextBranding"
+                                                                                    inlineStyle="font-size:large;"/>
+                                                            </af:panelLabelAndMessage>
+                                                            <af:spacer width="10" height="10" id="s6"/>
+                                                            <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Client.label}"
+                                                                                     id="plam2">
+                                                                <af:selectBooleanCheckbox value="#{row.bindings.Client.inputValue}"
+                                                                                          shortDesc="#{bindings.NotificationView1.hints.Client.tooltip}"
+                                                                                          id="sbc1"/>
+                                                            </af:panelLabelAndMessage>
+                                                            <f:facet name="separator"/>
+                                                        </af:panelGroupLayout>
+                                                    </f:facet>
+                                                </af:table>
+                                            </af:panelBox>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pLong"
+                                              contentDelivery="immediate">
+                                        <af:dialog id="d4" type="none" closeIconVisible="false"
+                                                   title="Выполняется обработка..."
+                                                   titleIconSource="#{resource['images:smpt_ico_(16x16).gif']}">
+                                            <f:facet name="buttonBar"/>
+                                            <af:panelGroupLayout id="pgl4" layout="vertical" halign="center">
+                                                <af:image id="i1" source="/img/animbar.gif"/>
+                                                <af:outputText value="подождите пожалуйста..." id="ot2"/>
+                                            </af:panelGroupLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:decorativeBox>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+        <f:facet name="metaContainer">
+            <af:group id="gp12">
+                <af:resource type="javascript" source="/js/jquery-2.1.3.min.js"/>
+                <af:resource type="javascript" source="/js/jquery.growl.js"/>
+                <af:resource type="javascript" source="/js/jquery_notification.js"/>
+                <af:resource type="javascript" source="/js/WebSocketCli.js"/>
+                <af:resource type="css" source="/css/jquery.growl.css"/>
+            </af:group>
+        </f:facet>
+    </af:document>
+</f:view>

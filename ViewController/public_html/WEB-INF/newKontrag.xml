@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="newKontrag">
+    <default-activity>createBuer</default-activity>
+    <transaction>
+      <requires-transaction/>
+    </transaction>
+    <return-value-definition id="__1">
+      <name>KontragId</name>
+      <value>#{pageFlowScope.KontragId}</value>
+    </return-value-definition>
+    <managed-bean id="__5">
+      <managed-bean-name>createkont</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.CreKontragBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="createBuer">
+      <page>/createBuer.jsf</page>
+    </view>
+    <task-flow-return id="ok">
+      <outcome>
+        <name>ok</name>
+        <commit/>
+      </outcome>
+    </task-flow-return>
+    <task-flow-return id="cancel">
+      <outcome>
+        <name>cancel</name>
+        <rollback/>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__2">
+      <from-activity-id>createBuer</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>ok</from-outcome>
+        <to-activity-id>ok</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__4">
+        <from-outcome>cancel</from-outcome>
+        <to-activity-id>cancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="editProfitPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ProfitDistribView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ProfitDistribView1Iterator"/>
+    <iterator Binds="ProfitDistribTpView2" RangeSize="8" DataControl="AppModuleDataControl"
+              id="ProfitDistribTpView2Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="ProfitDistribView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="ProfitDistribView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="ProfitDistribView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="ProfitDistribView1Iterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Summ">
+      <AttrNames>
+        <Item Value="Summ"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Enbl">
+      <AttrNames>
+        <Item Value="Enbl"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="ProfitDistribTpView2Iterator" id="ProfitDistribTpView2">
+      <nodeDefinition DefName="ua.divas.view.ProfitDistribTpView" Name="ProfitDistribTpView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="ProfitId"/>
+          <Item Value="DatNach"/>
+          <Item Value="KontrId"/>
+          <Item Value="Kontname"/>
+          <Item Value="Summ"/>
+          <Item Value="CalcId"/>
+          <Item Value="TpEditable"/>
+          <Item Value="Percent"/>
+          <Item Value="PayId"/>
+          <Item Value="PayName"/>
+          <Item Value="Manual"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="ProfitDistribTpView2Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <attributeValues IterBinding="ProfitDistribTpView2Iterator" id="TpEditable">
+      <AttrNames>
+        <Item Value="TpEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ProfitDistribTpView2Iterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <methodAction id="retrieveCalcId" RequiresUpdateModel="true" Action="invokeMethod" MethodName="retrieveCalcId"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ProfitDistribTpView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.retrieveCalcId_AppModuleDataControl_ProfitDistribTpView1_retrieveCalcId_result">
+      <NamedData NDName="pId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="retrieveStavka" RequiresUpdateModel="true" Action="invokeMethod" MethodName="retrieveStavka"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ProfitDistribTpView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.retrieveStavka_AppModuleDataControl_ProfitDistribTpView1_retrieveStavka_result">
+      <NamedData NDName="pId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="retrieveSumma" RequiresUpdateModel="true" Action="invokeMethod" MethodName="retrieveSumma"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ProfitDistribTpView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.retrieveSumma_AppModuleDataControl_ProfitDistribTpView1_retrieveSumma_result">
+      <NamedData NDName="pId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getProfit" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getProfit"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ProfitDistribView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getProfit_AppModuleDataControl_ProfitDistribView1_getProfit_result"/>
+    <attributeValues IterBinding="ProfitDistribView1Iterator" id="Posted">
+      <AttrNames>
+        <Item Value="Posted"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getProfitByDivision" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getProfitByDivision" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ProfitDistribView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getProfitByDivision_AppModuleDataControl_ProfitDistribView1_getProfitByDivision_result">
+      <NamedData NDName="p_div" NDValue="#{bindings.DivisionId.inputValue}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

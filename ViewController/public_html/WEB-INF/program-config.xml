@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="program-config">
+    <default-activity>prog_config</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name>del</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.DeletedBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__6">
+      <managed-bean-name>prog_settings</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ProgramSettingsBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="prog_config">
+      <page>/prog_config.jsff</page>
+    </view>
+    <view id="obj_deleted">
+      <page>/obj_deleted.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>prog_config</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>to_deleted</from-outcome>
+        <to-activity-id>obj_deleted</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>obj_deleted</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>to_config</from-outcome>
+        <to-activity-id>prog_config</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="start_ostPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="StartOstView1" RangeSize="11" DataControl="AppModuleDataControl" id="StartOstView1Iterator">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="VwStartOstMovesVO1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="VwStartOstMovesVO1Iterator"/>
+    <searchRegion Criteria="StartOstViewCriteriaData" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="StartOstView1Iterator" id="StartOstViewCriteriaDataQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="StartOstView1Iterator" id="StartOstView1">
+      <nodeDefinition DefName="ua.divas.view.StartOstView" Name="StartOstView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Dat"/>
+          <Item Value="Num"/>
+          <Item Value="DivisionId"/>
+          <Item Value="UserId"/>
+          <Item Value="CurrId"/>
+          <Item Value="ActivitiesId"/>
+          <Item Value="Editable"/>
+          <Item Value="Comments"/>
+          <Item Value="TotalSumm"/>
+          <Item Value="Posted"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <methodAction id="addEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.StartOstView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removeEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.StartOstView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="VwStartOstMovesVO1Iterator" id="VwStartOstMovesVO1">
+      <nodeDefinition DefName="ua.divas.view.VwStartOstMovesVO" Name="VwStartOstMovesVO10">
+        <AttrNames>
+          <Item Value="RegistratorId"/>
+          <Item Value="Deb"/>
+          <Item Value="SumDeb"/>
+          <Item Value="Subconto1Deb"/>
+          <Item Value="Subconto2Deb"/>
+          <Item Value="Kred"/>
+          <Item Value="SumKred"/>
+          <Item Value="Subconto1Kred"/>
+          <Item Value="Subconto2Kred"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="StartOstView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

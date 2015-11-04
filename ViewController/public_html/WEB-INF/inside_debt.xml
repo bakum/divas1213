@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="inside_debt">
+    <default-activity>inside</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>inside</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.InsideBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="inside">
+      <page>/inside.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

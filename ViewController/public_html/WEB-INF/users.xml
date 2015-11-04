@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="users">
+    <default-activity>user</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>shuttle_group</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ShuttleGroup</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__2">
+      <managed-bean-name>shuttle_departament</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ShuttleDepartaments</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__3">
+      <managed-bean-name>users</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.UsersBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__4">
+      <managed-bean-name>shuttle_kassa</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.ShuttleKassa</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="user">
+      <page>/user.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

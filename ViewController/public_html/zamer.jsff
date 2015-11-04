@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelBox text="Управление замерами" id="pb1" type="flow">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2">
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="b1"
+                                                       action="#{zamer.commitChange}"/>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="b2">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                            <af:button text="Обновить" id="b4" actionListener="#{zamer.refreshWork}"
+                                                       disabled="#{bindings.Commit.enabled}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:table value="#{bindings.OrderZamerView1.collectionModel}" var="row"
+                                              rows="#{bindings.OrderZamerView1.rangeSize}"
+                                              emptyText="#{bindings.OrderZamerView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.OrderZamerView1.collectionModel.selectedRow}"
+                                              selectionListener="#{zamer.onTreeSelect}"
+                                              rowSelection="#{bindings.OEditable.inputValue == 1 ? 'none' : 'single'}" fetchSize="#{bindings.OrderZamerView1.rangeSize}"
+                                              filterModel="#{bindings.OrderZamerView1Query.queryDescriptor}"
+                                              queryListener="#{bindings.OrderZamerView1Query.processQuery}"
+                                              filterVisible="true" varStatus="vs" id="t1" editingMode="clickToEdit"
+                                              allDetailsEnabled="true" scrollPolicy="page" binding="#{zamer.table}">
+                                        <af:column id="c17" width="60" rowHeader="true"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:toolbar id="t3">
+                                                <af:button id="b3" icon="/img/edit-16.gif"
+                                                           disabled="#{bindings.Enbl.inputValue == 0 ? true : bindings.Commit.enabled}">
+                                                    <af:setPropertyListener from="#{1}"
+                                                                            to="#{bindings.OEditable.inputValue}"
+                                                                            type="action"/>
+                                                </af:button>
+                                                <af:button id="b5" icon="/img/view1.png" shortDesc="Просмотреть"
+                                                           disabled="#{bindings.Commit.enabled}"
+                                                           returnListener="#{zamer.onReturnValue}" useWindow="true"
+                                                           windowHeight="520" windowWidth="800" action="viewOrder"/>
+                                            </af:toolbar>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.Id.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.Id.label}" id="c1"
+                                                   visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                          label="#{bindings.OrderZamerView1.hints.Id.label}"
+                                                          required="#{bindings.OrderZamerView1.hints.Id.mandatory}"
+                                                          columns="#{bindings.OrderZamerView1.hints.Id.displayWidth}"
+                                                          maximumLength="#{bindings.OrderZamerView1.hints.Id.precision}"
+                                                          shortDesc="#{bindings.OrderZamerView1.hints.Id.tooltip}"
+                                                          id="it1">
+                                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.Dat.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.Dat.label}" id="c2"
+                                                   width="101"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputDate value="#{row.bindings.Dat.inputValue}"
+                                                          label="#{bindings.OrderZamerView1.hints.Dat.label}"
+                                                          required="#{bindings.OrderZamerView1.hints.Dat.mandatory}"
+                                                          columns="#{bindings.OrderZamerView1.hints.Dat.displayWidth}"
+                                                          shortDesc="#{bindings.OrderZamerView1.hints.Dat.tooltip}"
+                                                          id="id2" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Dat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.OrderZamerView1.hints.Dat.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrderZamerView1.hints.DatZam.label}" id="c19"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}"
+                                                   width="120">
+                                            <af:inputDate value="#{row.bindings.DatZam.inputValue}"
+                                                          label="#{bindings.OrderZamerView1.hints.DatZam.label}"
+                                                          required="#{bindings.OrderZamerView1.hints.DatZam.mandatory}"
+                                                          columns="#{bindings.OrderZamerView1.hints.DatZam.displayWidth}"
+                                                          shortDesc="#{bindings.OrderZamerView1.hints.DatZam.tooltip}"
+                                                          id="id1">
+                                                <f:validator binding="#{row.bindings.DatZam.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.OrderZamerView1.hints.DatZam.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.Num.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.Num.label}" id="c3"
+                                                   width="99"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputText value="#{row.bindings.Num.inputValue}"
+                                                          label="#{bindings.OrderZamerView1.hints.Num.label}"
+                                                          required="#{bindings.OrderZamerView1.hints.Num.mandatory}"
+                                                          columns="#{bindings.OrderZamerView1.hints.Num.displayWidth}"
+                                                          maximumLength="#{bindings.OrderZamerView1.hints.Num.precision}"
+                                                          shortDesc="#{bindings.OrderZamerView1.hints.Num.tooltip}"
+                                                          id="it2" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Num.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.ZamerId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.ZamerId.label}" id="c15"
+                                                   visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputComboboxListOfValues id="zamerIdId"
+                                                                          popupTitle="Search and Select: #{bindings.OrderZamerView1.hints.ZamerId.label}"
+                                                                          value="#{row.bindings.ZamerId.inputValue}"
+                                                                          model="#{row.bindings.ZamerId.listOfValuesModel}"
+                                                                          required="#{bindings.OrderZamerView1.hints.ZamerId.mandatory}"
+                                                                          columns="#{bindings.OrderZamerView1.hints.ZamerId.displayWidth}"
+                                                                          shortDesc="#{bindings.OrderZamerView1.hints.ZamerId.tooltip}"
+                                                                          autoSubmit="true"
+                                                                          partialTriggers="zamernameId">
+                                                <f:validator binding="#{row.bindings.ZamerId.validator}"/>
+                                            </af:inputComboboxListOfValues>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.Zamername.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.Zamername.label}"
+                                                   id="c16" width="100"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputComboboxListOfValues id="zamernameId"
+                                                                          popupTitle="Найти и выбрать: #{bindings.OrderZamerView1.hints.Zamername.label}"
+                                                                          value="#{row.bindings.Zamername.inputValue}"
+                                                                          model="#{row.bindings.Zamername.listOfValuesModel}"
+                                                                          required="#{bindings.OrderZamerView1.hints.Zamername.mandatory}"
+                                                                          columns="#{bindings.OrderZamerView1.hints.Zamername.displayWidth}"
+                                                                          shortDesc="#{bindings.OrderZamerView1.hints.Zamername.tooltip}"
+                                                                          partialTriggers="zamerIdId">
+                                                <f:validator binding="#{row.bindings.Zamername.validator}"/>
+                                            </af:inputComboboxListOfValues>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.StatusId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.StatusId.label}"
+                                                   id="c12" width="100"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.StatusId.inputValue}"
+                                                                label="#{row.bindings.StatusId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.StatusId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.StatusId.tooltip}"
+                                                                id="soc6">
+                                                <f:selectItems value="#{row.bindings.StatusId.items}" id="si6"/>
+                                                <f:validator binding="#{row.bindings.StatusId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.KontragId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.KontragId.label}"
+                                                   id="c4" visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputListOfValues id="kontragIdId"
+                                                                  popupTitle="Search and Select: #{bindings.OrderZamerView1.hints.KontragId.label}"
+                                                                  value="#{row.bindings.KontragId.inputValue}"
+                                                                  model="#{row.bindings.KontragId.listOfValuesModel}"
+                                                                  required="#{bindings.OrderZamerView1.hints.KontragId.mandatory}"
+                                                                  columns="#{bindings.OrderZamerView1.hints.KontragId.displayWidth}"
+                                                                  shortDesc="#{bindings.OrderZamerView1.hints.KontragId.tooltip}"
+                                                                  autoSubmit="true" partialTriggers="kontragnameId">
+                                                <f:validator binding="#{row.bindings.KontragId.validator}"/>
+                                            </af:inputListOfValues>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.Kontragname.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.Kontragname.label}"
+                                                   id="c5" width="300"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputListOfValues id="kontragnameId"
+                                                                  popupTitle="Search and Select: #{bindings.OrderZamerView1.hints.Kontragname.label}"
+                                                                  value="#{row.bindings.Kontragname.inputValue}"
+                                                                  model="#{row.bindings.Kontragname.listOfValuesModel}"
+                                                                  required="#{bindings.OrderZamerView1.hints.Kontragname.mandatory}"
+                                                                  columns="#{bindings.OrderZamerView1.hints.Kontragname.displayWidth}"
+                                                                  shortDesc="#{bindings.OrderZamerView1.hints.Kontragname.tooltip}"
+                                                                  autoSubmit="true" partialTriggers="kontragIdId"
+                                                                  readOnly="true">
+                                                <f:validator binding="#{row.bindings.Kontragname.validator}"/>
+                                            </af:inputListOfValues>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.ActivitiesId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.ActivitiesId.label}"
+                                                   id="c6" visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.ActivitiesId.inputValue}"
+                                                                label="#{row.bindings.ActivitiesId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.ActivitiesId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.ActivitiesId.tooltip}"
+                                                                id="soc1">
+                                                <f:selectItems value="#{row.bindings.ActivitiesId.items}" id="si1"/>
+                                                <f:validator binding="#{row.bindings.ActivitiesId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.CurrId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.CurrId.label}" id="c7"
+                                                   visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.CurrId.inputValue}"
+                                                                label="#{row.bindings.CurrId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.CurrId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.CurrId.tooltip}"
+                                                                id="soc2">
+                                                <f:selectItems value="#{row.bindings.CurrId.items}" id="si2"/>
+                                                <f:validator binding="#{row.bindings.CurrId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.DivisionId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.DivisionId.label}"
+                                                   id="c8" width="100"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                                label="#{row.bindings.DivisionId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.DivisionId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.DivisionId.tooltip}"
+                                                                id="soc3" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.DivisionId.items}" id="si3"/>
+                                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.FirmId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.FirmId.label}" id="c9"
+                                                   visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.FirmId.inputValue}"
+                                                                label="#{row.bindings.FirmId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.FirmId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.FirmId.tooltip}"
+                                                                id="soc4">
+                                                <f:selectItems value="#{row.bindings.FirmId.items}" id="si4"/>
+                                                <f:validator binding="#{row.bindings.FirmId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.KassaId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.KassaId.label}" id="c10"
+                                                   visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.KassaId.inputValue}"
+                                                                label="#{row.bindings.KassaId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.KassaId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.KassaId.tooltip}"
+                                                                id="soc5">
+                                                <f:selectItems value="#{row.bindings.KassaId.items}" id="si5"/>
+                                                <f:validator binding="#{row.bindings.KassaId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.Posted.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.Posted.label}" id="c11"
+                                                   visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputText value="#{row.bindings.Posted.inputValue}"
+                                                          label="#{bindings.OrderZamerView1.hints.Posted.label}"
+                                                          required="#{bindings.OrderZamerView1.hints.Posted.mandatory}"
+                                                          columns="#{bindings.OrderZamerView1.hints.Posted.displayWidth}"
+                                                          maximumLength="#{bindings.OrderZamerView1.hints.Posted.precision}"
+                                                          shortDesc="#{bindings.OrderZamerView1.hints.Posted.tooltip}"
+                                                          id="it3">
+                                                <f:validator binding="#{row.bindings.Posted.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OrderZamerView1.hints.Posted.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.OEditable.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.OEditable.label}"
+                                                   id="c13" width="100" visible="false"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
+                                            <af:inputText value="#{row.bindings.OEditable.inputValue}"
+                                                          label="#{bindings.OrderZamerView1.hints.OEditable.label}"
+                                                          required="#{bindings.OrderZamerView1.hints.OEditable.mandatory}"
+                                                          columns="#{bindings.OrderZamerView1.hints.OEditable.displayWidth}"
+                                                          maximumLength="#{bindings.OrderZamerView1.hints.OEditable.precision}"
+                                                          shortDesc="#{bindings.OrderZamerView1.hints.OEditable.tooltip}"
+                                                          id="it4">
+                                                <f:validator binding="#{row.bindings.OEditable.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OrderZamerView1.hints.OEditable.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrderZamerView1.hints.ManagerId.label}"
+                                                   id="c20"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}"
+                                                   width="120">
+                                            <af:selectOneChoice value="#{row.bindings.ManagerId.inputValue}"
+                                                                label="#{row.bindings.ManagerId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.ManagerId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.ManagerId.tooltip}"
+                                                                id="soc8">
+                                                <f:selectItems value="#{row.bindings.ManagerId.items}" id="si8"/>
+                                                <f:validator binding="#{row.bindings.ManagerId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.UserId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrderZamerView1.hints.UserId.label}" id="c14"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}"
+                                                   rendered="false">
+                                            <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                label="#{row.bindings.UserId.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.UserId.mandatory}"
+                                                                shortDesc="#{bindings.OrderZamerView1.hints.UserId.tooltip}"
+                                                                id="soc7">
+                                                <f:selectItems value="#{row.bindings.UserId.items}" id="si7"/>
+                                                <f:validator binding="#{row.bindings.UserId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <f:facet name="detailStamp">
+                                            <af:panelLabelAndMessage label="#{bindings.OrderZamerView1.hints.Adress.label}"
+                                                                     id="plam1">
+                                                <af:outputFormatted value="#{row.bindings.Adress.inputValue}" id="of1"/>
+                                            </af:panelLabelAndMessage>
+                                        </f:facet>
+                                        <af:column headerText="#{bindings.OrderZamerView1.hints.StatusName.label}"
+                                                   id="c18"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}"
+                                                   visible="false">
+                                            <af:inputText value="#{row.bindings.StatusName.inputValue}"
+                                                          label="#{bindings.OrderZamerView1.hints.StatusName.label}"
+                                                          required="#{bindings.OrderZamerView1.hints.StatusName.mandatory}"
+                                                          columns="#{bindings.OrderZamerView1.hints.StatusName.displayWidth}"
+                                                          maximumLength="#{bindings.OrderZamerView1.hints.StatusName.precision}"
+                                                          shortDesc="#{bindings.OrderZamerView1.hints.StatusName.tooltip}"
+                                                          id="it5">
+                                                <f:validator binding="#{row.bindings.StatusName.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="start">
+                                <af:panelDrawer id="pd1" position="left" height="60%" width="60%">
+                                    <af:showDetailItem text="Фильтр" id="sdi1" stretchChildren="first"
+                                                       icon="/img/search.png">
+                                        <af:panelGroupLayout layout="vertical" id="pgl2">
+                                            <af:panelHeader text="Диспетчер" id="ph1">
+                                                <af:query id="qryId1" headerText="Фильтр" disclosed="true"
+                                                          value="#{bindings.OrderZamerViewCriteriaQuery.queryDescriptor}"
+                                                          model="#{bindings.OrderZamerViewCriteriaQuery.queryModel}"
+                                                          queryListener="#{bindings.OrderZamerViewCriteriaQuery.processQuery}"
+                                                          queryOperationListener="#{bindings.OrderZamerViewCriteriaQuery.processQueryOperation}"
+                                                          resultComponentId="::t1"/>
+                                            </af:panelHeader>
+                                        </af:panelGroupLayout>
+                                    </af:showDetailItem>
+                                </af:panelDrawer>
+                            </f:facet>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="startPageDef"
+                Package="ua.divas.bean.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="OrdersView1" RangeSize="25" DataControl="AppModuleDataControl" id="OrdersView1Iterator"
+              StateValidation="false"/>
+    <iterator Binds="root" RangeSize="25" DataControl="DataPackage" id="DataPackageIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="DataPackageIterator" id="dataObject">
+      <AttrNames>
+        <Item Value="dataObject"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_Kontragname" id="Kontragname"/>
+    <attributeValues IterBinding="OrdersView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersView1Iterator" id="Discription">
+      <AttrNames>
+        <Item Value="Discription"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_StatusId" id="StatusId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OrdersView1Iterator" id="DatComplete">
+      <AttrNames>
+        <Item Value="DatComplete"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersView1Iterator" id="DatZam">
+      <AttrNames>
+        <Item Value="DatZam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersView1Iterator" id="SummPlan">
+      <AttrNames>
+        <Item Value="SummPlan"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrdersView1Iterator" id="KontragId">
+      <AttrNames>
+        <Item Value="KontragId"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="OrdersView1Iterator" id="CreateWithParams" InstanceName="AppModuleDataControl.OrdersView1"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="createWithParams">
+      <NamedData NDName="KontragId" NDValue="#{bindings.dataObject.inputValue}" NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

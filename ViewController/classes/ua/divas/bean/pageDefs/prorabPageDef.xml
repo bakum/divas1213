@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="prorabPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ProrabView1" RangeSize="12" DataControl="AppModuleDataControl" id="ProrabView1Iterator"/>
+    <searchRegion Binds="ProrabView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ProrabView1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ProrabView1Iterator" id="ProrabView1">
+      <nodeDefinition DefName="ua.divas.view.ProrabView" Name="ProrabView10">
+        <AttrNames>
+          <Item Value="Fullname"/>
+          <Item Value="Id"/>
+          <Item Value="Okpo"/>
+          <Item Value="Editable"/>
+          <Item Value="IsSupplier" Binds="IsSupplier"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="ProrabView1Iterator" id="IsSupplier" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="IsSupplier"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <action IterBinding="ProrabView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="ProrabView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="retrieveSupplierFirstParentId" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="retrieveSupplierFirstParentId" IsViewObjectMethod="true"
+                  DataControl="AppModuleDataControl" InstanceName="data.AppModuleDataControl.KontragentsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.retrieveSupplierFirstParentId_AppModuleDataControl_KontragentsView1_retrieveSupplierFirstParentId_result"/>
+    <action IterBinding="ProrabView1Iterator" id="Delete" InstanceName="AppModuleDataControl.ProrabView1"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

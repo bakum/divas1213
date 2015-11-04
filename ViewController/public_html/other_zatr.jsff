@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelBox text="Административные затраты" id="pb1" type="flow">
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2">
+                                            <af:button
+                                                       text="Добавить" disabled="#{!bindings.CreateInsert.enabled}"
+                                                       id="bCreate" action="newOther" useWindow="true"
+                                                       windowHeight="450" windowWidth="680"
+                                                       returnListener="#{other.onReturn}"/>
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="b2"
+                                                       action="#{other.commitChange}"/>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="b3">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                            <af:button text="Обновить" id="b6" actionListener="#{other.onRefresh}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:table value="#{bindings.OtherZatratyView1.collectionModel}" var="row"
+                                              rows="#{bindings.OtherZatratyView1.rangeSize}"
+                                              emptyText="#{bindings.OtherZatratyView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.OtherZatratyView1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.OtherZatratyView1.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.OtherZatratyView1.rangeSize}"
+                                              id="t1" editingMode="clickToEdit" partialTriggers="::bCreate cmi4"
+                                              scrollPolicy="page" binding="#{other.otherTable}">
+                                        <af:column id="c9" width="60" rowHeader="true">
+                                            <af:toolbar id="t3">
+                                                <af:button id="b4" icon="/img/edit-16.gif" action="editOther"
+                                                           useWindow="true" windowHeight="450" windowWidth="680"
+                                                           returnListener="#{other.onReturn}"/>
+                                            </af:toolbar>
+                                        </af:column>
+                                        <af:column id="c17" width="30">
+                                            <af:image id="i1"
+                                                      source="#{row.Posted==1 ? '/img/icon_commit.png' :  row.Deleted == 1 ? '/img/file_delete.png' : '/img/document.png'}"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Id.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.Id.label}" id="c1"
+                                                   visible="false">
+                                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                          label="#{bindings.OtherZatratyView1.hints.Id.label}"
+                                                          required="#{bindings.OtherZatratyView1.hints.Id.mandatory}"
+                                                          columns="#{bindings.OtherZatratyView1.hints.Id.displayWidth}"
+                                                          maximumLength="#{bindings.OtherZatratyView1.hints.Id.precision}"
+                                                          shortDesc="#{bindings.OtherZatratyView1.hints.Id.tooltip}"
+                                                          id="it1" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Dat.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.Dat.label}" id="c2">
+                                            <af:inputDate value="#{row.bindings.Dat.inputValue}"
+                                                          label="#{bindings.OtherZatratyView1.hints.Dat.label}"
+                                                          required="#{bindings.OtherZatratyView1.hints.Dat.mandatory}"
+                                                          columns="#{bindings.OtherZatratyView1.hints.Dat.displayWidth}"
+                                                          shortDesc="#{bindings.OtherZatratyView1.hints.Dat.tooltip}"
+                                                          id="id1" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Dat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.OtherZatratyView1.hints.Dat.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Num.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.Num.label}" id="c3">
+                                            <af:inputText value="#{row.bindings.Num.inputValue}"
+                                                          label="#{bindings.OtherZatratyView1.hints.Num.label}"
+                                                          required="#{bindings.OtherZatratyView1.hints.Num.mandatory}"
+                                                          columns="#{bindings.OtherZatratyView1.hints.Num.displayWidth}"
+                                                          maximumLength="#{bindings.OtherZatratyView1.hints.Num.precision}"
+                                                          shortDesc="#{bindings.OtherZatratyView1.hints.Num.tooltip}"
+                                                          id="it2" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Num.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.Posted.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.Posted.label}"
+                                                   id="c4" visible="false">
+                                            <af:inputText value="#{row.bindings.Posted.inputValue}"
+                                                          label="#{bindings.OtherZatratyView1.hints.Posted.label}"
+                                                          required="#{bindings.OtherZatratyView1.hints.Posted.mandatory}"
+                                                          columns="#{bindings.OtherZatratyView1.hints.Posted.displayWidth}"
+                                                          maximumLength="#{bindings.OtherZatratyView1.hints.Posted.precision}"
+                                                          shortDesc="#{bindings.OtherZatratyView1.hints.Posted.tooltip}"
+                                                          id="it3" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Posted.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OtherZatratyView1.hints.Posted.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OtherZatratyView1.hints.TotalZatr.label}"
+                                                   id="c18" align="right">
+                                            <af:inputText value="#{row.bindings.TotalZatr.inputValue}"
+                                                          label="#{bindings.OtherZatratyView1.hints.TotalZatr.label}"
+                                                          required="#{bindings.OtherZatratyView1.hints.TotalZatr.mandatory}"
+                                                          columns="#{bindings.OtherZatratyView1.hints.TotalZatr.displayWidth}"
+                                                          maximumLength="#{bindings.OtherZatratyView1.hints.TotalZatr.precision}"
+                                                          shortDesc="#{bindings.OtherZatratyView1.hints.TotalZatr.tooltip}"
+                                                          id="it11" readOnly="true"
+                                                          contentStyle="font-weight: bold;">
+                                                <f:validator binding="#{row.bindings.TotalZatr.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OtherZatratyView1.hints.TotalZatr.format}"/>
+                                            </af:inputText>
+                                            <f:facet name="footer">
+                                                <af:outputText value="#{bindings.OtherZatratyView1Iterator.viewObject.sum['TotalZatr']}" id="ot8"
+                                                               inlineStyle="font-weight: bold;"/>
+                                            </f:facet>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.DivisionId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.DivisionId.label}"
+                                                   id="c5">
+                                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                                label="#{row.bindings.DivisionId.label}"
+                                                                required="#{bindings.OtherZatratyView1.hints.DivisionId.mandatory}"
+                                                                shortDesc="#{bindings.OtherZatratyView1.hints.DivisionId.tooltip}"
+                                                                id="soc1" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.DivisionId.items}" id="si1"/>
+                                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.UserId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.UserId.label}"
+                                                   id="c6">
+                                            <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                label="#{row.bindings.UserId.label}"
+                                                                required="#{bindings.OtherZatratyView1.hints.UserId.mandatory}"
+                                                                shortDesc="#{bindings.OtherZatratyView1.hints.UserId.tooltip}"
+                                                                id="soc2" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.UserId.items}" id="si2"/>
+                                                <f:validator binding="#{row.bindings.UserId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.CurrId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.CurrId.label}"
+                                                   id="c7" visible="false">
+                                            <af:selectOneChoice value="#{row.bindings.CurrId.inputValue}"
+                                                                label="#{row.bindings.CurrId.label}"
+                                                                required="#{bindings.OtherZatratyView1.hints.CurrId.mandatory}"
+                                                                shortDesc="#{bindings.OtherZatratyView1.hints.CurrId.tooltip}"
+                                                                id="soc3" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.CurrId.items}" id="si3"/>
+                                                <f:validator binding="#{row.bindings.CurrId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OtherZatratyView1.hints.OthEditable.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OtherZatratyView1.hints.OthEditable.label}"
+                                                   id="c8" visible="false">
+                                            <af:inputText value="#{row.bindings.OthEditable.inputValue}"
+                                                          label="#{bindings.OtherZatratyView1.hints.OthEditable.label}"
+                                                          required="#{bindings.OtherZatratyView1.hints.OthEditable.mandatory}"
+                                                          columns="#{bindings.OtherZatratyView1.hints.OthEditable.displayWidth}"
+                                                          maximumLength="#{bindings.OtherZatratyView1.hints.OthEditable.precision}"
+                                                          shortDesc="#{bindings.OtherZatratyView1.hints.OthEditable.tooltip}"
+                                                          id="it4" readOnly="true">
+                                                <f:validator binding="#{row.bindings.OthEditable.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OtherZatratyView1.hints.OthEditable.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <f:facet name="detailStamp">
+                                            <af:panelLabelAndMessage label="#{bindings.OtherZatratyView1.hints.Comments.label}"
+                                                                     id="plam1">
+                                                <af:outputFormatted value="#{row.bindings.Comments.inputValue}"
+                                                                    id="of1"/>
+                                            </af:panelLabelAndMessage>
+                                        </f:facet><f:facet name="contextMenu">
+                                            <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                                                <af:menu text="menu 1" id="m1">
+                                                    <af:group id="g1">
+                                                        <af:commandMenuItem text="Провести" id="cmi1"
+                                                                            icon="/img/icon_commit.png"
+                                                                            actionListener="#{other.onAddEntry}"/>
+                                                        <af:commandMenuItem text="Отменить проведение" id="cmi2"
+                                                                            icon="/img/icon_rollback.png"
+                                                                            actionListener="#{other.onRemoveEntry}"/>
+                                                    </af:group>
+                                                    <af:group id="g2">
+                                                        <af:commandMenuItem
+                                                                            text="#{other.del_label}"
+                                                                            disabled="#{!bindings.Delete.enabled}"
+                                                                            id="cmi4" icon="/img/file_delete.png">
+                                                            <af:showPopupBehavior popupId="::pDelete"/>
+                                                        </af:commandMenuItem>
+                                                    </af:group>
+                                                    <af:commandMenuItem text="Проводки" id="cmi3">
+                                                        <af:showPopupBehavior popupId="::pEntry"/>
+                                                    </af:commandMenuItem>
+                                                </af:menu>
+                                            </af:popup>
+                                        </f:facet><f:facet name="footer"/>
+                                        <af:column headerText="#{bindings.OtherZatratyView1.hints.Deleted.label}"
+                                                   id="c26" visible="false">
+                                            <af:outputText value="#{row.Deleted}"
+                                                           shortDesc="#{bindings.OtherZatratyView1.hints.Deleted.tooltip}"
+                                                           id="ot9">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OtherZatratyView1.hints.Deleted.format}"/>
+                                            </af:outputText>
+                                        </af:column>
+                                    </af:table>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pCreateEdit"
+                                              contentDelivery="lazyUncached" popupFetchListener="#{other.onPopupFetch}"
+                                              popupCanceledListener="#{other.onCancelPopup}">
+                                        <af:dialog id="d1" dialogListener="#{other.dialogListener}"
+                                                   title="Административные затраты" contentWidth="600"
+                                                   contentHeight="300" resize="on">
+                                            <f:facet name="buttonBar"/>
+                                            <af:panelAccordion id="pa1">
+                                                <af:showDetailItem text="Главная" id="sdi2">
+                                                    <af:panelFormLayout id="pfl1">
+                                                        <af:inputDate value="#{bindings.Dat.inputValue}"
+                                                                      label="#{bindings.Dat.hints.label}"
+                                                                      required="#{bindings.Dat.hints.mandatory}"
+                                                                      columns="#{bindings.Dat.hints.displayWidth}"
+                                                                      shortDesc="#{bindings.Dat.hints.tooltip}"
+                                                                      id="id2" autoSubmit="true"
+                                                                      labelStyle="font-weight: bold;">
+                                                            <f:validator binding="#{bindings.Dat.validator}"/>
+                                                            <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                                        </af:inputDate>
+                                                        <af:inputText value="#{bindings.Num.inputValue}"
+                                                                      label="#{bindings.Num.hints.label}"
+                                                                      required="#{bindings.Num.hints.mandatory}"
+                                                                      columns="#{bindings.Num.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.Num.hints.precision}"
+                                                                      shortDesc="#{bindings.Num.hints.tooltip}"
+                                                                      id="it5" labelStyle="font-weight: bold;">
+                                                            <f:validator binding="#{bindings.Num.validator}"/>
+                                                        </af:inputText>
+                                                        <af:panelLabelAndMessage label="Оплата" id="plam2"
+                                                                                 inlineStyle="font-weight: bold;">
+                                                            <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                                                <af:selectOneChoice value="#{bindings.CurrId.inputValue}"
+                                                                                    label="#{bindings.CurrId.label}"
+                                                                                    required="#{bindings.CurrId.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.CurrId.hints.tooltip}"
+                                                                                    id="soc6" autoSubmit="true">
+                                                                    <f:selectItems value="#{bindings.CurrId.items}"
+                                                                                   id="si6"/>
+                                                                    <f:validator binding="#{bindings.CurrId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:selectOneChoice value="#{bindings.KassaId.inputValue}"
+                                                                                    label="#{bindings.KassaId.label}"
+                                                                                    required="#{bindings.KassaId.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.KassaId.hints.tooltip}"
+                                                                                    id="soc7">
+                                                                    <f:selectItems value="#{bindings.KassaId.items}"
+                                                                                   id="si7"/>
+                                                                    <f:validator binding="#{bindings.KassaId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                            </af:panelGroupLayout>
+                                                        </af:panelLabelAndMessage>
+                                                        <af:panelLabelAndMessage label="Принадлежность" id="plam3">
+                                                            <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                                                <af:selectOneChoice value="#{bindings.DivisionId.inputValue}"
+                                                                                    label="#{bindings.DivisionId.label}"
+                                                                                    required="#{bindings.DivisionId.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.DivisionId.hints.tooltip}"
+                                                                                    id="soc4" autoSubmit="true">
+                                                                    <f:selectItems value="#{bindings.DivisionId.items}"
+                                                                                   id="si4"/>
+                                                                    <f:validator binding="#{bindings.DivisionId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                                <af:selectOneChoice value="#{bindings.UserId.inputValue}"
+                                                                                    label="#{bindings.UserId.label}"
+                                                                                    required="#{bindings.UserId.hints.mandatory}"
+                                                                                    shortDesc="#{bindings.UserId.hints.tooltip}"
+                                                                                    id="soc5">
+                                                                    <f:selectItems value="#{bindings.UserId.items}"
+                                                                                   id="si5"/>
+                                                                    <f:validator binding="#{bindings.UserId.validator}"/>
+                                                                </af:selectOneChoice>
+                                                            </af:panelGroupLayout>
+                                                        </af:panelLabelAndMessage>
+                                                        <af:selectOneChoice value="#{bindings.ActivitiesId.inputValue}"
+                                                                            label="#{bindings.ActivitiesId.label}"
+                                                                            required="#{bindings.ActivitiesId.hints.mandatory}"
+                                                                            shortDesc="#{bindings.ActivitiesId.hints.tooltip}"
+                                                                            id="soc8" labelStyle="font-weight: bold;">
+                                                            <f:selectItems value="#{bindings.ActivitiesId.items}"
+                                                                           id="si8"/>
+                                                            <f:validator binding="#{bindings.ActivitiesId.validator}"/>
+                                                        </af:selectOneChoice>
+                                                        <af:inputText value="#{bindings.Comments.inputValue}"
+                                                                      label="#{bindings.Comments.hints.label}"
+                                                                      required="#{bindings.Comments.hints.mandatory}"
+                                                                      columns="#{bindings.Comments.hints.displayWidth}"
+                                                                      maximumLength="#{bindings.Comments.hints.precision}"
+                                                                      shortDesc="#{bindings.Comments.hints.tooltip}"
+                                                                      id="it6" rows="4" labelStyle="font-weight: bold;">
+                                                            <f:validator binding="#{bindings.Comments.validator}"/>
+                                                        </af:inputText>
+                                                        <af:spacer width="10" height="10" id="s1"/>
+                                                    </af:panelFormLayout>
+                                                </af:showDetailItem>
+                                                <af:showDetailItem text="Затраты" id="sdi3" stretchChildren="first"
+                                                                   partialTriggers="id2"
+                                                                   rendered="#{bindings.Dat.inputValue==null ? false : true}">
+                                                    <af:panelBox text="Административные затраты" id="pb2" type="flow">
+                                                        <f:facet name="toolbar">
+                                                            <af:toolbar id="t5">
+                                                                <af:button actionListener="#{bindings.CreateInsert1.execute}"
+                                                                           text="Добавить"
+                                                                           disabled="#{!bindings.CreateInsert1.enabled}"
+                                                                           id="b1" icon="/img/Symbol_Add.png"/>
+                                                            </af:toolbar>
+                                                        </f:facet>
+                                                        <af:table value="#{bindings.OtherZatratyTabPartZatratyView2.collectionModel}"
+                                                                  var="row"
+                                                                  rows="#{bindings.OtherZatratyTabPartZatratyView2.rangeSize}"
+                                                                  emptyText="#{bindings.OtherZatratyTabPartZatratyView2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                                  rowBandingInterval="0"
+                                                                  selectedRowKeys="#{bindings.OtherZatratyTabPartZatratyView2.collectionModel.selectedRow}"
+                                                                  selectionListener="#{bindings.OtherZatratyTabPartZatratyView2.collectionModel.makeCurrent}"
+                                                                  rowSelection="single"
+                                                                  fetchSize="#{bindings.OtherZatratyTabPartZatratyView2.rangeSize}"
+                                                                  id="t4" scrollPolicy="page" partialTriggers="::b1"
+                                                                  editingMode="clickToEdit">
+                                                            <af:column id="c16">
+                                                                <af:toolbar id="t6">
+                                                                    <af:button id="b5"
+                                                                               icon="/img/edit-16.gif"/>
+                                                                </af:toolbar>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.label}"
+                                                                       id="c10" visible="false">
+                                                                <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                                              label="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.label}"
+                                                                              required="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.mandatory}"
+                                                                              columns="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.displayWidth}"
+                                                                              maximumLength="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.precision}"
+                                                                              shortDesc="#{bindings.OtherZatratyTabPartZatratyView2.hints.Id.tooltip}"
+                                                                              id="it7">
+                                                                    <f:validator binding="#{row.bindings.Id.validator}"/>
+                                                                </af:inputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.label}"
+                                                                       id="c11" visible="false">
+                                                                <af:inputText value="#{row.bindings.OthId.inputValue}"
+                                                                              label="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.label}"
+                                                                              required="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.mandatory}"
+                                                                              columns="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.displayWidth}"
+                                                                              maximumLength="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.precision}"
+                                                                              shortDesc="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthId.tooltip}"
+                                                                              id="it8">
+                                                                    <f:validator binding="#{row.bindings.OthId.validator}"/>
+                                                                </af:inputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.label}"
+                                                                       id="c12" visible="false">
+                                                                <af:inputListOfValues id="zatrIdId"
+                                                                                      popupTitle="Search and Select: #{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.label}"
+                                                                                      value="#{row.bindings.ZatrId.inputValue}"
+                                                                                      model="#{row.bindings.ZatrId.listOfValuesModel}"
+                                                                                      required="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.mandatory}"
+                                                                                      columns="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.displayWidth}"
+                                                                                      shortDesc="#{bindings.OtherZatratyTabPartZatratyView2.hints.ZatrId.tooltip}">
+                                                                    <f:validator binding="#{row.bindings.ZatrId.validator}"/>
+                                                                </af:inputListOfValues>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.Zatrname.label}"
+                                                                       id="c13">
+                                                                <af:inputListOfValues id="zatrnameId"
+                                                                                      popupTitle="Search and Select: #{bindings.OtherZatratyTabPartZatratyView2.hints.Zatrname.label}"
+                                                                                      value="#{row.bindings.Zatrname.inputValue}"
+                                                                                      model="#{row.bindings.Zatrname.listOfValuesModel}"
+                                                                                      required="#{bindings.OtherZatratyTabPartZatratyView2.hints.Zatrname.mandatory}"
+                                                                                      columns="#{bindings.OtherZatratyTabPartZatratyView2.hints.Zatrname.displayWidth}"
+                                                                                      shortDesc="#{bindings.OtherZatratyTabPartZatratyView2.hints.Zatrname.tooltip}">
+                                                                    <f:validator binding="#{row.bindings.Zatrname.validator}"/>
+                                                                </af:inputListOfValues>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.label}"
+                                                                       id="c14">
+                                                                <af:inputText value="#{row.bindings.Summa.inputValue}"
+                                                                              label="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.label}"
+                                                                              required="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.mandatory}"
+                                                                              columns="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.displayWidth}"
+                                                                              maximumLength="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.precision}"
+                                                                              shortDesc="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.tooltip}"
+                                                                              id="it9">
+                                                                    <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.OtherZatratyTabPartZatratyView2.hints.Summa.format}"/>
+                                                                </af:inputText>
+                                                            </af:column>
+                                                            <af:column headerText="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthtpEditable.label}"
+                                                                       id="c15">
+                                                                <af:inputText value="#{row.bindings.OthtpEditable.inputValue}"
+                                                                              label="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthtpEditable.label}"
+                                                                              required="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthtpEditable.mandatory}"
+                                                                              columns="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthtpEditable.displayWidth}"
+                                                                              maximumLength="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthtpEditable.precision}"
+                                                                              shortDesc="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthtpEditable.tooltip}"
+                                                                              id="it10">
+                                                                    <f:validator binding="#{row.bindings.OthtpEditable.validator}"/>
+                                                                    <af:convertNumber groupingUsed="false"
+                                                                                      pattern="#{bindings.OtherZatratyTabPartZatratyView2.hints.OthtpEditable.format}"/>
+                                                                </af:inputText>
+                                                            </af:column>
+                                                        </af:table>
+                                                    </af:panelBox>
+                                                </af:showDetailItem>
+                                            </af:panelAccordion>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pEntry"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d2" title="Проводки">
+                                            <f:facet name="buttonBar"/>
+                                            <af:table value="#{bindings.VwOtherMoves2.collectionModel}" var="row"
+                                                      rows="#{bindings.VwOtherMoves2.rangeSize}"
+                                                      emptyText="#{bindings.VwOtherMoves2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.VwOtherMoves2.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.VwOtherMoves2.collectionModel.makeCurrent}"
+                                                      rowSelection="single"
+                                                      fetchSize="#{bindings.VwOtherMoves2.rangeSize}" id="t7">
+                                                <af:column headerText="#{bindings.VwOtherMoves2.hints.RegistratorId.label}"
+                                                           id="c19" visible="false">
+                                                    <af:outputText value="#{row.RegistratorId}"
+                                                                   shortDesc="#{bindings.VwOtherMoves2.hints.RegistratorId.tooltip}"
+                                                                   id="ot1"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOtherMoves2.hints.Deb.label}"
+                                                           id="c20" inlineStyle="font-weight:bold;">
+                                                    <af:outputText value="#{row.Deb}"
+                                                                   shortDesc="#{bindings.VwOtherMoves2.hints.Deb.tooltip}"
+                                                                   id="ot2"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOtherMoves2.hints.SumDeb.label}"
+                                                           id="c21"
+                                                           inlineStyle="#{row.SumDeb &lt; 0 ? 'color: Red' : 'color: Black'}">
+                                                    <af:outputText value="#{row.SumDeb}"
+                                                                   shortDesc="#{bindings.VwOtherMoves2.hints.SumDeb.tooltip}"
+                                                                   id="ot3">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.VwOtherMoves2.hints.SumDeb.format}"/>
+                                                    </af:outputText>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOtherMoves2.hints.Kred.label}"
+                                                           id="c22" inlineStyle="font-weight:bold;">
+                                                    <af:outputText value="#{row.Kred}"
+                                                                   shortDesc="#{bindings.VwOtherMoves2.hints.Kred.tooltip}"
+                                                                   id="ot4"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOtherMoves2.hints.SumKred.label}"
+                                                           id="c23"
+                                                           inlineStyle="#{row.SumKred &lt; 0 ? 'color: Red' : 'color: Black'}">
+                                                    <af:outputText value="#{row.SumKred}"
+                                                                   shortDesc="#{bindings.VwOtherMoves2.hints.SumKred.tooltip}"
+                                                                   id="ot5">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.VwOtherMoves2.hints.SumKred.format}"/>
+                                                    </af:outputText>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOtherMoves2.hints.Subconto1Deb.label}"
+                                                           id="c24">
+                                                    <af:outputText value="#{row.Subconto1Deb}"
+                                                                   shortDesc="#{bindings.VwOtherMoves2.hints.Subconto1Deb.tooltip}"
+                                                                   id="ot6"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOtherMoves2.hints.Subconto1Kred.label}"
+                                                           id="c25">
+                                                    <af:outputText value="#{row.Subconto1Kred}"
+                                                                   shortDesc="#{bindings.VwOtherMoves2.hints.Subconto1Kred.tooltip}"
+                                                                   id="ot7"/>
+                                                </af:column>
+                                            </af:table>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d3" closeIconVisible="false" title="Внимание!"
+                                                   dialogListener="#{other.onDeleteDialog}">
+                                            <f:facet name="buttonBar"/>
+                                            <af:outputText value="#{other.del_title}" id="ot10"
+                                                           inlineStyle="#{other.del_style}"/>
+                                        </af:dialog>
+                                    </af:popup>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="start">
+                                <af:panelDrawer id="pd1" position="left" height="60%" width="60%">
+                                    <af:showDetailItem text="Затраты" id="sdi1" icon="/img/search.png">
+                                        <af:panelGroupLayout layout="vertical" id="pgl2">
+                                            <af:panelHeader text="Административные затраты" id="ph1">
+                                                <af:query id="qryId1" headerText="Фильтр" disclosed="true"
+                                                          value="#{bindings.OtherZatratyDateQuery.queryDescriptor}"
+                                                          model="#{bindings.OtherZatratyDateQuery.queryModel}"
+                                                          queryListener="#{bindings.OtherZatratyDateQuery.processQuery}"
+                                                          queryOperationListener="#{bindings.OtherZatratyDateQuery.processQueryOperation}"
+                                                          type="flow" resultComponentId="::t1"/>
+                                            </af:panelHeader>
+                                        </af:panelGroupLayout>
+                                    </af:showDetailItem>
+                                </af:panelDrawer>
+                            </f:facet>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

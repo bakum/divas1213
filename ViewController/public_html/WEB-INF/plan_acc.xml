@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="plan_acc">
+    <default-activity>plan</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>plan_acc</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.PlanAccBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="plan">
+      <page>/plan.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

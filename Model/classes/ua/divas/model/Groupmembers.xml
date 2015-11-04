@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Groupmembers"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="GROUPMEMBERS"
+  AliasName="Groupmembers"
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.GroupmembersImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GROUPMEMBERS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Groupmembers.Id_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Groupmembers.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="GName"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="G_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GROUPMEMBERS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Groupmembers.GName_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Groupmembers.GName_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="GMember"
+    IsNotNull="true"
+    Precision="30"
+    ColumnName="G_MEMBER"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GROUPMEMBERS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Groupmembers.GMember_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Groupmembers.GMember_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Groups"
+    Association="ua.divas.model.GroupmembersFk2Assoc"
+    AssociationEnd="ua.divas.model.GroupmembersFk2Assoc.Groups"
+    AssociationOtherEnd="ua.divas.model.GroupmembersFk2Assoc.Groupmembers"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Users"
+    Association="ua.divas.model.GroupmembersFkUserAssoc"
+    AssociationEnd="ua.divas.model.GroupmembersFkUserAssoc.Users"
+    AssociationOtherEnd="ua.divas.model.GroupmembersFkUserAssoc.Groupmembers"
+    Type="ua.divas.model.UsersImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="GroupmembersPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="GROUPMEMBERS_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Groupmembers.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="GroupmembersFk2">
+    <DesignTime>
+      <Attr Name="_isCascadeDelete" Value="true"/>
+      <Attr Name="_referencedKey" Value="GROUPS_UK1"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="GROUPMEMBERS_FK2"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Groupmembers.GName"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_Groupmembers">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="USERS_UK1"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_GROUPMEMBERS"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Groupmembers.GMember"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

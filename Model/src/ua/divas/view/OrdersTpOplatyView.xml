@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTpOplatyView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+    ComponentClass="ua.divas.view.OrdersTpOplatyViewImpl"
+    RowClass="ua.divas.view.OrdersTpOplatyViewRowImpl">
+    <DesignTime>
+        <Attr Name="_isExpertMode" Value="true"/>
+        <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+        <Attr Name="_isCodegen" Value="true"/>
+    </DesignTime>
+    <ViewAccessor
+      Name="OrdersView1"
+      ViewObjectName="ua.divas.view.OrdersView"
+      RowLevelBinds="true"/>
+    <ViewAccessor
+      Name="UsersView1"
+      ViewObjectName="ua.divas.view.UsersView"
+      RowLevelBinds="true"/>
+    <ViewAccessor
+        Name="KontragentsView1"
+        ViewObjectName="ua.divas.view.KontragentsView"
+        RowLevelBinds="true">
+        <ViewCriteriaUsage
+            Name="KontragentsZamerCriteria"
+            FullName="ua.divas.view.KontragentsView.KontragentsZamerCriteria"/>
+    </ViewAccessor>
+    <ViewAccessor
+        Name="KassaSettingsView1"
+        ViewObjectName="ua.divas.view.KassaSettingsView"
+        RowLevelBinds="true">
+        <ViewCriteriaUsage
+            Name="KassaSettingsByUser"
+            FullName="ua.divas.view.KassaSettingsView.KassaSettingsByUser"/>
+    </ViewAccessor>
+    <ListBinding
+      Name="LOV_OrderId"
+      ListVOName="OrdersView1"
+      ListRangeSize="-1"
+      NullValueFlag="start"
+      NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+      MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="OrderId"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="Id"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="Num"/>
+            <Item Value="Dat"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <ListBinding
+      Name="LOV_UserId"
+      ListVOName="UsersView1"
+      ListRangeSize="-1"
+      NullValueFlag="start"
+      NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+      MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="UserId"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="Id"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="Login"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <ListBinding
+        Name="LOV_ZamerId"
+        ListVOName="KontragentsView1"
+        ListRangeSize="-1"
+        NullValueFlag="start"
+        NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+        MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="ZamerId"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="Id"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="Fullname"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <ListBinding
+        Name="LOV_KassaId"
+        ListVOName="KassaSettingsView1"
+        ListRangeSize="-1"
+        NullValueFlag="start"
+        NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+        MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="KassaId"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="KassaId"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="KassaName"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <SQLQuery><![CDATA[SELECT OrdersTpOplaty.ID, 
+       OrdersTpOplaty.ORDER_ID, 
+       OrdersTpOplaty.DAT, 
+       OrdersTpOplaty.SUM, 
+       OrdersTpOplaty.USER_ID, 
+       OrdersTpOplaty.COMMENTS,
+       (select 0 from dual) otpo_editable,
+       OrdersTpOplaty.ZAMER_ID,
+       OrdersTpOplaty.KASSA_ID
+FROM  ORDERS_TP_OPLATY OrdersTpOplaty]]></SQLQuery>
+    <EntityUsage
+      Name="OrdersTpOplaty"
+      Entity="ua.divas.model.OrdersTpOplaty"/>
+    <ViewAttribute
+      Name="Id"
+      PrecisionRule="true"
+      EntityAttrName="Id"
+      EntityUsage="OrdersTpOplaty"
+      AliasName="ID"/>
+    <ViewAttribute
+      Name="OrderId"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="OrderId"
+      EntityUsage="OrdersTpOplaty"
+      AliasName="ORDER_ID"
+      LOVName="LOV_OrderId">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                  Value="choice"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="Dat"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="Dat"
+      EntityUsage="OrdersTpOplaty"
+      AliasName="DAT">
+        <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="Sum1"
+      PrecisionRule="true"
+      IsNotNull="true"
+      EntityAttrName="Sum1"
+      EntityUsage="OrdersTpOplaty"
+      AliasName="SUM"/>
+    <ViewAttribute
+      Name="UserId"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="UserId"
+      EntityUsage="OrdersTpOplaty"
+      AliasName="USER_ID"
+      LOVName="LOV_UserId">
+        <TransientExpression><![CDATA[viewObject.getSessionUserId()]]></TransientExpression>
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                  Value="choice"/>
+                <LABEL
+                    ResId="ua.divas.view.OrdersTpOplatyView.UserId_LABEL"/>
+                <TOOLTIP
+                    ResId="ua.divas.view.OrdersTpOplatyView.UserId_TOOLTIP"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="Comments"
+      PrecisionRule="true"
+      EntityAttrName="Comments"
+      EntityUsage="OrdersTpOplaty"
+      AliasName="COMMENTS"/>
+    <ViewAttribute
+      Name="OtpoEditable"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Type="java.math.BigDecimal"
+      ColumnType="NUMBER"
+      AliasName="OTPO_EDITABLE"
+      Expression="OTPO_EDITABLE"
+      SQLType="NUMERIC"/>
+    <ViewAttribute
+        Name="ZamerId"
+        PrecisionRule="true"
+        EntityAttrName="ZamerId"
+        EntityUsage="OrdersTpOplaty"
+        AliasName="ZAMER_ID"
+        LOVName="LOV_ZamerId">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                    Value="choice"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="KassaId"
+        PrecisionRule="true"
+        EntityAttrName="KassaId"
+        EntityUsage="OrdersTpOplaty"
+        AliasName="KASSA_ID"
+        LOVName="LOV_KassaId">
+        <TransientExpression><![CDATA[viewObject.retrieveKassaId()]]></TransientExpression>
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                    Value="choice"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ResourceBundle>
+        <PropertiesBundle
+            PropertiesFile="ua.divas.model.ModelBundle"/>
+    </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-template id="TaskFlowTemplate">
+    <default-activity>Exception</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>TaskFlowTemplate</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.TaskFlowTemplateBean</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <exception-handler>Exception</exception-handler>
+    <method-call id="Exception">
+      <method>#{pageFlowScope.TaskFlowTemplate.handleException}</method>
+    </method-call>
+    <use-page-fragments/>
+  </task-flow-template>
+</adfc-config>
