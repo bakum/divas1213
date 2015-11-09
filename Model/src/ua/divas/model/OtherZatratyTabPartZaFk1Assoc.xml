@@ -4,7 +4,7 @@
 <Association
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="OtherZatratyTabPartZaFk1Assoc"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge">
   <DesignTime>
     <Attr Name="_isCodegen" Value="true"/>
@@ -14,8 +14,6 @@
     Cardinality="1"
     Source="true"
     Owner="ua.divas.model.OtherZatraty"
-    CascadeDelete="true"
-    DeleteContainee="true"
     LockLevel="NONE">
     <DesignTime>
       <Attr Name="_aggregation" Value="0"/>
@@ -31,8 +29,7 @@
   <AssociationEnd
     Name="OtherZatratyTabPartZatraty"
     Cardinality="-1"
-    Owner="ua.divas.model.OtherZatratyTabPartZatraty"
-    HasOwner="true">
+    Owner="ua.divas.model.OtherZatratyTabPartZatraty">
     <DesignTime>
       <Attr Name="_aggregation" Value="0"/>
       <Attr Name="_finderName" Value="OtherZatratyTabPartZatraty"/>

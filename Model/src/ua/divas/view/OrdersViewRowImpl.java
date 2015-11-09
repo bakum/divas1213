@@ -82,6 +82,7 @@ public class OrdersViewRowImpl extends ViewRowImpl {
         TotalSummUslugiAdd,
         TotalSumm,
         KoefOpl,
+        Autocalc,
         OrdersTpUslugiView,
         OrdersTpOplatyView,
         OrdersTpRashodyView,
@@ -169,6 +170,7 @@ public class OrdersViewRowImpl extends ViewRowImpl {
     public static final int TOTALSUMMUSLUGIADD = AttributesEnum.TotalSummUslugiAdd.index();
     public static final int TOTALSUMM = AttributesEnum.TotalSumm.index();
     public static final int KOEFOPL = AttributesEnum.KoefOpl.index();
+    public static final int AUTOCALC = AttributesEnum.Autocalc.index();
     public static final int ORDERSTPUSLUGIVIEW = AttributesEnum.OrdersTpUslugiView.index();
     public static final int ORDERSTPOPLATYVIEW = AttributesEnum.OrdersTpOplatyView.index();
     public static final int ORDERSTPRASHODYVIEW = AttributesEnum.OrdersTpRashodyView.index();
@@ -560,6 +562,22 @@ public class OrdersViewRowImpl extends ViewRowImpl {
      */
     public Number getKoefOpl() {
         return (Number) getAttributeInternal(KOEFOPL);
+    }
+
+    /**
+     * Gets the attribute value for AUTOCALC using the alias name Autocalc.
+     * @return the AUTOCALC
+     */
+    public Integer getAutocalc() {
+        return (Integer) getAttributeInternal(AUTOCALC);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for AUTOCALC using the alias name Autocalc.
+     * @param value value to set the AUTOCALC
+     */
+    public void setAutocalc(Integer value) {
+        setAttributeInternal(AUTOCALC, value);
     }
 
     /**

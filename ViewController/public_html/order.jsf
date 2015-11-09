@@ -104,6 +104,12 @@
                                                         </af:outputText>
                                                     </af:panelLabelAndMessage>
                                                 </af:group>
+                                                <af:selectBooleanCheckbox value="#{bindings.Autocalc.inputValue}"
+                                                                          label="#{bindings.Autocalc.label}"
+                                                                          shortDesc="#{bindings.Autocalc.hints.tooltip}"
+                                                                          id="sbc5"
+                                                                          readOnly="#{bindings.OEditable.inputValue == 1 ? false : true}"
+                                                                          required="#{bindings.Autocalc.hints.mandatory}"/>
                                             </af:panelGroupLayout>
                                         </af:panelGroupLayout>
                                     </af:panelLabelAndMessage>

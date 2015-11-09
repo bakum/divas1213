@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="OrdersView"
-  Version="12.1.2.66.68"
+    Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -12,8 +12,7 @@
   RowClass="ua.divas.view.OrdersViewRowImpl"
   ComponentClass="ua.divas.view.OrdersViewImpl"
   ComponentInterface="ua.divas.view.common.OrdersView"
-  ClientProxyName="ua.divas.view.client.OrdersViewClient"
-    OrderBy="DAT DESC">
+  ClientProxyName="ua.divas.view.client.OrdersViewClient">
     <DesignTime>
         <Attr Name="_isExpertMode" Value="true"/>
         <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
@@ -27,7 +26,8 @@
       Name="u_name"
       Kind="where"
       Type="java.lang.String">
-        <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+        <TransientExpression
+            Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
         <Properties>
             <SchemaBasedProperties>
                 <DISPLAYHINT
@@ -470,7 +470,8 @@
     Orders.SUMM_PLAN SUMM_PLAN,
     'Заказ' ObjName,
     UTILITY.enable_edit(Orders.ID,'orders') enbl,
-    (select kontrag_id from user_settings where user_id = Orders.USER_ID) Manager_ID
+    (select kontrag_id from user_settings where user_id = Orders.USER_ID) Manager_ID,
+    Orders.AUTOCALC
 FROM 
     ORDERS Orders 
 WHERE 
@@ -943,8 +944,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       AliasName="VIEW_ATTR"
       SQLType="NUMERIC"
       IsQueriable="false">
-        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <TransientExpression><![CDATA[OrdersTpUslugiView.sum("Summ != null ? Summ : 0")]]></TransientExpression>
+        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <Properties>
             <SchemaBasedProperties>
                 <TOOLTIP
@@ -965,8 +966,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       AliasName="VIEW_ATTR"
       SQLType="NUMERIC"
       IsQueriable="false">
-        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <TransientExpression><![CDATA[OrdersTpUslugiView.count("Id != null ? Id : 0")]]></TransientExpression>
+        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <Properties>
             <SchemaBasedProperties>
                 <LABEL
@@ -987,8 +988,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       AliasName="VIEW_ATTR"
       SQLType="NUMERIC"
       IsQueriable="false">
-        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <TransientExpression><![CDATA[OrdersTpOplatyView.sum("Sum1 != null ? Sum1 : 0")]]></TransientExpression>
+        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <Properties>
             <SchemaBasedProperties>
                 <LABEL
@@ -1009,8 +1010,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       AliasName="VIEW_ATTR"
       SQLType="NUMERIC"
       IsQueriable="false">
-        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <TransientExpression><![CDATA[OrdersTpUslugiView.sum("PriceAdd != null ? PriceAdd : 0")]]></TransientExpression>
+        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <Properties>
             <SchemaBasedProperties>
                 <LABEL
@@ -1031,8 +1032,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       AliasName="VIEW_ATTR"
       SQLType="NUMERIC"
       IsQueriable="false">
-        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <TransientExpression><![CDATA[(TotalSumUslugi != null ? TotalSumUslugi : 0)+(TotalSummUslugiAdd != null ? TotalSummUslugiAdd : 0)]]></TransientExpression>
+        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <Properties>
             <SchemaBasedProperties>
                 <TOOLTIP
@@ -1059,8 +1060,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
         AliasName="VIEW_ATTR"
         SQLType="NUMERIC"
         IsQueriable="false">
+        <TransientExpression><![CDATA[(TotalSumm == null ? 0 : TotalSumm == 0 ? 0 : TotalSumOplaty == null ? 0 : TotalSumOplaty*100/TotalSumm)]]></TransientExpression>
         <RecalcCondition><![CDATA[true]]></RecalcCondition>
-        <TransientExpression><![CDATA[(TotalSumm == null ? 0 : TotalSumOplaty == null ? 0 : TotalSumOplaty*100/TotalSumm)]]></TransientExpression>
         <Properties>
             <SchemaBasedProperties>
                 <LABEL
@@ -1070,6 +1071,14 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>
+    <ViewAttribute
+        Name="Autocalc"
+        IsNotNull="true"
+        PrecisionRule="true"
+        EntityAttrName="Autocalc"
+        EntityUsage="Orders"
+        AliasName="AUTOCALC"
+        IsQueriable="false"/>
     <ViewCriteria
       Name="OrdersViewCriteria"
       ViewObjectName="ua.divas.view.OrdersView"
@@ -1105,7 +1114,6 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
               Operator="STARTSWITH"
               Conjunction="AND"
               Value=":Kname"
-              GenerateIsNullClauseForBindVars="false"
               IsBindVarValue="true"
               Required="Optional"/>
         </ViewCriteriaRow>

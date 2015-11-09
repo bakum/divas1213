@@ -418,5 +418,14 @@
     </attributeValues>
     <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_DivisionDest" id="DivisionDest"
           DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <button IterBinding="OrdersView1Iterator" id="Autocalc" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Autocalc"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
   </bindings>
 </pageDefinition>

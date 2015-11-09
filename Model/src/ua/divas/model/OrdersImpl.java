@@ -68,6 +68,7 @@ public class OrdersImpl extends DivasEntity {
         AgentId,
         DatCompleteFact,
         DivisionDest,
+        Autocalc,
         Currency,
         Divisions,
         Firms,
@@ -131,6 +132,7 @@ public class OrdersImpl extends DivasEntity {
     public static final int AGENTID = AttributesEnum.AgentId.index();
     public static final int DATCOMPLETEFACT = AttributesEnum.DatCompleteFact.index();
     public static final int DIVISIONDEST = AttributesEnum.DivisionDest.index();
+    public static final int AUTOCALC = AttributesEnum.Autocalc.index();
     public static final int CURRENCY = AttributesEnum.Currency.index();
     public static final int DIVISIONS = AttributesEnum.Divisions.index();
     public static final int FIRMS = AttributesEnum.Firms.index();
@@ -543,6 +545,22 @@ public class OrdersImpl extends DivasEntity {
      */
     public void setDivisionDest(String value) {
         setAttributeInternal(DIVISIONDEST, value);
+    }
+
+    /**
+     * Gets the attribute value for Autocalc, using the alias name Autocalc.
+     * @return the value of Autocalc
+     */
+    public Integer getAutocalc() {
+        return (Integer) getAttributeInternal(AUTOCALC);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for Autocalc.
+     * @param value value to set the Autocalc
+     */
+    public void setAutocalc(Integer value) {
+        setAttributeInternal(AUTOCALC, value);
     }
 
     /**

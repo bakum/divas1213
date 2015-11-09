@@ -4,7 +4,7 @@
 <Association
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="OrdersTpRashodyFk1Assoc"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge">
   <DesignTime>
     <Attr Name="_isCodegen" Value="true"/>
@@ -14,7 +14,7 @@
     Cardinality="1"
     Source="true"
     Owner="ua.divas.model.Orders"
-    CascadeDelete="true">
+    LockLevel="NONE">
     <DesignTime>
       <Attr Name="_aggregation" Value="0"/>
       <Attr Name="_finderName" Value="Orders"/>
@@ -29,8 +29,7 @@
   <AssociationEnd
     Name="OrdersTpRashody"
     Cardinality="-1"
-    Owner="ua.divas.model.OrdersTpRashody"
-    HasOwner="true">
+    Owner="ua.divas.model.OrdersTpRashody">
     <DesignTime>
       <Attr Name="_aggregation" Value="0"/>
       <Attr Name="_finderName" Value="OrdersTpRashody"/>

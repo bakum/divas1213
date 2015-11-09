@@ -48,7 +48,7 @@
                                                 <af:button id="b5" icon="/img/view1.png" shortDesc="Просмотреть"
                                                            disabled="#{bindings.Commit.enabled}"
                                                            returnListener="#{zamer.onReturnValue}" useWindow="true"
-                                                           windowHeight="520" windowWidth="800" action="viewOrder"/>
+                                                           windowHeight="540" windowWidth="800" action="viewOrder"/>
                                             </af:toolbar>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.OrderZamerView1.hints.Id.name}"

@@ -73,6 +73,7 @@ public class OrdersTpRashodyImpl extends DivasEntityNoDelete {
         }
     }
 
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int ORDERID = AttributesEnum.OrderId.index();
     public static final int DATRASH = AttributesEnum.DatRash.index();
@@ -98,6 +99,7 @@ public class OrdersTpRashodyImpl extends DivasEntityNoDelete {
     public static synchronized EntityDefImpl getDefinitionObject() {
         return EntityDefImpl.findDefObject("ua.divas.model.OrdersTpRashody");
     }
+
 
     /**
      * Gets the attribute value for Id, using the alias name Id.

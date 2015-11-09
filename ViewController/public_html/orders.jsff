@@ -69,7 +69,7 @@
                                                         <af:button id="b1" icon="/img/edit-16.gif"
                                                                    disabled="#{bindings.Commit.enabled}"
                                                                    action="viewOrder" useWindow="true"
-                                                                   windowHeight="520" windowWidth="800"
+                                                                   windowHeight="540" windowWidth="800"
                                                                    returnListener="#{orders.onReturnValue}"/>
                                                         <af:button id="b18" icon="/img/bell.png"
                                                                    disabled="#{bindings.Commit.enabled}">
