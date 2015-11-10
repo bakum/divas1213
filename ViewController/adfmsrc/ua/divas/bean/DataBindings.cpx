@@ -136,6 +136,7 @@
     <page id="ua_divas_bean_createBuerPageDef" path="ua.divas.bean.pageDefs.createBuerPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
+    <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>
     <dc id="OnlineUserData" path="ua.divas.bean.OnlineUserData"/>
     <dc id="DataPackage" path="ua.divas.bean.DataPackage"/>
     <BC4JDataControl id="AppModuleDataControl" Package="ua.divas.module"

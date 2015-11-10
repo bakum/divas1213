@@ -225,12 +225,12 @@ public class VwSupplierMovesRowImpl extends ViewRowImpl {
      * @return the MarkForPay
      */
     public Boolean getMarkForPay() {
-        Integer mrk = this.getMark();
+         Integer mrk = this.getMark();
         if (mrk == 0) {
             return false;
         } else {
             return true;
-        }
+        } 
         //return (Boolean) getAttributeInternal(MARKFORPAY);
     }
 
@@ -239,11 +239,11 @@ public class VwSupplierMovesRowImpl extends ViewRowImpl {
      * @param value value to set the  MarkForPay
      */
     public void setMarkForPay(Boolean value) {
-        if (value == true) {
+         if (value == true) {
             this.setMark(1);
         } else {
             this.setMark(0);
-        }
+        } 
         //setAttributeInternal(MARKFORPAY, value);
     }
 

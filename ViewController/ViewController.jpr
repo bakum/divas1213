@@ -143,6 +143,9 @@
                <value n="hasManifest" v="false"/>
             </hash>
             <value n="contextRoot" v="/divas"/>
+            <hash n="dependencies">
+               <list n="dependencyList"/>
+            </hash>
             <value n="enterpriseAppName" v="div_app_webapp"/>
             <hash n="fileGroups">
                <list n="groups">

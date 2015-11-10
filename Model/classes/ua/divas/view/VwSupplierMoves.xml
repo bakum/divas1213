@@ -332,7 +332,14 @@ ORDER BY PERIOD DESC]]></SQLQuery>
     AliasName="MARK"
     Expression="MARK"
     SQLType="INTEGER"
-    IsQueriable="false"/>
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="SumRko"
     IsUpdateable="false"

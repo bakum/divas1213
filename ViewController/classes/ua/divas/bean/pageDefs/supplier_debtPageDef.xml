@@ -11,6 +11,9 @@
       <variable Type="java.lang.String" Name="transferOfDebt_source" IsQueriable="false"/>
       <variable Type="java.lang.String" Name="transferOfDebt_dest" IsQueriable="false"/>
       <variable Type="java.math.BigDecimal" Name="transferOfDebt_Summa" IsQueriable="false"/>
+      <variable Name="SummAll" Type="java.math.BigDecimal"/>
+      <variable Type="java.math.BigDecimal" Name="getSummAll_Return" IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.getSummAll.result}"/>
     </variableIterator>
     <iterator Binds="VwKontragAllItems1" RangeSize="-1" DataControl="AppModuleDataControl"
               id="VwKontragAllItems1Iterator"/>
@@ -20,18 +23,23 @@
     <iterator id="VwSupplierMoves2Iterator" Binds="VwSupplierMoves2" DataControl="AppModuleDataControl" RangeSize="-1"/>
     <searchRegion Criteria="VwKontragActive" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="VwKontragAllItems1Iterator" id="VwKontragActiveQuery"/>
+    <iterator Binds="root" RangeSize="-1" DataControl="SupplierWallet" id="SupplierWalletIterator"/>
+    <accessorIterator MasterBinding="SupplierWalletIterator" Binds="supplierList" RangeSize="25"
+                      DataControl="SupplierWallet" BeanClass="ua.divas.bean.control.SupplierRecord"
+                      id="supplierListIterator"/>
+    <iterator Binds="KontragentsAll1" RangeSize="-1" DataControl="AppModuleDataControl" id="KontragentsAll1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="VwKontragAllItems1Iterator" id="VwKontragAllItems1">
       <nodeDefinition DefName="ua.divas.view.VwKontragAllItems" Name="VwKontragAllItems10">
         <AttrNames>
-          <Item Value="Id"/>
           <Item Value="Fullname"/>
           <Item Value="DebtSupplier"/>
           <Item Value="SumDebPko"/>
           <Item Value="SumDebRko"/>
           <Item Value="SumDebSumm"/>
           <Item Value="Mark"/>
+          <Item Value="Id"/>
         </AttrNames>
         <Accessors>
           <Item Value="VwSupplierMoves"/>
@@ -54,6 +62,7 @@
           <Item Value="SumSummPrihod"/>
           <Item Value="SumSummRashod"/>
           <Item Value="Mark"/>
+          <Item Value="Id"/>
         </AttrNames>
         <Accessors>
           <Item Value="RkoVOSuppl"/>
@@ -189,5 +198,57 @@
         <Item Value="Fullname"/>
       </AttrNames>
     </attributeValues>
+    <attributeValues IterBinding="variables" id="SummAll1">
+      <AttrNames>
+        <Item Value="SummAll"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="supplierListIterator" id="supplierList">
+      <nodeDefinition DefName="ua.divas.bean.control.SupplierRecord" Name="supplierList0">
+        <AttrNames>
+          <Item Value="id"/>
+          <Item Value="kontragId" Binds="kontragId"/>
+          <Item Value="orderId" Binds="orderId"/>
+          <Item Value="summa"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getSummAll" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getSummAll"
+                  IsViewObjectMethod="false" DataControl="SupplierWallet"
+                  InstanceName="data.SupplierWallet.dataProvider"
+                  ReturnName="data.SupplierWallet.methodResults.getSummAll_SupplierWallet_dataProvider_getSummAll_result"/>
+    <attributeValues IterBinding="variables" id="Return">
+      <AttrNames>
+        <Item Value="getSummAll_Return"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="clearSupplier" RequiresUpdateModel="true" Action="invokeMethod" MethodName="clearSupplier"
+                  IsViewObjectMethod="false" DataControl="SupplierWallet"
+                  InstanceName="data.SupplierWallet.dataProvider"/>
+    <list IterBinding="supplierListIterator" id="kontragId" DTSupportsMRU="true" SelectItemValueMode="ListObject"
+          StaticList="false" ListIter="KontragentsAll1Iterator">
+      <AttrNames>
+        <Item Value="kontragId"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="Id"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Fullname"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="supplierListIterator" id="orderId" DTSupportsMRU="true" SelectItemValueMode="ListObject"
+          StaticList="false" ListIter="VwSupplierMoves1Iterator">
+      <AttrNames>
+        <Item Value="orderId"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="RegistratorId"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="RegString"/>
+      </ListDisplayAttrNames>
+    </list>
+    <action IterBinding="supplierListIterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
   </bindings>
 </pageDefinition>

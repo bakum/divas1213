@@ -4,12 +4,21 @@
 <JboProject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="ViewController"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   SeparateXMLFiles="true"
   PackageName="ua.divas.bean">
   <DesignTime>
     <Attr Name="_jprName" Value="../../../../ViewController.jpr"/>
   </DesignTime>
+  <Containee
+    Name="control"
+    PackageName="ua.divas.bean.control"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_LocationURL" Value="../adfmsrc/"/>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
   <Containee
     Name="ro"
     PackageName="ua.divas.view.ro"
