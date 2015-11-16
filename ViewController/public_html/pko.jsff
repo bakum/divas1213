@@ -20,7 +20,7 @@
                                             <af:button text="Добавить" id="b1" action="addPko" useWindow="true"
                                                        windowHeight="500" windowWidth="550"
                                                        disabled="#{bindings.Commit.enabled}"
-                                                       returnListener="#{pko.onReturn}"/>
+                                                       returnListener="#{pko.onReturnNew}"/>
                                             <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
                                                        disabled="#{!bindings.Commit.enabled}" id="b3"/>
                                             <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"

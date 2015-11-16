@@ -3,7 +3,7 @@
                 Package="ua.divas.bean.pageDefs" SkipValidation="true" EnableTokenValidation="false">
   <parameters/>
   <executables>
-    <iterator Binds="OrdersView1" RangeSize="11" DataControl="AppModuleDataControl" id="OrdersView1Iterator"
+    <iterator Binds="OrdersView1" RangeSize="12" DataControl="AppModuleDataControl" id="OrdersView1Iterator"
               StateValidation="false">
       <sortCriteria>
         <sort attribute="Dat" ascending="false"/>
@@ -11,23 +11,9 @@
     </iterator>
     <searchRegion Binds="OrdersView1Iterator"
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="OrdersView1Query"/>
-    <iterator Binds="KassaVO1" RangeSize="-1" DataControl="AppModuleDataControl" id="KassaVO1Iterator"/>
-    <iterator Binds="KontragentsView1" RangeSize="25" DataControl="AppModuleDataControl" id="KontragentsView1Iterator"/>
-    <iterator Binds="ContactDetailsView2" RangeSize="25" DataControl="AppModuleDataControl"
-              id="ContactDetailsView2Iterator"/>
-    <iterator Binds="OrdersTpUslugiView2" RangeSize="10" DataControl="AppModuleDataControl"
-              id="OrdersTpUslugiView2Iterator"/>
-    <iterator Binds="NomenklaturaVO1" RangeSize="-1" DataControl="AppModuleDataControl" id="NomenklaturaVO1Iterator"/>
-    <iterator Binds="OrdersTpOplatyView1" RangeSize="25" DataControl="AppModuleDataControl"
-              id="OrdersTpOplatyView1Iterator"/>
     <searchRegion Criteria="OrdersViewCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="OrdersView1Iterator" id="OrdersViewCriteriaQuery"/>
-    <iterator Binds="OrdersTpRashodyView4" RangeSize="25" DataControl="AppModuleDataControl"
-              id="OrdersTpRashodyView4Iterator" StateValidation="false"/>
     <iterator Binds="VwOrdersMoves2" RangeSize="25" DataControl="AppModuleDataControl" id="VwOrdersMoves2Iterator"/>
-    <iterator Binds="ZatratyView1" RangeSize="25" DataControl="AppModuleDataControl" id="ZatratyView1Iterator"/>
-    <iterator Binds="OrdersTpNachisleniaView2" RangeSize="25" DataControl="AppModuleDataControl"
-              id="OrdersTpNachisleniaView2Iterator" StateValidation="false"/>
     <variableIterator id="variables">
       <variable Type="java.util.Date" Name="addNotification_dat" IsQueriable="false"/>
       <variable Type="java.lang.String" Name="addNotification_desc" IsQueriable="false"/>
@@ -72,7 +58,6 @@
         <Item Value="OEditable"/>
       </AttrNames>
     </attributeValues>
-    <listOfValues IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_KontragId" id="KontragId"/>
     <listOfValues IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_Kontragname" id="Kontragname"/>
     <attributeValues IterBinding="OrdersView1Iterator" id="Id">
       <AttrNames>
@@ -89,143 +74,27 @@
         <Item Value="Num"/>
       </AttrNames>
     </attributeValues>
-    <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId" DTSupportsMRU="false"
-          SelectItemValueMode="ListObject"/>
-    <list IterBinding="OrdersView1Iterator" StaticList="false" id="KassaId" DTSupportsMRU="false"
-          SelectItemValueMode="ListObject" ListIter="KassaVO1Iterator">
-      <AttrNames>
-        <Item Value="KassaId"/>
-      </AttrNames>
-      <ListAttrNames>
-        <Item Value="Id"/>
-      </ListAttrNames>
-      <ListDisplayAttrNames>
-        <Item Value="Fullname"/>
-      </ListDisplayAttrNames>
-    </list>
     <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
           DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
     <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId" DTSupportsMRU="false"
           SelectItemValueMode="ListObject"/>
-    <attributeValues IterBinding="OrdersView1Iterator" id="Kurs">
-      <AttrNames>
-        <Item Value="Kurs"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="OrdersView1Iterator" id="Kratnost">
-      <AttrNames>
-        <Item Value="Kratnost"/>
-      </AttrNames>
-    </attributeValues>
     <attributeValues IterBinding="OrdersView1Iterator" id="Discription">
       <AttrNames>
         <Item Value="Discription"/>
       </AttrNames>
     </attributeValues>
-    <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_FirmId" id="FirmId" DTSupportsMRU="false"
-          SelectItemValueMode="ListObject"/>
-    <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
-          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
     <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_StatusId" id="StatusId" DTSupportsMRU="false"
           SelectItemValueMode="ListObject"/>
     <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
     <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
-    <tree IterBinding="KassaVO1Iterator" id="KassaVO1">
-      <nodeDefinition DefName="ua.divas.view.KassaVO" Name="KassaVO10">
-        <AttrNames>
-          <Item Value="CurrId"/>
-          <Item Value="Deleted"/>
-          <Item Value="DivisionId"/>
-          <Item Value="Fullname"/>
-          <Item Value="Id"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <action IterBinding="KassaVO1Iterator" id="ExecuteWithParams" InstanceName="AppModuleDataControl.KassaVO1"
-            DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="executeWithParams">
-      <NamedData NDName="currency" NDValue="#{bindings.CurrId.inputValue}" NDType="java.lang.String"/>
-      <NamedData NDName="division" NDValue="#{bindings.DivisionId.inputValue}" NDType="java.lang.String"/>
-    </action>
-    <action IterBinding="OrdersView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
-    <attributeValues IterBinding="KontragentsView1Iterator" id="Id1">
-      <AttrNames>
-        <Item Value="Id"/>
-      </AttrNames>
-    </attributeValues>
-    <button IterBinding="KontragentsView1Iterator" id="IsGroup" DTSupportsMRU="false" StaticList="true">
-      <AttrNames>
-        <Item Value="IsGroup"/>
-      </AttrNames>
-      <ValueList>
-        <Item Value="1"/>
-        <Item Value="0"/>
-      </ValueList>
-    </button>
-    <listOfValues IterBinding="KontragentsView1Iterator" StaticList="false" Uses="LOV_ParentId" id="ParentId"/>
-    <attributeValues IterBinding="KontragentsView1Iterator" id="Fullname">
-      <AttrNames>
-        <Item Value="Fullname"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="KontragentsView1Iterator" id="Namefull">
-      <AttrNames>
-        <Item Value="Namefull"/>
-      </AttrNames>
-    </attributeValues>
     <methodAction id="findKontragentById" RequiresUpdateModel="true" Action="invokeMethod"
                   MethodName="findKontragentById" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
                   InstanceName="data.AppModuleDataControl.KontragentsView1">
       <NamedData NDName="Id" NDValue="#{bindings.KontragId.inputValue}" NDType="java.lang.String"/>
     </methodAction>
-    <button IterBinding="KontragentsView1Iterator" id="UrFiz" DTSupportsMRU="false" StaticList="true">
-      <AttrNames>
-        <Item Value="UrFiz"/>
-      </AttrNames>
-      <ValueList>
-        <Item Value="1"/>
-        <Item Value="0"/>
-      </ValueList>
-    </button>
-    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Adress">
-      <AttrNames>
-        <Item Value="Adress"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Phone">
-      <AttrNames>
-        <Item Value="Phone"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Email">
-      <AttrNames>
-        <Item Value="Email"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Editable">
-      <AttrNames>
-        <Item Value="Editable"/>
-      </AttrNames>
-    </attributeValues>
     <methodAction id="removeAllViewCriteria" RequiresUpdateModel="true" Action="invokeMethod"
                   MethodName="removeAllViewCriteria" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
                   InstanceName="data.AppModuleDataControl.KontragentsView1"/>
-    <action IterBinding="KontragentsView1Iterator" id="CreateInsert1"
-            InstanceName="AppModuleDataControl.KontragentsView1" DataControl="AppModuleDataControl"
-            RequiresUpdateModel="true" Action="createInsertRow"/>
-    <action IterBinding="ContactDetailsView2Iterator" id="CreateInsert2" RequiresUpdateModel="true"
-            Action="createInsertRow"/>
-    <attributeValues IterBinding="KontragentsView1Iterator" id="Editable1">
-      <AttrNames>
-        <Item Value="Editable"/>
-      </AttrNames>
-    </attributeValues>
-    <listOfValues IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_Zamername" id="Zamername"/>
-    <listOfValues IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_ZamerId" id="ZamerId"/>
-    <attributeValues IterBinding="KontragentsView1Iterator" id="IsBuyer">
-      <AttrNames>
-        <Item Value="IsBuyer"/>
-      </AttrNames>
-    </attributeValues>
     <methodAction id="retrieveCustomersFirstParentId" RequiresUpdateModel="true" Action="invokeMethod"
                   MethodName="retrieveCustomersFirstParentId" IsViewObjectMethod="true"
                   DataControl="AppModuleDataControl" InstanceName="data.AppModuleDataControl.KontragentsView1"
@@ -234,34 +103,6 @@
                   MethodName="retrieveZamerFirstParentId" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
                   InstanceName="data.AppModuleDataControl.KontragentsView1"
                   ReturnName="data.AppModuleDataControl.methodResults.retrieveZamerFirstParentId_AppModuleDataControl_KontragentsView1_retrieveZamerFirstParentId_result"/>
-    <tree IterBinding="OrdersTpUslugiView2Iterator" id="OrdersTpUslugiView2">
-      <nodeDefinition DefName="ua.divas.view.OrdersTpUslugiView" Name="OrdersTpUslugiView20">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="OrderId"/>
-          <Item Value="NomId"/>
-          <Item Value="Quantity"/>
-          <Item Value="MeasureId"/>
-          <Item Value="Price"/>
-          <Item Value="Summ"/>
-          <Item Value="DatComplete"/>
-          <Item Value="SotrId"/>
-          <Item Value="Sotrname"/>
-          <Item Value="DatToPay"/>
-          <Item Value="GroupId"/>
-          <Item Value="OtpuEditable"/>
-          <Item Value="PriceAdd"/>
-          <Item Value="AddWork"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <action IterBinding="OrdersTpUslugiView2Iterator" id="CreateInsert3" RequiresUpdateModel="true"
-            Action="createInsertRow"/>
-    <attributeValues IterBinding="OrdersTpUslugiView2Iterator" id="OtpuEditable">
-      <AttrNames>
-        <Item Value="OtpuEditable"/>
-      </AttrNames>
-    </attributeValues>
     <methodAction id="retrieveMeasure" RequiresUpdateModel="true" Action="invokeMethod" MethodName="retrieveMeasure"
                   IsViewObjectMethod="true" DataControl="AppModuleDataControl"
                   InstanceName="data.AppModuleDataControl.OrdersTpUslugiView2"
@@ -281,70 +122,15 @@
       <NamedData NDName="p" NDType="java.math.BigDecimal"/>
       <NamedData NDName="q" NDType="java.math.BigDecimal"/>
     </methodAction>
-    <tree IterBinding="OrdersTpOplatyView1Iterator" id="OrdersTpOplatyView1">
-      <nodeDefinition DefName="ua.divas.view.OrdersTpOplatyView" Name="OrdersTpOplatyView10">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="OrderId"/>
-          <Item Value="Dat"/>
-          <Item Value="Sum1"/>
-          <Item Value="UserId"/>
-          <Item Value="Comments"/>
-          <Item Value="OtpoEditable"/>
-          <Item Value="ZamerId"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <action IterBinding="OrdersTpOplatyView1Iterator" id="CreateInsert4" RequiresUpdateModel="true"
-            Action="createInsertRow"/>
-    <attributeValues IterBinding="OrdersTpOplatyView1Iterator" id="OtpoEditable">
-      <AttrNames>
-        <Item Value="OtpoEditable"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="OrdersView1Iterator" id="DatComplete">
-      <AttrNames>
-        <Item Value="DatComplete"/>
-      </AttrNames>
-    </attributeValues>
     <attributeValues IterBinding="OrdersView1Iterator" id="DatZam">
       <AttrNames>
         <Item Value="DatZam"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="OrdersView1Iterator" id="SummPlan">
-      <AttrNames>
-        <Item Value="SummPlan"/>
-      </AttrNames>
-    </attributeValues>
-    <tree IterBinding="OrdersTpRashodyView4Iterator" id="OrdersTpRashodyView4">
-      <nodeDefinition DefName="ua.divas.view.OrdersTpRashodyView" Name="OrdersTpRashodyView40">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="OrderId"/>
-          <Item Value="DatRash"/>
-          <Item Value="KontrId"/>
-          <Item Value="Kontname"/>
-          <Item Value="Summ"/>
-          <Item Value="ZatratyId"/>
-          <Item Value="Zatrname"/>
-          <Item Value="OtprEditable"/>
-          <Item Value="Description"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <action IterBinding="OrdersTpRashodyView4Iterator" id="CreateInsert5" RequiresUpdateModel="true"
-            Action="createInsertRow"/>
-    <attributeValues IterBinding="OrdersTpRashodyView4Iterator" id="OtprEditable">
-      <AttrNames>
-        <Item Value="OtprEditable"/>
       </AttrNames>
     </attributeValues>
     <methodAction id="retrieveSupplierFirstParentId" RequiresUpdateModel="true" Action="invokeMethod"
                   MethodName="retrieveSupplierFirstParentId" IsViewObjectMethod="true"
                   DataControl="AppModuleDataControl" InstanceName="data.AppModuleDataControl.KontragentsView1"
                   ReturnName="data.AppModuleDataControl.methodResults.retrieveSupplierFirstParentId_AppModuleDataControl_KontragentsView1_retrieveSupplierFirstParentId_result"/>
-    <listOfValues Uses="LOV_Kontname" StaticList="false" IterBinding="OrdersTpRashodyView4Iterator" id="Kontname"/>
     <methodAction id="addEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addEntry"
                   IsViewObjectMethod="true" DataControl="AppModuleDataControl"
                   InstanceName="data.AppModuleDataControl.OrdersView1">
@@ -366,36 +152,6 @@
           <Item Value="Subconto1Deb"/>
           <Item Value="Subconto1Kred"/>
           <Item Value="Subconto2Kred"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <attributeValues IterBinding="ZatratyView1Iterator" id="Id2">
-      <AttrNames>
-        <Item Value="Id"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="ZatratyView1Iterator" id="Fullname1">
-      <AttrNames>
-        <Item Value="Fullname"/>
-      </AttrNames>
-    </attributeValues>
-    <action IterBinding="ZatratyView1Iterator" id="CreateInsert6" InstanceName="AppModuleDataControl.ZatratyView1"
-            DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
-    <action IterBinding="OrdersTpNachisleniaView2Iterator" id="CreateInsert7" RequiresUpdateModel="true"
-            Action="createInsertRow"/>
-    <tree IterBinding="OrdersTpNachisleniaView2Iterator" id="OrdersTpNachisleniaView2">
-      <nodeDefinition DefName="ua.divas.view.OrdersTpNachisleniaView" Name="OrdersTpNachisleniaView20">
-        <AttrNames>
-          <Item Value="CalcId"/>
-          <Item Value="DatNach"/>
-          <Item Value="Description"/>
-          <Item Value="Id"/>
-          <Item Value="KontrId"/>
-          <Item Value="Kontname"/>
-          <Item Value="OrderId"/>
-          <Item Value="Percent"/>
-          <Item Value="Summ"/>
-          <Item Value="OtpnEditable"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

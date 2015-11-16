@@ -118,7 +118,8 @@ public class ZamerOrderBean {
     }
     
     public void onReturnValue(ReturnEvent returnEvent) {
-        refresh();
+        //refresh();
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
     }
 
     public void setTable(RichTable table) {

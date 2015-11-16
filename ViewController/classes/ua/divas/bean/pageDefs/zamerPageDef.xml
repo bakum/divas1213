@@ -4,7 +4,7 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="OrderZamerView1" RangeSize="12" DataControl="AppModuleDataControl" id="OrderZamerView1Iterator">
+    <iterator Binds="OrderZamerView1" RangeSize="30" DataControl="AppModuleDataControl" id="OrderZamerView1Iterator">
       <sortCriteria>
         <sort attribute="Dat" ascending="false"/>
       </sortCriteria>

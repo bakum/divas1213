@@ -462,6 +462,11 @@
                 <name>ua.divas.model.Kontragents.UserId</name>
                 <actions>update</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
+                <actions>update</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -664,6 +669,11 @@
               <permission>
                 <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
                 <name>ua.divas.model.Orders.ZamerId</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
                 <actions>update</actions>
               </permission>
             </permissions>
@@ -993,6 +1003,11 @@
                 <name>ua.divas.model.Kontragents.UserId</name>
                 <actions>update</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
+                <actions>update</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1069,6 +1084,11 @@
                 <class>oracle.adf.share.security.authorization.EntityPermission</class>
                 <name>ua.divas.model.OrdersTpUslugi</name>
                 <actions>read</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
+                <actions>update</actions>
               </permission>
             </permissions>
           </grant>
@@ -1232,6 +1252,11 @@
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/newKontrag.xml#newKontrag</name>
                 <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
+                <actions>update</actions>
               </permission>
             </permissions>
           </grant>

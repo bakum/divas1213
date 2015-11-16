@@ -556,27 +556,6 @@
                                                                         <f:validator binding="#{bindings.Kontragname.validator}"/>
                                                                     </af:inputListOfValues>
                                                                 </af:panelGroupLayout>
-                                                                <af:panelGroupLayout id="pgl10" layout="horizontal">
-                                                                    <af:selectOneChoice value="#{bindings.CurrId.inputValue}"
-                                                                                        label="#{bindings.CurrId.label}"
-                                                                                        required="#{bindings.CurrId.hints.mandatory}"
-                                                                                        shortDesc="#{bindings.CurrId.hints.tooltip}"
-                                                                                        readOnly="true" id="soc3">
-                                                                        <f:selectItems value="#{bindings.CurrId.items}"
-                                                                                       id="si3"/>
-                                                                        <f:validator binding="#{bindings.CurrId.validator}"/>
-                                                                    </af:selectOneChoice>
-                                                                    <af:spacer width="20" height="10" id="s2"/>
-                                                                    <af:selectOneChoice value="#{bindings.KassaId.inputValue}"
-                                                                                        label="#{bindings.KassaId.label}"
-                                                                                        required="#{bindings.KassaId.hints.mandatory}"
-                                                                                        shortDesc="#{bindings.KassaId.hints.tooltip}"
-                                                                                        readOnly="true" id="soc4">
-                                                                        <f:selectItems value="#{bindings.KassaId.items}"
-                                                                                       id="si4"/>
-                                                                        <f:validator binding="#{bindings.KassaId.validator}"/>
-                                                                    </af:selectOneChoice>
-                                                                </af:panelGroupLayout>
                                                                 <af:panelGroupLayout id="pgl14" layout="horizontal">
                                                                     <af:inputText value="#{bindings.Kurs.inputValue}"
                                                                                   label="#{bindings.Kurs.hints.label}"

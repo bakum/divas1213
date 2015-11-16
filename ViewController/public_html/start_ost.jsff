@@ -15,7 +15,7 @@
                                         <af:toolbar id="t2">
                                             <af:button text="Добавить" id="b1" action="newStart" useWindow="true"
                                                        windowHeight="500" windowWidth="750"
-                                                       returnListener="#{start_ost.onReturn}"
+                                                       returnListener="#{start_ost.onReturnNew}"
                                                        disabled="#{bindings.Commit.enabled}"/>
                                             <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
                                                        disabled="#{!bindings.Commit.enabled}" id="b5"/>

@@ -17,7 +17,7 @@
                                                        text="Добавить" disabled="#{!bindings.CreateInsert.enabled}"
                                                        id="bCreate" action="newOther" useWindow="true"
                                                        windowHeight="450" windowWidth="680"
-                                                       returnListener="#{other.onReturn}"/>
+                                                       returnListener="#{other.onReturnNew}"/>
                                             <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
                                                        disabled="#{!bindings.Commit.enabled}" id="b2"
                                                        action="#{other.commitChange}"/>

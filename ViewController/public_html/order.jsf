@@ -454,29 +454,6 @@
                                         </af:panelGroupLayout>
                                     </af:panelLabelAndMessage>
                                     <af:separator id="s2" visible="false"/>
-                                    <af:panelLabelAndMessage label="Валюта и курс" id="plam3" visible="false">
-                                        <af:panelGroupLayout id="pgl4" layout="horizontal">
-                                            <af:selectOneChoice value="#{bindings.CurrId.inputValue}"
-                                                                label="#{bindings.CurrId.label}"
-                                                                required="#{bindings.CurrId.hints.mandatory}"
-                                                                shortDesc="#{bindings.CurrId.hints.tooltip}" id="soc2"
-                                                                labelStyle="font-weight: bold;"
-                                                                readOnly="#{bindings.OEditable.inputValue == 1 ? false : true}"
-                                                                autoSubmit="true">
-                                                <f:selectItems value="#{bindings.CurrId.items}" id="si2"/>
-                                                <f:validator binding="#{bindings.CurrId.validator}"/>
-                                            </af:selectOneChoice>
-                                            <af:selectOneChoice value="#{bindings.KassaId.inputValue}"
-                                                                label="#{bindings.KassaId.label}"
-                                                                required="#{bindings.KassaId.hints.mandatory}"
-                                                                shortDesc="#{bindings.KassaId.hints.tooltip}" id="soc3"
-                                                                labelStyle="font-weight: bold;"
-                                                                readOnly="#{bindings.OEditable.inputValue == 1 ? false : true}">
-                                                <f:selectItems value="#{bindings.KassaId.items}" id="si3"/>
-                                                <f:validator binding="#{bindings.KassaId.validator}"/>
-                                            </af:selectOneChoice>
-                                        </af:panelGroupLayout>
-                                    </af:panelLabelAndMessage>
                                     <af:panelLabelAndMessage id="plam4">
                                         <af:panelGroupLayout id="pgl5" layout="horizontal">
                                             <af:panelGroupLayout id="pgl21" layout="vertical">

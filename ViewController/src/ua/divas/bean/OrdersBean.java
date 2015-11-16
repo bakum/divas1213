@@ -715,9 +715,14 @@ public class OrdersBean {
         BindingContext bindingContext = BindingContext.getCurrent();
         DCDataControl dc =
             bindingContext.findDataControl("AppModuleDataControl"); // Name of application module in datacontrolBinding.cpx
-        AppModuleImpl am = (AppModuleImpl) dc.getDataProvider();
-        am.getKontragentsView1().executeQuery();
-        am.getOrdersView1().executeQuery();
+        try {
+            AppModuleImpl am = (AppModuleImpl) dc.getDataProvider();
+            am.getKontragentsView1().executeQuery();
+            am.getOrdersView1().executeQuery();
+        } catch (Exception e) {
+            // TODO: Add catch code
+            e.printStackTrace();
+        }
     }
 
     public void refreshZamer() {
@@ -752,7 +757,8 @@ public class OrdersBean {
     }
 
     public void onReturnValue(ReturnEvent returnEvent) {
-        refresh();
+        //refresh();
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getMainTable());
     }
 
     public void handleExceptionShowMessageInPopupDialog() {

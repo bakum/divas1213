@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="GuiSettings"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="GUI_SETTINGS"
+  AliasName="GuiSettings"
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.GuiSettingsImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GUI_SETTINGS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="OrderFetchSize"
+    Precision="2"
+    Scale="0"
+    ColumnName="ORDER_FETCH_SIZE"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="GUI_SETTINGS">
+    <Permission
+      target="ua.divas.model.GuiSettings.OrderFetchSize"
+      permissionClass="oracle.adf.share.security.authorization.EntityAttributePermission">
+      <privilege-map
+        operation="update"
+        privilege="update"/>
+    </Permission>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.GuiSettings.OrderFetchSize_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.GuiSettings.OrderFetchSize_TOOLTIP"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.GuiSettings.OrderFetchSize_LABEL_PLURAL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="UserId"
+    Precision="50"
+    ColumnName="USER_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GUI_SETTINGS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="GuiSettingsChk1">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="GUI_SETTINGS_CHK1"/>
+      <Attr Name="_checkCondition" Value="ORDER_FETCH_SIZE > 0 AND ORDER_FETCH_SIZE &lt;= 30"/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes"/>
+  </Key>
+  <Key
+    Name="GuiSettingsPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="GUI_SETTINGS_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.GuiSettings.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="GuiSettingsFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="USERS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="GUI_SETTINGS_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.GuiSettings.UserId"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

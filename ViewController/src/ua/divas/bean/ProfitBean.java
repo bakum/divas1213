@@ -103,7 +103,13 @@ public class ProfitBean {
     }
     
     public void onReturn(ReturnEvent re) {
-        System.out.println(re.getReturnParameters().get("ProfitId")+" Return listener called ");
+        //System.out.println(re.getReturnParameters().get("ProfitId")+" Return listener called ");
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
+        //refresh();
+    }
+    
+    public void onReturnNew(ReturnEvent re) {
+        //System.out.println(re.getReturnParameters().get("ProfitId")+" Return listener called ");
         //AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
         refresh();
     }

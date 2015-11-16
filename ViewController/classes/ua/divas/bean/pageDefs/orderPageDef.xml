@@ -43,10 +43,6 @@
         <Item Value="Num"/>
       </AttrNames>
     </attributeValues>
-    <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId" DTSupportsMRU="false"
-          SelectItemValueMode="ListObject"/>
-    <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_KassaId" id="KassaId" DTSupportsMRU="false"
-          SelectItemValueMode="ListObject"/>
     <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
           DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
     <list IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId" DTSupportsMRU="false"

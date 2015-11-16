@@ -71,7 +71,13 @@ public class RkoBean {
     }
 
     public void onReturn(ReturnEvent re) {
-        System.out.println(re.getReturnParameters().get("RkoId")+" Return listener called ");
+        //System.out.println(re.getReturnParameters().get("RkoId")+" Return listener called ");
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
+        //refresh();
+    }
+    
+    public void onReturnNew(ReturnEvent re) {
+        //System.out.println(re.getReturnParameters().get("RkoId")+" Return listener called ");
         //AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
         refresh();
     }

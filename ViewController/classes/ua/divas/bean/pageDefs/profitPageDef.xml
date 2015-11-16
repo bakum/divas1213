@@ -4,7 +4,7 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="ProfitDistribView1" RangeSize="11" DataControl="AppModuleDataControl"
+    <iterator Binds="ProfitDistribView1" RangeSize="30" DataControl="AppModuleDataControl"
               id="ProfitDistribView1Iterator">
       <sortCriteria>
         <sort attribute="Dat" ascending="false"/>

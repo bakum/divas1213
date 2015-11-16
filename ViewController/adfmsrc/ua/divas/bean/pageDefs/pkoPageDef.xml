@@ -4,7 +4,7 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="PkoView1" RangeSize="11" DataControl="AppModuleDataControl" id="PkoView1Iterator">
+    <iterator Binds="PkoView1" RangeSize="30" DataControl="AppModuleDataControl" id="PkoView1Iterator">
       <sortCriteria>
         <sort attribute="Dat" ascending="false"/>
       </sortCriteria>

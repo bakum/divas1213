@@ -84,19 +84,6 @@
           FullName="ua.divas.view.KontragentsView.KontragentsZamerCriteria"/>
     </ViewAccessor>
     <ViewAccessor
-      Name="KassaSettingsView1"
-      ViewObjectName="ua.divas.view.KassaSettingsView"
-      RowLevelBinds="true">
-        <ViewCriteriaUsage
-          Name="KassaSettingsByUser"
-          FullName="ua.divas.view.KassaSettingsView.KassaSettingsByUser"/>
-          <ParameterMap>
-            <PIMap Variable="Curr">
-                <TransientExpression><![CDATA[CurrId]]></TransientExpression>
-            </PIMap>
-        </ParameterMap>
-    </ViewAccessor>
-    <ViewAccessor
         Name="KontragentsView3"
         ViewObjectName="ua.divas.view.KontragentsView"
         RowLevelBinds="true">
@@ -136,25 +123,6 @@
         </AttrArray>
         <AttrArray Name="ListDisplayAttrNames">
             <Item Value="Fullname"/>
-        </AttrArray>
-        <DisplayCriteria/>
-    </ListBinding>
-    <ListBinding
-      Name="LOV_KassaId"
-      ListVOName="KassaSettingsView1"
-      ListRangeSize="-1"
-      NullValueFlag="start"
-      MRUCount="0"
-      NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}">
-        <AttrArray Name="AttrNames">
-            <Item Value="KassaId"/>
-        </AttrArray>
-        <AttrArray Name="AttrExpressions"/>
-        <AttrArray Name="ListAttrNames">
-            <Item Value="KassaId"/>
-        </AttrArray>
-        <AttrArray Name="ListDisplayAttrNames">
-            <Item Value="KassaName"/>
         </AttrArray>
         <DisplayCriteria/>
     </ListBinding>
@@ -572,15 +540,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       PrecisionRule="true"
       EntityAttrName="KassaId"
       EntityUsage="Orders"
-      AliasName="KASSA_ID"
-      LOVName="LOV_KassaId">
+      AliasName="KASSA_ID">
         <TransientExpression><![CDATA[viewObject.retrieveKassaId()]]></TransientExpression>
-        <Properties>
-            <SchemaBasedProperties>
-                <CONTROLTYPE
-                  Value="choice"/>
-            </SchemaBasedProperties>
-        </Properties>
         <Dependencies>
             <Item
                 Value="CurrId"/>

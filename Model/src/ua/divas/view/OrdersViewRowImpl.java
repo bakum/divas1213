@@ -102,7 +102,6 @@ public class OrdersViewRowImpl extends ViewRowImpl {
         FirmsView1,
         KassaVO1,
         KontragentsView2,
-        KassaSettingsView1,
         KontragentsView3,
         KontragentsBuyer1,
         KontragentsMeasurer1,
@@ -190,7 +189,6 @@ public class OrdersViewRowImpl extends ViewRowImpl {
     public static final int FIRMSVIEW1 = AttributesEnum.FirmsView1.index();
     public static final int KASSAVO1 = AttributesEnum.KassaVO1.index();
     public static final int KONTRAGENTSVIEW2 = AttributesEnum.KontragentsView2.index();
-    public static final int KASSASETTINGSVIEW1 = AttributesEnum.KassaSettingsView1.index();
     public static final int KONTRAGENTSVIEW3 = AttributesEnum.KontragentsView3.index();
     public static final int KONTRAGENTSBUYER1 = AttributesEnum.KontragentsBuyer1.index();
     public static final int KONTRAGENTSMEASURER1 = AttributesEnum.KontragentsMeasurer1.index();
@@ -883,12 +881,6 @@ public class OrdersViewRowImpl extends ViewRowImpl {
         return (RowSet) getAttributeInternal(KONTRAGENTSVIEW2);
     }
 
-    /**
-     * Gets the view accessor <code>RowSet</code> KassaSettingsView1.
-     */
-    public RowSet getKassaSettingsView1() {
-        return (RowSet) getAttributeInternal(KASSASETTINGSVIEW1);
-    }
 
     /**
      * Gets the view accessor <code>RowSet</code> KontragentsView3.

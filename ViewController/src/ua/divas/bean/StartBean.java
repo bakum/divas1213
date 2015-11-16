@@ -72,7 +72,13 @@ public class StartBean {
     }
 
     public void onReturn(ReturnEvent returnEvent) {
+        //refresh();
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
+    }
+    
+    public void onReturnNew(ReturnEvent returnEvent) {
         refresh();
+        //AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
     }
     
     public void onAddEntry(ActionEvent actionEvent) {

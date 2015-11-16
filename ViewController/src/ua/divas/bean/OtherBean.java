@@ -134,7 +134,14 @@ public class OtherBean {
     
     public void onReturn(ReturnEvent re) {
         //System.out.println(re.getReturnParameters().get("PkoId")+" Return listener called ");
+        //refresh();
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getOtherTable());
+    }
+    
+    public void onReturnNew(ReturnEvent re) {
+        //System.out.println(re.getReturnParameters().get("PkoId")+" Return listener called ");
         refresh();
+        //AdfFacesContext.getCurrentInstance().addPartialTarget(getOtherTable());
     }
     
     public void setDel_title(String del_title) {
