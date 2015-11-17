@@ -6,14 +6,15 @@
     <variableIterator id="variables"/>
     <iterator Binds="VwKontragZamerNew1" RangeSize="25" DataControl="AppModuleDataControl"
               id="VwKontragZamerNew1Iterator"/>
+    <iterator id="VwZamerMovesNew1Iterator" Binds="VwZamerMovesNew1" DataControl="AppModuleDataControl" RangeSize="25"/>
   </executables>
   <bindings>
     <tree IterBinding="VwKontragZamerNew1Iterator" id="VwKontragZamerNew1">
       <nodeDefinition DefName="ua.divas.view.VwKontragZamerNew" Name="VwKontragZamerNew10">
         <AttrNames>
-          <Item Value="Id"/>
           <Item Value="Fullname"/>
           <Item Value="Ballans"/>
+          <Item Value="Id"/>
         </AttrNames>
         <Accessors>
           <Item Value="VwZamerMovesNew"/>
@@ -27,6 +28,8 @@
           <Item Value="Debet"/>
           <Item Value="Kredit"/>
           <Item Value="Ballans"/>
+          <Item Value="Mark"/>
+          <Item Value="RegistratorId"/>
         </AttrNames>
         <Accessors>
           <Item Value="VwZamerDebtDetail"/>

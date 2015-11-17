@@ -89,6 +89,19 @@ public class SupplierWallet {
         }
         //System.out.println("User list: " + onlineUserList.toString()); */
     }
+    
+    public final static void addSupplierWithIdIn(String Id, String kontragId, String orderId, BigDecimal summa) {
+        SupplierRecord spl = new SupplierRecord(Id, kontragId, orderId, summa);
+        spl.setIsIn(true);
+        int i = searchSupplier(Id);
+        if (i == -1) {
+            supplierList.add(spl);
+            summAll = summAll.add(summa);
+        } else {
+            supplierList.set(i, spl);
+        }
+        //System.out.println("User list: " + onlineUserList.toString()); */
+    }
 
     public final static void removeSupplier(String _id) {
         Iterator<SupplierRecord> i = supplierList.iterator();

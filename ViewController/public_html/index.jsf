@@ -163,7 +163,7 @@
                                                        rendered="#{securityContext.userInRole['tester']}">
                                         <af:panelTabbed position="above" id="pt4">
                                             <af:showDetailItem id="tab1" text="Взаиморасчеты" stretchChildren="first">
-                                                <af:region value="#{bindings.zamerdebt_new1.regionModel}" id="r28"/>
+                                                <af:region value="#{bindings.zamerdebt_new1.regionModel}" id="rZamer"/>
                                             </af:showDetailItem>
                                         </af:panelTabbed>
                                     </af:showDetailItem>
@@ -187,13 +187,17 @@
                                     <af:spacer width="10" height="10" id="s4"/>
                                     <af:outputFormatted value="Права: #{login.roleUser}" id="of2" styleClass="Linkclass"/>
                                     <af:spacer width="30" height="10" id="s5"/>
-                                    <af:link text="Непрочитанных оповещений: #{bindings.CountUnread.inputValue == null ? 0 : bindings.CountUnread.inputValue}" id="l3" icon="/img/bell.png"
+                                    <af:button text="#{notification.summAll}" id="bShoppingcart"
+                                               icon="/img/shoppingcart.png" visible="#{notification.walletVisible}"/>
+                                    <af:spacer width="10" height="10" id="s7"/>
+                                    <af:link text="Непрочитанных оповещений: #{bindings.CountUnread.inputValue == null ? 0 : bindings.CountUnread.inputValue}"
+                                             id="l3" icon="/img/bell.png"
                                              inlineStyle="#{bindings.CountUnread.inputValue != null ? 'color:Lime;' : ''}">
                                         <af:showPopupBehavior popupId="p1"/>
                                     </af:link>
-                                    <af:spacer width="10" height="10" id="s7"/>
-                                    <af:link id="l4" targetFrame="_blank"
-                                             destination="http://bmexp.com" text="#{login.versionStr}"/>
+                                    <af:spacer width="10" height="10" id="s8"/>
+                                    <af:link id="l4" targetFrame="_blank" destination="http://bmexp.com"
+                                             text="#{login.versionStr}"/>
                                     <af:popup childCreation="deferred" autoCancel="disabled" id="pLogin">
                                         <af:dialog id="d2" title="Авторизация" dialogListener="#{login.OnLoginAction}">
                                             <f:facet name="buttonBar"/>

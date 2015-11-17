@@ -11,14 +11,22 @@
                             <f:facet name="bottom"/>
                             <f:facet name="center">
                                 <af:panelBox text="Деньги у замерщиков" id="pb1" icon="/img/cash.png">
-                                    <f:facet name="toolbar"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2"/>
+                                    </f:facet>
                                     <af:panelCollection id="pc1" styleClass="AFStretchWidth">
                                         <f:facet name="menus"/>
-                                        <f:facet name="toolbar"/>
+                                        <f:facet name="toolbar">
+                                            <af:toolbar id="t1">
+                                                <af:button text="Обновить" id="b2"
+                                                           actionListener="#{zamer_debt_new.onRefresh}"/>
+                                            </af:toolbar>
+                                        </f:facet>
                                         <f:facet name="statusbar"/>
                                         <af:treeTable value="#{bindings.VwKontragZamerNew1.treeModel}" var="node"
-                                                      selectionListener="#{bindings.VwKontragZamerNew1.treeModel.makeCurrent}"
-                                                      rowSelection="single" id="tt1">
+                                                      id="ttZamer"
+                                                      rowSelection="single" partialTriggers="sbc1"
+                                                      binding="#{zamer_debt_new.treeTable}">
                                             <f:facet name="nodeStamp">
                                                 <af:column id="c1" width="300" headerText="Наименование/Регистратор">
                                                     <af:outputText value="#{node.Fullname}" id="ot1"
@@ -58,6 +66,16 @@
                                                     <af:convertNumber minFractionDigits="2" maxFractionDigits="2"
                                                                       type="number"/>
                                                 </af:outputText>
+                                            </af:column>
+                                            <af:column id="c7" width="20" headerText="K" align="center">
+                                                <af:selectBooleanCheckbox
+                                                                          id="sbc1" value="#{node.Mark}"
+                                                                          autoSubmit="true"
+                                                                          rendered="#{node.Fullname != null ? false : node.Ballans &lt;= 0 ? false : true}"
+                                                                          visible="#{!zamer_debt_new.disabledInBin}"
+                                                                          valueChangeListener="#{zamer_debt_new.onCheckAdd}"/>
+                                                <af:image id="i1" source="/img/shoppingcart.png"
+                                                          visible="#{zamer_debt_new.disabledInBin}"/>
                                             </af:column>
                                         </af:treeTable>
                                     </af:panelCollection>

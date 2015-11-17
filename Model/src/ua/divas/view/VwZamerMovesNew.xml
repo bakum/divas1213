@@ -149,6 +149,22 @@ where ballans != 0]]></SQLQuery>
       <Attr Name="_DisplaySize" Value="4000"/>
     </DesignTime>
   </ViewAttribute>
+  <ViewAttribute
+    Name="Mark"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <AttrArray Name="KeyAttributes">
     <Item Value="Id"/>
     <Item Value="RegistratorId"/>

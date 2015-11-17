@@ -8,6 +8,7 @@ public class SupplierRecord {
     private String Id;
     private String kontragId;
     private String orderId;
+    private boolean isIn;
     private BigDecimal summa;
 
     public SupplierRecord() {
@@ -18,6 +19,7 @@ public class SupplierRecord {
         this.kontragId = kontragId;
         this.orderId = orderId;
         this.summa = summa;
+        this.isIn = false; 
         this.Id = UUID.randomUUID().toString();
     }
     
@@ -25,9 +27,18 @@ public class SupplierRecord {
         this.kontragId = kontragId;
         this.orderId = orderId;
         this.summa = summa;
+        this.isIn = false; 
         this.Id = Id;
     }
 
+
+    public final void setIsIn(boolean isIn) {
+        this.isIn = isIn;
+    }
+
+    public final boolean isIsIn() {
+        return isIn;
+    }
 
     public void setKontragId(String kontragId) {
         this.kontragId = kontragId;
