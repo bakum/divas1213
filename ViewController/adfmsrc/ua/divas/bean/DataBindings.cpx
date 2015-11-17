@@ -70,6 +70,8 @@
     <page path="/reg_code.jsf" usageId="ua_divas_bean_reg_codePageDef"/>
     <page path="/inside.jsff" usageId="ua_divas_bean_insidePageDef"/>
     <page path="/createBuer.jsf" usageId="ua_divas_bean_createBuerPageDef"/>
+    <page path="/guisettings.jsff" usageId="ua_divas_bean_guisettingsPageDef"/>
+    <page path="/zamer_debt_new.jsff" usageId="ua_divas_bean_zamer_debt_newPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -134,6 +136,8 @@
     <page id="ua_divas_bean_reg_codePageDef" path="ua.divas.bean.pageDefs.reg_codePageDef"/>
     <page id="ua_divas_bean_insidePageDef" path="ua.divas.bean.pageDefs.insidePageDef"/>
     <page id="ua_divas_bean_createBuerPageDef" path="ua.divas.bean.pageDefs.createBuerPageDef"/>
+    <page id="ua_divas_bean_guisettingsPageDef" path="ua.divas.bean.pageDefs.guisettingsPageDef"/>
+    <page id="ua_divas_bean_zamer_debt_newPageDef" path="ua.divas.bean.pageDefs.zamer_debt_newPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

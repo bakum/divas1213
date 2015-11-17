@@ -26,6 +26,7 @@ import ua.divas.view.DivisionsRootViewImpl;
 import ua.divas.view.DivisionsViewImpl;
 import ua.divas.view.FirmsViewImpl;
 import ua.divas.view.GroupmembersViewImpl;
+import ua.divas.view.GuiSettingsViewImpl;
 import ua.divas.view.KassaSettingsViewImpl;
 import ua.divas.view.KassaVOImpl;
 import ua.divas.view.KassaViewImpl;
@@ -70,6 +71,7 @@ import ua.divas.view.VwKassaMovesImpl;
 import ua.divas.view.VwKontragAllItemsImpl;
 import ua.divas.view.VwKontragDebImpl;
 import ua.divas.view.VwKontragZamerImpl;
+import ua.divas.view.VwKontragZamerNewImpl;
 import ua.divas.view.VwNotificationCalendarViewImpl;
 import ua.divas.view.VwRatingImpl;
 import ua.divas.view.VwSalesImpl;
@@ -4450,6 +4452,70 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
      */
     public KontragentsLookupVOImpl getKontragentsLookupVO1() {
         return (KontragentsLookupVOImpl) findViewObject("KontragentsLookupVO1");
+    }
+
+    /**
+     * Container's getter for GuiSettingsView1.
+     * @return GuiSettingsView1
+     */
+    public GuiSettingsViewImpl getGuiSettingsView1() {
+        return (GuiSettingsViewImpl) findViewObject("GuiSettingsView1");
+    }
+
+    /**
+     * Container's getter for VwKontragZamerNew1.
+     * @return VwKontragZamerNew1
+     */
+    public VwKontragZamerNewImpl getVwKontragZamerNew1() {
+        return (VwKontragZamerNewImpl) findViewObject("VwKontragZamerNew1");
+    }
+
+    /**
+     * Container's getter for VwZamerMovesNew1.
+     * @return VwZamerMovesNew1
+     */
+    public ViewObjectImpl getVwZamerMovesNew1() {
+        return (ViewObjectImpl) findViewObject("VwZamerMovesNew1");
+    }
+
+    /**
+     * Container's getter for VwZamerMovesNew2.
+     * @return VwZamerMovesNew2
+     */
+    public ViewObjectImpl getVwZamerMovesNew2() {
+        return (ViewObjectImpl) findViewObject("VwZamerMovesNew2");
+    }
+
+    /**
+     * Container's getter for VwKontZamerNewZamerMovesFkLink1.
+     * @return VwKontZamerNewZamerMovesFkLink1
+     */
+    public ViewLinkImpl getVwKontZamerNewZamerMovesFkLink1() {
+        return (ViewLinkImpl) findViewLink("VwKontZamerNewZamerMovesFkLink1");
+    }
+
+    /**
+     * Container's getter for VwZamerDebtDetail1.
+     * @return VwZamerDebtDetail1
+     */
+    public ViewObjectImpl getVwZamerDebtDetail1() {
+        return (ViewObjectImpl) findViewObject("VwZamerDebtDetail1");
+    }
+
+    /**
+     * Container's getter for VwZamerDebtDetail2.
+     * @return VwZamerDebtDetail2
+     */
+    public ViewObjectImpl getVwZamerDebtDetail2() {
+        return (ViewObjectImpl) findViewObject("VwZamerDebtDetail2");
+    }
+
+    /**
+     * Container's getter for VwZamerMovesNewZamerDetail1.
+     * @return VwZamerMovesNewZamerDetail1
+     */
+    public ViewLinkImpl getVwZamerMovesNewZamerDetail1() {
+        return (ViewLinkImpl) findViewLink("VwZamerMovesNewZamerDetail1");
     }
 }
 

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelBox text="Настройки интерфейса" id="pb1" showDisclosure="false">
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t1">
+                                    <af:button text="Редактировать" id="b4" icon="/img/edit-16.gif"
+                                               rendered="#{bindings.Id.inputValue == null ? false : true}">
+                                        <af:setPropertyListener from="#{1}" to="#{bindings.Editable.inputValue}"
+                                                                type="action"/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
+                                               disabled="#{!bindings.CreateInsert.enabled}" id="b1"
+                                               rendered="#{bindings.Id.inputValue == null ? true : false}"/>
+                                    <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                               disabled="#{!bindings.Commit.enabled}" id="b2">
+                                        <af:setPropertyListener from="#{0}" to="#{bindings.Editable.inputValue}"
+                                                                type="action"/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                               disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b3">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                </af:toolbar>
+                            </f:facet>
+                            <af:panelFormLayout id="pfl1">
+                                <af:inputText value="#{bindings.Id.inputValue}" label="#{bindings.Id.hints.label}"
+                                              required="#{bindings.Id.hints.mandatory}"
+                                              columns="#{bindings.Id.hints.displayWidth}"
+                                              maximumLength="#{bindings.Id.hints.precision}"
+                                              shortDesc="#{bindings.Id.hints.tooltip}" id="it1" rendered="false">
+                                    <f:validator binding="#{bindings.Id.validator}"/>
+                                </af:inputText>
+                                <af:panelGroupLayout id="pgl2" layout="vertical">
+                                    <af:inputNumberSpinbox value="#{bindings.OrderFetchSize.inputValue}"
+                                                           label="#{bindings.OrderFetchSize.hints.label}"
+                                                           required="#{bindings.OrderFetchSize.hints.mandatory}"
+                                                           columns="#{bindings.OrderFetchSize.hints.displayWidth}"
+                                                           shortDesc="#{bindings.OrderFetchSize.hints.tooltip}" id="it2"
+                                                           readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                        <f:validator binding="#{bindings.OrderFetchSize.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.OrderFetchSize.format}"/>
+                                    </af:inputNumberSpinbox>
+                                    <af:outputText value="Не более чем 30" id="ot1"/>
+                                </af:panelGroupLayout>
+                                <af:inputText value="#{bindings.UserId.inputValue}"
+                                              label="#{bindings.UserId.hints.label}"
+                                              required="#{bindings.UserId.hints.mandatory}"
+                                              columns="#{bindings.UserId.hints.displayWidth}"
+                                              maximumLength="#{bindings.UserId.hints.precision}"
+                                              shortDesc="#{bindings.UserId.hints.tooltip}" id="it3" rendered="false">
+                                    <f:validator binding="#{bindings.UserId.validator}"/>
+                                </af:inputText>
+                                <af:panelGroupLayout id="pgl3" layout="vertical">
+                                    <af:inputNumberSpinbox value="#{bindings.ZamerFetchSize.inputValue}"
+                                                           label="#{bindings.ZamerFetchSize.hints.label}"
+                                                           required="#{bindings.ZamerFetchSize.hints.mandatory}"
+                                                           columns="#{bindings.ZamerFetchSize.hints.displayWidth}"
+                                                           shortDesc="#{bindings.ZamerFetchSize.hints.tooltip}" id="it4"
+                                                           readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                        <f:validator binding="#{bindings.ZamerFetchSize.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.ZamerFetchSize.format}"/>
+                                    </af:inputNumberSpinbox>
+                                    <af:outputText value="Не более чем 30" id="ot2"/>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl4" layout="vertical">
+                                    <af:inputNumberSpinbox value="#{bindings.OtherzatrFetchSize.inputValue}"
+                                                           label="#{bindings.OtherzatrFetchSize.hints.label}"
+                                                           required="#{bindings.OtherzatrFetchSize.hints.mandatory}"
+                                                           columns="#{bindings.OtherzatrFetchSize.hints.displayWidth}"
+                                                           shortDesc="#{bindings.OtherzatrFetchSize.hints.tooltip}"
+                                                           id="it5"
+                                                           readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                        <f:validator binding="#{bindings.OtherzatrFetchSize.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.OtherzatrFetchSize.format}"/>
+                                    </af:inputNumberSpinbox>
+                                    <af:outputText value="Не более чем 30" id="ot3"/>
+                                </af:panelGroupLayout>
+                            </af:panelFormLayout>
+                        </af:panelBox>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

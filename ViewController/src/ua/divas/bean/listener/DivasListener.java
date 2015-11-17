@@ -103,13 +103,19 @@ public class DivasListener implements PagePhaseListener {
 
     private void processErrors(LifecycleContext ctx) {
         DCBindingContainer bc = (DCBindingContainer) ctx.getBindingContainer();
+        String error_message;
         if (bc != null) {
             List<Exception> exceptions = bc.getExceptionsList();
             if (exceptions != null) {
                 for (Exception exception : exceptions) {
                     System.out.println("DivasPagePhaseListener processErrors exception " + exception.getMessage());
                     if (exception instanceof JboException) {
-                        bc.ignoreExceptionForDisplay((JboException) exception);
+                        error_message = exception.getMessage();
+                        if (error_message != null && error_message.indexOf("JBO-27010") > -1) {
+
+                        } else {
+                            bc.ignoreExceptionForDisplay((JboException) exception);
+                        }
                     }
                 }
             }

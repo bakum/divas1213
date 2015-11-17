@@ -26,6 +26,11 @@
         <role>
           <name>cc_manager</name>
         </role>
+        <role>
+          <name>office_manager</name>
+          <display-name></display-name>
+          <description></description>
+        </role>
       </roles>
     </realm>
   </jazn-realm>
@@ -102,6 +107,16 @@
               <member>
                 <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
                 <name>cc_manager</name>
+              </member>
+            </members>
+          </app-role>
+          <app-role>
+            <name>office_manager</name>
+            <class>oracle.security.jps.service.policystore.ApplicationRole</class>
+            <members>
+              <member>
+                <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
+                <name>office_manager</name>
               </member>
             </members>
           </app-role>
@@ -467,6 +482,26 @@
                 <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
                 <actions>update</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.ZamerFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OtherzatrFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-debt_new.xml#zamer-debt_new</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -675,6 +710,26 @@
                 <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
                 <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
                 <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.ZamerFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OtherzatrFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-debt_new.xml#zamer-debt_new</name>
+                <actions>view</actions>
               </permission>
             </permissions>
           </grant>
@@ -1008,6 +1063,26 @@
                 <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
                 <actions>update</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.ZamerFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OtherzatrFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-debt_new.xml#zamer-debt_new</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1090,6 +1165,11 @@
                 <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
                 <actions>update</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1146,6 +1226,21 @@
                 <class>oracle.adf.share.security.authorization.EntityPermission</class>
                 <name>ua.divas.model.OrdersTpRashody</name>
                 <actions>read</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.ZamerFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-debt_new.xml#zamer-debt_new</name>
+                <actions>view</actions>
               </permission>
             </permissions>
           </grant>
@@ -1257,6 +1352,83 @@
                 <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
                 <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
                 <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+            </permissions>
+          </grant>
+          <grant>
+            <grantee>
+              <principals>
+                <principal>
+                  <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
+                  <name>office_manager</name>
+                </principal>
+              </principals>
+            </grantee>
+            <permissions>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OtherzatrFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/calendar-config.xml#calendar-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/EditPko.xml#EditPko</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/EditRko.xml#EditRko</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/money-config.xml#money-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/newOther.xml#newOther</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/newPko.xml#newPko</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/newRko.xml#newRko</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/other-dialod-flow.xml#other-dialod-flow</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/other_zatr-config.xml#other_zatr-config</name>
+                <actions>view</actions>
               </permission>
             </permissions>
           </grant>

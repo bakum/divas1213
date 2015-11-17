@@ -152,6 +152,19 @@
                                                                rendered="#{securityContext.taskflowViewable['/WEB-INF/calendar-config.xml#calendar-config']}">
                                                 <af:region value="#{bindings.calendarconfig1.regionModel}" id="r17"/>
                                             </af:showDetailItem>
+                                            <af:showDetailItem text="Интерфейс (настройки)" id="sdi30" stretchChildren="first"
+                                                               rendered="#{securityContext.taskflowViewable['/WEB-INF/gui-config.xml#gui-config']}">
+                                                <af:region value="#{bindings.guiconfig1.regionModel}" id="r27"/>
+                                            </af:showDetailItem>
+                                        </af:panelTabbed>
+                                    </af:showDetailItem>
+                                    <af:showDetailItem text="Аналитика(тест)" id="sdi31" stretchChildren="first"
+                                                       icon="/img/analytics.png"
+                                                       rendered="#{securityContext.userInRole['tester']}">
+                                        <af:panelTabbed position="above" id="pt4">
+                                            <af:showDetailItem id="tab1" text="Взаиморасчеты" stretchChildren="first">
+                                                <af:region value="#{bindings.zamerdebt_new1.regionModel}" id="r28"/>
+                                            </af:showDetailItem>
                                         </af:panelTabbed>
                                     </af:showDetailItem>
                                 </af:panelSpringboard>

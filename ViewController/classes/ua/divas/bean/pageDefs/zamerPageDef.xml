@@ -14,6 +14,7 @@
     <searchRegion Criteria="OrderZamerViewCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="OrderZamerView1Iterator" id="OrderZamerViewCriteriaQuery"/>
     <iterator id="OrdersView1Iterator" Binds="OrdersView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="OrderZamerView1Iterator" id="OrderZamerView1">
@@ -52,6 +53,11 @@
     <attributeValues IterBinding="OrderZamerView1Iterator" id="Enbl">
       <AttrNames>
         <Item Value="Enbl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="ZamerFetchSize">
+      <AttrNames>
+        <Item Value="ZamerFetchSize"/>
       </AttrNames>
     </attributeValues>
   </bindings>

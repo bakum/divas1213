@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true"
   ComponentClass="ua.divas.module.AppModuleImpl"
@@ -1041,6 +1041,24 @@
   <ViewUsage
     Name="KontragentsLookupVO1"
     ViewObjectName="ua.divas.view.KontragentsLookupVO"/>
+  <ViewUsage
+    Name="GuiSettingsView1"
+    ViewObjectName="ua.divas.view.GuiSettingsView"/>
+  <ViewUsage
+    Name="VwKontragZamerNew1"
+    ViewObjectName="ua.divas.view.VwKontragZamerNew"/>
+  <ViewUsage
+    Name="VwZamerMovesNew1"
+    ViewObjectName="ua.divas.view.VwZamerMovesNew"/>
+  <ViewUsage
+    Name="VwZamerMovesNew2"
+    ViewObjectName="ua.divas.view.VwZamerMovesNew"/>
+  <ViewUsage
+    Name="VwZamerDebtDetail1"
+    ViewObjectName="ua.divas.view.VwZamerDebtDetail"/>
+  <ViewUsage
+    Name="VwZamerDebtDetail2"
+    ViewObjectName="ua.divas.view.VwZamerDebtDetail"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"
@@ -2162,6 +2180,18 @@
     ViewLinkObjectName="ua.divas.view.VwInsideDetailMoviesFkLink"
     SrcViewUsageName="ua.divas.module.AppModule.VwInsideDetail2"
     DstViewUsageName="ua.divas.module.AppModule.VwMovesInside1"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="VwKontZamerNewZamerMovesFkLink1"
+    ViewLinkObjectName="ua.divas.view.VwKontZamerNewZamerMovesFkLink"
+    SrcViewUsageName="ua.divas.module.AppModule.VwKontragZamerNew1"
+    DstViewUsageName="ua.divas.module.AppModule.VwZamerMovesNew2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="VwZamerMovesNewZamerDetail1"
+    ViewLinkObjectName="ua.divas.view.VwZamerMovesNewZamerDetail"
+    SrcViewUsageName="ua.divas.module.AppModule.VwZamerMovesNew1"
+    DstViewUsageName="ua.divas.module.AppModule.VwZamerDebtDetail2"
     Reversed="false"/>
   <ClientInterface
     Name="__clientInterface">

@@ -37,7 +37,8 @@
     SQLType="NUMERIC"
     Type="java.lang.Integer"
     ColumnType="NUMBER"
-    TableName="GUI_SETTINGS">
+    TableName="GUI_SETTINGS"
+    DefaultValue="25">
     <Permission
       target="ua.divas.model.GuiSettings.OrderFetchSize"
       permissionClass="oracle.adf.share.security.authorization.EntityAttributePermission">
@@ -67,6 +68,62 @@
     <DesignTime>
       <Attr Name="_DisplaySize" Value="50"/>
     </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ZamerFetchSize"
+    Precision="2"
+    Scale="0"
+    ColumnName="ZAMER_FETCH_SIZE"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="GUI_SETTINGS"
+    DefaultValue="25">
+    <Permission
+      target="ua.divas.model.GuiSettings.ZamerFetchSize"
+      permissionClass="oracle.adf.share.security.authorization.EntityAttributePermission">
+      <privilege-map
+        operation="update"
+        privilege="update"/>
+    </Permission>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.GuiSettings.ZamerFetchSize_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.GuiSettings.ZamerFetchSize_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.GuiSettings.ZamerFetchSize_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="OtherzatrFetchSize"
+    Precision="2"
+    Scale="0"
+    ColumnName="OTHERZATR_FETCH_SIZE"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="GUI_SETTINGS"
+    DefaultValue="25">
+    <Permission
+      target="ua.divas.model.GuiSettings.OtherzatrFetchSize"
+      permissionClass="oracle.adf.share.security.authorization.EntityAttributePermission">
+      <privilege-map
+        operation="update"
+        privilege="update"/>
+    </Permission>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.GuiSettings.OtherzatrFetchSize_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.GuiSettings.OtherzatrFetchSize_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.GuiSettings.OtherzatrFetchSize_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
   </Attribute>
   <Key
     Name="GuiSettingsChk1">

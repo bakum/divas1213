@@ -15,6 +15,7 @@
     <iterator Binds="VwOtherMoves2" RangeSize="25" DataControl="AppModuleDataControl" id="VwOtherMoves2Iterator"/>
     <searchRegion Criteria="OtherZatratyDate" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="OtherZatratyView1Iterator" id="OtherZatratyDateQuery"/>
+    <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="OtherZatratyView1Iterator" id="OtherZatratyView1">
@@ -101,5 +102,10 @@
       </nodeDefinition>
     </tree>
     <action IterBinding="OtherZatratyView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="OtherzatrFetchSize">
+      <AttrNames>
+        <Item Value="OtherzatrFetchSize"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

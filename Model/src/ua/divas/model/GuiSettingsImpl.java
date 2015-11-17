@@ -26,7 +26,9 @@ public class GuiSettingsImpl extends DivasEntityNoDelete {
     public enum AttributesEnum {
         Id,
         OrderFetchSize,
-        UserId;
+        UserId,
+        ZamerFetchSize,
+        OtherzatrFetchSize;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -49,15 +51,27 @@ public class GuiSettingsImpl extends DivasEntityNoDelete {
             return vals;
         }
     }
+
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int ORDERFETCHSIZE = AttributesEnum.OrderFetchSize.index();
     public static final int USERID = AttributesEnum.UserId.index();
+    public static final int ZAMERFETCHSIZE = AttributesEnum.ZamerFetchSize.index();
+    public static final int OTHERZATRFETCHSIZE = AttributesEnum.OtherzatrFetchSize.index();
 
     /**
      * This is the default constructor (do not remove).
      */
     public GuiSettingsImpl() {
     }
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        return EntityDefImpl.findDefObject("ua.divas.model.GuiSettings");
+    }
+
 
     /**
      * Gets the attribute value for Id, using the alias name Id.
@@ -108,6 +122,38 @@ public class GuiSettingsImpl extends DivasEntityNoDelete {
     }
 
     /**
+     * Gets the attribute value for ZamerFetchSize, using the alias name ZamerFetchSize.
+     * @return the value of ZamerFetchSize
+     */
+    public Integer getZamerFetchSize() {
+        return (Integer) getAttributeInternal(ZAMERFETCHSIZE);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for ZamerFetchSize.
+     * @param value value to set the ZamerFetchSize
+     */
+    public void setZamerFetchSize(Integer value) {
+        setAttributeInternal(ZAMERFETCHSIZE, value);
+    }
+
+    /**
+     * Gets the attribute value for OtherzatrFetchSize, using the alias name OtherzatrFetchSize.
+     * @return the value of OtherzatrFetchSize
+     */
+    public Integer getOtherzatrFetchSize() {
+        return (Integer) getAttributeInternal(OTHERZATRFETCHSIZE);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for OtherzatrFetchSize.
+     * @param value value to set the OtherzatrFetchSize
+     */
+    public void setOtherzatrFetchSize(Integer value) {
+        setAttributeInternal(OTHERZATRFETCHSIZE, value);
+    }
+
+    /**
      * @param id key constituent
 
      * @return a Key object based on given key constituents.
@@ -116,11 +162,5 @@ public class GuiSettingsImpl extends DivasEntityNoDelete {
         return new Key(new Object[] { id });
     }
 
-    /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        return EntityDefImpl.findDefObject("ua.divas.model.GuiSettings");
-    }
 }
 

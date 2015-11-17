@@ -35,7 +35,8 @@
                                               rowBandingInterval="0"
                                               selectedRowKeys="#{bindings.OtherZatratyView1.collectionModel.selectedRow}"
                                               selectionListener="#{bindings.OtherZatratyView1.collectionModel.makeCurrent}"
-                                              rowSelection="single" fetchSize="#{bindings.OtherZatratyView1.rangeSize}"
+                                              rowSelection="single"
+                                              fetchSize="#{bindings.OtherzatrFetchSize.inputValue == null ? bindings.OtherZatratyView1.rangeSize : bindings.OtherzatrFetchSize.inputValue}"
                                               id="t1" editingMode="clickToEdit" partialTriggers="::bCreate cmi4"
                                               scrollPolicy="page" binding="#{other.otherTable}">
                                         <af:column id="c9" width="60" rowHeader="true">

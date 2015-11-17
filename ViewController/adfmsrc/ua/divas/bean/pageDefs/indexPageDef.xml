@@ -58,6 +58,10 @@
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="inside_debt1" taskFlowId="/WEB-INF/inside_debt.xml#inside_debt" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="guiconfig1" taskFlowId="/WEB-INF/gui-config.xml#gui-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="zamerdebt_new1" taskFlowId="/WEB-INF/zamer-debt_new.xml#zamer-debt_new" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="NotificationView1Iterator" id="CountUnread">

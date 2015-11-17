@@ -6,16 +6,15 @@
   Name="GuiSettingsView"
   Version="12.1.3.23.11"
   InheritPersonalization="merge"
-  SelectListFlags="1"
-  FromListFlags="1"
-  WhereFlags="1"
   BindingStyle="OracleName"
-  CustomQuery="false"
-  SelectAllAttributes="false"
+  CustomQuery="true"
   PageIterMode="Full"
-  ComponentClass="ua.divas.view.GuiSettingsViewImpl">
+  ComponentClass="ua.divas.view.GuiSettingsViewImpl"
+  RowClass="ua.divas.view.GuiSettingsViewRowImpl">
   <DesignTime>
-    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
   </DesignTime>
   <Variable
     Name="u_id"
@@ -25,6 +24,14 @@
       trustMode="untrusted"
       Name="expression"><![CDATA[viewObject.getSessionUserId()]]></TransientExpression>
   </Variable>
+  <SQLQuery><![CDATA[SELECT GuiSettings.ID, 
+       GuiSettings.ORDER_FETCH_SIZE, 
+       GuiSettings.USER_ID,
+       (select 0 from dual) Editable,
+       GuiSettings.ZAMER_FETCH_SIZE,
+       GuiSettings.OTHERZATR_FETCH_SIZE
+FROM  GUI_SETTINGS GuiSettings
+WHERE ( (UPPER(GuiSettings.USER_ID) = UPPER(:u_id) ) )]]></SQLQuery>
   <EntityUsage
     Name="GuiSettings"
     Entity="ua.divas.model.GuiSettings"/>
@@ -50,26 +57,26 @@
     <TransientExpression
       trustMode="untrusted"><![CDATA[viewObject.getSessionUserId()]]></TransientExpression>
   </ViewAttribute>
-  <DeclarativeWhereClause
-    Name="DeclarativeWhereClause">
-    <ViewCriteria
-      Name="GuiSettingsViewWhereCriteria"
-      ViewObjectName="ua.divas.view.GuiSettingsView"
-      Conjunction="AND"
-      Mode="3">
-      <ViewCriteriaRow
-        Name="GuiSettingsViewWhereCriteria_row_0"
-        UpperColumns="1">
-        <ViewCriteriaItem
-          Name="UserId"
-          ViewAttribute="UserId"
-          Operator="="
-          Conjunction="AND"
-          Value=":u_id"
-          GenerateIsNullClauseForBindVars="false"
-          IsBindVarValue="true"
-          Required="Optional"/>
-      </ViewCriteriaRow>
-    </ViewCriteria>
-  </DeclarativeWhereClause>
+  <ViewAttribute
+    Name="Editable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="EDITABLE"
+    Expression="EDITABLE"
+    SQLType="NUMERIC"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="ZamerFetchSize"
+    PrecisionRule="true"
+    AliasName="ZAMER_FETCH_SIZE"
+    EntityAttrName="ZamerFetchSize"
+    EntityUsage="GuiSettings"/>
+  <ViewAttribute
+    Name="OtherzatrFetchSize"
+    PrecisionRule="true"
+    EntityAttrName="OtherzatrFetchSize"
+    EntityUsage="GuiSettings"
+    AliasName="OTHERZATR_FETCH_SIZE"/>
 </ViewObject>

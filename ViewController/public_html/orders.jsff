@@ -49,7 +49,7 @@
                                                       selectedRowKeys="#{bindings.OrdersView1.collectionModel.selectedRow}"
                                                       selectionListener="#{bindings.OrdersView1.collectionModel.makeCurrent}"
                                                       rowSelection="single"
-                                                      fetchSize="#{bindings.OrdersView1.rangeSize}"
+                                                      fetchSize="#{bindings.OrderFetchSize.inputValue == null ? bindings.OrdersView1.rangeSize : bindings.OrderFetchSize.inputValue}"
                                                       filterModel="#{bindings.OrdersView1Query.queryDescriptor}"
                                                       queryListener="#{bindings.OrdersView1Query.processQuery}"
                                                       filterVisible="true" varStatus="vs" id="t1"

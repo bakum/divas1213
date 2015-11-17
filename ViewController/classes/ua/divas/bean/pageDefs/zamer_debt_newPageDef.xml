@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="zamer_debt_newPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VwKontragZamerNew1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="VwKontragZamerNew1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VwKontragZamerNew1Iterator" id="VwKontragZamerNew1">
+      <nodeDefinition DefName="ua.divas.view.VwKontragZamerNew" Name="VwKontragZamerNew10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="Ballans"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwZamerMovesNew"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.VwZamerMovesNew" Name="VwKontragZamerNew11">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="RegString"/>
+          <Item Value="Payed"/>
+          <Item Value="Debet"/>
+          <Item Value="Kredit"/>
+          <Item Value="Ballans"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwZamerDebtDetail"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.VwZamerDebtDetail" Name="VwKontragZamerNew12">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Debet"/>
+          <Item Value="Kredit"/>
+          <Item Value="RegString"/>
+          <Item Value="Period"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>
