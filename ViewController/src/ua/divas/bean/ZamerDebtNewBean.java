@@ -46,6 +46,7 @@ public class ZamerDebtNewBean {
     private String summAll;
     private boolean walletVisible;
     private boolean disabledInBin;
+    private String btnTextBallans;
 
     public ZamerDebtNewBean() {
     }
@@ -146,7 +147,7 @@ public class ZamerDebtNewBean {
             System.out.println(rowType);
             if (rowType.matches("VwZamerMovesNew")) {
                 lbn = (BigDecimal) rw.getAttribute("Ballans");
-                String Id = rw.getAttribute("RegistratorId").toString();
+                String Id = rw.getAttribute("Keyid").toString();
                 String kontragId = rw.getAttribute("Id").toString();
                 String orderId = rw.getAttribute("RegistratorId").toString();
                 SupplierWallet.addSupplierWithIdIn(Id, kontragId, orderId, lbn.abs());
@@ -197,7 +198,7 @@ public class ZamerDebtNewBean {
 
     public boolean getDisabledInBin() {
         try {
-            String Id = (String) ADFUtil.evaluateEL("#{node.RegistratorId}");
+            String Id = (String) ADFUtil.evaluateEL("#{node.Keyid}");
             int i = SupplierWallet.searchSupplier(Id);
             System.out.println("i: " + i);
             if (i == -1) {
@@ -213,5 +214,16 @@ public class ZamerDebtNewBean {
 
     public void onCheckAdd(ValueChangeEvent valueChangeEvent) {
         onAddWallet(null);
+    }
+
+    /* public void setBtnTextBallans(String btnTextBallans) {
+        this.btnTextBallans = btnTextBallans;
+    } */
+
+    public String getBtnTextBallans() {
+        String ball = (String) ADFUtil.evaluateEL("#{node.Ballans}");
+        String s1 = ball.replaceFirst(",", ".");
+        //return ball;
+        return String.format("%4.2f" , new BigDecimal(s1)) ;
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="NomenklaturaNomenklaturaFk1Link"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  EntityAssociation="ua.divas.model.NomenklaturaNomenklaturaFk1Assoc">
+  <ViewLinkDefEnd
+    Name="ParentIdNomenklaturaView"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.NomenklaturaView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="ParentIdNomenklaturaView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.NomenklaturaView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="NomenklaturaView"
+    Cardinality="-1"
+    Owner="ua.divas.view.NomenklaturaView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="NomenklaturaView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.NomenklaturaView.ParentId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

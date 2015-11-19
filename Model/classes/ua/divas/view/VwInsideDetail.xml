@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwInsideDetail"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <SQLQuery><![CDATA[SELECT MIN(DISTINCT ID) ID,
+  DIV_ID,
+  DIV_NAME,
+  DIV_ID_DEST,
+  SUM(SUMM) SUMM,
+  SUM(summ_prih) SUMM_PRIH,
+  SUM(summ_rash) SUMM_RASH,
+  DIV_DEST_NAME,
+  CODE,
+  MIN(DISTINCT REGISTRATOR_ID) REGISTRATOR_ID,
+  MIN(TABLE_NAME) TABLE_NAME,
+  MIN(PERIOD) PERIOD,
+  MIN(DISTINCT DIVISION_ID) DIVISION_ID
+FROM
+  (SELECT MOVE_INSIDE.ID ID,
+    MOVE_INSIDE.DIV_ID DIV_ID,
+    MOVE_INSIDE.DIV_NAME DIV_NAME,
+    MOVE_INSIDE.DIV_ID DIV_ID_DEST,
+    (SELECT DIVISIONS.FULLNAME
+    FROM DIVISIONS
+    WHERE DIVISIONS.ID = MOVE_INSIDE.DIV_ID_DEST
+    ) DIV_DEST_NAME,
+    MOVE_INSIDE.CODE CODE,
+    MOVE_INSIDE.SUMM SUMM,
+    CASE
+      WHEN MOVE_INSIDE.SUMM >= 0
+      THEN MOVE_INSIDE.SUMM
+      ELSE 0
+    END AS summ_prih,
+    CASE
+      WHEN MOVE_INSIDE.SUMM < 0
+      THEN -MOVE_INSIDE.SUMM
+      ELSE 0
+    END AS summ_rash,
+    MOVE_INSIDE.REGISTRATOR_ID REGISTRATOR_ID,
+    MOVE_INSIDE.TABLE_NAME TABLE_NAME,
+    MOVE_INSIDE.PERIOD PERIOD,
+    MOVE_INSIDE.DIVISION_ID DIVISION_ID
+  FROM MOVE_INSIDE
+  )
+GROUP BY DIV_ID,
+  DIV_NAME,
+  DIV_ID_DEST,
+  DIV_DEST_NAME,
+  CODE]]></SQLQuery>
+  <ViewAttribute
+    Name="Id"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ID"
+    Expression="ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_ID"
+    Expression="DIV_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_NAME"
+    Expression="DIV_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivIdDest"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_ID_DEST"
+    Expression="DIV_ID_DEST"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summ"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMM"
+    Expression="SUMM"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SummPrih"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMM_PRIH"
+    Expression="SUMM_PRIH"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SummRash"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMM_RASH"
+    Expression="SUMM_RASH"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="DivDestName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_DEST_NAME"
+    Expression="DIV_DEST_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Code"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="6"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CODE"
+    Expression="CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RegistratorId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REGISTRATOR_ID"
+    Expression="REGISTRATOR_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TableName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TABLE_NAME"
+    Expression="TABLE_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Period"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    AliasName="PERIOD"
+    Expression="PERIOD"
+    SQLType="DATE"/>
+  <ViewAttribute
+    Name="DivisionId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVISION_ID"
+    Expression="DIVISION_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Id"/>
+    <Item Value="DivId"/>
+  </AttrArray>
+  <ViewLinkAccessor
+    Name="VwMovesInside"
+    ViewLink="ua.divas.view.VwInsideDetailMoviesFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

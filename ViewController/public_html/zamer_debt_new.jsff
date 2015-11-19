@@ -25,7 +25,7 @@
                                         <f:facet name="statusbar"/>
                                         <af:treeTable value="#{bindings.VwKontragZamerNew1.treeModel}" var="node"
                                                       id="ttZamer"
-                                                      rowSelection="single" partialTriggers="sbc1"
+                                                      rowSelection="single"
                                                       binding="#{zamer_debt_new.treeTable}">
                                             <f:facet name="nodeStamp">
                                                 <af:column id="c1" width="300" headerText="Наименование/Регистратор">
@@ -49,31 +49,36 @@
                                                 </af:outputText>
                                             </af:column>
                                             <af:column id="c3" align="right" headerText="Взял">
-                                                <af:outputText value="#{node.Debet}" id="ot5">
-                                                    <af:convertNumber type="number" minFractionDigits="2"
-                                                                      maxFractionDigits="2"/>
+                                                <af:outputText id="ot5" value="#{node.Debet}">
+                                                    <af:convertNumber minFractionDigits="2" maxFractionDigits="2"
+                                                                      type="number"/>
                                                 </af:outputText>
                                             </af:column>
                                             <af:column id="c4" align="right" headerText="Вернул">
-                                                <af:outputText value="#{node.Kredit}" id="ot6">
+                                                <af:outputText id="ot6" value="#{node.Kredit}">
                                                     <af:convertNumber type="number" minFractionDigits="2"
                                                                       maxFractionDigits="2"/>
                                                 </af:outputText>
                                             </af:column>
                                             <af:column id="c5" align="right" headerText="Осталось на руках">
-                                                <af:outputText value="#{node.Ballans}" id="ot7"
-                                                               inlineStyle="#{node.Fullname == null ? '' : 'font-weight:bold;'}">
-                                                    <af:convertNumber minFractionDigits="2" maxFractionDigits="2"
-                                                                      type="number"/>
+                                                <af:outputText id="ot7"
+                                                               inlineStyle="#{node.Fullname == null ? '' : 'font-weight:bold;'}"
+                                                               value="#{node.Ballans}"
+                                                               rendered="#{node.Fullname != null ? true : node.Ballans &lt; '0' ? true : false}">
+                                                    <af:convertNumber type="number" minFractionDigits="2"
+                                                                      maxFractionDigits="2"/>
                                                 </af:outputText>
+                                                <af:toolbar id="t3"
+                                                            rendered="#{node.Ballans == null ? false : node.Ballans &lt;= '0' ? false : node.Fullname == null ? true : false}">
+                                                    <af:button text="#{zamer_debt_new.btnTextBallans}" id="b1"
+                                                               icon="/img/coins.png"
+                                                               actionListener="#{zamer_debt_new.onAddWallet}"
+                                                               disabled="#{zamer_debt_new.disabledInBin}"
+                                                               immediate="true"
+                                                               shortDesc="Добавть в корзину для оплаты"/>
+                                                </af:toolbar>
                                             </af:column>
                                             <af:column id="c7" width="20" headerText="K" align="center">
-                                                <af:selectBooleanCheckbox
-                                                                          id="sbc1" value="#{node.Mark}"
-                                                                          autoSubmit="true"
-                                                                          rendered="#{node.Fullname != null ? false : node.Ballans &lt;= 0 ? false : true}"
-                                                                          visible="#{!zamer_debt_new.disabledInBin}"
-                                                                          valueChangeListener="#{zamer_debt_new.onCheckAdd}"/>
                                                 <af:image id="i1" source="/img/shoppingcart.png"
                                                           visible="#{zamer_debt_new.disabledInBin}"/>
                                             </af:column>

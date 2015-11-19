@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="TypeDef"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="TYPE_DEF"
+  AliasName="TypeDef"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TYPE_DEF"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TypeDef.Id_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TypeDef.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="TableName"
+    Precision="100"
+    ColumnName="TABLE_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TYPE_DEF">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TypeDef.TableName_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TypeDef.TableName_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Version"
+    IsNotNull="true"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="TYPE_DEF">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TypeDef.Version_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TypeDef.Version_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Moves"
+    Association="ua.divas.model.MovesTypeDefFk1Assoc"
+    AssociationEnd="ua.divas.model.MovesTypeDefFk1Assoc.Moves"
+    AssociationOtherEnd="ua.divas.model.MovesTypeDefFk1Assoc.TypeDef"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="PlanTypeSubconto"
+    Association="ua.divas.model.PlanTypeSubcontoTypeDFk1Assoc"
+    AssociationEnd="ua.divas.model.PlanTypeSubcontoTypeDFk1Assoc.PlanTypeSubconto"
+    AssociationOtherEnd="ua.divas.model.PlanTypeSubcontoTypeDFk1Assoc.TypeDef"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Numerator"
+    Association="ua.divas.model.NumeratorTypeDefFk1Assoc"
+    AssociationEnd="ua.divas.model.NumeratorTypeDefFk1Assoc.Numerator"
+    AssociationOtherEnd="ua.divas.model.NumeratorTypeDefFk1Assoc.TypeDef"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="EntrySettings"
+    Association="ua.divas.model.EntrySettingsTypeDefFk1Assoc"
+    AssociationEnd="ua.divas.model.EntrySettingsTypeDefFk1Assoc.EntrySettings"
+    AssociationOtherEnd="ua.divas.model.EntrySettingsTypeDefFk1Assoc.TypeDef"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="TypeDefPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="TYPE_DEF_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.TypeDef.Id"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

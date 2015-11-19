@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
-    <af:document title="Divas CRM" id="d1">
+    <af:document title="SiGRAND CRM" id="d1">
         <af:messages id="m1"/>
         <af:form id="f1" usesUpload="true">
             <af:panelGridLayout id="pgl1">
                 <af:gridRow height="100%" id="gr1">
                     <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                         <!-- Content -->
-                        <af:decorativeBox id="db1" theme="dark" topHeight="18px">
+                        <af:decorativeBox id="db1" theme="dark" topHeight="20px">
                             <f:facet name="center">
                                 <af:panelSpringboard id="ps1" displayMode="grid">
                                     <af:showDetailItem text="Реестр заказов" id="sdi1" icon="/img/fork-1-icon.png"
@@ -165,6 +165,11 @@
                                             <af:showDetailItem id="tab1" text="Взаиморасчеты" stretchChildren="first">
                                                 <af:region value="#{bindings.zamerdebt_new1.regionModel}" id="rZamer"/>
                                             </af:showDetailItem>
+                                            <af:showDetailItem text="showDetailItem 1" id="sdi32"
+                                                               stretchChildren="first">
+                                                <af:region value="#{bindings.supplierdebt_new1.regionModel}"
+                                                           id="rSupp"/>
+                                            </af:showDetailItem>
                                         </af:panelTabbed>
                                     </af:showDetailItem>
                                 </af:panelSpringboard>
@@ -188,7 +193,10 @@
                                     <af:outputFormatted value="Права: #{login.roleUser}" id="of2" styleClass="Linkclass"/>
                                     <af:spacer width="30" height="10" id="s5"/>
                                     <af:button text="#{notification.summAll}" id="bShoppingcart"
-                                               icon="/img/shoppingcart.png" visible="#{notification.walletVisible}"/>
+                                               icon="/img/shoppingcart.png" visible="#{notification.walletVisible}"
+                                               binding="#{notification.binButton}">
+                                        <af:showPopupBehavior popupId="pWallet" align="beforeStart"/>
+                                    </af:button>
                                     <af:spacer width="10" height="10" id="s7"/>
                                     <af:link text="Непрочитанных оповещений: #{bindings.CountUnread.inputValue == null ? 0 : bindings.CountUnread.inputValue}"
                                              id="l3" icon="/img/bell.png"
@@ -295,6 +303,121 @@
                                                 <af:image id="i1" source="/img/animbar.gif"/>
                                                 <af:outputText value="подождите пожалуйста..." id="ot2"/>
                                             </af:panelGroupLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pWallet"
+                                              contentDelivery="lazyUncached" binding="#{notification.binPopup}"
+                                              popupFetchListener="#{notification.onPopupSupplier}">
+                                        <af:dialog id="d5" type="none" title="Корзина" resize="on"
+                                                   stretchChildren="first" closeIconVisible="false" contentWidth="600"
+                                                   contentHeight="250">
+                                            <af:panelHeader text="Платежи в пакете" id="ph1"
+                                                            icon="/img/shoppingcart.png">
+                                                <f:facet name="context">
+                                                    <af:selectOneChoice label="Касса" id="soc3"
+                                                                        shortDesc="Касса для оплаты" required="true"
+                                                                        autoSubmit="true"
+                                                                        value="#{bindings.kassa1.inputValue}">
+                                                        <f:selectItems value="#{bindings.kassa1.items}" id="si3"/>
+                                                    </af:selectOneChoice>
+                                                </f:facet>
+                                                <f:facet name="menuBar"/>
+                                                <f:facet name="toolbar">
+                                                    <af:toolbar id="t4">
+                                                        <af:button actionListener="#{notification.onClearSupplier}"
+                                                                   text="Очистить корзину"
+                                                                   disabled="#{!bindings.clearSupplier.enabled}"
+                                                                   id="bClearSupp" immediate="true"/>
+                                                    </af:toolbar>
+                                                </f:facet>
+                                                <f:facet name="legend"/>
+                                                <f:facet name="info"/>
+                                                <af:table value="#{bindings.supplierList.collectionModel}" var="row"
+                                                          rows="#{bindings.supplierList.rangeSize}"
+                                                          emptyText="#{bindings.supplierList.viewable ? 'Корзина пуста.' : 'В доступе отказано.'}"
+                                                          rowBandingInterval="0"
+                                                          selectedRowKeys="#{bindings.supplierList.collectionModel.selectedRow}"
+                                                          selectionListener="#{bindings.supplierList.collectionModel.makeCurrent}"
+                                                          rowSelection="single"
+                                                          fetchSize="#{bindings.supplierList.rangeSize}" id="t2"
+                                                          partialTriggers="b6">
+                                                    <af:column id="c9" width="50">
+                                                        <af:toolbar id="t5">
+                                                            <af:button actionListener="#{notification.onDeleteSupplier}"
+                                                                       disabled="#{!bindings.Delete.enabled}" id="b6"
+                                                                       icon="/img/delete.png" immediate="true"/>
+                                                        </af:toolbar>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.supplierList.hints.id.label}"
+                                                               id="c2" rendered="false" align="right">
+                                                        <af:outputText value="#{row.id}"
+                                                                       shortDesc="#{bindings.supplierList.hints.id.tooltip}"
+                                                                       id="ot3"/>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.supplierList.hints.kontragId.label}"
+                                                               id="c8" width="150">
+                                                        <af:selectOneChoice value="#{row.bindings.kontragId.inputValue}"
+                                                                            label="#{row.bindings.kontragId.label}"
+                                                                            required="#{bindings.supplierList.hints.kontragId.mandatory}"
+                                                                            shortDesc="#{bindings.supplierList.hints.kontragId.tooltip}"
+                                                                            id="soc1" readOnly="true">
+                                                            <f:selectItems value="#{row.bindings.kontragId.items}"
+                                                                           id="si1"/>
+                                                            <f:validator binding="#{row.bindings.kontragId.validator}"/>
+                                                        </af:selectOneChoice>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.supplierList.hints.orderId.label}"
+                                                               id="c10" width="200">
+                                                        <af:selectOneChoice value="#{row.bindings.orderId.inputValue}"
+                                                                            label="#{row.bindings.orderId.label}"
+                                                                            required="#{bindings.supplierList.hints.orderId.mandatory}"
+                                                                            shortDesc="#{bindings.supplierList.hints.orderId.tooltip}"
+                                                                            id="soc2" readOnly="true">
+                                                            <f:selectItems value="#{row.bindings.orderId.items}"
+                                                                           id="si2"/>
+                                                            <f:validator binding="#{row.bindings.orderId.validator}"/>
+                                                        </af:selectOneChoice>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.supplierList.hints.summa.label}"
+                                                               id="c4">
+                                                        <af:outputText value="#{row.summa}"
+                                                                       shortDesc="#{bindings.supplierList.hints.summa.tooltip}"
+                                                                       id="ot4">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.supplierList.hints.summa.format}"/>
+                                                        </af:outputText>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.supplierList.hints.isIn.label}"
+                                                               id="c7" width="50" rendered="false">
+                                                        <af:selectBooleanCheckbox value="#{row.bindings.isIn.inputValue}"
+                                                                                  label="#{row.bindings.isIn.label}"
+                                                                                  shortDesc="#{bindings.supplierList.hints.isIn.tooltip}"
+                                                                                  id="sbc3" readOnly="true"/>
+                                                    </af:column>
+                                                    <af:column id="c11" width="50">
+                                                        <af:outputText value="#{row.isIn == true ? 'Приход' : 'Расход'}" id="ot8"/>
+                                                    </af:column>
+                                                </af:table>
+                                            </af:panelHeader>
+                                            <f:facet name="buttonBar">
+                                                <af:panelGroupLayout id="pgl5" layout="horizontal" halign="right">
+                                                    <af:toolbar id="t3">
+                                                        <af:outputText value="#{notification.summAll}" id="ot7"
+                                                                       inlineStyle="font-weight:bold;"
+                                                                       binding="#{notification.retImpTextAll}"
+                                                                       partialTriggers="bClearSupp"/>
+                                                        <af:spacer width="10" height="10" id="s9"/>
+                                                        <af:button text="Оплатить" id="b4"
+                                                                   actionListener="#{notification.onPayFromBin}"
+                                                                   inlineStyle="font-weight:bold;"
+                                                                   partialTriggers="bClearSupp t2:b6"
+                                                                   disabled="#{notification.disabledPay}"/>
+                                                        <af:button text="Закрыть" id="b5"
+                                                                   actionListener="#{notification.onCloseBin}"
+                                                                   immediate="true"/>
+                                                    </af:toolbar>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
                                         </af:dialog>
                                     </af:popup>
                                 </af:panelGroupLayout>

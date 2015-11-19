@@ -8,12 +8,14 @@
                 <af:gridRow height="100%" id="gr1">
                     <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                         <!-- Content -->
-                        <af:decorativeBox id="db1" theme="dark">
+                        <af:decorativeBox id="db1" inlineStyle="background-color:#D07700;">
                             <f:facet name="center">
-                                <af:panelStretchLayout id="psl1" topHeight="100px">
+                                <af:panelStretchLayout id="psl1" topHeight="220px"
+                                                       inlineStyle="background-color:#D07700;">
                                     <f:facet name="bottom"/>
                                     <f:facet name="center">
-                                        <af:decorativeBox id="db2" theme="medium">
+                                        <af:decorativeBox id="db2" inlineStyle="background-color:#D07700;"
+                                                          theme="medium">
                                             <f:facet name="center">
                                                 <af:panelGroupLayout id="pgl4" layout="horizontal" halign="center"
                                                                      valign="middle">
@@ -62,7 +64,7 @@
                                     <f:facet name="top">
                                         <af:panelGroupLayout id="pgl3" layout="horizontal">
                                             <af:spacer width="10" height="10" id="s5"/>
-                                            <af:activeImage id="ai1" source="/img/logo.png"/>
+                                            <af:activeImage id="ai1" source="/img/sigrand_logo 1.png"/>
                                             <af:spacer width="100" height="10" id="s3" inlineStyle="font-size:large;"/>
                                             <af:outputText value="Активация доступа к системе" id="ot1"
                                                            inlineStyle="font-size:x-large;"/>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="createBuerPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="createByer_return" IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.createByer.result}"/>
+      <variable Type="java.lang.String" Name="createByer_p_name" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createByer_contact" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createByer_phone" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createByer_mail" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="createByer" RequiresUpdateModel="true" Action="invokeMethod" MethodName="createByer"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.KontragentsView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.createByer_AppModuleDataControl_KontragentsView1_createByer_result">
+      <NamedData NDName="p_name" NDType="java.lang.String" NDValue="${bindings.createByer_p_name}"/>
+      <NamedData NDName="contact" NDType="java.lang.String" NDValue="${bindings.createByer_contact}"/>
+      <NamedData NDName="phone" NDType="java.lang.String" NDValue="${bindings.createByer_phone}"/>
+      <NamedData NDName="mail" NDType="java.lang.String" NDValue="${bindings.createByer_mail}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="p_name">
+      <AttrNames>
+        <Item Value="createByer_p_name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="contact">
+      <AttrNames>
+        <Item Value="createByer_contact"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="phone">
+      <AttrNames>
+        <Item Value="createByer_phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="mail">
+      <AttrNames>
+        <Item Value="createByer_mail"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

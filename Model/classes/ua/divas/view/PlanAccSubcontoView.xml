@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PlanAccSubcontoView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="PlanAccSubconto.ID, 
+       PlanAccSubconto.PLAN_ACC_ID, 
+       PlanAccSubconto.PLAN_TYPE_SUBC, 
+       PlanAccSubconto.OBOROT_ONLY, 
+       PlanAccSubconto.SUMMOVOY, 
+       PlanAccSubconto.VERSION"
+  FromList="PLAN_ACC_SUBCONTO PlanAccSubconto"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full">
+  <Variable
+    Name="PlanId"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="PlanAccView1"
+    ViewObjectName="ua.divas.view.PlanAccView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PlanTypeSubcontoView1"
+    ViewObjectName="ua.divas.view.PlanTypeSubcontoView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_PlanAccId"
+    ListVOName="PlanAccView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlanAccId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Code"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PlanTypeSubc"
+    ListVOName="PlanTypeSubcontoView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PlanTypeSubc"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="PlanAccSubconto"
+    Entity="ua.divas.model.PlanAccSubconto"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="PlanAccSubconto"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="PlanAccId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PlanAccId"
+    EntityUsage="PlanAccSubconto"
+    AliasName="PLAN_ACC_ID"
+    LOVName="LOV_PlanAccId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlanTypeSubc"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PlanTypeSubc"
+    EntityUsage="PlanAccSubconto"
+    AliasName="PLAN_TYPE_SUBC"
+    LOVName="LOV_PlanTypeSubc">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OborotOnly"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="OborotOnly"
+    EntityUsage="PlanAccSubconto"
+    AliasName="OBOROT_ONLY"/>
+  <ViewAttribute
+    Name="Summovoy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summovoy"
+    EntityUsage="PlanAccSubconto"
+    AliasName="SUMMOVOY"/>
+  <ViewAttribute
+    Name="Version"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="PlanAccSubconto"
+    AliasName="VERSION"/>
+  <ViewCriteria
+    Name="PlanAccSubcontoByPlanId"
+    ViewObjectName="ua.divas.view.PlanAccSubcontoView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="PlanAccSubcontoViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="PlanAccId"
+        ViewAttribute="PlanAccId"
+        Operator="="
+        Conjunction="AND"
+        Value=":PlanId"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+</ViewObject>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="supplier_debt_newPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="VwKontragSupplierNew1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="VwKontragSupplierNew1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VwKontragSupplierNew1Iterator" id="VwKontragSupplierNew1">
+      <nodeDefinition DefName="ua.divas.view.VwKontragSupplierNew" Name="VwKontragSupplierNew10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="Ballans"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwSupplierMovesNew"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.VwSupplierMovesNew" Name="VwKontragSupplierNew11">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Debet"/>
+          <Item Value="Kredit"/>
+          <Item Value="Payed"/>
+          <Item Value="RegString"/>
+          <Item Value="Ballans"/>
+          <Item Value="RegistratorId"/>
+          <Item Value="Keyid"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="VwSupplierDebtDetail"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.VwSupplierDebtDetail" Name="VwKontragSupplierNew12">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="RegString"/>
+          <Item Value="Period"/>
+          <Item Value="Debet"/>
+          <Item Value="Kredit"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

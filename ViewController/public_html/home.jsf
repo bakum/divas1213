@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
-    <af:document title="Divas CRM - Авторизация" id="d1" inlineStyle="background-color:Scrollbar;">
+    <af:document title="SiGRAND CRM - Авторизация" id="d1" inlineStyle="background-color:Scrollbar;">
         <af:messages id="m1"/>
         <af:form id="f1" defaultCommand="b1">
             <af:panelGridLayout id="pgl1">
                 <af:gridRow height="100%" id="gr1">
                     <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                         <!-- Content -->
-                        <af:decorativeBox id="db1" topHeight="18%" inlineStyle="background-color:Black;">
+                        <af:decorativeBox id="db1" topHeight="220px"
+                                          inlineStyle="background-color:#D07700;">
                             <f:facet name="center">
                                 <af:panelBorderLayout id="pbl1" inlineStyle="background-color:#848484;">
                                     <f:facet name="start"/>
@@ -37,7 +38,7 @@
                                                           placeholder="Пароль" showRequired="false"/>
                                         </af:panelFormLayout>
                                         <af:spacer width="20" height="10" id="s2"/>
-                                        <af:link id="i2" icon="/img/logo.png" destination="http://divas.imx.net.ua"/>
+                                        <af:image id="i3" source="/img/sigrand_logo 1.png"/>
                                     </af:panelGroupLayout>
                                 </af:panelGroupLayout>
                             </f:facet>

@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<MetadataDirectory xmlns="http://xmlns.oracle.com/adfm/metainf" version="11.1.1.0.0">
+  <DataBindingRegistry path="ua/divas/bean/DataBindings.cpx"/>
+  <DataControlRegistry path="ua/divas/bean/DataControls.dcx"/>
+<BusinessComponentProjectRegistry path="ua/divas/bean/ViewController.jpx"/>
+</MetadataDirectory>

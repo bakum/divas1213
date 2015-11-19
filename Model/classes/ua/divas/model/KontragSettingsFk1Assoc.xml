@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="KontragSettingsFk1Assoc"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="Kontragents"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.model.Kontragents"
+    LockLevel="NONE">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="Kontragents"/>
+      <Attr Name="_foreignKey" Value="ua.divas.model.Kontragents.KontragentsPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Kontragents.Id"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="KontragSettings"
+    Cardinality="-1"
+    Owner="ua.divas.model.KontragSettings">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="KontragSettings"/>
+      <Attr Name="_foreignKey" Value="ua.divas.model.KontragSettings.KontragSettingsFk1"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.KontragSettings.KontragId"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

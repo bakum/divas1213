@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Kassa"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="KASSA"
+  AliasName="Kassa"
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.KassaImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KASSA"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.Id_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Fullname"
+    IsNotNull="true"
+    Precision="100"
+    ColumnName="FULLNAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KASSA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.Fullname_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.Fullname_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="IsGroup"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="IS_GROUP"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="KASSA"
+    DefaultValue="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.IsGroup_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.IsGroup_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="ParentId"
+    Precision="50"
+    ColumnName="PARENT_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KASSA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.ParentId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.ParentId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="CurrId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="CURR_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KASSA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.CurrId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.CurrId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="DivisionId"
+    Precision="50"
+    ColumnName="DIVISION_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KASSA"
+    IsNotNull="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.DivisionId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.DivisionId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="FirmaId"
+    Precision="50"
+    ColumnName="FIRMA_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KASSA">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.FirmaId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.FirmaId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Deleted"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="DELETED"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="KASSA"
+    DefaultValue="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.Deleted_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.Deleted_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Version"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="KASSA">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.Version_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.Version_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Predefined"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="PREDEFINED"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="KASSA"
+    DefaultValue="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kassa.Predefined_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kassa.Predefined_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Kassa"
+    Association="ua.divas.model.KassaKassaFk1Assoc"
+    AssociationEnd="ua.divas.model.KassaKassaFk1Assoc.Kassa"
+    AssociationOtherEnd="ua.divas.model.KassaKassaFk1Assoc.ParentIdKassa"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="ParentIdKassa"
+    Association="ua.divas.model.KassaKassaFk1Assoc"
+    AssociationEnd="ua.divas.model.KassaKassaFk1Assoc.ParentIdKassa"
+    AssociationOtherEnd="ua.divas.model.KassaKassaFk1Assoc.Kassa"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Currency"
+    Association="ua.divas.model.KassaCurrencyFk1Assoc"
+    AssociationEnd="ua.divas.model.KassaCurrencyFk1Assoc.Currency"
+    AssociationOtherEnd="ua.divas.model.KassaCurrencyFk1Assoc.Kassa"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Divisions"
+    Association="ua.divas.model.KassaDivisionsFk1Assoc"
+    AssociationEnd="ua.divas.model.KassaDivisionsFk1Assoc.Divisions"
+    AssociationOtherEnd="ua.divas.model.KassaDivisionsFk1Assoc.Kassa"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Firms"
+    Association="ua.divas.model.KassaFirmsFk1Assoc"
+    AssociationEnd="ua.divas.model.KassaFirmsFk1Assoc.Firms"
+    AssociationOtherEnd="ua.divas.model.KassaFirmsFk1Assoc.Kassa"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Orders"
+    Association="ua.divas.model.OrdersKassaFk1Assoc"
+    AssociationEnd="ua.divas.model.OrdersKassaFk1Assoc.Orders"
+    AssociationOtherEnd="ua.divas.model.OrdersKassaFk1Assoc.Kassa"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="UserSettings"
+    Association="ua.divas.model.UserSettingsKassaFk1Assoc"
+    AssociationEnd="ua.divas.model.UserSettingsKassaFk1Assoc.UserSettings"
+    AssociationOtherEnd="ua.divas.model.UserSettingsKassaFk1Assoc.Kassa"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="OtherZatraty"
+    Association="ua.divas.model.OtherZatratyFk4Assoc"
+    AssociationEnd="ua.divas.model.OtherZatratyFk4Assoc.OtherZatraty"
+    AssociationOtherEnd="ua.divas.model.OtherZatratyFk4Assoc.Kassa"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="KassaSettings"
+    Association="ua.divas.model.KassaSettingsFk2Assoc"
+    AssociationEnd="ua.divas.model.KassaSettingsFk2Assoc.KassaSettings"
+    AssociationOtherEnd="ua.divas.model.KassaSettingsFk2Assoc.Kassa"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="OrdersTpOplaty"
+    Association="ua.divas.model.OrderTpOplatyKassaFkAssoc"
+    AssociationEnd="ua.divas.model.OrderTpOplatyKassaFkAssoc.OrdersTpOplaty"
+    AssociationOtherEnd="ua.divas.model.OrderTpOplatyKassaFkAssoc.Kassa"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="KassaDivisionIdCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_DBObjectName" Value="KASSA_DIVISION_ID_CHECK"/>
+      <Attr Name="_checkCondition" Value='"DIVISION_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Kassa.DivisionId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="KassaPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="KASSA_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Kassa.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="KassaCurrencyFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="CURRENCY_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="KASSA_CURRENCY_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Kassa.CurrId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="KassaDivisionsFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="DIVISIONS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="KASSA_DIVISIONS_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Kassa.DivisionId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="KassaFirmsFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="FIRMS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="KASSA_FIRMS_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Kassa.FirmaId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="KassaKassaFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="KASSA_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="KASSA_KASSA_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Kassa.ParentId"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

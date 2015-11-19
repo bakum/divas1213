@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PlanAccSubcontoFk2Assoc"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="PlanTypeSubconto"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.model.PlanTypeSubconto">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="PlanTypeSubconto"/>
+      <Attr Name="_foreignKey" Value="ua.divas.model.PlanTypeSubconto.PlanTypeSubcontoPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.PlanTypeSubconto.Id"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="PlanAccSubconto"
+    Cardinality="-1"
+    Owner="ua.divas.model.PlanAccSubconto">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="PlanAccSubconto"/>
+      <Attr Name="_foreignKey" Value="ua.divas.model.PlanAccSubconto.PlanAccSubcontoFk2"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.PlanAccSubconto.PlanTypeSubc"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

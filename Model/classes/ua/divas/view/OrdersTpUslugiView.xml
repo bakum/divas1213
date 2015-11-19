@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTpUslugiView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ua.divas.view.OrdersTpUslugiViewRowImpl"
+  ComponentClass="ua.divas.view.OrdersTpUslugiViewImpl"
+  ComponentInterface="ua.divas.view.common.OrdersTpUslugiView"
+  ClientProxyName="ua.divas.view.client.OrdersTpUslugiViewClient">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="OrdersView1"
+    ViewObjectName="ua.divas.view.OrdersView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="NomenklaturaView1"
+    ViewObjectName="ua.divas.view.NomenklaturaView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FilterNomByCascade"
+      FullName="ua.divas.view.NomenklaturaView.FilterNomByCascade"/>
+    <ParameterMap>
+      <PIMap Variable="prnt">
+        <TransientExpression><![CDATA[GroupId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="KontragentsView1"
+    ViewObjectName="ua.divas.view.KontragentsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MeasureUnitView1"
+    ViewObjectName="ua.divas.view.MeasureUnitView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="NomenklaturaUslGroup1"
+    ViewObjectName="ua.divas.view.NomenklaturaUslGroup"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_OrderId"
+    ListVOName="OrdersView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OrderId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Num"/>
+      <Item Value="Dat"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SotrId"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SotrId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Sotrname"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="KontragentsZamerCriteria"
+      Hint="showAndExecute"/>
+    <ViewCriteriaUsage
+      Name="KontragentsZamerCriteria"
+      FullName="ua.divas.view.KontragentsView.KontragentsZamerCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Sotrname"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Sotrname"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="SotrId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="KontragentsZamerCriteria"
+      Hint="showAndExecute"/>
+    <ViewCriteriaUsage
+      Name="KontragentsZamerCriteria"
+      FullName="ua.divas.view.KontragentsView.KontragentsZamerCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_GroupId"
+    ListVOName="NomenklaturaUslGroup1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="GroupId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MeasureId"
+    ListVOName="MeasureUnitView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MeasureId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_NomId"
+    ListVOName="NomenklaturaView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="NomId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT OrdersTpUslugi.ID, 
+       OrdersTpUslugi.ORDER_ID, 
+       OrdersTpUslugi.NOM_ID,
+       OrdersTpUslugi.PRICE, 
+       OrdersTpUslugi.SUMM, 
+       OrdersTpUslugi.DAT_COMPLETE, 
+       OrdersTpUslugi.SOTR_ID,
+       (select fullname from kontragents where id = SOTR_ID) SotrName,
+       OrdersTpUslugi.DAT_TO_PAY, 
+       OrdersTpUslugi.ADD_WORK, 
+       OrdersTpUslugi.GROUP_ID,
+       OrdersTpUslugi.MEASURE_ID, 
+       OrdersTpUslugi.PRICE_ADD, 
+       OrdersTpUslugi.QUANTITY,
+       (select 0 from dual) otpu_editable
+FROM  ORDERS_TP_USLUGI OrdersTpUslugi]]></SQLQuery>
+  <EntityUsage
+    Name="OrdersTpUslugi"
+    Entity="ua.divas.model.OrdersTpUslugi"/>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="OrderId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="OrderId"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="ORDER_ID"
+    LOVName="LOV_OrderId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NomId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="NomId"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="NOM_ID"
+    LOVName="LOV_NomId">
+    <Dependencies>
+      <Item
+        Value="GroupId"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Price"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Price"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="PRICE">
+    <TransientExpression><![CDATA[NomId != null ? viewObject.retrievePrice(NomId) : 0]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="GroupId"/>
+      <Item
+        Value="NomId"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summ"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summ"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="SUMM">
+    <TransientExpression><![CDATA[viewObject.retrieveSumm((Price !=null ? Price : 0),(Quantity != null ? Quantity : 0))]]></TransientExpression>
+    <Dependencies>
+      <Item
+        Value="Price"/>
+      <Item
+        Value="Quantity"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DatComplete"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DatComplete"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="DAT_COMPLETE">
+    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SotrId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SotrId"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="SOTR_ID"
+    LOVName="LOV_SotrId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpUslugiView.SotrId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpUslugiView.SotrId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Sotrname"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SOTRNAME"
+    Expression="SOTRNAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_Sotrname">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpUslugiView.Sotrname_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpUslugiView.Sotrname_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DatToPay"
+    PrecisionRule="true"
+    EntityAttrName="DatToPay"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="DAT_TO_PAY">
+    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AddWork"
+    PrecisionRule="true"
+    EntityAttrName="AddWork"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="ADD_WORK"/>
+  <ViewAttribute
+    Name="GroupId"
+    PrecisionRule="true"
+    EntityAttrName="GroupId"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="GROUP_ID"
+    LOVName="LOV_GroupId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MeasureId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MeasureId"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="MEASURE_ID"
+    LOVName="LOV_MeasureId">
+    <TransientExpression><![CDATA[NomId != null ? viewObject.retrieveMeasure(NomId) : null]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="GroupId"/>
+      <Item
+        Value="NomId"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PriceAdd"
+    PrecisionRule="true"
+    EntityAttrName="PriceAdd"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="PRICE_ADD"/>
+  <ViewAttribute
+    Name="Quantity"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Quantity"
+    EntityUsage="OrdersTpUslugi"
+    AliasName="QUANTITY">
+    <Properties>
+      <SchemaBasedProperties>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OtpuEditable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="OTPU_EDITABLE"
+    Expression="OTPU_EDITABLE"
+    SQLType="NUMERIC"/>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="retrieveMeasure"
+      MethodName="retrieveMeasure">
+      <Return
+        Name="_return_type_"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="NomId"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="retrievePrice"
+      MethodName="retrievePrice">
+      <Return
+        Name="_return_type_"
+        Type="java.math.BigDecimal"/>
+      <Parameter
+        Name="NomId"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="retrieveSumm"
+      MethodName="retrieveSumm">
+      <Return
+        Name="_return_type_"
+        Type="java.math.BigDecimal"/>
+      <Parameter
+        Name="p"
+        Type="java.math.BigDecimal"/>
+      <Parameter
+        Name="q"
+        Type="java.math.BigDecimal"/>
+    </Method>
+  </ClientInterface>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

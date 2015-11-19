@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwMovesInside"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwMovesInside_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT MOVE_INSIDE.ID ID,
+    MOVE_INSIDE.DIV_ID DIV_ID,
+    MOVE_INSIDE.DIV_NAME DIV_NAME,
+    MOVE_INSIDE.DIV_ID DIV_ID_DEST,
+    (SELECT DIVISIONS.FULLNAME
+    FROM DIVISIONS
+    WHERE DIVISIONS.ID = MOVE_INSIDE.DIV_ID_DEST
+    ) DIV_DEST_NAME,
+    MOVE_INSIDE.CODE CODE,
+    MOVE_INSIDE.SUMM SUMM,
+    CASE
+      WHEN MOVE_INSIDE.SUMM >= 0
+      THEN MOVE_INSIDE.SUMM
+      ELSE 0
+    END AS summ_prih,
+    CASE
+      WHEN MOVE_INSIDE.SUMM < 0
+      THEN -MOVE_INSIDE.SUMM
+      ELSE 0
+    END AS summ_rash,
+    CASE
+      WHEN upper(MOVE_INSIDE.TABLE_NAME) LIKE upper('orders')
+      THEN 'Заказ №'
+        ||
+        (SELECT orders.NUM
+        FROM orders
+        WHERE orders.ID = MOVE_INSIDE.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT orders.DAT FROM orders WHERE orders.ID = MOVE_INSIDE.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+      WHEN upper(MOVE_INSIDE.TABLE_NAME) LIKE upper('pko')
+      THEN 'ПКО №'
+        ||
+        (SELECT pko.NUM
+        FROM pko
+        WHERE pko.ID = MOVE_INSIDE.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT pko.DAT FROM pko WHERE pko.ID = MOVE_INSIDE.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+      WHEN upper(MOVE_INSIDE.TABLE_NAME) LIKE upper('rko')
+      THEN 'РКО №'
+        ||
+        (SELECT rko.NUM
+        FROM rko
+        WHERE rko.ID = MOVE_INSIDE.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT rko.DAT FROM rko WHERE rko.ID = MOVE_INSIDE.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+    END AS DISCRIPTION,
+    MOVE_INSIDE.REGISTRATOR_ID REGISTRATOR_ID,
+    MOVE_INSIDE.TABLE_NAME TABLE_NAME,
+    MOVE_INSIDE.PERIOD PERIOD,
+    MOVE_INSIDE.DIVISION_ID DIVISION_ID
+  FROM MOVE_INSIDE]]></SQLQuery>
+  <ViewAttribute
+    Name="Id"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ID"
+    Expression="ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_ID"
+    Expression="DIV_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_NAME"
+    Expression="DIV_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivIdDest"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_ID_DEST"
+    Expression="DIV_ID_DEST"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivDestName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_DEST_NAME"
+    Expression="DIV_DEST_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Code"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="6"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CODE"
+    Expression="CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summ"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMM"
+    Expression="SUMM"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SummPrih"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMM_PRIH"
+    Expression="SUMM_PRIH"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SummRash"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMM_RASH"
+    Expression="SUMM_RASH"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Discription"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="71"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DISCRIPTION"
+    Expression="DISCRIPTION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="71"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RegistratorId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REGISTRATOR_ID"
+    Expression="REGISTRATOR_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TableName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TABLE_NAME"
+    Expression="TABLE_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Period"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    AliasName="PERIOD"
+    Expression="PERIOD"
+    SQLType="DATE"/>
+  <ViewAttribute
+    Name="DivisionId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVISION_ID"
+    Expression="DIVISION_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Id"/>
+    <Item Value="DivId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

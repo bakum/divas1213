@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="other_zatrPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="OtherZatratyView1" RangeSize="30" DataControl="AppModuleDataControl"
+              id="OtherZatratyView1Iterator">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="OtherZatratyTabPartZatratyView2" RangeSize="5" DataControl="AppModuleDataControl"
+              id="OtherZatratyTabPartZatratyView2Iterator"/>
+    <iterator Binds="VwOtherMoves2" RangeSize="25" DataControl="AppModuleDataControl" id="VwOtherMoves2Iterator"/>
+    <searchRegion Criteria="OtherZatratyDate" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="OtherZatratyView1Iterator" id="OtherZatratyDateQuery"/>
+    <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="OtherZatratyView1Iterator" id="OtherZatratyView1">
+      <nodeDefinition DefName="ua.divas.view.OtherZatratyView" Name="OtherZatratyView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Dat"/>
+          <Item Value="Num"/>
+          <Item Value="Posted"/>
+          <Item Value="DivisionId"/>
+          <Item Value="UserId"/>
+          <Item Value="CurrId"/>
+          <Item Value="OthEditable"/>
+          <Item Value="TotalZatr"/>
+          <Item Value="Comments"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="OtherZatratyView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_KassaId" id="KassaId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="OtherZatratyTabPartZatratyView2">
+      <nodeDefinition DefName="ua.divas.view.OtherZatratyTabPartZatratyView" Name="OtherZatratyTabPartZatratyView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="OthId"/>
+          <Item Value="ZatrId"/>
+          <Item Value="Zatrname"/>
+          <Item Value="Summa"/>
+          <Item Value="OthtpEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="CreateInsert1" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <methodAction id="addEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.OtherZatratyView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removeEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.OtherZatratyView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="VwOtherMoves2Iterator" id="VwOtherMoves2">
+      <nodeDefinition DefName="ua.divas.view.VwOtherMoves" Name="VwOtherMoves20">
+        <AttrNames>
+          <Item Value="RegistratorId"/>
+          <Item Value="Deb"/>
+          <Item Value="SumDeb"/>
+          <Item Value="Kred"/>
+          <Item Value="SumKred"/>
+          <Item Value="Subconto1Deb"/>
+          <Item Value="Subconto1Kred"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="OtherZatratyView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="OtherzatrFetchSize">
+      <AttrNames>
+        <Item Value="OtherzatrFetchSize"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

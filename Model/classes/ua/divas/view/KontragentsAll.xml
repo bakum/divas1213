@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="KontragentsAll"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  OrderBy="FULLNAME"
+  ComponentClass="ua.divas.view.KontragentsAllImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.KontragentsAll_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="KonId"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="KontragentsView1"
+    ViewObjectName="ua.divas.view.KontragentsView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="KontragentsGroup"
+      FullName="ua.divas.view.KontragentsView.KontragentsGroup"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="KontragentsAllGroup1"
+    ViewObjectName="ua.divas.view.ro.KontragentsAllGroup"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="UsersView1"
+    ViewObjectName="ua.divas.view.UsersView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_ParentId"
+    ListVOName="KontragentsAllGroup1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ParentId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_UserId"
+    ListVOName="UsersView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="UserId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Login"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT Kontragents.DELETED, 
+       Kontragents.FULLNAME, 
+       Kontragents.ID, 
+       Kontragents.INN, 
+       Kontragents.IS_BUYER, 
+       Kontragents.IS_GROUP, 
+       Kontragents.IS_MEASURER, 
+       Kontragents.IS_SUPPLIER, 
+       Kontragents.KPP, 
+       Kontragents.NAMEFULL, 
+       Kontragents.OKPO, 
+       Kontragents.PARENT_ID, 
+       Kontragents.PREDEFINED, 
+       Kontragents.UR_FIZ, 
+       Kontragents.USER_ID, 
+       Kontragents.PHOTO,
+       Kontragents.VERSION,
+       case
+        when (is_group = 0
+            and is_buyer = 0 
+            and is_supplier = 0)
+        then 1
+        else 0
+       end supp_setting
+FROM  KONTRAGENTS Kontragents]]></SQLQuery>
+  <EntityUsage
+    Name="Kontragents"
+    Entity="ua.divas.model.Kontragents"/>
+  <ViewAttribute
+    Name="Deleted"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Deleted"
+    EntityUsage="Kontragents"
+    AliasName="DELETED"/>
+  <ViewAttribute
+    Name="Fullname"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Fullname"
+    EntityUsage="Kontragents"
+    AliasName="FULLNAME"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Kontragents"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Inn"
+    PrecisionRule="true"
+    EntityAttrName="Inn"
+    EntityUsage="Kontragents"
+    AliasName="INN"/>
+  <ViewAttribute
+    Name="IsBuyer"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsBuyer"
+    EntityUsage="Kontragents"
+    AliasName="IS_BUYER"/>
+  <ViewAttribute
+    Name="IsGroup"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsGroup"
+    EntityUsage="Kontragents"
+    AliasName="IS_GROUP"/>
+  <ViewAttribute
+    Name="IsMeasurer"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsMeasurer"
+    EntityUsage="Kontragents"
+    AliasName="IS_MEASURER"/>
+  <ViewAttribute
+    Name="IsSupplier"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsSupplier"
+    EntityUsage="Kontragents"
+    AliasName="IS_SUPPLIER"/>
+  <ViewAttribute
+    Name="Kpp"
+    PrecisionRule="true"
+    EntityAttrName="Kpp"
+    EntityUsage="Kontragents"
+    AliasName="KPP"/>
+  <ViewAttribute
+    Name="Namefull"
+    PrecisionRule="true"
+    EntityAttrName="Namefull"
+    EntityUsage="Kontragents"
+    AliasName="NAMEFULL"/>
+  <ViewAttribute
+    Name="Okpo"
+    PrecisionRule="true"
+    EntityAttrName="Okpo"
+    EntityUsage="Kontragents"
+    AliasName="OKPO"/>
+  <ViewAttribute
+    Name="ParentId"
+    PrecisionRule="true"
+    EntityAttrName="ParentId"
+    EntityUsage="Kontragents"
+    AliasName="PARENT_ID"
+    LOVName="LOV_ParentId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Predefined"
+    PrecisionRule="true"
+    EntityAttrName="Predefined"
+    EntityUsage="Kontragents"
+    AliasName="PREDEFINED"/>
+  <ViewAttribute
+    Name="UrFiz"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UrFiz"
+    EntityUsage="Kontragents"
+    AliasName="UR_FIZ"/>
+  <ViewAttribute
+    Name="UserId"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="Kontragents"
+    AliasName="USER_ID"
+    LOVName="LOV_UserId">
+    <TransientExpression><![CDATA[viewObject.getSessionUserId()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Photo"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="Photo"
+    EntityUsage="Kontragents"
+    AliasName="PHOTO"/>
+  <ViewAttribute
+    Name="Version"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="Kontragents"
+    AliasName="VERSION"/>
+  <ViewAttribute
+    Name="SuppSetting"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="SUPP_SETTING"
+    Expression="SUPP_SETTING"
+    SQLType="INTEGER"/>
+  <ViewCriteria
+    Name="KontragentsAllById"
+    ViewObjectName="ua.divas.view.KontragentsAll"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="KontragentsAllCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Id"
+        ViewAttribute="Id"
+        Operator="="
+        Conjunction="AND"
+        Value=":KonId"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewLinkAccessor
+    Name="KontragentsAll"
+    ViewLink="ua.divas.view.KontragAllKontragFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="KontragSettingsView"
+    ViewLink="ua.divas.view.KontragentsAllKontragSettingsFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

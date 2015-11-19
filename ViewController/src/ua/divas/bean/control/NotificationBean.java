@@ -2,6 +2,8 @@ package ua.divas.bean.control;
 
 import java.io.IOException;
 
+import java.math.BigDecimal;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,10 +21,15 @@ import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.share.ADFContext;
 import oracle.adf.share.security.SecurityContext;
+import oracle.adf.view.rich.component.rich.RichPopup;
 import oracle.adf.view.rich.component.rich.data.RichTree;
+import oracle.adf.view.rich.component.rich.data.RichTreeTable;
 import oracle.adf.view.rich.component.rich.fragment.RichRegion;
+import oracle.adf.view.rich.component.rich.nav.RichButton;
+import oracle.adf.view.rich.component.rich.output.RichOutputText;
 import oracle.adf.view.rich.context.AdfFacesContext;
 import oracle.adf.view.rich.event.DialogEvent;
+import oracle.adf.view.rich.event.PopupFetchEvent;
 import oracle.adf.view.rich.render.ClientEvent;
 
 import oracle.binding.BindingContainer;
@@ -34,6 +41,10 @@ import org.apache.myfaces.trinidad.util.Service;
 public class NotificationBean {
     private String summAll;
     private boolean walletVisible;
+    private RichPopup binPopup;
+    private RichOutputText retImpTextAll;
+    private RichButton binButton;
+    private boolean disabledPay;
 
     public NotificationBean() {
     }
@@ -117,12 +128,19 @@ public class NotificationBean {
         }
     }
 
+    public void hidePopup(RichPopup popup) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExtendedRenderKitService service = Service.getRenderKitService(facesContext, ExtendedRenderKitService.class);
+        service.addScript(facesContext,
+                          "AdfPage.PAGE.findComponent('" + popup.getClientId(facesContext) + "').hide();");
+    }
+
     /* public void setSummAll(String summAll) {
         this.summAll = summAll;
     } */
 
     public String getSummAll() {
-        return "В корзине платежей на сумму: " + SupplierWallet.getSummAll().toString()+" грн.";
+        return "В корзине платежей на сумму: " + SupplierWallet.getSummAll().toString() + " грн.";
     }
 
     /* public void setWalletVisible(boolean walletVisible) {
@@ -178,15 +196,127 @@ public class NotificationBean {
         return null;
     }
 
+    public void onPopupSupplier(PopupFetchEvent popupFetchEvent) {
+        DCBindingContainer binding = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
+        DCIteratorBinding it = binding.findIteratorBinding("SupplierWalletIterator");
+        //String rks;
+        if (it != null) {
+            it.executeQuery();
+        }
+        BindingContainer bd = BindingContext.getCurrent().getCurrentBindingsEntry();
+        OperationBinding oper = bd.getOperationBinding("getSummAll");
+        if (oper != null) {
+            oper.execute();
+        }
+    }
+
+    public void onClearSupplier(ActionEvent actionEvent) {
+        BindingContainer bd = BindingContext.getCurrent().getCurrentBindingsEntry();
+        OperationBinding oper = bd.getOperationBinding("clearSupplier");
+        if (oper != null) {
+            oper.execute();
+        }
+        onPopupSupplier(null);
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getBinButton());
+    }
+
+    public void onDeleteSupplier(ActionEvent actionEvent) {
+        BindingContainer bd = BindingContext.getCurrent().getCurrentBindingsEntry();
+        OperationBinding oper = bd.getOperationBinding("Delete");
+        if (oper != null) {
+            oper.execute();
+        }
+        SupplierWallet.recalcSumm();
+        onPopupSupplier(null);
+
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getBinButton());
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getRetImpTextAll());
+    }
+
     public void refreshTree(String region, String ttable) {
         // get the dymamic region of the main page
         RichRegion reg = (RichRegion) getUIComponent(region);
         if (reg != null) {
             // find tree 2
-            RichTree rt = (RichTree) getUIComponent(reg, ttable);
+            RichTreeTable rt = (RichTreeTable) getUIComponent(reg, ttable);
             if (rt != null) {
                 AdfFacesContext.getCurrentInstance().addPartialTarget(rt);
             }
         }
+    }
+
+    public void setBinPopup(RichPopup binPopup) {
+        this.binPopup = binPopup;
+    }
+
+    public RichPopup getBinPopup() {
+        return binPopup;
+    }
+
+    public void onCloseBin(ActionEvent actionEvent) {
+        hidePopup(getBinPopup());
+        refreshTree("rZamer","ttZamer");
+        refreshTree("rSupp","tt1");
+    }
+
+    public void setRetImpTextAll(RichOutputText retImpTextAll) {
+        this.retImpTextAll = retImpTextAll;
+    }
+
+    public RichOutputText getRetImpTextAll() {
+        return retImpTextAll;
+    }
+
+    public void setBinButton(RichButton binButton) {
+        this.binButton = binButton;
+    }
+
+    public RichButton getBinButton() {
+        return binButton;
+    }
+    
+    public void onPayFromBin(ActionEvent actionEvent) {
+        BindingContainer binding = BindingContext.getCurrent().getCurrentBindingsEntry();
+        OperationBinding rko = binding.getOperationBinding("addRkoOrder");
+        OperationBinding pko = binding.getOperationBinding("addPkoOrder");
+        
+        Iterator<SupplierRecord> it = SupplierWallet.getWalletIterator();
+        
+        while (it.hasNext()) {
+            SupplierRecord o = it.next();
+            String kontragId = o.getKontragId();
+            String orderId = o.getOrderId();
+            BigDecimal summa = o.getSumma();
+            System.out.println("kontragId: "+kontragId);
+            System.out.println("orderId: "+orderId);
+            System.out.println("summa: "+summa);
+            boolean isIn = o.isIsIn();
+            System.out.println("isIn: "+isIn);
+            if (rko != null && !isIn) {
+                rko.getParamsMap().put("kontragId", kontragId);
+                rko.getParamsMap().put("OrderId", orderId);
+                rko.getParamsMap().put("Summa", summa);
+                rko.execute();
+            }
+            if (pko != null && isIn) {
+                pko.getParamsMap().put("kontragId", kontragId);
+                pko.getParamsMap().put("OrderId", orderId);
+                pko.getParamsMap().put("Summa", summa);
+                pko.execute();
+            }
+        }
+        //hidePopup(getBinPopup());
+        SupplierWallet.clearSupplier();
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getBinButton());
+        onCloseBin(null);
+        //refresh();
+    }
+    
+    public void setDisabledPay(boolean disabledPay) {
+        this.disabledPay = disabledPay;
+    }
+
+    public boolean getDisabledPay() {        
+        return SupplierWallet.hasSupplier();
     }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VoucherView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="Voucher.ID, 
+       Voucher.VERSION, 
+       Voucher.EXPIRED_BY, 
+       Voucher.CODE"
+  FromList="VOUCHER Voucher"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full">
+  <EntityUsage
+    Name="Voucher"
+    Entity="ua.divas.model.Voucher"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Voucher"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Version"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="Voucher"
+    AliasName="VERSION"/>
+  <ViewAttribute
+    Name="ExpiredBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ExpiredBy"
+    EntityUsage="Voucher"
+    AliasName="EXPIRED_BY"/>
+  <ViewAttribute
+    Name="Code"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Code"
+    EntityUsage="Voucher"
+    AliasName="CODE"/>
+</ViewObject>

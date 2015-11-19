@@ -70,6 +70,7 @@ import ua.divas.view.VwInsideMasterImpl;
 import ua.divas.view.VwKassaMovesImpl;
 import ua.divas.view.VwKontragAllItemsImpl;
 import ua.divas.view.VwKontragDebImpl;
+import ua.divas.view.VwKontragSupplierNewImpl;
 import ua.divas.view.VwKontragZamerImpl;
 import ua.divas.view.VwKontragZamerNewImpl;
 import ua.divas.view.VwNotificationCalendarViewImpl;
@@ -4516,6 +4517,54 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
      */
     public ViewLinkImpl getVwZamerMovesNewZamerDetail1() {
         return (ViewLinkImpl) findViewLink("VwZamerMovesNewZamerDetail1");
+    }
+
+    /**
+     * Container's getter for VwKontragSupplierNew1.
+     * @return VwKontragSupplierNew1
+     */
+    public VwKontragSupplierNewImpl getVwKontragSupplierNew1() {
+        return (VwKontragSupplierNewImpl) findViewObject("VwKontragSupplierNew1");
+    }
+
+    /**
+     * Container's getter for VwSupplierMovesNew1.
+     * @return VwSupplierMovesNew1
+     */
+    public ViewObjectImpl getVwSupplierMovesNew1() {
+        return (ViewObjectImpl) findViewObject("VwSupplierMovesNew1");
+    }
+
+    /**
+     * Container's getter for VwKontragSupplNewSupplMovesFkLink1.
+     * @return VwKontragSupplNewSupplMovesFkLink1
+     */
+    public ViewLinkImpl getVwKontragSupplNewSupplMovesFkLink1() {
+        return (ViewLinkImpl) findViewLink("VwKontragSupplNewSupplMovesFkLink1");
+    }
+
+    /**
+     * Container's getter for VwSupplierMovesNew2.
+     * @return VwSupplierMovesNew2
+     */
+    public ViewObjectImpl getVwSupplierMovesNew2() {
+        return (ViewObjectImpl) findViewObject("VwSupplierMovesNew2");
+    }
+
+    /**
+     * Container's getter for VwSupplierDebtDetail1.
+     * @return VwSupplierDebtDetail1
+     */
+    public ViewObjectImpl getVwSupplierDebtDetail1() {
+        return (ViewObjectImpl) findViewObject("VwSupplierDebtDetail1");
+    }
+
+    /**
+     * Container's getter for VwSupplMovesNewSupplDetailFkLink1.
+     * @return VwSupplMovesNewSupplDetailFkLink1
+     */
+    public ViewLinkImpl getVwSupplMovesNewSupplDetailFkLink1() {
+        return (ViewLinkImpl) findViewLink("VwSupplMovesNewSupplDetailFkLink1");
     }
 }
 
