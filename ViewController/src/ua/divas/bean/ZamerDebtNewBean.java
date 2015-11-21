@@ -2,6 +2,7 @@ package ua.divas.bean;
 
 import java.math.BigDecimal;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,8 +30,10 @@ import oracle.adf.view.rich.context.AdfFacesContext;
 
 import oracle.binding.BindingContainer;
 
+import oracle.jbo.Key;
 import oracle.jbo.Row;
 import oracle.jbo.RowNotFoundException;
+import oracle.jbo.RowSetIterator;
 import oracle.jbo.uicli.binding.JUCtrlHierBinding;
 import oracle.jbo.uicli.binding.JUCtrlHierNodeBinding;
 import oracle.jbo.uicli.binding.JUIteratorBinding;
@@ -39,14 +42,18 @@ import org.apache.myfaces.trinidad.event.SelectionEvent;
 import org.apache.myfaces.trinidad.model.CollectionModel;
 import org.apache.myfaces.trinidad.model.RowKeySet;
 
+import ua.divas.bean.control.SupplierRecord;
 import ua.divas.bean.control.SupplierWallet;
 
 public class ZamerDebtNewBean {
     private RichTreeTable treeTable;
+    private List<SupplierRecord> selectedValues = new ArrayList<SupplierRecord>();
     private String summAll;
     private boolean walletVisible;
     private boolean disabledInBin;
     private String btnTextBallans;
+    private boolean disabledInShoppingcart;
+    private String btnStyle;
 
     public ZamerDebtNewBean() {
     }
@@ -61,6 +68,28 @@ public class ZamerDebtNewBean {
 
     private BindingContainer getBindings() {
         return BindingContext.getCurrent().getCurrentBindingsEntry();
+    }
+
+    public final List<SupplierRecord> getSelectedValues() {
+        DCBindingContainer bindings = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
+        DCIteratorBinding dcIteratorBindings = bindings.findIteratorBinding("VwZamerMovesNew2Iterator");
+
+        // Get all the rows of a iterator
+        Row[] rows = dcIteratorBindings.getAllRowsInRange();
+        for (Row rw : rows) {
+            BigDecimal lbn = (BigDecimal) rw.getAttribute("Ballans");
+            String Id = rw.getAttribute("Keyid").toString();
+            int found = SupplierWallet.searchSupplier(Id);
+            if (found != -1 || lbn.floatValue() <= 0) {
+                continue;
+            }
+            String kontragId = rw.getAttribute("Id").toString();
+            String orderId = rw.getAttribute("RegistratorId").toString();
+            SupplierRecord spl = new SupplierRecord(Id, kontragId, orderId, lbn.abs());
+            spl.setIsIn(true);
+            selectedValues.add(spl);
+        }
+        return selectedValues;
     }
 
     public void onTreeSelect(SelectionEvent selectionEvent) {
@@ -152,6 +181,15 @@ public class ZamerDebtNewBean {
                 String orderId = rw.getAttribute("RegistratorId").toString();
                 SupplierWallet.addSupplierWithIdIn(Id, kontragId, orderId, lbn.abs());
                 //rw.setAttribute("MarkForPay", true);
+            } else if (rowType.matches("VwKontragZamerNew")) {
+                String regId = (String) rw.getAttribute("Id");
+                Key k = new Key(new Object[] { regId });
+                DCIteratorBinding iter = (DCIteratorBinding) getBindings().get("VwKontragZamerNew1Iterator");
+                RowSetIterator rsi = iter.getRowSetIterator();
+                Row row = rsi.findByKey(k, 1)[0];
+                //row.setAttribute("OEditable", new BigDecimal(1));
+                rsi.setCurrentRow(row);
+                SupplierWallet.setAllSupplierList(this.getSelectedValues());
             }
             //AdfFacesContext.getCurrentInstance().addPartialTarget(getBinButton());
             AdfFacesContext.getCurrentInstance().addPartialTarget(getTreeTable());
@@ -196,7 +234,7 @@ public class ZamerDebtNewBean {
         }
     }
 
-    public boolean getDisabledInBin() {
+    public boolean getDisabledInShoppingcart() {
         try {
             String Id = (String) ADFUtil.evaluateEL("#{node.Keyid}");
             int i = SupplierWallet.searchSupplier(Id);
@@ -212,6 +250,32 @@ public class ZamerDebtNewBean {
         }
     }
 
+    public boolean getDisabledInBin() {
+        String Id = (String) ADFUtil.evaluateEL("#{node.Keyid}");
+        BigDecimal ball = null;
+        try {
+            ball = (BigDecimal) ADFUtil.evaluateEL("#{node.Ballans}");
+        } catch (Exception e) {
+            String s1 = (String) ADFUtil.evaluateEL("#{node.Ballans}");
+            String s2 = s1.replaceFirst(",", ".");
+            ball = new BigDecimal(s2);
+        }
+        if (ball.floatValue() <= 0) {
+            return true;
+        }
+        if (null != Id) {
+            int i = SupplierWallet.searchSupplier(Id);
+            System.out.println("i: " + i);
+            if (i == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public void onCheckAdd(ValueChangeEvent valueChangeEvent) {
         onAddWallet(null);
     }
@@ -221,9 +285,39 @@ public class ZamerDebtNewBean {
     } */
 
     public String getBtnTextBallans() {
-        String ball = (String) ADFUtil.evaluateEL("#{node.Ballans}");
-        String s1 = ball.replaceFirst(",", ".");
-        //return ball;
-        return String.format("%4.2f" , new BigDecimal(s1)) ;
+
+        try {
+            String ball = (String) ADFUtil.evaluateEL("#{node.Ballans}");
+            String s1 = ball.replaceFirst(",", ".");
+            return String.format("%4.2f", new BigDecimal(s1));
+        } catch (Exception e) {
+            BigDecimal ball = (BigDecimal) ADFUtil.evaluateEL("#{node.Ballans}");
+            return String.format("%4.2f", ball);
+        }
+    }
+
+    public String getBtnStyle() {
+        Object fullname = ADFUtil.evaluateEL("#{node.Fullname}");
+        BigDecimal ball = null;
+        try {
+            ball = (BigDecimal) ADFUtil.evaluateEL("#{node.Ballans}");
+        } catch (Exception e) {
+            String s1 = (String) ADFUtil.evaluateEL("#{node.Ballans}");
+            String s2 = s1.replaceFirst(",", ".");
+            ball = new BigDecimal(s2);
+        }
+        if (null == fullname) {
+            if (ball.floatValue() > 0) {
+                return "color:Black;";
+            } else {
+                return "color:Red;";
+            }
+        } else {
+            if (ball.floatValue() > 0) {
+                return "color:Black;font-weight:bold;";
+            } else {
+                return "color:Red;font-weight:bold;";
+            }
+        }
     }
 }

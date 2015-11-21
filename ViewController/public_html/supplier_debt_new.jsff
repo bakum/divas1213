@@ -5,88 +5,101 @@
         <af:gridRow height="100%" id="gr1">
             <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                 <!-- Content -->
-                <af:decorativeBox id="db1" theme="medium">
+                <af:decorativeBox id="db1" theme="medium" topHeight="120px" partialTriggers="pc1:b3">
                     <f:facet name="center">
-                        <af:panelStretchLayout id="psl1">
-                            <f:facet name="bottom"/>
-                            <f:facet name="center">
-                                <af:panelBox text="Задолженность к выплате" id="pb1">
-                                    <f:facet name="toolbar"/>
-                                    <af:panelCollection id="pc1" styleClass="AFStretchWidth">
-                                        <f:facet name="menus"/>
-                                        <f:facet name="toolbar">
-                                            <af:toolbar id="t2">
-                                                <af:button text="Обновить" id="b2"
-                                                           actionListener="#{supplier_debt_new.onRefresh}"/>
-                                            </af:toolbar>
+                        <af:panelBox text="Задолженность к выплате" id="pb1">
+                            <f:facet name="toolbar"/>
+                            <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t2">
+                                        <af:button text="Обновить" id="b2"
+                                                   actionListener="#{supplier_debt_new.onRefresh}"/>
+                                        <af:button text="Быстрый поиск" id="b3" immediate="true" type="check"
+                                                   selected="#{bindings.filter_rendered1.inputValue}"
+                                                   icon="/img/edit-find.png">
+                                            <af:setPropertyListener from="#{!bindings.filter_rendered1.inputValue}"
+                                                                    to="#{bindings.filter_rendered1.inputValue}"
+                                                                    type="action"/>
+                                        </af:button>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:treeTable value="#{bindings.VwKontragSupplierNew1.treeModel}" var="node"
+                                              rowSelection="single" id="tt1" binding="#{supplier_debt_new.treeTable}">
+                                    <f:facet name="nodeStamp">
+                                        <af:column id="c1" width="300" headerText="Наименование/Регистратор">
+                                            <af:outputText value="#{node.Fullname}" id="ot1"
+                                                           rendered="#{node.Fullname == null ? false : true}"
+                                                           inlineStyle="font-weight:bold;"/>
+                                            <af:outputText value="#{node.RegString}" id="ot3"
+                                                           rendered="#{node.RegString == null ? false : true}"
+                                                           inlineStyle="#{node.RegistratorId == null ? 'color:Red;' : ''}"/>
+                                        </af:column>
+                                    </f:facet>
+                                    <f:facet name="pathStamp">
+                                        <af:outputText value="#{node}" id="ot2"/>
+                                    </f:facet>
+                                    <af:column id="c2" headerText="Опл. %" align="center">
+                                        <af:outputText value="#{node.Payed}" id="ot4"
+                                                       inlineStyle="font-weight:bold;color:Blue;"/>
+                                    </af:column>
+                                    <af:column id="c3" headerText="Период" align="center">
+                                        <af:outputText value="#{node.Period}" id="ot5">
+                                            <af:convertDateTime type="date" dateStyle="medium"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column id="c4" headerText="Оплаты" align="right">
+                                        <af:outputText value="#{node.Debet}" id="ot6">
+                                            <af:convertNumber type="number" minFractionDigits="2"
+                                                              maxFractionDigits="2"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column id="c5" headerText="Начисления" align="right">
+                                        <af:outputText value="#{node.Kredit}" id="ot7">
+                                            <af:convertNumber type="number" minFractionDigits="2"
+                                                              maxFractionDigits="2"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column id="c6" headerText="Задолженность" align="center" width="150">
+                                        <af:toolbar id="t1" rendered="#{node.Ballans == null ? false : true}">
+                                            <af:button text="#{supplier_debt_new.btnTextBallans}" id="b1"
+                                                       icon="/img/coins.png" immediate="true"
+                                                       disabled="#{supplier_debt_new.disabledInBin}"
+                                                       actionListener="#{supplier_debt_new.onAddWallet}"
+                                                       inlineStyle="#{supplier_debt_new.btnStyle}"/>
+                                        </af:toolbar>
+                                        <f:facet name="header">
+                                            <af:panelGroupLayout id="pgl2" layout="vertical" halign="right">
+                                                <af:outputText value="Задолженность" id="ot9"/>
+                                                <af:outputText value="#{bindings.VwKontragSupplierNew1Iterator.viewObject.sum['Ballans']}"
+                                                               id="ot8" inlineStyle="font-weight:bold; color:Red;">
+                                                    <af:convertNumber type="number" minFractionDigits="2"
+                                                                      maxFractionDigits="2"/>
+                                                </af:outputText>
+                                            </af:panelGroupLayout>
                                         </f:facet>
-                                        <f:facet name="statusbar"/>
-                                        <af:treeTable value="#{bindings.VwKontragSupplierNew1.treeModel}" var="node"
-                                                      rowSelection="single" id="tt1"
-                                                      binding="#{supplier_debt_new.treeTable}">
-                                            <f:facet name="nodeStamp">
-                                                <af:column id="c1" width="300" headerText="Наименование/Регистратор">
-                                                    <af:outputText value="#{node.Fullname}" id="ot1"
-                                                                   rendered="#{node.Fullname == null ? false : true}"
-                                                                   inlineStyle="font-weight:bold;"/>
-                                                    <af:outputText value="#{node.RegString}" id="ot3"
-                                                                   rendered="#{node.RegString == null ? false : true}"/>
-                                                </af:column>
-                                            </f:facet>
-                                            <f:facet name="pathStamp">
-                                                <af:outputText value="#{node}" id="ot2"/>
-                                            </f:facet>
-                                            <af:column id="c2" headerText="Опл. %" align="center">
-                                                <af:outputText value="#{node.Payed}" id="ot4"
-                                                               inlineStyle="font-weight:bold;color:Blue;"/>
-                                            </af:column>
-                                            <af:column id="c3" headerText="Период" align="center">
-                                                <af:outputText value="#{node.Period}" id="ot5">
-                                                    <af:convertDateTime type="date" dateStyle="medium"/>
-                                                </af:outputText>
-                                            </af:column>
-                                            <af:column id="c4" headerText="Оплаты" align="right">
-                                                <af:outputText value="#{node.Debet}" id="ot6">
-                                                    <af:convertNumber type="number" minFractionDigits="2"
-                                                                      maxFractionDigits="2"/>
-                                                </af:outputText>
-                                            </af:column>
-                                            <af:column id="c5" headerText="Начисления" align="right">
-                                                <af:outputText value="#{node.Kredit}" id="ot7">
-                                                    <af:convertNumber type="number" minFractionDigits="2"
-                                                                      maxFractionDigits="2"/>
-                                                </af:outputText>
-                                            </af:column>
-                                            <af:column id="c6" headerText="Задолженность" align="right">
-                                                <af:outputText value="#{node.Ballans}" id="ot8"
-                                                               inlineStyle="#{node.Fullname == null ? '' : 'font-weight:bold;color:Red;'}"
-                                                               rendered="#{node.Fullname != null ? true : node.Ballans > '0' ? true : false}">
-                                                    <af:convertNumber type="number" minFractionDigits="2"
-                                                                      maxFractionDigits="2"/>
-                                                </af:outputText>
-                                                <af:toolbar id="t1"
-                                                            rendered="#{node.Ballans == null ? false : node.Ballans > '0' ? false : node.Fullname == null ? true : false}">
-                                                    <af:button text="#{supplier_debt_new.btnTextBallans}" id="b1" icon="/img/coins.png"
-                                                               immediate="true"
-                                                               disabled="#{supplier_debt_new.disabledInBin}"
-                                                               actionListener="#{supplier_debt_new.onAddWallet}"
-                                                               inlineStyle="color:Red;"/>
-                                                </af:toolbar>
-                                            </af:column>
-                                            <af:column id="c7" width="20" headerText="K" align="center">
-                                                <af:image id="i1" source="/img/shoppingcart.png"
-                                                          visible="#{supplier_debt_new.disabledInBin}"/>
-                                            </af:column>
-                                        </af:treeTable>
-                                    </af:panelCollection>
-                                </af:panelBox>
-                            </f:facet>
-                            <f:facet name="start"/>
-                            <f:facet name="end"/>
-                            <f:facet name="top"/>
-                        </af:panelStretchLayout>
+                                    </af:column>
+                                    <af:column id="c7" width="20" headerText="K" align="center">
+                                        <af:image id="i1" source="/img/shoppingcart.png"
+                                                  visible="#{supplier_debt_new.disabledInShoppingcart}"/>
+                                    </af:column>
+                                </af:treeTable>
+                            </af:panelCollection>
+                        </af:panelBox>
                     </f:facet>
-                    <f:facet name="top"/>
+                    <f:facet name="top">
+                        <af:panelGroupLayout layout="vertical" id="pgl3"
+                                             rendered="#{bindings.filter_rendered1.inputValue}">
+                            <af:query id="qryId1" headerText="Поиск"
+                                      value="#{bindings.VwKontragSupplierNewNameQuery.queryDescriptor}"
+                                      model="#{bindings.VwKontragSupplierNewNameQuery.queryModel}"
+                                      queryListener="#{bindings.VwKontragSupplierNewNameQuery.processQuery}"
+                                      queryOperationListener="#{bindings.VwKontragSupplierNewNameQuery.processQueryOperation}"
+                                      resultComponentId="::pc1:tt1" disclosed="true" saveQueryMode="hidden"
+                                      modeButtonPosition="footer"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
                 </af:decorativeBox>
             </af:gridCell>
         </af:gridRow>

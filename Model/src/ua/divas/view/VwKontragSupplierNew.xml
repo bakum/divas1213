@@ -27,24 +27,82 @@
     <TransientExpression
       trustMode="untrusted"
       Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
   </Variable>
+  <Variable
+    Name="k_name"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwKontragSupplierNew.k_name_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwKontragSupplierNew.k_name_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwKontragSupplierNew.k_name_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <ViewAccessor
+    Name="DivisionsView1"
+    ViewObjectName="ua.divas.view.DivisionsView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="DivisionsViewItems"
+      FullName="ua.divas.view.DivisionsView.DivisionsViewItems"/>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_DivisionId"
+    ListVOName="DivisionsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DivisionId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery><![CDATA[SELECT VW_MOVES.SUBCONTO1_KRED ID,
   KONTRAGENTS.FULLNAME,
   VW_MOVES.KRED CODE,
   SUM( -VW_MOVES.SUM_KRED) KREDIT,
-  MAX(KONTRAGENTS.USER_ID) USER_ID
+  MAX(KONTRAGENTS.USER_ID) USER_ID,
+  USER_SETTINGS.DIVISION_ID DIVISION_ID
 FROM VW_MOVES
 LEFT JOIN KONTRAGENTS
 ON VW_MOVES.SUBCONTO1_KRED = KONTRAGENTS.ID
+INNER JOIN USER_SETTINGS
+ON KONTRAGENTS.USER_ID = USER_SETTINGS.USER_ID
 WHERE VW_MOVES.KRED LIKE '5091'
 AND VW_MOVES.TABLE_NAME LIKE 'ORDERS'
-and VW_MOVES.SUBCONTO1_KRED in (select id from vw_supplier_debt where vw_supplier_debt.ballans != 0)
-and
-upper(USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as userTable)))
+AND VW_MOVES.SUBCONTO1_KRED IN
+  (SELECT vw_supplier_debt.ID
+  FROM vw_supplier_debt
+  WHERE vw_supplier_debt.BALLANS != 0
+  )
+  and
+upper(KONTRAGENTS.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as userTable)))
 GROUP BY VW_MOVES.SUBCONTO1_KRED,
   KONTRAGENTS.FULLNAME,
-  VW_MOVES.KRED
-order by fullname]]></SQLQuery>
+  VW_MOVES.KRED,
+  USER_SETTINGS.DIVISION_ID
+ORDER BY KONTRAGENTS.FULLNAME]]></SQLQuery>
   <ViewAttribute
     Name="Id"
     IsUpdateable="false"
@@ -55,7 +113,8 @@ order by fullname]]></SQLQuery>
     ColumnType="VARCHAR2"
     AliasName="ID"
     Expression="ID"
-    SQLType="VARCHAR">
+    SQLType="VARCHAR"
+    IsQueriable="false">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="50"/>
     </DesignTime>
@@ -74,6 +133,16 @@ order by fullname]]></SQLQuery>
     <DesignTime>
       <Attr Name="_DisplaySize" Value="150"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwKontragSupplierNew.Fullname_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwKontragSupplierNew.Fullname_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwKontragSupplierNew.Fullname_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="Code"
@@ -85,7 +154,8 @@ order by fullname]]></SQLQuery>
     ColumnType="VARCHAR2"
     AliasName="CODE"
     Expression="CODE"
-    SQLType="VARCHAR">
+    SQLType="VARCHAR"
+    IsQueriable="false">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="6"/>
     </DesignTime>
@@ -99,7 +169,8 @@ order by fullname]]></SQLQuery>
     ColumnType="NUMBER"
     AliasName="KREDIT"
     Expression="KREDIT"
-    SQLType="NUMERIC"/>
+    SQLType="NUMERIC"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="UserId"
     IsUpdateable="false"
@@ -110,10 +181,39 @@ order by fullname]]></SQLQuery>
     ColumnType="VARCHAR2"
     AliasName="USER_ID"
     Expression="USER_ID"
-    SQLType="VARCHAR">
+    SQLType="VARCHAR"
+    IsQueriable="false">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="50"/>
     </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivisionId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVISION_ID"
+    Expression="DIVISION_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_DivisionId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwKontragSupplierNew.DivisionId_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwKontragSupplierNew.DivisionId_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwKontragSupplierNew.DivisionId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="Ballans"
@@ -124,12 +224,52 @@ order by fullname]]></SQLQuery>
     Type="java.math.BigDecimal"
     ColumnType="NUMBER"
     AliasName="VIEW_ATTR"
-    SQLType="NUMERIC">
+    SQLType="NUMERIC"
+    IsQueriable="false">
     <TransientExpression
       trustMode="untrusted"><![CDATA[VwSupplierMovesNew.sum("Ballans != null ? Ballans : 0")]]></TransientExpression>
     <RecalcCondition
       trustMode="untrusted"><![CDATA[true]]></RecalcCondition>
   </ViewAttribute>
+  <ViewCriteria
+    Name="VwKontragSupplierNewName"
+    ViewObjectName="ua.divas.view.VwKontragSupplierNew"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InBasicMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="displayName"
+          ResId="ua.divas.view.VwKontragSupplierNew.VwKontragSupplierNewName_displayName"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="VwKontragSupplierNewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Fullname"
+        ViewAttribute="Fullname"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":k_name"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
   <AttrArray Name="KeyAttributes">
     <Item Value="Id"/>
   </AttrArray>

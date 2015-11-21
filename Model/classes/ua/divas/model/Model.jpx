@@ -4,7 +4,7 @@
 <JboProject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="Model"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   SeparateXMLFiles="true"
   PackageName="ua.divas.model">
   <DesignTime>
@@ -12,6 +12,7 @@
     <Attr Name="_jbo.TypeMapEntries" Value="OracleApps"/>
     <Attr Name="_NamedConnection" Value="divas"/>
     <Attr Name="_appModuleNames0" Value="ua.divas.module.AppModule"/>
+    <Attr Name="_domainNames0" Value="ua.divas.view.Type"/>
   </DesignTime>
   <Containee
     Name="model"
@@ -46,6 +47,7 @@
     <DesignTime>
       <Attr Name="_VO" Value="true"/>
       <Attr Name="_VL" Value="true"/>
+      <Attr Name="_DO" Value="true"/>
     </DesignTime>
   </Containee>
 </JboProject>

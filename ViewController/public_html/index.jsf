@@ -56,9 +56,9 @@
                                                 <af:panelTabbed id="pt3">
                                                     <af:showDetailItem text="Замерщики" id="sdi14"
                                                                        stretchChildren="first"
-                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/zamer_debt-config.xml#zamer_debt-config']}">
-                                                        <af:region value="#{bindings.zamer_debtconfig1.regionModel}"
-                                                                   id="r10"/>
+                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/zamer-debt_new.xml#zamer-debt_new']}">
+                                                        <af:region value="#{bindings.zamerdebt_new1.regionModel}"
+                                                                   id="rZamer"/>
                                                     </af:showDetailItem>
                                                     <af:showDetailItem text="Дебеторская задолженность" id="sdi13" stretchChildren="first"
                                                                        rendered="#{securityContext.taskflowViewable['/WEB-INF/buyer_debt-config.xml#buyer_debt-config']}">
@@ -67,11 +67,11 @@
                                                     </af:showDetailItem>
                                                     <af:showDetailItem text="Кредиторская задолженность" id="sdi21"
                                                                        stretchChildren="first"
-                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/supplier_debt-config.xml#supplier_debt-config']}">
-                                                        <af:region value="#{bindings.supplier_debtconfig1.regionModel}"
-                                                                   id="r18"/>
+                                                                       rendered="#{securityContext.taskflowViewable['/WEB-INF/supplier-debt_new.xml#supplier-debt_new']}">
+                                                        <af:region value="#{bindings.supplierdebt_new1.regionModel}"
+                                                                   id="rSupp"/>
                                                     </af:showDetailItem>
-                                                    <af:showDetailItem text="Расчеты с контрагентами" id="sdi23"
+                                                    <af:showDetailItem text="Расчеты с клиентами" id="sdi23"
                                                                        stretchChildren="first"
                                                                        rendered="#{securityContext.taskflowViewable['/WEB-INF/kontrag_calc-config.xml#kontrag_calc-config']}">
                                                         <af:region value="#{bindings.kontrag_calcconfig1.regionModel}"
@@ -162,14 +162,9 @@
                                                        icon="/img/analytics.png"
                                                        rendered="#{securityContext.userInRole['tester']}">
                                         <af:panelTabbed position="above" id="pt4">
-                                            <af:showDetailItem id="tab1" text="Взаиморасчеты" stretchChildren="first">
-                                                <af:region value="#{bindings.zamerdebt_new1.regionModel}" id="rZamer"/>
-                                            </af:showDetailItem>
+                                            <af:showDetailItem id="tab1" text="Взаиморасчеты" stretchChildren="first"/>
                                             <af:showDetailItem text="showDetailItem 1" id="sdi32"
-                                                               stretchChildren="first">
-                                                <af:region value="#{bindings.supplierdebt_new1.regionModel}"
-                                                           id="rSupp"/>
-                                            </af:showDetailItem>
+                                                               stretchChildren="first"/>
                                         </af:panelTabbed>
                                     </af:showDetailItem>
                                 </af:panelSpringboard>
@@ -194,7 +189,7 @@
                                     <af:spacer width="30" height="10" id="s5"/>
                                     <af:button text="#{notification.summAll}" id="bShoppingcart"
                                                icon="/img/shoppingcart.png" visible="#{notification.walletVisible}"
-                                               binding="#{notification.binButton}">
+                                               binding="#{notification.binButton}" immediate="true">
                                         <af:showPopupBehavior popupId="pWallet" align="beforeStart"/>
                                     </af:button>
                                     <af:spacer width="10" height="10" id="s7"/>

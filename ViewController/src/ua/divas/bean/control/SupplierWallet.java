@@ -32,6 +32,14 @@ public class SupplierWallet {
         SupplierWallet.supplierList = supplierList;
     }
 
+    public static void setAllSupplierList(List<SupplierRecord> sl) {
+        ArrayList<SupplierRecord> al= new ArrayList<SupplierRecord>();
+        al.addAll(supplierList);
+        al.addAll(sl);
+        supplierList = al;
+        recalcSumm();
+    }
+
     public List<SupplierRecord> getSupplierList() {
         return supplierList;
     }
@@ -89,7 +97,7 @@ public class SupplierWallet {
         }
         //System.out.println("User list: " + onlineUserList.toString()); */
     }
-    
+
     public final static void addSupplierWithIdIn(String Id, String kontragId, String orderId, BigDecimal summa) {
         SupplierRecord spl = new SupplierRecord(Id, kontragId, orderId, summa);
         spl.setIsIn(true);

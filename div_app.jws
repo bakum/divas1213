@@ -2,6 +2,8 @@
 <jws:workspace xmlns:jws="http://xmlns.oracle.com/ide/project">
    <hash n="adrs-workspace-properties">
       <value n="adrs-instance-binding" v="DefaultServer"/>
+      <value n="deploy-timeout" v="0"/>
+      <value n="runtime-application-name" v="div_app"/>
    </hash>
    <value n="application-package-prefix" v="ua.divas"/>
    <value n="appTemplateId" v="adfWebappApplicationTemplate"/>
