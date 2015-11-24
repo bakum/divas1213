@@ -29,7 +29,7 @@
                                               binding="#{ZatrBean.tb}" partialTriggers="::b1">
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.ZatratyId.name}"
                                                    headerText="#{bindings.VwZatraty1.hints.ZatratyId.label}" id="c1"
-                                                   width="250">
+                                                   width="200">
                                             <af:selectOneChoice value="#{row.bindings.ZatratyId.inputValue}"
                                                                 label="#{row.bindings.ZatratyId.label}"
                                                                 required="#{bindings.VwZatraty1.hints.ZatratyId.mandatory}"
@@ -79,7 +79,7 @@
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.Summa.name}"
                                                    filterable="true"
                                                    headerText="#{bindings.VwZatraty1.hints.Summa.label}" id="c5"
-                                                   align="right">
+                                                   align="right" width="80">
                                             <af:outputText value="#{row.Summa}"
                                                            shortDesc="#{bindings.VwZatraty1.hints.Summa.tooltip}"
                                                            id="ot3" inlineStyle="font-weight:bold;">
@@ -93,7 +93,7 @@
                                         </af:column>
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.DivisionId.name}"
                                                    headerText="#{bindings.VwZatraty1.hints.DivisionId.label}" id="c6"
-                                                   align="center" width="200">
+                                                   align="center" width="150">
                                             <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
                                                                 label="#{row.bindings.DivisionId.label}"
                                                                 required="#{bindings.VwZatraty1.hints.DivisionId.mandatory}"
@@ -105,6 +105,17 @@
                                             <f:facet name="filter"/>
                                         </af:column>
                                         <f:facet name="footer"/>
+                                        <af:column headerText="#{bindings.VwZatraty1.hints.Comments.label}" id="c7"
+                                                   width="250">
+                                            <af:selectOneChoice value="#{row.bindings.Comments.inputValue}"
+                                                                label="#{row.bindings.Comments.label}"
+                                                                required="#{bindings.VwZatraty1.hints.Comments.mandatory}"
+                                                                shortDesc="#{bindings.VwZatraty1.hints.Comments.tooltip}"
+                                                                readOnly="true" id="soc4">
+                                                <f:selectItems value="#{row.bindings.Comments.items}" id="si4"/>
+                                                <f:validator binding="#{row.bindings.Comments.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
                                     </af:table>
                                 </af:panelBox>
                             </f:facet>

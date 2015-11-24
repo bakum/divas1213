@@ -54,7 +54,11 @@
     <ViewAccessor
       Name="DivisionsView1"
       ViewObjectName="ua.divas.view.DivisionsView"
-      RowLevelBinds="true"/>
+      RowLevelBinds="true">
+      <ViewCriteriaUsage
+          Name="DivisionsViewItems"
+          FullName="ua.divas.view.DivisionsView.DivisionsViewItems"/>
+    </ViewAccessor>      
     <ViewAccessor
       Name="UsersView1"
       ViewObjectName="ua.divas.view.UsersView"
@@ -468,7 +472,14 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       PrecisionRule="true"
       EntityAttrName="Num"
       EntityUsage="Orders"
-      AliasName="NUM"/>
+      AliasName="NUM">
+        <Properties>
+            <SchemaBasedProperties>
+                <AUTOSUBMIT
+                    Value="true"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
     <ViewAttribute
       Name="KontragId"
       IsNotNull="true"
@@ -579,6 +590,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
             <SchemaBasedProperties>
                 <CONTROLTYPE
                     Value="choice"/>
+                <AUTOSUBMIT
+                    Value="true"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>
@@ -632,7 +645,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       PrecisionRule="true"
       EntityAttrName="Deleted"
       EntityUsage="Orders"
-      AliasName="DELETED">
+      AliasName="DELETED"
+        IsQueriable="false">
         <Properties>
             <SchemaBasedProperties>
                 <LABEL
@@ -653,7 +667,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       PrecisionRule="true"
       EntityAttrName="Posted"
       EntityUsage="Orders"
-      AliasName="POSTED">
+      AliasName="POSTED"
+        IsQueriable="false">
         <Properties>
             <SchemaBasedProperties>
                 <CONTROLTYPE
@@ -706,6 +721,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
             <SchemaBasedProperties>
                 <CONTROLTYPE
                   Value="choice"/>
+                <AUTOSUBMIT
+                    Value="true"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>
@@ -840,7 +857,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
       EntityAttrName="SummPlan"
       EntityUsage="Orders"
       AliasName="SUMM_PLAN"
-      DefaultValue="1000"/>
+      DefaultValue="1000"
+        IsQueriable="false"/>
     <ViewAttribute
       Name="Objname"
       IsUpdateable="false"

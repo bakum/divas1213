@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="VwZatraty"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -24,7 +24,8 @@
     Name="u_name"
     Kind="where"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
@@ -36,13 +37,15 @@
     Name="f_dat"
     Kind="viewcriteria"
     Type="java.sql.Timestamp">
-    <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
   </Variable>
   <Variable
     Name="l_dat"
     Kind="viewcriteria"
     Type="java.sql.Timestamp">
-    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[adf.currentDate]]></TransientExpression>
   </Variable>
   <ViewAccessor
     Name="OtherZatratyView1"
@@ -115,8 +118,28 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
+  <ListBinding
+    Name="LOV_Comments"
+    ListVOName="OtherZatratyView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Comments"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Comments"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery><![CDATA[SELECT 
-    VW_ZATRATY.REGISTRATOR_ID REGISTRATOR_ID, 
+    VW_ZATRATY.REGISTRATOR_ID REGISTRATOR_ID,
+    VW_ZATRATY.REGISTRATOR_ID COMMENTS,
     VW_ZATRATY.TABLE_NAME TABLE_NAME, 
     VW_ZATRATY.CODE CODE, 
     VW_ZATRATY.SUMMA SUMMA, 
@@ -127,7 +150,8 @@
 FROM 
   VW_ZATRATY
 where
- upper(VW_ZATRATY.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_name) as divisionTable)))]]></SQLQuery>
+ upper(VW_ZATRATY.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_name) as divisionTable)))
+order by period desc]]></SQLQuery>
   <ViewAttribute
     Name="RegistratorId"
     IsUpdateable="false"
@@ -152,6 +176,35 @@ where
           ResId="ua.divas.view.VwZatraty.RegistratorId_TOOLTIP"/>
         <CONTROLTYPE
           Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Comments"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMMENTS"
+    Expression="COMMENTS"
+    SQLType="VARCHAR"
+    IsQueriable="false"
+    LOVName="LOV_Comments">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="ua.divas.view.VwZatraty.Comments_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwZatraty.Comments_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwZatraty.Comments_TOOLTIP"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -212,7 +265,8 @@ where
     ColumnType="NUMBER"
     AliasName="SUMMA"
     Expression="SUMMA"
-    SQLType="NUMERIC">
+    SQLType="NUMERIC"
+    IsQueriable="false">
     <Properties>
       <SchemaBasedProperties>
         <LABEL
@@ -293,6 +347,8 @@ where
           ResId="ua.divas.view.VwZatraty.DivisionId_TOOLTIP"/>
         <CONTROLTYPE
           Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -349,7 +405,6 @@ where
         ViewAttribute="Period"
         Operator="BETWEEN"
         Conjunction="AND"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional">
         <ViewCriteriaItemValue
           Name="VwZatratyCriteriaDate_VwZatratyCriteria_row_0_Period_vcval0"
@@ -362,6 +417,9 @@ where
       </ViewCriteriaItem>
     </ViewCriteriaRow>
   </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="RegistratorId"/>
+  </AttrArray>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="ua.divas.model.ModelBundle"/>

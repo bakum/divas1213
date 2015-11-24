@@ -91,7 +91,8 @@
                                                            sortable="true"
                                                            headerText="#{bindings.OrdersView1.hints.StatusId.label}"
                                                            id="c17"
-                                                           inlineStyle="#{row.bindings.CountUslug.inputValue == 1 ? '' : 'font-weight:bold;'}">
+                                                           inlineStyle="#{row.bindings.CountUslug.inputValue == 1 ? '' : 'font-weight:bold;'}"
+                                                           filterable="true">
                                                     <af:selectOneChoice value="#{row.bindings.StatusId.inputValue}"
                                                                         label="#{row.bindings.StatusId.label}"
                                                                         required="#{bindings.OrdersView1.hints.StatusId.mandatory}"
@@ -135,7 +136,8 @@
                                                 </af:column>
                                                 <af:column sortProperty="#{bindings.OrdersView1.hints.Num.name}"
                                                            sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.Num.label}" id="c3">
+                                                           headerText="#{bindings.OrdersView1.hints.Num.label}" id="c3"
+                                                           filterable="true">
                                                     <af:inputText value="#{row.bindings.Num.inputValue}"
                                                                   label="#{bindings.OrdersView1.hints.Num.label}"
                                                                   required="#{bindings.OrdersView1.hints.Num.mandatory}"
@@ -240,7 +242,7 @@
                                                 <af:column headerText="#{bindings.OrdersView1.hints.DivisionDest.label}"
                                                            id="c79"
                                                            sortProperty="#{bindings.OrdersView1.hints.DivisionDest.name}"
-                                                           sortable="true">
+                                                           sortable="true" filterable="true">
                                                     <af:selectOneChoice value="#{row.bindings.DivisionDest.inputValue}"
                                                                         label="#{row.bindings.DivisionDest.label}"
                                                                         required="#{bindings.OrdersView1.hints.DivisionDest.mandatory}"
@@ -279,7 +281,9 @@
                                                     </af:selectOneChoice>
                                                 </af:column>
                                                 <af:column headerText="#{bindings.OrdersView1.hints.ManagerId.label}"
-                                                           id="c78" width="120">
+                                                           id="c78" width="120"
+                                                           sortProperty="#{bindings.OrdersView1.hints.ManagerId.name}"
+                                                           sortable="true">
                                                     <af:selectOneChoice value="#{row.bindings.ManagerId.inputValue}"
                                                                         label="#{row.bindings.ManagerId.label}"
                                                                         required="#{bindings.OrdersView1.hints.ManagerId.mandatory}"

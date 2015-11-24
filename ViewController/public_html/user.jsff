@@ -42,7 +42,7 @@
                                               filterVisible="true" varStatus="vs" id="t1" scrollPolicy="page"
                                               editingMode="clickToEdit" partialTriggers="::b3"
                                               binding="#{shuttle_group.userTable}">
-                                        <af:column id="c7" filterable="true" width="60">
+                                        <af:column id="c7" filterable="true" width="60" rowHeader="true">
                                             <af:toolbar id="t2">
                                                 <af:button id="b1" icon="/img/edit-16.gif"
                                                            disabled="#{bindings.Commit.enabled}"
@@ -58,7 +58,8 @@
                                             <f:facet name="filter">
                                                 <af:button id="b8"
                                                            icon="/img/filter_(delete)_16x16.gif"
-                                                           actionListener="#{shuttle_group.resetTableFilter}"/>
+                                                           actionListener="#{shuttle_group.resetTableFilter}"
+                                                           rendered="false"/>
                                             </f:facet>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.UsersView1.hints.Id.name}"

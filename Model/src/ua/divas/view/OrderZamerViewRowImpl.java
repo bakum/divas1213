@@ -67,6 +67,7 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
         ZamerId,
         Zamername,
         Adress,
+        Phone,
         Enbl,
         ManagerId,
         OrdersTpOplatyView,
@@ -131,6 +132,7 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
     public static final int ZAMERID = AttributesEnum.ZamerId.index();
     public static final int ZAMERNAME = AttributesEnum.Zamername.index();
     public static final int ADRESS = AttributesEnum.Adress.index();
+    public static final int PHONE = AttributesEnum.Phone.index();
     public static final int ENBL = AttributesEnum.Enbl.index();
     public static final int MANAGERID = AttributesEnum.ManagerId.index();
     public static final int ORDERSTPOPLATYVIEW = AttributesEnum.OrdersTpOplatyView.index();
@@ -527,6 +529,14 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
      */
     public String getAdress() {
         return (String) getAttributeInternal(ADRESS);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute Phone.
+     * @return the Phone
+     */
+    public String getPhone() {
+        return (String) getAttributeInternal(PHONE);
     }
 
     /**

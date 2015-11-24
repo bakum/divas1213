@@ -128,7 +128,7 @@
                                         <af:column sortProperty="#{bindings.OtherZatratyView1.hints.DivisionId.name}"
                                                    sortable="true"
                                                    headerText="#{bindings.OtherZatratyView1.hints.DivisionId.label}"
-                                                   id="c5">
+                                                   id="c5" align="center">
                                             <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
                                                                 label="#{row.bindings.DivisionId.label}"
                                                                 required="#{bindings.OtherZatratyView1.hints.DivisionId.mandatory}"
@@ -141,7 +141,7 @@
                                         <af:column sortProperty="#{bindings.OtherZatratyView1.hints.UserId.name}"
                                                    sortable="true"
                                                    headerText="#{bindings.OtherZatratyView1.hints.UserId.label}"
-                                                   id="c6">
+                                                   id="c6" align="center">
                                             <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
                                                                 label="#{row.bindings.UserId.label}"
                                                                 required="#{bindings.OtherZatratyView1.hints.UserId.mandatory}"
@@ -219,6 +219,12 @@
                                                 <af:convertNumber groupingUsed="false"
                                                                   pattern="#{bindings.OtherZatratyView1.hints.Deleted.format}"/>
                                             </af:outputText>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OtherZatratyView1.hints.Comments.label}"
+                                                   id="c27" width="350">
+                                            <af:outputText value="#{row.Comments}"
+                                                           shortDesc="#{bindings.OtherZatratyView1.hints.Comments.tooltip}"
+                                                           id="ot11"/>
                                         </af:column>
                                     </af:table>
                                     <af:popup childCreation="deferred" autoCancel="disabled" id="pCreateEdit"

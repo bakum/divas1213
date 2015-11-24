@@ -156,19 +156,22 @@ upper(Users.ID) in (select upper(N) from table(cast(get_users(:u_name) as userTa
     PrecisionRule="true"
     EntityAttrName="IsActive"
     EntityUsage="Users"
-    AliasName="IS_ACTIVE"/>
+    AliasName="IS_ACTIVE"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="DateBefore"
     PrecisionRule="true"
     EntityAttrName="DateBefore"
     EntityUsage="Users"
-    AliasName="DATE_BEFORE"/>
+    AliasName="DATE_BEFORE"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="DateBeforeAccept"
     PrecisionRule="true"
     EntityAttrName="DateBefireAccept"
     EntityUsage="Users"
-    AliasName="DATE_BEFIRE_ACCEPT"/>
+    AliasName="DATE_BEFIRE_ACCEPT"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="UsrEnbl"
     IsUpdateable="false"
@@ -178,7 +181,8 @@ upper(Users.ID) in (select upper(N) from table(cast(get_users(:u_name) as userTa
     ColumnType="NUMBER"
     AliasName="USR_ENBL"
     Expression="USR_ENBL"
-    SQLType="NUMERIC"/>
+    SQLType="NUMERIC"
+    IsQueriable="false"/>
   <ViewCriteria
     Name="UsersViewExists"
     ViewObjectName="ua.divas.view.UsersView"

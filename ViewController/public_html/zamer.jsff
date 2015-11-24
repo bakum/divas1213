@@ -84,7 +84,8 @@
                                         </af:column>
                                         <af:column headerText="#{bindings.OrderZamerView1.hints.DatZam.label}" id="c19"
                                                    inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}"
-                                                   width="120">
+                                                   width="120" sortable="true"
+                                                   sortProperty="#{bindings.OrderZamerView1.hints.DatZam.name}">
                                             <af:inputDate value="#{row.bindings.DatZam.inputValue}"
                                                           label="#{bindings.OrderZamerView1.hints.DatZam.label}"
                                                           required="#{bindings.OrderZamerView1.hints.DatZam.mandatory}"
@@ -325,6 +326,10 @@
                                             <af:panelLabelAndMessage label="#{bindings.OrderZamerView1.hints.Adress.label}"
                                                                      id="plam1">
                                                 <af:outputFormatted value="#{row.bindings.Adress.inputValue}" id="of1"/>
+                                            </af:panelLabelAndMessage>
+                                            <af:panelLabelAndMessage label="#{bindings.OrderZamerView1.hints.Phone.label}"
+                                                                     id="plam2">
+                                                <af:outputFormatted value="#{row.bindings.Phone.inputValue}" id="of2"/>
                                             </af:panelLabelAndMessage>
                                         </f:facet>
                                         <af:column headerText="#{bindings.OrderZamerView1.hints.StatusName.label}"

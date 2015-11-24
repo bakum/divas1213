@@ -25,6 +25,7 @@
           <Item Value="Period"/>
           <Item Value="Summa"/>
           <Item Value="DivisionId"/>
+          <Item Value="Comments"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

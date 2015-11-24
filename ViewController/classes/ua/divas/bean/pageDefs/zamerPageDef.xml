@@ -4,9 +4,9 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="OrderZamerView1" RangeSize="30" DataControl="AppModuleDataControl" id="OrderZamerView1Iterator">
+    <iterator Binds="OrderZamerView1" RangeSize="25" DataControl="AppModuleDataControl" id="OrderZamerView1Iterator">
       <sortCriteria>
-        <sort attribute="Dat" ascending="false"/>
+        <sort attribute="DatZam" ascending="false"/>
       </sortCriteria>
     </iterator>
     <searchRegion Binds="OrderZamerView1Iterator" Criteria=""
@@ -40,6 +40,7 @@
           <Item Value="StatusName"/>
           <Item Value="DatZam"/>
           <Item Value="ManagerId"/>
+          <Item Value="Phone"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
