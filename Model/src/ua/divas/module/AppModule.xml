@@ -2583,5 +2583,15 @@
         Name="Summa"
         Type="java.math.BigDecimal"/>
     </Method>
+    <Method
+      Name="refreshCurrentRow"
+      MethodName="refreshCurrentRow">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="row"
+        Type="oracle.jbo.Row"/>
+    </Method>
   </ClientInterface>
 </AppModule>

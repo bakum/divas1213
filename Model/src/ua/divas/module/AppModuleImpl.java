@@ -3466,28 +3466,28 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
         r2.setAttribute("Dat", new Date());
         ViewObjectImpl sotp = getStartOstTpView2();
         Row r3 = sotp.createRow();
-        
+
         ViewObjectImpl plVO = getPlanAccView1();
         VariableImpl z = new VariableImpl();
         z.setName("p_code");
         String code = "5091";
         ViewRowSetImpl rs =
             (ViewRowSetImpl) plVO.findByViewCriteriaWithBindVars(plVO.getViewCriteria("PlanAccViewByCode"), -1,
-                                                     plVO.QUERY_MODE_SCAN_DATABASE_TABLES, new Variable[] { z }, new Object[] {
-                                                               code });
+                                                                 plVO.QUERY_MODE_SCAN_DATABASE_TABLES, new Variable[] {
+                                                                 z }, new Object[] { code });
         Row row = rs.first();
         String pl = null;
         if (row != null) {
             pl = (String) row.getAttribute("Id");
         }
-        
+
         r3.setAttribute("StartOstId", r2.getAttribute("Id").toString());
         r3.setAttribute("PlanAccDebId", pl);
         r3.setAttribute("Subconto1Deb", source);
         r3.setAttribute("PlanAccKredId", pl);
         r3.setAttribute("Subconto1Kred", dest);
         r3.setAttribute("Summ", Summa);
-        
+
         try {
             so.insertRow(r2); //Insert that row in ViewObject
             sotp.insertRow(r3); //Insert that row in ViewObject
@@ -3497,6 +3497,17 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
             getDBTransaction().rollback(); //Commit the changes
             e.printStackTrace();
         }
+    }
+
+    public void refreshCurrentRow(Row row) {
+        Row rw = null;
+        if (row != null) {
+            rw = row;
+        } else {
+            ViewObjectImpl or = getOrdersView1();
+            rw = or.getCurrentRow();
+        }
+        rw.refresh(Row.REFRESH_UNDO_CHANGES | Row.REFRESH_WITH_DB_FORGET_CHANGES);
     }
 
     /**

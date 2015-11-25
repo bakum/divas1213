@@ -27,11 +27,14 @@ public class OrdersViewRowImpl extends ViewRowImpl {
     @Override
     public boolean isAttributeUpdateable(int i) {
         BigDecimal editable = this.getOEditable();
-        if (editable.intValue()==0) {
+        if (editable == null) {
+            return super.isAttributeUpdateable(i);
+        }
+        if (editable.intValue() == 0) {
             return false;
-        } else { 
-        return super.isAttributeUpdateable(i);
-            }
+        } else {
+            return super.isAttributeUpdateable(i);
+        }
     }
 
     @Override
@@ -107,8 +110,7 @@ public class OrdersViewRowImpl extends ViewRowImpl {
         KontragentsMeasurer1,
         KontragOtherView1,
         KontragentsAll1;
-        static AttributesEnum[] vals = null;
-        ;
+        static AttributesEnum[] vals = null; ;
         private static final int firstIndex = 0;
 
         public int index() {

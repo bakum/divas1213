@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11"
+                id="order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef" Package="ua.divas.bean.pageDefs"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="refreshCurrentRow" RequiresUpdateModel="true" Action="invokeMethod" MethodName="refreshCurrentRow"
+                  IsViewObjectMethod="false" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.dataProvider"
+                  ReturnName="data.AppModuleDataControl.methodResults.refreshCurrentRow_AppModuleDataControl_dataProvider_refreshCurrentRow_result">
+      <NamedData NDName="row" NDType="oracle.jbo.Row"
+                 NDValue="${data.ua_divas_view_ordersPageDef.OrdersView1Iterator.currentRow}"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

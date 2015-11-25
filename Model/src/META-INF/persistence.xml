@@ -16,7 +16,7 @@
       <property name="eclipselink.target-database" value="Oracle11"/>
       <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
       <property name="javax.persistence.jdbc.password" value="5596838BD0035708CD4B48AB6F3E0566"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@127.0.0.1:1521:db11g"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.0.200:1521:db11g"/>
       <property name="javax.persistence.jdbc.user" value="dba_divas"/>
       <property name="javax.persistence.jtaDataSource" value="java:/app/jdbc/jdbc/divasDS"/>
     </properties>

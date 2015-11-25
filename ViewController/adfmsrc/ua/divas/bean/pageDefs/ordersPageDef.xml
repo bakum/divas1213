@@ -19,6 +19,8 @@
       <variable Type="java.lang.String" Name="addNotification_desc" IsQueriable="false"/>
     </variableIterator>
     <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
+    <iterator Binds="KontragentsBuyer1" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="KontragentsBuyer1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="OrdersView1Iterator" id="OrdersView1">
@@ -27,7 +29,7 @@
           <Item Value="Id"/>
           <Item Value="Dat"/>
           <Item Value="Num"/>
-          <Item Value="KontragId"/>
+          <Item Value="KontragId" Binds="KontragId"/>
           <Item Value="Kontragname"/>
           <Item Value="CurrId"/>
           <Item Value="KassaId"/>
@@ -59,7 +61,6 @@
         <Item Value="OEditable"/>
       </AttrNames>
     </attributeValues>
-    <listOfValues IterBinding="OrdersView1Iterator" StaticList="false" Uses="LOV_Kontragname" id="Kontragname"/>
     <attributeValues IterBinding="OrdersView1Iterator" id="Id">
       <AttrNames>
         <Item Value="Id"/>
@@ -181,5 +182,17 @@
         <Item Value="OrderFetchSize"/>
       </AttrNames>
     </attributeValues>
+    <list IterBinding="OrdersView1Iterator" StaticList="false" id="KontragId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject" ListIter="KontragentsBuyer1Iterator">
+      <AttrNames>
+        <Item Value="KontragId"/>
+      </AttrNames>
+      <ListAttrNames>
+        <Item Value="Id"/>
+      </ListAttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Fullname"/>
+      </ListDisplayAttrNames>
+    </list>
   </bindings>
 </pageDefinition>

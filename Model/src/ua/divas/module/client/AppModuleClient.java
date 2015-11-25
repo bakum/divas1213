@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import oracle.jbo.Key;
+import oracle.jbo.Row;
 import oracle.jbo.RowIterator;
 import oracle.jbo.client.remote.ApplicationModuleImpl;
 
@@ -88,6 +89,12 @@ public class AppModuleClient extends ApplicationModuleImpl implements AppModule 
         Object _ret = this.riInvokeExportedMethod(this, "deleteChildren", new String[] {
                                                   "oracle.jbo.RowIterator", "oracle.jbo.Key" }, new Object[] {
                                                   ri, selectedNodeKey });
+        return;
+    }
+
+    public void refreshCurrentRow(Row row) {
+        Object _ret = this.riInvokeExportedMethod(this, "refreshCurrentRow", new String[] { "oracle.jbo.Row" }, new Object[] {
+                                                  row });
         return;
     }
 
