@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrderZamerView"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ua.divas.view.OrderZamerViewRowImpl"
+  ComponentClass="ua.divas.view.OrderZamerViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.OrderZamerView_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="name1"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getname1()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="name2"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getname2()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="name3"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getname3()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="name4"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getname4()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="name5"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getname5()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="kname"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <ViewAccessor
+    Name="TypeOfActivitiesView1"
+    ViewObjectName="ua.divas.view.TypeOfActivitiesView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CurrencyView1"
+    ViewObjectName="ua.divas.view.CurrencyView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="DivisionsView1"
+    ViewObjectName="ua.divas.view.DivisionsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="FirmsView1"
+    ViewObjectName="ua.divas.view.FirmsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KassaView1"
+    ViewObjectName="ua.divas.view.KassaView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragentsView1"
+    ViewObjectName="ua.divas.view.KontragentsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="OrderStatusView1"
+    ViewObjectName="ua.divas.view.OrderStatusView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="UsersView1"
+    ViewObjectName="ua.divas.view.UsersView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragentsBuyer1"
+    ViewObjectName="ua.divas.view.KontragentsBuyer"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragentsMeasurer1"
+    ViewObjectName="ua.divas.view.KontragentsMeasurer"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragOtherView1"
+    ViewObjectName="ua.divas.view.KontragOtherView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_ActivitiesId"
+    ListVOName="TypeOfActivitiesView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ActivitiesId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CurrId"
+    ListVOName="CurrencyView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CurrId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_DivisionId"
+    ListVOName="DivisionsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DivisionId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_FirmId"
+    ListVOName="FirmsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="FirmId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KassaId"
+    ListVOName="KassaView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="KassaId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KontragId"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="KontragId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Kontragname"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="KontragentsFilterItemsByName"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Kontragname"
+    ListVOName="KontragentsBuyer1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Kontragname"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="KontragId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_StatusId"
+    ListVOName="OrderStatusView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="StatusId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_UserId"
+    ListVOName="UsersView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="UserId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Login"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ZamerId"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZamerId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Zamername"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="KontragentsZamerCriteria"
+      Hint="showAndExecute"/>
+    <ViewCriteriaUsage
+      Name="KontragentsZamerCriteria"
+      FullName="ua.divas.view.KontragentsView.KontragentsZamerCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Zamername"
+    ListVOName="KontragentsMeasurer1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Zamername"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ZamerId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+    <ViewCriteriaUsage
+      Name="KontragentsMeasurerNoDelete"
+      FullName="ua.divas.view.KontragentsMeasurer.KontragentsMeasurerNoDelete"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ManagerId"
+    ListVOName="KontragOtherView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ManagerId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT Orders.ACTIVITIES_ID, 
+       Orders.CURR_ID, 
+       Orders.DAT, 
+       Orders.DAT_ZAM,
+       Orders.DELETED, 
+       Orders.DISCRIPTION, 
+       Orders.DIVISION_ID, 
+       Orders.FIRM_ID, 
+       Orders.ID, 
+       Orders.KASSA_ID, 
+       Orders.KONTRAG_ID, 
+       (select fullname from kontragents where id = KONTRAG_ID and rownum = 1) KontragName,
+       Orders.KRATNOST, 
+       Orders.KURS, 
+       Orders.NUM, 
+       Orders.POSTED, 
+       Orders.STATUS_ID,
+       (select name from order_status where id = Orders.STATUS_ID) Status_Name,
+       (select 0 from dual) o_editable,
+       Orders.USER_ID, 
+       Orders.VERSION, 
+       Orders.ZAMER_ID,
+       (select fullname from kontragents where id = ZAMER_ID and rownum = 1) ZamerName,
+       (select adress from contact_details where kontrag_id = Orders.KONTRAG_ID and rownum = 1) adress,
+       (select phone from contact_details where kontrag_id = Orders.KONTRAG_ID and rownum = 1) phone,
+       UTILITY.enable_edit(Orders.ID, 'orders') enbl,
+       (select kontrag_id from user_settings where user_id = Orders.USER_ID) Manager_ID
+FROM  ORDERS Orders
+where deleted = 0 and
+status_id in (:name1,:name2,:name3,:name4,:name5) and
+upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u_name) as userTable)))]]></SQLQuery>
+  <EntityUsage
+    Name="Orders"
+    Entity="ua.divas.model.Orders"/>
+  <ViewAttribute
+    Name="ActivitiesId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ActivitiesId"
+    EntityUsage="Orders"
+    AliasName="ACTIVITIES_ID"
+    LOVName="LOV_ActivitiesId"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CurrId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CurrId"
+    EntityUsage="Orders"
+    AliasName="CURR_ID"
+    LOVName="LOV_CurrId"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Dat"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Dat"
+    EntityUsage="Orders"
+    AliasName="DAT"/>
+  <ViewAttribute
+    Name="DatZam"
+    PrecisionRule="true"
+    AliasName="DAT_ZAM"
+    EntityAttrName="DatZam"
+    EntityUsage="Orders"/>
+  <ViewAttribute
+    Name="Deleted"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Deleted"
+    EntityUsage="Orders"
+    AliasName="DELETED"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="Discription"
+    PrecisionRule="true"
+    EntityAttrName="Discription"
+    EntityUsage="Orders"
+    AliasName="DISCRIPTION"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="DivisionId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="Orders"
+    AliasName="DIVISION_ID"
+    LOVName="LOV_DivisionId"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.DivisionId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.DivisionId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FirmId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="FirmId"
+    EntityUsage="Orders"
+    AliasName="FIRM_ID"
+    LOVName="LOV_FirmId"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Orders"
+    AliasName="ID"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="KassaId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="KassaId"
+    EntityUsage="Orders"
+    AliasName="KASSA_ID"
+    LOVName="LOV_KassaId"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KontragId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="KontragId"
+    EntityUsage="Orders"
+    AliasName="KONTRAG_ID"
+    LOVName="LOV_KontragId"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.KontragId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Kontragname"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KONTRAGNAME"
+    Expression="KONTRAGNAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_Kontragname">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.Kontragname_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.Kontragname_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="50"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Kratnost"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Kratnost"
+    EntityUsage="Orders"
+    AliasName="KRATNOST"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="Kurs"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Kurs"
+    EntityUsage="Orders"
+    AliasName="KURS"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="Num"
+    PrecisionRule="true"
+    EntityAttrName="Num"
+    EntityUsage="Orders"
+    AliasName="NUM"/>
+  <ViewAttribute
+    Name="Posted"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Posted"
+    EntityUsage="Orders"
+    AliasName="POSTED"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="StatusId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="StatusId"
+    EntityUsage="Orders"
+    AliasName="STATUS_ID"
+    LOVName="LOV_StatusId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StatusName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STATUS_NAME"
+    Expression="STATUS_NAME"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OEditable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="O_EDITABLE"
+    Expression="O_EDITABLE"
+    SQLType="NUMERIC"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="UserId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="Orders"
+    AliasName="USER_ID"
+    LOVName="LOV_UserId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.UserId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.UserId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Version"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="Orders"
+    AliasName="VERSION"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="ZamerId"
+    PrecisionRule="true"
+    EntityAttrName="ZamerId"
+    EntityUsage="Orders"
+    AliasName="ZAMER_ID"
+    LOVName="LOV_ZamerId"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Zamername"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ZAMERNAME"
+    Expression="ZAMERNAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_Zamername">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.Zamername_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.Zamername_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Adress"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ADRESS"
+    Expression="ADRESS"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.Adress_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.Adress_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Phone"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PHONE"
+    Expression="PHONE"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="15"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.Phone_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.OrderZamerView.Phone_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.Phone_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Enbl"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="ENBL"
+    Expression="ENBL"
+    SQLType="NUMERIC"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="ManagerId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MANAGER_ID"
+    Expression="MANAGER_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_ManagerId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.ManagerId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.ManagerId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="OrderZamerViewCriteria"
+    ViewObjectName="ua.divas.view.OrderZamerView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="displayName"
+          ResId="displayName"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="OrderZamerViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Kontragname"
+        ViewAttribute="Kontragname"
+        Operator="STARTSWITH"
+        Conjunction="AND"
+        Value=":kname"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewLinkAccessor
+    Name="OrdersTpOplatyView"
+    ViewLink="ua.divas.view.OrdersTpOplatyFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="OrdersTpRashodyView"
+    ViewLink="ua.divas.view.OrdersTpRashodyFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

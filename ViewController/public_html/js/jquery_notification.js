@@ -85,6 +85,19 @@ function clientMethodCall() {
     event.cancel();                    
 }       */
 
+
+function activeDataCallback(event) {
+    var tableToRefresh = event.getSource().getValue();
+    console.log("activeDataCallback: " + tableToRefresh);
+    var ot = AdfPage.PAGE.findComponentByAbsoluteId("tableToRefresh");
+    ot.setValue(tableToRefresh);
+            
+    AdfCustomEvent.queue(ot, "refreshDataEvent", 
+    {
+        tablename : tableToRefresh
+    },true);
+}
+
 function enforcePreventUserInput(evt){            
     var popup = AdfPage.PAGE.findComponentByAbsoluteId('pLong');
     if (popup != null){

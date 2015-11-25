@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="payPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PaySettingsView1" RangeSize="25" DataControl="AppModuleDataControl" id="PaySettingsView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PaySettingsView1Iterator" id="PaySettingsView1">
+      <nodeDefinition DefName="ua.divas.view.PaySettingsView" Name="PaySettingsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Name"/>
+          <Item Value="Fullname"/>
+          <Item Value="Stavka"/>
+          <Item Value="BaseId"/>
+          <Item Value="Summa"/>
+          <Item Value="Editable"/>
+          <Item Value="InProfit" Binds="InProfit"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="PaySettingsView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="PaySettingsView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <button IterBinding="PaySettingsView1Iterator" id="InProfit" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="InProfit"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

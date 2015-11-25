@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTpOplatyZamerFkLink"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  EntityAssociation="ua.divas.model.OrdersTpOplatyZamerFkAssoc">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.OrdersTpOplatyZamerFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="KontragentsView"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.KontragentsView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="KontragentsView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.KontragentsView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OrdersTpOplatyView"
+    Cardinality="-1"
+    Owner="ua.divas.view.OrdersTpOplatyView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OrdersTpOplatyView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.OrdersTpOplatyView.ZamerId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

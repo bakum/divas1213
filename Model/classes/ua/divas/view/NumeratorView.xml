@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="NumeratorView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="Numerator.ID, 
+       Numerator.TYPEDEF_ID, 
+       Numerator.PREFIX, 
+       Numerator.VERSION"
+  FromList="NUMERATOR Numerator"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full">
+  <EntityUsage
+    Name="Numerator"
+    Entity="ua.divas.model.Numerator"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Numerator"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="TypedefId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="TypedefId"
+    EntityUsage="Numerator"
+    AliasName="TYPEDEF_ID"/>
+  <ViewAttribute
+    Name="Prefix"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Prefix"
+    EntityUsage="Numerator"
+    AliasName="PREFIX"/>
+  <ViewAttribute
+    Name="Version"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="Numerator"
+    AliasName="VERSION"/>
+</ViewObject>

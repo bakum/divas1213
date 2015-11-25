@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PlanAccSubcontoFk1Link"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="PlanAccView1"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.ro.PlanAccView1">
+    <DesignTime>
+      <Attr Name="_finderName" Value="PlanAccView1"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.ro.PlanAccView1.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="PlanAccSubcontoView1"
+    Cardinality="-1"
+    Owner="ua.divas.view.ro.PlanAccSubcontoView1">
+    <DesignTime>
+      <Attr Name="_finderName" Value="PlanAccSubcontoView1"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.ro.PlanAccSubcontoView1.PlanAccId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

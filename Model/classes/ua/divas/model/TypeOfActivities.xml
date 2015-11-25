@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="TypeOfActivities"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="TYPE_OF_ACTIVITIES"
+  AliasName="TypeOfActivities"
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.TypeOfActivitiesImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TYPE_OF_ACTIVITIES"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TypeOfActivities.Id_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TypeOfActivities.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Version"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="TYPE_OF_ACTIVITIES">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TypeOfActivities.Version_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TypeOfActivities.Version_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Fullname"
+    IsNotNull="true"
+    Precision="150"
+    ColumnName="FULLNAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TYPE_OF_ACTIVITIES">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TypeOfActivities.Fullname_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TypeOfActivities.Fullname_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Moves"
+    Association="ua.divas.model.MovesFk1Assoc"
+    AssociationEnd="ua.divas.model.MovesFk1Assoc.Moves"
+    AssociationOtherEnd="ua.divas.model.MovesFk1Assoc.TypeOfActivities"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Orders"
+    Association="ua.divas.model.OrdersFk1Assoc"
+    AssociationEnd="ua.divas.model.OrdersFk1Assoc.Orders"
+    AssociationOtherEnd="ua.divas.model.OrdersFk1Assoc.TypeOfActivities"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="UserSettings"
+    Association="ua.divas.model.UserSettingsFk1Assoc"
+    AssociationEnd="ua.divas.model.UserSettingsFk1Assoc.UserSettings"
+    AssociationOtherEnd="ua.divas.model.UserSettingsFk1Assoc.TypeOfActivities"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="OtherZatraty"
+    Association="ua.divas.model.OtherZatratyActivitiesFkAssoc"
+    AssociationEnd="ua.divas.model.OtherZatratyActivitiesFkAssoc.OtherZatraty"
+    AssociationOtherEnd="ua.divas.model.OtherZatratyActivitiesFkAssoc.TypeOfActivities"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="StartOst"
+    Association="ua.divas.model.StartOstFk4Assoc"
+    AssociationEnd="ua.divas.model.StartOstFk4Assoc.StartOst"
+    AssociationOtherEnd="ua.divas.model.StartOstFk4Assoc.TypeOfActivities"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="ProfitDistrib"
+    Association="ua.divas.model.ProfitDistribFk4Assoc"
+    AssociationEnd="ua.divas.model.ProfitDistribFk4Assoc.ProfitDistrib"
+    AssociationOtherEnd="ua.divas.model.ProfitDistribFk4Assoc.TypeOfActivities"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="TypeOfActivitiesPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="TYPE_OF_ACTIVITIES_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.TypeOfActivities.Id"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

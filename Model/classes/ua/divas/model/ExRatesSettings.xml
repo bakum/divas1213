@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ExRatesSettings"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="EX_RATES_SETTINGS"
+  AliasName="ExRatesSettings"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="EX_RATES_SETTINGS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CurrId"
+    IsUnique="true"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="CURR_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="EX_RATES_SETTINGS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Version"
+    IsNotNull="true"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="EX_RATES_SETTINGS"/>
+  <AccessorAttribute
+    Name="Currency"
+    Association="ua.divas.model.ExRatesSettingsCurrencFk1Assoc"
+    AssociationEnd="ua.divas.model.ExRatesSettingsCurrencFk1Assoc.Currency"
+    AssociationOtherEnd="ua.divas.model.ExRatesSettingsCurrencFk1Assoc.ExRatesSettings"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="ExRatesSettingsPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="EX_RATES_SETTINGS_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.ExRatesSettings.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="ExRatesSettingsUk1">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value="EX_RATES_SETTINGS_UK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.ExRatesSettings.CurrId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="ExRatesSettingsCurrencFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="CURRENCY_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="EX_RATES_SETTINGS_CURRENC_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.ExRatesSettings.CurrId"/>
+    </AttrArray>
+  </Key>
+</Entity>

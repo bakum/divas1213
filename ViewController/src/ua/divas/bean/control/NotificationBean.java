@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
+import oracle.adf.model.binding.DCDataControl;
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.share.ADFContext;
 import oracle.adf.share.security.SecurityContext;
@@ -37,6 +38,8 @@ import oracle.binding.OperationBinding;
 
 import org.apache.myfaces.trinidad.render.ExtendedRenderKitService;
 import org.apache.myfaces.trinidad.util.Service;
+
+import ua.divas.module.AppModuleImpl;
 
 public class NotificationBean {
     private String summAll;
@@ -80,10 +83,28 @@ public class NotificationBean {
     }
 
     public void onCustomEvent(ClientEvent clientEvent) {
+        String ballans = getSessionUser() + "Ballans";
         //System.out.println("---"+clientEvent.getParameters().get("payload"));
         if (clientEvent.getParameters().get("payload").equals("logoff")) {
             logout();
             return;
+        }
+        if (ballans.matches((String) clientEvent.getParameters().get("payload"))) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            ExtendedRenderKitService erks = Service.getService(context.getRenderKit(), ExtendedRenderKitService.class);
+            erks.addScript(context, "Growl('Внимание'," + "'Баланс рассчитан!','notice')");
+            BindingContext bindingContext = BindingContext.getCurrent();
+            DCDataControl dc =
+                bindingContext.findDataControl("AppModuleDataControl"); // Name of application module in datacontrolBinding.cpx
+            try {
+                AppModuleImpl am = (AppModuleImpl) dc.getDataProvider();
+                am.getVwBallansAp1().clearCache();
+                am.getVwBallansAp1().executeQuery();
+                refreshTree("r13", "tt1");
+            } catch (Exception e) {
+                // TODO: Add catch code
+                e.printStackTrace();
+            }
         }
         if (getSessionUser().matches((String) clientEvent.getParameters().get("payload"))) {
             refresh();
@@ -255,8 +276,8 @@ public class NotificationBean {
 
     public void onCloseBin(ActionEvent actionEvent) {
         hidePopup(getBinPopup());
-        refreshTree("rZamer","ttZamer");
-        refreshTree("rSupp","tt1");
+        refreshTree("rZamer", "ttZamer");
+        refreshTree("rSupp", "tt1");
     }
 
     public void setRetImpTextAll(RichOutputText retImpTextAll) {
@@ -274,24 +295,24 @@ public class NotificationBean {
     public RichButton getBinButton() {
         return binButton;
     }
-    
+
     public void onPayFromBin(ActionEvent actionEvent) {
         BindingContainer binding = BindingContext.getCurrent().getCurrentBindingsEntry();
         OperationBinding rko = binding.getOperationBinding("addRkoOrder");
         OperationBinding pko = binding.getOperationBinding("addPkoOrder");
-        
+
         Iterator<SupplierRecord> it = SupplierWallet.getWalletIterator();
-        
+
         while (it.hasNext()) {
             SupplierRecord o = it.next();
             String kontragId = o.getKontragId();
             String orderId = o.getOrderId();
             BigDecimal summa = o.getSumma();
-            System.out.println("kontragId: "+kontragId);
-            System.out.println("orderId: "+orderId);
-            System.out.println("summa: "+summa);
+            System.out.println("kontragId: " + kontragId);
+            System.out.println("orderId: " + orderId);
+            System.out.println("summa: " + summa);
             boolean isIn = o.isIsIn();
-            System.out.println("isIn: "+isIn);
+            System.out.println("isIn: " + isIn);
             if (rko != null && !isIn) {
                 rko.getParamsMap().put("kontragId", kontragId);
                 rko.getParamsMap().put("OrderId", orderId);
@@ -311,12 +332,34 @@ public class NotificationBean {
         onCloseBin(null);
         //refresh();
     }
-    
+
     public void setDisabledPay(boolean disabledPay) {
         this.disabledPay = disabledPay;
     }
 
-    public boolean getDisabledPay() {        
+    public boolean getDisabledPay() {
         return SupplierWallet.hasSupplier();
+    }
+
+    public void onRefreshActive(ClientEvent clientEvent) {
+        if (clientEvent.getParameters().get("tablename").equals("BallansJobDone")) {
+            //onRefresh(null);
+            FacesContext context = FacesContext.getCurrentInstance();
+            ExtendedRenderKitService erks = Service.getService(context.getRenderKit(), ExtendedRenderKitService.class);
+            erks.addScript(context, "Growl('Внимание'," + "'Баланс рассчитан!','notice')");
+            BindingContext bindingContext = BindingContext.getCurrent();
+            DCDataControl dc =
+                bindingContext.findDataControl("AppModuleDataControl"); // Name of application module in datacontrolBinding.cpx
+            try {
+                AppModuleImpl am = (AppModuleImpl) dc.getDataProvider();
+                am.getVwBallansAp1().clearCache();
+                am.getVwBallansAp1().executeQuery();
+                refreshTree("r13", "tt1");
+            } catch (Exception e) {
+                // TODO: Add catch code
+                e.printStackTrace();
+            }
+            return;
+        }
     }
 }

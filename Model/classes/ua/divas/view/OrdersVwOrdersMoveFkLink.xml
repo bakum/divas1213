@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersVwOrdersMoveFkLink"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.OrdersVwOrdersMoveFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="OrdersView"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.OrdersView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OrdersView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.OrdersView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="VwOrdersMoves"
+    Cardinality="-1"
+    Owner="ua.divas.view.VwOrdersMoves">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwOrdersMoves"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.VwOrdersMoves.RegistratorId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="kontrag_calcPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="KontragentsInOrdersView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="KontragentsInOrdersView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="KontragentsInOrdersView1Iterator" id="KontragentsInOrdersView1">
+      <nodeDefinition DefName="ua.divas.view.KontragentsInOrdersView" Name="KontragentsInOrdersView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="SumDebt"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="OrdersCalcView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.OrdersCalcView" Name="KontragentsInOrdersView11">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Uslugiall"/>
+          <Item Value="Oplaty"/>
+          <Item Value="Debt"/>
+          <Item Value="Regstring"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

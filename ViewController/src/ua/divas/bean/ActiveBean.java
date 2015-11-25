@@ -5,6 +5,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.PostConstruct;
 
+import javax.faces.context.FacesContext;
+
 import oracle.adf.view.rich.activedata.ActiveModelContext;
 import oracle.adf.view.rich.activedata.BaseActiveDataModel;
 import oracle.adf.view.rich.event.ActiveDataEntry;
@@ -12,7 +14,12 @@ import oracle.adf.view.rich.event.ActiveDataUpdateEvent;
 
 import oracle.adfinternal.view.faces.activedata.ActiveDataEventUtil;
 
+import org.apache.myfaces.trinidad.render.ExtendedRenderKitService;
+import org.apache.myfaces.trinidad.util.Service;
+
 public class ActiveBean extends BaseActiveDataModel {
+    private final AtomicInteger counter = new AtomicInteger(0);
+    
     @PostConstruct
     public void setupActiveData() {
         ActiveModelContext context =
@@ -51,5 +58,4 @@ public class ActiveBean extends BaseActiveDataModel {
     public int getCurrentChangeCount() {
         return counter.get();
     }
-    private final AtomicInteger counter = new AtomicInteger(0);
 }

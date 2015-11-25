@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Groups"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="GROUPS"
+  AliasName="Groups"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GROUPS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Fullname"
+    IsUnique="true"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="FULLNAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GROUPS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="GDescription"
+    Precision="1000"
+    ColumnName="G_DESCRIPTION"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GROUPS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="UsersGroups"
+    Association="ua.divas.model.UsersGroupsFk1Assoc"
+    AssociationEnd="ua.divas.model.UsersGroupsFk1Assoc.UsersGroups"
+    AssociationOtherEnd="ua.divas.model.UsersGroupsFk1Assoc.Groups"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="Groupmembers"
+    Association="ua.divas.model.GroupmembersFk2Assoc"
+    AssociationEnd="ua.divas.model.GroupmembersFk2Assoc.Groupmembers"
+    AssociationOtherEnd="ua.divas.model.GroupmembersFk2Assoc.Groups"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="GroupsPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="GROUPS_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Groups.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="GroupsUk1">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value="GROUPS_UK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Groups.Fullname"/>
+    </AttrArray>
+  </Key>
+</Entity>

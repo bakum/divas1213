@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RkoVOSuppl"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  OrderBy='"DAT" desc'>
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.RkoVOSuppl_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT 
+    RKO.ID ID, 
+    RKO.DAT DAT, 
+    RKO.NUM NUM, 
+    RKO.DELETED DELETED, 
+    RKO.POSTED POSTED, 
+    RKO.DIVISION_ID DIVISION_ID, 
+    RKO.USER_ID USER_ID, 
+    RKO.COMMENTS COMMENTS, 
+    RKO.VERSION VERSION, 
+    RKO.CURR_ID CURR_ID, 
+    RKO.KASSA_ID KASSA_ID, 
+    RKO.ACTIVITIES_ID ACTIVITIES_ID, 
+    RKO.OPERATION_ID OPERATION_ID, 
+    RKO.KONTRAG_ID KONTRAG_ID,
+    case
+        when
+        RKO.SUMMA >=0 then
+        RKO.SUMMA else 0
+    end SUMMA, 
+    case
+        when
+        RKO.SUMMA < 0 then
+        -RKO.SUMMA else 0
+    end SUMMA_RASH, 
+    RKO.DEST_KASSA_ID DEST_KASSA_ID, 
+    RKO.ORDER_ID ORDER_ID,
+    Reg_String
+from (    
+SELECT 
+    RKO.ID ID, 
+    RKO.DAT DAT, 
+    RKO.NUM NUM, 
+    RKO.DELETED DELETED, 
+    RKO.POSTED POSTED, 
+    RKO.DIVISION_ID DIVISION_ID, 
+    RKO.USER_ID USER_ID, 
+    RKO.COMMENTS COMMENTS, 
+    RKO.VERSION VERSION, 
+    RKO.CURR_ID CURR_ID, 
+    RKO.KASSA_ID KASSA_ID, 
+    RKO.ACTIVITIES_ID ACTIVITIES_ID, 
+    RKO.OPERATION_ID OPERATION_ID, 
+    RKO.KONTRAG_ID KONTRAG_ID, 
+    RKO.SUMMA SUMMA, 
+    RKO.DEST_KASSA_ID DEST_KASSA_ID, 
+    RKO.ORDER_ID ORDER_ID,
+    'РКО №'||Rko.NUM|| ' от '|| TO_CHAR(
+        rko.DAT, 'DD-MM-YYYY') Reg_String
+FROM 
+    RKO
+WHERE RKO.POSTED = 1 and 
+    RKO.OPERATION_ID in (select id from OPERATION_RKO where OPERATION_RKO.name like 'PAYMENT_SUPPLIER')
+union
+SELECT 
+    PKO.ID ID, 
+    PKO.DAT DAT, 
+    PKO.NUM NUM, 
+    PKO.DELETED DELETED, 
+    PKO.POSTED POSTED, 
+    PKO.DIVISION_ID DIVISION_ID, 
+    PKO.USER_ID USER_ID, 
+    PKO.COMMENTS COMMENTS, 
+    PKO.VERSION VERSION, 
+    PKO.CURR_ID CURR_ID, 
+    PKO.KASSA_ID KASSA_ID, 
+    PKO.ACTIVITIES_ID ACTIVITIES_ID, 
+    PKO.OPERATION_ID OPERATION_ID, 
+    PKO.KONTRAG_ID KONTRAG_ID, 
+    -PKO.SUMMA SUMMA, 
+    NULL DEST_KASSA_ID, 
+    PKO.ORDER_ID ORDER_ID,
+    'ПКО №'||PKO.NUM|| ' от '|| TO_CHAR(
+        PKO.DAT, 'DD-MM-YYYY') Reg_String
+FROM 
+    PKO
+WHERE PKO.POSTED = 1 
+    and PKO.OPERATION_ID in (select id from OPERATION_PKO where OPERATION_PKO.name like 'RETURN_SUPPLIER')
+union
+SELECT max(ORDERS_TP_NACHISL.ID),
+  ORDERS.DAT,
+  ORDERS.NUM,
+  ORDERS.DELETED,
+  ORDERS.POSTED POSTED,
+  ORDERS.DIVISION_ID,
+  ORDERS.USER_ID,
+  ORDERS.DISCRIPTION,
+  ORDERS.VERSION,
+  ORDERS.CURR_ID,
+  ORDERS.KASSA_ID,
+  ORDERS.ACTIVITIES_ID,
+  NULL,
+  ORDERS_TP_NACHISL.KONTR_ID,
+  SUM( -ORDERS_TP_NACHISL.SUMM),
+  NULL,
+  ORDERS_TP_NACHISL.ORDER_ID,
+  TO_CHAR(ORDERS_TP_NACHISL.DAT_NACH, 'DD-MM-YYYY')||' Начисления по заказу' Reg_String
+FROM ORDERS_TP_NACHISL
+INNER JOIN ORDERS
+ON ORDERS.ID        = ORDERS_TP_NACHISL.ORDER_ID
+WHERE ORDERS.POSTED = 1
+GROUP BY
+  ORDERS.DAT,
+  ORDERS.NUM,
+  ORDERS.DELETED,
+  ORDERS.POSTED,
+  ORDERS.DIVISION_ID,
+  ORDERS.USER_ID,
+  ORDERS.DISCRIPTION,
+  ORDERS.VERSION,
+  ORDERS.CURR_ID,
+  ORDERS.KASSA_ID,
+  ORDERS.ACTIVITIES_ID,
+  NULL,
+  ORDERS_TP_NACHISL.KONTR_ID,
+  NULL,
+  ORDERS_TP_NACHISL.ORDER_ID,
+  TO_CHAR(ORDERS_TP_NACHISL.DAT_NACH, 'DD-MM-YYYY')||' Начисления по заказу'
+union
+SELECT max(ORDERS_TP_OPLATY.ID),
+  ORDERS.DAT,
+  ORDERS.NUM,
+  ORDERS.DELETED,
+  ORDERS.POSTED POSTED,
+  ORDERS.DIVISION_ID,
+  ORDERS.USER_ID,
+  ORDERS.DISCRIPTION,
+  ORDERS.VERSION,
+  ORDERS.CURR_ID,
+  ORDERS.KASSA_ID,
+  ORDERS.ACTIVITIES_ID,
+  NULL,
+  ORDERS_TP_OPLATY.ZAMER_ID,
+  SUM(ORDERS_TP_OPLATY.SUM),
+  NULL,
+  ORDERS_TP_OPLATY.ORDER_ID,
+  TO_CHAR(ORDERS_TP_OPLATY.DAT, 'DD-MM-YYYY')||' Оплата по заказу' Reg_String
+FROM ORDERS_TP_OPLATY
+INNER JOIN ORDERS
+ON ORDERS.ID                   = ORDERS_TP_OPLATY.ORDER_ID
+WHERE ORDERS.POSTED            = 1
+AND ORDERS_TP_OPLATY.ZAMER_ID IS NOT NULL
+GROUP BY 
+  ORDERS.DAT,
+  ORDERS.NUM,
+  ORDERS.DELETED,
+  ORDERS.POSTED,
+  ORDERS.DIVISION_ID,
+  ORDERS.USER_ID,
+  ORDERS.DISCRIPTION,
+  ORDERS.VERSION,
+  ORDERS.CURR_ID,
+  ORDERS.KASSA_ID,
+  ORDERS.ACTIVITIES_ID,
+  NULL,
+  ORDERS_TP_OPLATY.ZAMER_ID,
+  NULL,
+  ORDERS_TP_OPLATY.ORDER_ID,
+  TO_CHAR(ORDERS_TP_OPLATY.DAT, 'DD-MM-YYYY')||' Оплата по заказу'
+  union
+  SELECT max(ORDERS_TP_RASHODY.ID),
+  ORDERS.DAT,
+  ORDERS.NUM,
+  ORDERS.DELETED,
+  ORDERS.POSTED POSTED,
+  ORDERS.DIVISION_ID,
+  ORDERS.USER_ID,
+  ORDERS.DISCRIPTION,
+  ORDERS.VERSION,
+  ORDERS.CURR_ID,
+  ORDERS.KASSA_ID,
+  ORDERS.ACTIVITIES_ID,
+  NULL,
+  ORDERS_TP_RASHODY.KONTR_ID,
+  SUM(-ORDERS_TP_RASHODY.SUMM),
+  NULL,
+  ORDERS_TP_RASHODY.ORDER_ID,
+  TO_CHAR(ORDERS_TP_RASHODY.DAT_RASH, 'DD-MM-YYYY')||' Начисления по заказу' Reg_String
+FROM ORDERS_TP_RASHODY
+INNER JOIN ORDERS
+ON ORDERS.ID                   = ORDERS_TP_RASHODY.ORDER_ID
+WHERE ORDERS.POSTED            = 1
+AND ORDERS_TP_RASHODY.KONTR_ID IS NOT NULL
+GROUP BY 
+  ORDERS.DAT,
+  ORDERS.NUM,
+  ORDERS.DELETED,
+  ORDERS.POSTED,
+  ORDERS.DIVISION_ID,
+  ORDERS.USER_ID,
+  ORDERS.DISCRIPTION,
+  ORDERS.VERSION,
+  ORDERS.CURR_ID,
+  ORDERS.KASSA_ID,
+  ORDERS.ACTIVITIES_ID,
+  NULL,
+  ORDERS_TP_RASHODY.KONTR_ID,
+  NULL,
+  ORDERS_TP_RASHODY.ORDER_ID,
+  TO_CHAR(ORDERS_TP_RASHODY.DAT_RASH, 'DD-MM-YYYY')||' Начисления по заказу') RKO]]></SQLQuery>
+  <ViewAttribute
+    Name="Id"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ID"
+    Expression="ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Dat"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    AliasName="DAT"
+    Expression="DAT"
+    SQLType="DATE"/>
+  <ViewAttribute
+    Name="Num"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NUM"
+    Expression="NUM"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Deleted"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="DELETED"
+    Expression="DELETED"
+    SQLType="INTEGER"/>
+  <ViewAttribute
+    Name="Posted"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="POSTED"
+    Expression="POSTED"
+    SQLType="INTEGER"/>
+  <ViewAttribute
+    Name="DivisionId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVISION_ID"
+    Expression="DIVISION_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="UserId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="USER_ID"
+    Expression="USER_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Comments"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMMENTS"
+    Expression="COMMENTS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="255"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Version"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    AliasName="VERSION"
+    Expression="VERSION"
+    SQLType="DATE"/>
+  <ViewAttribute
+    Name="CurrId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CURR_ID"
+    Expression="CURR_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KassaId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KASSA_ID"
+    Expression="KASSA_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ActivitiesId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ACTIVITIES_ID"
+    Expression="ACTIVITIES_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OperationId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="OPERATION_ID"
+    Expression="OPERATION_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KontragId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KONTRAG_ID"
+    Expression="KONTRAG_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summa"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMMA"
+    Expression="SUMMA"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SummaRash"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SUMMA_RASH"
+    Expression="SUMMA_RASH"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="DestKassaId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DEST_KASSA_ID"
+    Expression="DEST_KASSA_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OrderId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ORDER_ID"
+    Expression="ORDER_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RegString"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="69"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REG_STRING"
+    Expression="REG_STRING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="69"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Id"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

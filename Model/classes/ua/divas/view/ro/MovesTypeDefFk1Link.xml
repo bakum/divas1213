@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MovesTypeDefFk1Link"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="TypeDefView1"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.ro.TypeDefView1">
+    <DesignTime>
+      <Attr Name="_finderName" Value="TypeDefView1"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.ro.TypeDefView1.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="MovesView1"
+    Cardinality="-1"
+    Owner="ua.divas.view.ro.MovesView1">
+    <DesignTime>
+      <Attr Name="_finderName" Value="MovesView1"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.ro.MovesView1.RegistratorType"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

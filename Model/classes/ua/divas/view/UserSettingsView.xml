@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserSettingsView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  ComponentClass="ua.divas.view.UserSettingsViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Variable
+    Name="UserKey"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[viewObject.getSessionUserId()]]></TransientExpression>
+  </Variable>
+  <ViewAccessor
+    Name="UsersView1"
+    ViewObjectName="ua.divas.view.UsersView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="DivisionsView1"
+    ViewObjectName="ua.divas.view.DivisionsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="FirmsView1"
+    ViewObjectName="ua.divas.view.FirmsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CurrencyView1"
+    ViewObjectName="ua.divas.view.CurrencyView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KassaVO1"
+    ViewObjectName="ua.divas.view.KassaVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="NomenklaturaView1"
+    ViewObjectName="ua.divas.view.NomenklaturaView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="TypeOfActivitiesView1"
+    ViewObjectName="ua.divas.view.TypeOfActivitiesView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragentsView1"
+    ViewObjectName="ua.divas.view.KontragentsView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="KontragentsZamerCriteria"
+      FullName="ua.divas.view.KontragentsView.KontragentsZamerCriteria"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="KontragentsView2"
+    ViewObjectName="ua.divas.view.KontragentsView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="KontragentsOtherCriteria"
+      FullName="ua.divas.view.KontragentsView.KontragentsOtherCriteria"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="KontragentsMeasurer1"
+    ViewObjectName="ua.divas.view.KontragentsMeasurer"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragOtherView1"
+    ViewObjectName="ua.divas.view.KontragOtherView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_UserId"
+    ListVOName="UsersView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="UserId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Login"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_DivisionId"
+    ListVOName="DivisionsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DivisionId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_FirmaId"
+    ListVOName="FirmsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="FirmaId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CurrencyId"
+    ListVOName="CurrencyView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CurrencyId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KassaId"
+    ListVOName="KassaVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="KassaId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MainUsluga"
+    ListVOName="NomenklaturaView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MainUsluga"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Musluganame"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ActivitiesId"
+    ListVOName="TypeOfActivitiesView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ActivitiesId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Musluganame"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Musluganame"
+    ListVOName="NomenklaturaView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Musluganame"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="MainUsluga"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Usluga"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="NomenklaturaViewUslugaItem"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ActivitiesName"
+    ListVOName="TypeOfActivitiesView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ActivitiesName"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ActivitiesId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ZamerkontragId"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZamerkontragId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ZamerkontragName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="KontragentsZamerCriteria"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ZamerkontragName"
+    ListVOName="KontragentsMeasurer1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZamerkontragName"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ZamerkontragId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KontragId"
+    ListVOName="KontragentsView2"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="KontragId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="KontragName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="hide"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KontragName"
+    ListVOName="KontragOtherView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="KontragName"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="KontragId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_NetName"
+    ListVOName="KontragOtherView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0"
+    ComboRowCountHint="10">
+    <AttrArray Name="AttrNames">
+      <Item Value="NetName"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="NetId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT UserSettings.ID, 
+       UserSettings.USER_ID, 
+       UserSettings.DIVISION_ID, 
+       UserSettings.FIRMA_ID, 
+       UserSettings.CURRENCY_ID, 
+       UserSettings.KASSA_ID, 
+       UserSettings.MAIN_USLUGA,
+       (select fullname from nomenklatura where id = UserSettings.MAIN_USLUGA) MUslugaName,
+       (select fullname from TYPE_OF_ACTIVITIES where id = UserSettings.ACTIVITIES_ID) activities_name,
+       UserSettings.ACTIVITIES_ID,
+       UserSettings.ZAMERKONTRAG_ID,
+       (select fullname from kontragents where id = UserSettings.ZAMERKONTRAG_ID) ZamerKontrag_Name,
+       UserSettings.KONTRAG_ID,
+       (select fullname from kontragents where id = UserSettings.KONTRAG_ID) Kontrag_Name,
+       UserSettings.NET_ID,
+       (select fullname from kontragents where id = UserSettings.NET_ID) Net_Name
+FROM  USER_SETTINGS UserSettings]]></SQLQuery>
+  <EntityUsage
+    Name="UserSettings"
+    Entity="ua.divas.model.UserSettings"/>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="UserSettings"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="UserId"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="UserId"
+    EntityUsage="UserSettings"
+    AliasName="USER_ID"
+    LOVName="LOV_UserId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivisionId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="UserSettings"
+    AliasName="DIVISION_ID"
+    LOVName="LOV_DivisionId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="ua.divas.view.UserSettingsView.DivisionId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.UserSettingsView.DivisionId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FirmaId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="FirmaId"
+    EntityUsage="UserSettings"
+    AliasName="FIRMA_ID"
+    LOVName="LOV_FirmaId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CurrencyId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CurrencyId"
+    EntityUsage="UserSettings"
+    AliasName="CURRENCY_ID"
+    LOVName="LOV_CurrencyId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KassaId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="KassaId"
+    EntityUsage="UserSettings"
+    AliasName="KASSA_ID"
+    LOVName="LOV_KassaId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="CurrencyId"/>
+      <Item
+        Value="DivisionId"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MainUsluga"
+    PrecisionRule="true"
+    EntityAttrName="MainUsluga"
+    EntityUsage="UserSettings"
+    AliasName="MAIN_USLUGA"
+    LOVName="LOV_MainUsluga">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Musluganame"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MUSLUGANAME"
+    Expression="MUSLUGANAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_Musluganame">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.UserSettingsView.Musluganame_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.UserSettingsView.Musluganame_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ActivitiesName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ACTIVITIES_NAME"
+    Expression="ACTIVITIES_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_ActivitiesName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.UserSettingsView.ActivitiesName_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.UserSettingsView.ActivitiesName_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ActivitiesId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ActivitiesId"
+    EntityUsage="UserSettings"
+    AliasName="ACTIVITIES_ID"
+    LOVName="LOV_ActivitiesId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ZamerkontragId"
+    PrecisionRule="true"
+    EntityAttrName="ZamerkontragId"
+    EntityUsage="UserSettings"
+    AliasName="ZAMERKONTRAG_ID"
+    LOVName="LOV_ZamerkontragId">
+    <Dependencies>
+      <Item
+        Value="ZamerkontragName"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ZamerkontragName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ZAMERKONTRAG_NAME"
+    Expression="ZAMERKONTRAG_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_ZamerkontragName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.UserSettingsView.ZamerkontragName_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.UserSettingsView.ZamerkontragName_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KontragId"
+    PrecisionRule="true"
+    EntityAttrName="KontragId"
+    EntityUsage="UserSettings"
+    AliasName="KONTRAG_ID"
+    LOVName="LOV_KontragId">
+    <Dependencies>
+      <Item
+        Value="KontragName"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <LABEL
+          ResId="ua.divas.view.UserSettingsView.KontragId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.UserSettingsView.KontragId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KontragName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KONTRAG_NAME"
+    Expression="KONTRAG_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_KontragName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <LABEL
+          ResId="ua.divas.view.UserSettingsView.KontragName_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.UserSettingsView.KontragName_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NetId"
+    PrecisionRule="true"
+    EntityAttrName="NetId"
+    EntityUsage="UserSettings"
+    AliasName="NET_ID">
+    <TransientExpression><![CDATA[KontragId]]></TransientExpression>
+    <Dependencies>
+      <Item
+        Value="NetName"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NetName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NET_NAME"
+    Expression="NET_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_NetName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.UserSettingsView.NetName_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.UserSettingsView.NetName_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="KontragName"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="FilterSettingsByUser"
+    ViewObjectName="ua.divas.view.UserSettingsView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="UserSettingsViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="UserId"
+        ViewAttribute="UserId"
+        Operator="="
+        Conjunction="AND"
+        Value=":UserKey"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

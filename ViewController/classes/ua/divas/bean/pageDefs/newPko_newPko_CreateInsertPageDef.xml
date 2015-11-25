@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68"
+                id="newPko_newPko_CreateInsertPageDef" Package="ua.divas.bean.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="PkoView1" RangeSize="25" DataControl="AppModuleDataControl" id="PkoView1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="PkoView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

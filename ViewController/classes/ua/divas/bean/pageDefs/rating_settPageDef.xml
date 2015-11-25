@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="rating_settPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RatingSettingsView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="RatingSettingsView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="CntDivider">
+      <AttrNames>
+        <Item Value="CntDivider"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="CntBal">
+      <AttrNames>
+        <Item Value="CntBal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="SumDivider">
+      <AttrNames>
+        <Item Value="SumDivider"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="SumBal">
+      <AttrNames>
+        <Item Value="SumBal"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="RatingSettingsView1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+  </bindings>
+</pageDefinition>

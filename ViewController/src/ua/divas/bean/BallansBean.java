@@ -2,8 +2,11 @@ package ua.divas.bean;
 
 import java.math.BigDecimal;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import java.util.UUID;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
@@ -22,6 +25,8 @@ import oracle.adf.model.BindingContext;
 
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCIteratorBinding;
+import oracle.adf.share.ADFContext;
+import oracle.adf.share.security.SecurityContext;
 import oracle.adf.view.rich.component.rich.data.RichTreeTable;
 
 import oracle.adf.view.rich.component.rich.input.RichInputNumberSpinbox;
@@ -29,6 +34,8 @@ import oracle.adf.view.rich.context.AdfFacesContext;
 
 import oracle.adf.view.rich.event.DialogEvent;
 import oracle.adf.view.rich.event.PopupFetchEvent;
+
+import oracle.adf.view.rich.render.ClientEvent;
 
 import oracle.binding.BindingContainer;
 import oracle.binding.OperationBinding;
@@ -44,6 +51,16 @@ import oracle.jbo.uicli.binding.JUIteratorBinding;
 import org.apache.myfaces.trinidad.event.SelectionEvent;
 import org.apache.myfaces.trinidad.model.CollectionModel;
 import org.apache.myfaces.trinidad.model.RowKeySet;
+import org.apache.myfaces.trinidad.render.ExtendedRenderKitService;
+import org.apache.myfaces.trinidad.util.Service;
+
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.SchedulerException;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
+
+import ua.divas.classes.StartSchedulerQuartz;
 
 public class BallansBean {
     private RichTreeTable treeTable;
@@ -104,15 +121,45 @@ public class BallansBean {
         }
         return Message;
     }
+    
+    private String getSessionUser() {
+        ADFContext adfCtx = ADFContext.getCurrent();
+        SecurityContext secCntx = adfCtx.getSecurityContext();
+        String user = secCntx.getUserPrincipal().getName();
+        return user;
+    }
 
-    public void onExecute(ActionEvent actionEvent) {
+    public void onExecute(ActionEvent actionEvent) throws SchedulerException {
         BindingContext bctx = BindingContext.getCurrent();
         BindingContainer bindings = bctx.getCurrentBindingsEntry();
         OperationBinding executeWithParams = bindings.getOperationBinding("refreshBallans");
-        executeWithParams.execute();
-        refreshIterator();
+        if (executeWithParams != null){
+                String cutid = UUID.randomUUID().toString().substring(0, 7);
+                JobDetail job =
+                    JobBuilder.newJob(BallansJob.class).withDescription("trigger" + cutid).withIdentity("job" + cutid,
+                                                                                                    "group").build();
+                Date runDate = new Date();
+                Trigger trigger =
+                    TriggerBuilder.newTrigger().startAt(runDate).withDescription(getSessionUser()).withIdentity("trigger" +
+                                                                                                                cutid,
+                                                                                                                "group").build();
+                job.getJobDataMap().put("UserName", getSessionUser());
+                job.getJobDataMap().put("f_date", (oracle.jbo.domain.Date) JSFUtils.resolveExpression("#{bindings.f_dat.inputValue}"));
+                job.getJobDataMap().put("l_date", (oracle.jbo.domain.Date) JSFUtils.resolveExpression("#{bindings.l_dat.inputValue}"));
+                if (StartSchedulerQuartz.sched != null) {
+                    StartSchedulerQuartz.sched.scheduleJob(job, trigger);
+                    System.out.println("------- New notification! ----------------");
+                    //ob.execute();
+                    FacesContext context = FacesContext.getCurrentInstance();
+                    ExtendedRenderKitService erks =
+                        Service.getService(context.getRenderKit(), ExtendedRenderKitService.class);
+                    erks.addScript(context, "Growl('Внимание'," + "'Баланс запущен в расчет!','warning')");
+                }
+            }
+        //executeWithParams.execute();
+        //refreshIterator();
 
-        AdfFacesContext.getCurrentInstance().addPartialTarget(getTreeTable());
+        //AdfFacesContext.getCurrentInstance().addPartialTarget(getTreeTable());
     }
 
     public void refresh() {
@@ -169,7 +216,10 @@ public class BallansBean {
             //oper.getParamsMap().put("p_div", getCurrentDivision());
             oper.execute();
 
-            this.onExecute(null);
+            try {
+                this.onExecute(null);
+            } catch (SchedulerException e) {
+            }
         }
     }
 
@@ -282,5 +332,12 @@ public class BallansBean {
                 }
             }
         }
+    }
+
+    public void onRefreshActive(ClientEvent clientEvent) {
+        onRefresh(null);
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExtendedRenderKitService erks = Service.getService(context.getRenderKit(), ExtendedRenderKitService.class);
+        erks.addScript(context, "Growl('Внимание'," + "'Баланс рассчитан!','notice')");
     }
 }

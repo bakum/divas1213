@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PlanTypeSubcontoTypeDFk1Link"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  EntityAssociation="ua.divas.model.PlanTypeSubcontoTypeDFk1Assoc">
+  <ViewLinkDefEnd
+    Name="TypeDefView"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.TypeDefView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="TypeDefView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.TypeDefView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="PlanTypeSubcontoView"
+    Cardinality="1"
+    Owner="ua.divas.view.PlanTypeSubcontoView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="PlanTypeSubcontoView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.PlanTypeSubcontoView.TypeOfObj"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

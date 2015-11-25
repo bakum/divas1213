@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="directorPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CurrencyView1" RangeSize="25" DataControl="AppModuleDataControl" id="CurrencyView1Iterator"
+              ChangeEventPolicy="ppr"/>
+    <iterator Binds="RegRatesView2" RangeSize="10" DataControl="AppModuleDataControl" id="RegRatesView2Iterator"
+              ChangeEventPolicy="ppr"/>
+    <iterator Binds="FirmsView1" RangeSize="5" DataControl="AppModuleDataControl" id="FirmsView1Iterator"/>
+    <iterator Binds="DivisionsView1" RangeSize="10" DataControl="AppModuleDataControl" id="DivisionsView1Iterator"/>
+    <iterator Binds="KassaView4" RangeSize="5" DataControl="AppModuleDataControl" id="KassaView4Iterator"/>
+    <iterator Binds="DivisionsRootView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="DivisionsRootView2Iterator"/>
+    <iterator Binds="NetGroupView1" RangeSize="25" DataControl="AppModuleDataControl" id="NetGroupView1Iterator"/>
+    <iterator id="KontragentsView1Iterator" Binds="KontragentsView1" DataControl="AppModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CurrencyView1Iterator" id="CurrencyView1">
+      <nodeDefinition DefName="ua.divas.view.CurrencyView" Name="CurrencyView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="IsGroup"/>
+          <Item Value="ParentId"/>
+          <Item Value="Deleted"/>
+          <Item Value="Fullname"/>
+          <Item Value="Code"/>
+          <Item Value="Namefull"/>
+          <Item Value="Version"/>
+          <Item Value="Predefined"/>
+          <Item Value="IdXml"/>
+          <Item Value="Editable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="CurrencyView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="CurrencyView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="CurrencyView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RegRatesView2Iterator" id="RegRatesView2">
+      <nodeDefinition DefName="ua.divas.view.RegRatesView" Name="RegRatesView20">
+        <AttrNames>
+          <Item Value="Period"/>
+          <Item Value="CurrId"/>
+          <Item Value="Kurs"/>
+          <Item Value="Kratnost"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="FirmsView1Iterator" id="Fullname">
+      <AttrNames>
+        <Item Value="Fullname"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="doCurrencyExchange" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="doCurrencyExchange" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.CurrencyView1"/>
+    <attributeValues IterBinding="CurrencyView1Iterator" id="Namefull">
+      <AttrNames>
+        <Item Value="Namefull"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="FirmsView1Iterator" id="CreateInsert1" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <tree IterBinding="FirmsView1Iterator" id="FirmsView1">
+      <nodeDefinition DefName="ua.divas.view.FirmsView" Name="FirmsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="Printname"/>
+          <Item Value="Inn"/>
+          <Item Value="Okpo"/>
+          <Item Value="Version"/>
+          <Item Value="Deleted"/>
+          <Item Value="Predefined"/>
+          <Item Value="FEditable"/>
+          <Item Value="UrFiz" Binds="UrFiz"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="FirmsView1Iterator" id="UrFiz" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="UrFiz"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="FirmsView1Iterator" id="FEditable">
+      <AttrNames>
+        <Item Value="FEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="DivisionsView1Iterator" id="DivisionsView1">
+      <nodeDefinition DefName="ua.divas.view.DivisionsView" Name="DivisionsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Deleted"/>
+          <Item Value="Fullname"/>
+          <Item Value="IsGroup"/>
+          <Item Value="ParentId"/>
+          <Item Value="Predefined"/>
+          <Item Value="Version"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="ParentId">
+      <AttrNames>
+        <Item Value="ParentId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="Fullname1">
+      <AttrNames>
+        <Item Value="Fullname"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="DivisionsView1Iterator" StaticList="false" Uses="LOV_ParentId" id="ParentId1"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <methodAction id="changeParentInDivisions" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="changeParentInDivisions" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.DivisionsView1">
+      <NamedData NDName="Id" NDType="java.lang.String"/>
+      <NamedData NDName="ParentId" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="KassaView4Iterator" id="KassaView4">
+      <nodeDefinition DefName="ua.divas.view.KassaView" Name="KassaView40">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="IsGroup"/>
+          <Item Value="ParentId"/>
+          <Item Value="CurrId"/>
+          <Item Value="DivisionId"/>
+          <Item Value="FirmaId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="KassaView4Iterator" id="KEditable">
+      <AttrNames>
+        <Item Value="KEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="DivisionsView1Iterator" StaticList="false" Uses="LOV_MainUser" id="MainUser"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <tree IterBinding="DivisionsRootView2Iterator" id="DivisionsRootView2">
+      <nodeDefinition DefName="ua.divas.view.DivisionsRootView" Name="DivisionsRootView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="IsGroup"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="DivisionsView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.DivisionsView" Name="DivisionsRootView21">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="IsGroup"/>
+          <Item Value="MainUser"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="DivisionsView"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DivisionsView1Iterator" id="CreateInsert2" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="KassaView4Iterator" id="KassaView41">
+      <nodeDefinition DefName="ua.divas.view.KassaView" Name="KassaView410">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Fullname"/>
+          <Item Value="CurrId"/>
+          <Item Value="DivisionId"/>
+          <Item Value="KEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="DEditable">
+      <AttrNames>
+        <Item Value="DEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="KassaView4Iterator" id="CreateInsert3" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="IsGroup">
+      <AttrNames>
+        <Item Value="IsGroup"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="NetGroupView1Iterator" id="NetGroupView1">
+      <nodeDefinition DefName="ua.divas.view.NetGroupView" Name="NetGroupView10">
+        <AttrNames>
+          <Item Value="Fullname"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="NetDetailView">
+            <Properties>
+              <CustomProperties>
+                <Property Name="hierarchyType" Value="children"/>
+              </CustomProperties>
+            </Properties>
+          </Item>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="ua.divas.view.NetDetailView" Name="NetGroupView11">
+        <AttrNames>
+          <Item Value="Fullname"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="IdNetDetailView">
+            <Properties>
+              <CustomProperties>
+                <Property Name="hierarchyType" Value="children"/>
+              </CustomProperties>
+            </Properties>
+          </Item>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DivisionsView1Iterator" id="Delete1" InstanceName="AppModuleDataControl.DivisionsView1"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="Prefix">
+      <AttrNames>
+        <Item Value="Prefix"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

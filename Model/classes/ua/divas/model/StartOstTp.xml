@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="StartOstTp"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="START_OST_TP"
+  AliasName="StartOstTp"
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.StartOstTpImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="StartOstId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="START_OST_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.StartOstId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.StartOstId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PlanAccDebId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="PLAN_ACC_DEB_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.PlanAccDebId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.PlanAccDebId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Subconto1Deb"
+    Precision="50"
+    ColumnName="SUBCONTO1_DEB"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.Subconto1Deb_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.Subconto1Deb_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Subconto2Deb"
+    Precision="50"
+    ColumnName="SUBCONTO2_DEB"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.Subconto2Deb_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.Subconto2Deb_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="PlanAccKredId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="PLAN_ACC_KRED_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.PlanAccKredId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.PlanAccKredId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Subconto1Kred"
+    Precision="50"
+    ColumnName="SUBCONTO1_KRED"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.Subconto1Kred_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.Subconto1Kred_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Subconto2Kred"
+    Precision="50"
+    ColumnName="SUBCONTO2_KRED"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.Subconto2Kred_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.Subconto2Kred_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Summ"
+    IsNotNull="true"
+    Precision="10"
+    Scale="2"
+    ColumnName="SUMM"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="START_OST_TP">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.Summ_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.Summ_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Description"
+    Precision="1000"
+    ColumnName="DESCRIPTION"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="START_OST_TP">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.StartOstTp.Description_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.StartOstTp.Description_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="PlanAcc"
+    Association="ua.divas.model.StartOstTpFk2Assoc"
+    AssociationEnd="ua.divas.model.StartOstTpFk2Assoc.PlanAcc"
+    AssociationOtherEnd="ua.divas.model.StartOstTpFk2Assoc.StartOstTp"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="PlanAcc1"
+    Association="ua.divas.model.StartOstTpFk1Assoc"
+    AssociationEnd="ua.divas.model.StartOstTpFk1Assoc.PlanAcc1"
+    AssociationOtherEnd="ua.divas.model.StartOstTpFk1Assoc.StartOstTp1"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="StartOst"
+    Association="ua.divas.model.StartOstTpFk3Assoc"
+    AssociationEnd="ua.divas.model.StartOstTpFk3Assoc.StartOst"
+    AssociationOtherEnd="ua.divas.model.StartOstTpFk3Assoc.StartOstTp"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="StartOstTpPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="START_OST_TP_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.StartOstTp.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="StartOstTpFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PLAN_ACC_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="START_OST_TP_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.StartOstTp.PlanAccDebId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="StartOstTpFk2">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PLAN_ACC_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="START_OST_TP_FK2"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.StartOstTp.PlanAccKredId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="StartOstTpFk3">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="START_OST_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="START_OST_TP_FK3"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.StartOstTp.StartOstId"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

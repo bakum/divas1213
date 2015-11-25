@@ -31,9 +31,7 @@
                                             </af:inputDate>
                                             <af:button actionListener="#{ballans.onExecute}" text="Рассчитать"
                                                        disabled="#{!bindings.refreshBallans.enabled}" id="b1"
-                                                       partialSubmit="true">
-                                                <af:clientListener type="action" method="enforcePreventUserInput"/>
-                                            </af:button>
+                                                       partialSubmit="true"/>
                                             <af:spacer width="10" height="10" id="s1"/>
                                             <af:button text="Обновить" id="b2" actionListener="#{ballans.onRefresh}"/>
                                         </af:panelGroupLayout>
