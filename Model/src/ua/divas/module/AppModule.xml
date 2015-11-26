@@ -9,7 +9,8 @@
   ClearCacheOnRollback="true"
   ComponentClass="ua.divas.module.AppModuleImpl"
   ComponentInterface="ua.divas.module.common.AppModule"
-  ClientProxyName="ua.divas.module.client.AppModuleClient">
+  ClientProxyName="ua.divas.module.client.AppModuleClient"
+  LoadComponentsLazily="true">
   <DesignTime>
     <Attr Name="_isCodegen" Value="true"/>
   </DesignTime>

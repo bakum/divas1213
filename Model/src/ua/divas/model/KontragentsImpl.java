@@ -50,6 +50,7 @@ public class KontragentsImpl extends DivasEntity {
         IsSupplier,
         UserId,
         Photo,
+        CityId,
         Kontragents,
         ParentIdKontragents,
         CompaignsDetails,
@@ -106,6 +107,7 @@ public class KontragentsImpl extends DivasEntity {
     public static final int ISSUPPLIER = AttributesEnum.IsSupplier.index();
     public static final int USERID = AttributesEnum.UserId.index();
     public static final int PHOTO = AttributesEnum.Photo.index();
+    public static final int CITYID = AttributesEnum.CityId.index();
     public static final int KONTRAGENTS = AttributesEnum.Kontragents.index();
     public static final int PARENTIDKONTRAGENTS = AttributesEnum.ParentIdKontragents.index();
     public static final int COMPAIGNSDETAILS = AttributesEnum.CompaignsDetails.index();
@@ -407,6 +409,22 @@ public class KontragentsImpl extends DivasEntity {
      */
     public void setPhoto(BlobDomain value) {
         setAttributeInternal(PHOTO, value);
+    }
+
+    /**
+     * Gets the attribute value for CityId, using the alias name CityId.
+     * @return the value of CityId
+     */
+    public String getCityId() {
+        return (String) getAttributeInternal(CITYID);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for CityId.
+     * @param value value to set the CityId
+     */
+    public void setCityId(String value) {
+        setAttributeInternal(CITYID, value);
     }
 
     /**

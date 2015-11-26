@@ -177,6 +177,7 @@
       <hash n="runConfigurationDefinitions">
          <hash n="Default">
             <value n="custom" v="false"/>
+            <value n="javaOptions" v="-Djbo.debugoutput=console"/>
             <value n="name" v="Default"/>
             <url n="targetURL" protocol="sqldev.nav" path="IdeConnections%2523divas//DBA_DIVAS/PACKAGE+BODY/ORDERS_ENTRY"/>
          </hash>

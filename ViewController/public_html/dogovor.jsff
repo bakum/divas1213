@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1" topHeight="26px">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:table value="#{bindings.OrdersView1.collectionModel}" var="row"
+                                          rows="#{bindings.OrdersView1.rangeSize}"
+                                          emptyText="#{bindings.OrdersView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.OrdersView1.collectionModel.selectedRow}"
+                                          rowSelection="single" fetchSize="#{bindings.OrdersView1.rangeSize}"
+                                          filterModel="#{bindings.OrdersView1Query.queryDescriptor}"
+                                          queryListener="#{bindings.OrdersView1Query.processQuery}" filterVisible="true"
+                                          varStatus="vs" id="t1" binding="#{dogovor.table}"
+                                          selectionListener="#{dogovor.onTableSelect}">
+                                    <af:column id="c1" width="60" rowHeader="true">
+                                        <af:toolbar id="t2">
+                                            <af:button id="b3" icon="/img/edit-16.gif" immediate="true"
+                                                       actionListener="#{dogovor.onEditOrder}"/>
+                                            <af:button id="b1" windowHeight="540"
+                                                       windowWidth="800" useWindow="true" action="viewOrder"
+                                                       text="Execute" immediate="true" binding="#{dogovor.execButton}"
+                                                       visible="false"/>
+                                        </af:toolbar>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.StatusId.name}"
+                                               filterable="true" sortable="true"
+                                               headerText="#{bindings.OrdersView1.hints.StatusId.label}" id="c7">
+                                        <af:selectOneChoice value="#{row.bindings.StatusId.inputValue}"
+                                                            label="#{row.bindings.StatusId.label}"
+                                                            required="#{bindings.OrdersView1.hints.StatusId.mandatory}"
+                                                            shortDesc="#{bindings.OrdersView1.hints.StatusId.tooltip}"
+                                                            readOnly="true" id="soc3">
+                                            <f:selectItems value="#{row.bindings.StatusId.items}" id="si3"/>
+                                            <f:validator binding="#{row.bindings.StatusId.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.Dat.name}" sortable="true"
+                                               headerText="#{bindings.OrdersView1.hints.Dat.label}" id="c2">
+                                        <f:facet name="filter">
+                                            <af:inputDate value="#{bindings.OrdersView1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.Dat.value}"
+                                                          id="id1">
+                                                <af:convertDateTime pattern="#{bindings.OrdersView1.hints.Dat.format}"/>
+                                            </af:inputDate>
+                                        </f:facet>
+                                        <af:outputText value="#{row.Dat}"
+                                                       shortDesc="#{bindings.OrdersView1.hints.Dat.tooltip}" id="ot2">
+                                            <af:convertDateTime pattern="#{bindings.OrdersView1.hints.Dat.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.DatZam.name}" sortable="true"
+                                               headerText="#{bindings.OrdersView1.hints.DatZam.label}" id="c9"
+                                               width="120">
+                                        <f:facet name="filter">
+                                            <af:inputDate value="#{bindings.OrdersView1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.DatZam.value}"
+                                                          id="id2">
+                                                <af:convertDateTime pattern="#{bindings.OrdersView1.hints.DatZam.format}"/>
+                                            </af:inputDate>
+                                        </f:facet>
+                                        <af:outputText value="#{row.DatZam}"
+                                                       shortDesc="#{bindings.OrdersView1.hints.DatZam.tooltip}"
+                                                       id="ot6">
+                                            <af:convertDateTime pattern="#{bindings.OrdersView1.hints.DatZam.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.Num.name}" filterable="true"
+                                               sortable="true" headerText="#{bindings.OrdersView1.hints.Num.label}"
+                                               id="c3">
+                                        <af:outputText value="#{row.Num}"
+                                                       shortDesc="#{bindings.OrdersView1.hints.Num.tooltip}" id="ot3"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.Kontragname.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.OrdersView1.hints.Kontragname.label}" id="c4"
+                                               width="200">
+                                        <af:outputText value="#{row.Kontragname}"
+                                                       shortDesc="#{bindings.OrdersView1.hints.Kontragname.tooltip}"
+                                                       id="ot4"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.TotalSumOplaty.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.OrdersView1.hints.TotalSumOplaty.label}" id="c12"
+                                               align="right">
+                                        <af:outputText value="#{row.TotalSumOplaty}"
+                                                       shortDesc="#{bindings.OrdersView1.hints.TotalSumOplaty.tooltip}"
+                                                       id="ot8" inlineStyle="font-weight: bold;">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.OrdersView1.hints.TotalSumOplaty.format}"/>
+                                        </af:outputText>
+                                        <f:facet name="filter"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.TotalSumm.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.OrdersView1.hints.TotalSumm.label}" id="c13"
+                                               align="right">
+                                        <af:outputText value="#{row.TotalSumm}"
+                                                       shortDesc="#{bindings.OrdersView1.hints.TotalSumm.tooltip}"
+                                                       id="ot9" inlineStyle="font-weight: bold;">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.OrdersView1.hints.TotalSumm.format}"/>
+                                        </af:outputText>
+                                        <f:facet name="filter"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.OrdersView1.hints.DivisionDest.name}"
+                                               filterable="true" sortable="true"
+                                               headerText="#{bindings.OrdersView1.hints.DivisionDest.label}" id="c6"
+                                               align="center">
+                                        <af:selectOneChoice value="#{row.bindings.DivisionDest.inputValue}"
+                                                            label="#{row.bindings.DivisionDest.label}"
+                                                            required="#{bindings.OrdersView1.hints.DivisionDest.mandatory}"
+                                                            shortDesc="#{bindings.OrdersView1.hints.DivisionDest.tooltip}"
+                                                            readOnly="true" id="soc2">
+                                            <f:selectItems value="#{row.bindings.DivisionDest.items}" id="si2"/>
+                                            <f:validator binding="#{row.bindings.DivisionDest.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:column>
+                                </af:table>
+                            </f:facet>
+                            <f:facet name="start"/>
+                            <f:facet name="end"/>
+                            <f:facet name="top">
+                                <af:panelGroupLayout id="pgl2" layout="horizontal" halign="right">
+                                    <af:toolbar id="t3">
+                                        <af:button text="Новый заказ" id="b2" action="addOrder"/>
+                                    </af:toolbar>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

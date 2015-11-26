@@ -8,11 +8,15 @@
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
-  PageIterMode="Full"
+    PageIterMode="Partial"
   RowClass="ua.divas.view.OrdersViewRowImpl"
   ComponentClass="ua.divas.view.OrdersViewImpl"
   ComponentInterface="ua.divas.view.common.OrdersView"
-  ClientProxyName="ua.divas.view.client.OrdersViewClient">
+  ClientProxyName="ua.divas.view.client.OrdersViewClient"
+    FetchSize="200"
+    FetchMode="FETCH_ALL"
+    QueryHint="FIRST_ROWS"
+    RangeSize="200">
     <DesignTime>
         <Attr Name="_isExpertMode" Value="true"/>
         <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
@@ -495,6 +499,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
                   Value="input_text_lov"/>
                 <LABEL
                     ResId="ua.divas.view.OrdersView.KontragId_LABEL"/>
+                <LABEL_PLURAL
+                    ResId="ua.divas.view.OrdersView.KontragId_LABEL_PLURAL"/>
             </SchemaBasedProperties>
         </Properties>
         <Dependencies>
@@ -523,9 +529,11 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
                 <CONTROLTYPE
                     Value="input_text_lov"/>
                 <LABEL
-                  ResId="ua.divas.view.OrdersView.Kontragname_LABEL"/>
+                    ResId="ua.divas.view.OrdersView.Kontragname_LABEL"/>
+                <LABEL_PLURAL
+                    ResId="ua.divas.view.OrdersView.Kontragname_LABEL_PLURAL"/>
                 <TOOLTIP
-                  ResId="ua.divas.view.OrdersView.Kontragname_TOOLTIP"/>
+                    ResId="ua.divas.view.OrdersView.Kontragname_TOOLTIP"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>
@@ -903,12 +911,14 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
         </DesignTime>
         <Properties>
             <SchemaBasedProperties>
-                <LABEL
-                    ResId="ua.divas.view.OrdersView.ManagerId_LABEL"/>
-                <TOOLTIP
-                    ResId="ua.divas.view.OrdersView.ManagerId_TOOLTIP"/>
                 <CONTROLTYPE
                     Value="choice"/>
+                <LABEL
+                    ResId="ua.divas.view.OrdersView.ManagerId_LABEL"/>
+                <LABEL_PLURAL
+                    ResId="ua.divas.view.OrdersView.ManagerId_LABEL_PLURAL"/>
+                <TOOLTIP
+                    ResId="ua.divas.view.OrdersView.ManagerId_TOOLTIP"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>

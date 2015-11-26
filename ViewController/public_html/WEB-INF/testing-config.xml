@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="testing-config">
+    <default-activity>testing</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <managed-bean id="__1">
+      <managed-bean-name>dogovor</managed-bean-name>
+      <managed-bean-class>ua.divas.bean.DogovorBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="testing">
+      <page>/dogovor.jsff</page>
+    </view>
+    <task-flow-call id="order-dialog-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/order-dialog-flow.xml</document>
+        <id>order-dialog-flow</id>
+      </task-flow-reference>
+      <return-value id="__4">
+        <name>OrderId</name>
+        <value>#{pageFlowScope.OrderId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>testing</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>viewOrder</from-outcome>
+        <to-activity-id>order-dialog-flow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

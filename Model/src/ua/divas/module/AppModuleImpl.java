@@ -4577,5 +4577,13 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     public ViewLinkImpl getVwSupplMovesNewSupplDetailFkLink1() {
         return (ViewLinkImpl) findViewLink("VwSupplMovesNewSupplDetailFkLink1");
     }
+
+    @Override
+    protected void afterConnect() {
+      super.afterConnect();
+      //if (System.getProperty("enableTrace") != null) {
+        getDBTransaction().executeCommand("ALTER SESSION SET SQL_TRACE TRUE");
+      //}
+    }  
 }
 

@@ -70,6 +70,8 @@
               id="KassaSettingsView1Iterator"/>
     <taskFlow id="supplierdebt_new1" taskFlowId="/WEB-INF/supplier-debt_new.xml#supplier-debt_new" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="testingconfig1" taskFlowId="/WEB-INF/testing-config.xml#testing-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="NotificationView1Iterator" id="CountUnread">
