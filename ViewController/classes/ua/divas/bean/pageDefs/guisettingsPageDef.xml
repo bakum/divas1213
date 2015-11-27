@@ -41,5 +41,10 @@
         <Item Value="OtherzatrFetchSize"/>
       </AttrNames>
     </attributeValues>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="KassaFetchSize">
+      <AttrNames>
+        <Item Value="KassaFetchSize"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

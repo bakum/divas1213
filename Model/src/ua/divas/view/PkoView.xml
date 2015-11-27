@@ -4,16 +4,20 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="PkoView"
-  Version="12.1.2.66.68"
+    Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
-  PageIterMode="Full"
+    PageIterMode="Partial"
   ComponentClass="ua.divas.view.PkoViewImpl"
   ComponentInterface="ua.divas.view.common.PkoView"
   ClientProxyName="ua.divas.view.client.PkoViewClient"
   RowClass="ua.divas.view.PkoViewRowImpl"
-    OrderBy="DAT DESC">
+    OrderBy="DAT DESC"
+    FetchSize="100"
+    FetchMode="FETCH_AS_NEEDED"
+    QueryHint="FIRST_ROWS"
+    RangeSize="100">
     <DesignTime>
         <Attr Name="_isExpertMode" Value="true"/>
         <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
@@ -23,7 +27,8 @@
       Name="u_name"
       Kind="where"
       Type="java.lang.String">
-        <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+        <TransientExpression
+            Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
         <Properties>
             <SchemaBasedProperties>
                 <DISPLAYHINT
@@ -35,7 +40,8 @@
         Name="p_dat"
         Kind="viewcriteria"
         Type="java.sql.Timestamp">
-        <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+        <TransientExpression
+            Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
     </Variable>
     <ViewAccessor
       Name="DivisionsView1"
@@ -351,7 +357,8 @@ upper(Pko.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as use
       PrecisionRule="true"
       EntityAttrName="Deleted"
       EntityUsage="Pko"
-      AliasName="DELETED">
+      AliasName="DELETED"
+        IsQueriable="false">
         <Properties>
             <SchemaBasedProperties>
                 <CONTROLTYPE
@@ -365,7 +372,8 @@ upper(Pko.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as use
       PrecisionRule="true"
       EntityAttrName="Posted"
       EntityUsage="Pko"
-      AliasName="POSTED">
+      AliasName="POSTED"
+        IsQueriable="false">
         <Properties>
             <SchemaBasedProperties>
                 <CONTROLTYPE
@@ -390,6 +398,8 @@ upper(Pko.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as use
                     ResId="ua.divas.view.PkoView.DivisionId_LABEL"/>
                 <TOOLTIP
                     ResId="ua.divas.view.PkoView.DivisionId_TOOLTIP"/>
+                <AUTOSUBMIT
+                    Value="true"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>
@@ -629,7 +639,6 @@ upper(Pko.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as use
                 Operator="ONORAFTER"
                 Conjunction="AND"
                 Value=":p_dat"
-                GenerateIsNullClauseForBindVars="false"
                 IsBindVarValue="true"
                 Required="Optional"/>
         </ViewCriteriaRow>

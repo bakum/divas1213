@@ -125,6 +125,26 @@
       </SchemaBasedProperties>
     </Properties>
   </Attribute>
+  <Attribute
+    Name="KassaFetchSize"
+    Precision="2"
+    Scale="0"
+    ColumnName="KASSA_FETCH_SIZE"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="GUI_SETTINGS">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.GuiSettings.KassaFetchSize_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.GuiSettings.KassaFetchSize_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.GuiSettings.KassaFetchSize_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
   <Key
     Name="GuiSettingsChk1">
     <DesignTime>

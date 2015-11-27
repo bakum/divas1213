@@ -43,7 +43,8 @@ public class GuiSettingsViewRowImpl extends ViewRowImpl {
         UserId,
         Editable,
         ZamerFetchSize,
-        OtherzatrFetchSize;
+        OtherzatrFetchSize,
+        KassaFetchSize;
         static AttributesEnum[] vals = null;
         ;
         private static final int firstIndex = 0;
@@ -75,6 +76,7 @@ public class GuiSettingsViewRowImpl extends ViewRowImpl {
     public static final int EDITABLE = AttributesEnum.Editable.index();
     public static final int ZAMERFETCHSIZE = AttributesEnum.ZamerFetchSize.index();
     public static final int OTHERZATRFETCHSIZE = AttributesEnum.OtherzatrFetchSize.index();
+    public static final int KASSAFETCHSIZE = AttributesEnum.KassaFetchSize.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -184,6 +186,22 @@ public class GuiSettingsViewRowImpl extends ViewRowImpl {
      */
     public void setOtherzatrFetchSize(Integer value) {
         setAttributeInternal(OTHERZATRFETCHSIZE, value);
+    }
+
+    /**
+     * Gets the attribute value for KASSA_FETCH_SIZE using the alias name KassaFetchSize.
+     * @return the KASSA_FETCH_SIZE
+     */
+    public Integer getKassaFetchSize() {
+        return (Integer) getAttributeInternal(KASSAFETCHSIZE);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for KASSA_FETCH_SIZE using the alias name KassaFetchSize.
+     * @param value value to set the KASSA_FETCH_SIZE
+     */
+    public void setKassaFetchSize(Integer value) {
+        setAttributeInternal(KASSAFETCHSIZE, value);
     }
 
 

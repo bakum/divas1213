@@ -4,16 +4,20 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="OtherZatratyView"
-  Version="12.1.2.66.68"
+    Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
-  PageIterMode="Full"
+    PageIterMode="Partial"
   RowClass="ua.divas.view.OtherZatratyViewRowImpl"
   ComponentClass="ua.divas.view.OtherZatratyViewImpl"
   ComponentInterface="ua.divas.view.common.OtherZatratyView"
   ClientProxyName="ua.divas.view.client.OtherZatratyViewClient"
-    OrderBy="DAT DESC">
+    OrderBy="DAT DESC"
+    QueryHint="FIRST_ROWS"
+    FetchMode="FETCH_AS_NEEDED"
+    FetchSize="100"
+    RangeSize="100">
     <DesignTime>
         <Attr Name="_isExpertMode" Value="true"/>
         <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
@@ -23,7 +27,8 @@
       Name="u_name"
       Kind="where"
       Type="java.lang.String">
-        <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+        <TransientExpression
+            Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
         <Properties>
             <SchemaBasedProperties>
                 <DISPLAYHINT
@@ -35,12 +40,17 @@
         Name="s_dat"
         Kind="viewcriteria"
         Type="java.sql.Timestamp">
-        <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+        <TransientExpression
+            Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
     </Variable>
     <ViewAccessor
       Name="DivisionsView1"
       ViewObjectName="ua.divas.view.DivisionsView"
-      RowLevelBinds="true"/>
+      RowLevelBinds="true">
+        <ViewCriteriaUsage
+          Name="DivisionsViewItems"
+          FullName="ua.divas.view.DivisionsView.DivisionsViewItems"/>
+    </ViewAccessor>
     <ViewAccessor
       Name="UsersView1"
       ViewObjectName="ua.divas.view.UsersView"
@@ -217,15 +227,15 @@ upper(OtherZatraty.USER_ID) in (select upper(N) from table(cast(get_users(:u_nam
       PrecisionRule="true"
       EntityAttrName="Num"
       EntityUsage="OtherZatraty"
-      AliasName="NUM"
-      IsQueriable="false"/>
+      AliasName="NUM"/>
     <ViewAttribute
       Name="Deleted"
       IsNotNull="true"
       PrecisionRule="true"
       EntityAttrName="Deleted"
       EntityUsage="OtherZatraty"
-      AliasName="DELETED">
+      AliasName="DELETED"
+        IsQueriable="false">
         <Properties>
             <SchemaBasedProperties>
                 <CONTROLTYPE
@@ -239,7 +249,8 @@ upper(OtherZatraty.USER_ID) in (select upper(N) from table(cast(get_users(:u_nam
       PrecisionRule="true"
       EntityAttrName="Posted"
       EntityUsage="OtherZatraty"
-      AliasName="POSTED">
+      AliasName="POSTED"
+        IsQueriable="false">
         <Properties>
             <SchemaBasedProperties>
                 <CONTROLTYPE
@@ -264,6 +275,8 @@ upper(OtherZatraty.USER_ID) in (select upper(N) from table(cast(get_users(:u_nam
                     ResId="ua.divas.view.OtherZatratyView.DivisionId_LABEL"/>
                 <TOOLTIP
                     ResId="ua.divas.view.OtherZatratyView.DivisionId_TOOLTIP"/>
+                <AUTOSUBMIT
+                    Value="true"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>
@@ -404,8 +417,8 @@ upper(OtherZatraty.USER_ID) in (select upper(N) from table(cast(get_users(:u_nam
       AliasName="VIEW_ATTR"
       SQLType="NUMERIC"
       IsQueriable="false">
-        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <TransientExpression><![CDATA[OtherZatratyTabPartZatratyView.sum("Summa != null ? Summa : 0")]]></TransientExpression>
+        <RecalcCondition><![CDATA[true]]></RecalcCondition>
         <Properties>
             <SchemaBasedProperties>
                 <LABEL
@@ -450,7 +463,6 @@ upper(OtherZatraty.USER_ID) in (select upper(N) from table(cast(get_users(:u_nam
                 Operator="ONORAFTER"
                 Conjunction="AND"
                 Value=":s_dat"
-                GenerateIsNullClauseForBindVars="false"
                 IsBindVarValue="true"
                 Required="Optional"/>
         </ViewCriteriaRow>

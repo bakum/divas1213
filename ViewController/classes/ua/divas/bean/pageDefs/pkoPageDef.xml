@@ -4,31 +4,30 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="PkoView1" RangeSize="30" DataControl="AppModuleDataControl" id="PkoView1Iterator">
+    <iterator Binds="PkoView1" RangeSize="30" DataControl="AppModuleDataControl" id="PkoView1Iterator"
+              RowCountThreshold="-1">
       <sortCriteria>
         <sort attribute="Dat" ascending="false"/>
       </sortCriteria>
     </iterator>
     <iterator Binds="VwPkoMoves2" RangeSize="25" DataControl="AppModuleDataControl" id="VwPkoMoves2Iterator"/>
-    <searchRegion Criteria="PkoViewCriteriaDate" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
-                  Binds="PkoView1Iterator" id="PkoViewCriteriaDateQuery"/>
+    <searchRegion id="PkoView1Query" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PkoView1Iterator"/>
+    <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="PkoView1Iterator" id="PkoView1">
       <nodeDefinition DefName="ua.divas.view.PkoView" Name="PkoView10">
         <AttrNames>
-          <Item Value="Id"/>
           <Item Value="Dat"/>
           <Item Value="Num"/>
           <Item Value="OperationId"/>
           <Item Value="Kontragname"/>
-          <Item Value="CurrId"/>
           <Item Value="Summa"/>
           <Item Value="KassaId"/>
           <Item Value="DivisionId"/>
           <Item Value="UserId"/>
           <Item Value="Posted"/>
-          <Item Value="Comments"/>
           <Item Value="Deleted"/>
         </AttrNames>
       </nodeDefinition>
@@ -59,5 +58,10 @@
       </nodeDefinition>
     </tree>
     <action IterBinding="PkoView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="KassaFetchSize">
+      <AttrNames>
+        <Item Value="KassaFetchSize"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

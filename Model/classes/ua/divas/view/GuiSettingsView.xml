@@ -10,7 +10,9 @@
   CustomQuery="true"
   PageIterMode="Full"
   ComponentClass="ua.divas.view.GuiSettingsViewImpl"
-  RowClass="ua.divas.view.GuiSettingsViewRowImpl">
+  RowClass="ua.divas.view.GuiSettingsViewRowImpl"
+  FetchMode="FETCH_AS_NEEDED"
+  MaxFetchSize="1">
   <DesignTime>
     <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
     <Attr Name="_isExpertMode" Value="true"/>
@@ -29,7 +31,8 @@
        GuiSettings.USER_ID,
        (select 0 from dual) Editable,
        GuiSettings.ZAMER_FETCH_SIZE,
-       GuiSettings.OTHERZATR_FETCH_SIZE
+       GuiSettings.OTHERZATR_FETCH_SIZE,
+       GuiSettings.KASSA_FETCH_SIZE
 FROM  GUI_SETTINGS GuiSettings
 WHERE ( (UPPER(GuiSettings.USER_ID) = UPPER(:u_id) ) )]]></SQLQuery>
   <EntityUsage
@@ -79,4 +82,10 @@ WHERE ( (UPPER(GuiSettings.USER_ID) = UPPER(:u_id) ) )]]></SQLQuery>
     EntityAttrName="OtherzatrFetchSize"
     EntityUsage="GuiSettings"
     AliasName="OTHERZATR_FETCH_SIZE"/>
+  <ViewAttribute
+    Name="KassaFetchSize"
+    PrecisionRule="true"
+    EntityAttrName="KassaFetchSize"
+    EntityUsage="GuiSettings"
+    AliasName="KASSA_FETCH_SIZE"/>
 </ViewObject>

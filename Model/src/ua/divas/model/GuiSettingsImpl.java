@@ -28,7 +28,8 @@ public class GuiSettingsImpl extends DivasEntityNoDelete {
         OrderFetchSize,
         UserId,
         ZamerFetchSize,
-        OtherzatrFetchSize;
+        OtherzatrFetchSize,
+        KassaFetchSize;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -58,6 +59,7 @@ public class GuiSettingsImpl extends DivasEntityNoDelete {
     public static final int USERID = AttributesEnum.UserId.index();
     public static final int ZAMERFETCHSIZE = AttributesEnum.ZamerFetchSize.index();
     public static final int OTHERZATRFETCHSIZE = AttributesEnum.OtherzatrFetchSize.index();
+    public static final int KASSAFETCHSIZE = AttributesEnum.KassaFetchSize.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -151,6 +153,22 @@ public class GuiSettingsImpl extends DivasEntityNoDelete {
      */
     public void setOtherzatrFetchSize(Integer value) {
         setAttributeInternal(OTHERZATRFETCHSIZE, value);
+    }
+
+    /**
+     * Gets the attribute value for KassaFetchSize, using the alias name KassaFetchSize.
+     * @return the value of KassaFetchSize
+     */
+    public Integer getKassaFetchSize() {
+        return (Integer) getAttributeInternal(KASSAFETCHSIZE);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for KassaFetchSize.
+     * @param value value to set the KassaFetchSize
+     */
+    public void setKassaFetchSize(Integer value) {
+        setAttributeInternal(KASSAFETCHSIZE, value);
     }
 
     /**

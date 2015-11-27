@@ -208,6 +208,10 @@
         <param-name>org.apache.myfaces.trinidad.CHANGE_PERSISTENCE</param-name>
         <param-value>session</param-value>
     </context-param>
+    <context-param>
+        <param-name>oracle.adf.view.rich.SYNCROWS</param-name>
+        <param-value>enable</param-value>
+    </context-param>
     <mime-mapping>
         <extension>swf</extension>
         <mime-type>application/x-shockwave-flash</mime-type>

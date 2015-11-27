@@ -6,11 +6,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import java.util.Set;
 import java.util.UUID;
 
 import javax.el.ELContext;
 
 import javax.el.ExpressionFactory;
+import javax.el.MethodExpression;
 import javax.el.ValueExpression;
 
 import javax.faces.application.Application;
@@ -44,6 +46,7 @@ import oracle.adf.view.rich.event.PopupFetchEvent;
 import oracle.adf.view.rich.event.QueryEvent;
 import oracle.adf.view.rich.event.ReturnPopupEvent;
 import oracle.adf.view.rich.model.AttributeCriterion;
+import oracle.adf.view.rich.model.AttributeDescriptor;
 import oracle.adf.view.rich.model.ConjunctionCriterion;
 import oracle.adf.view.rich.model.Criterion;
 import oracle.adf.view.rich.model.FilterableQueryDescriptor;
@@ -62,11 +65,13 @@ import oracle.jbo.Row;
 import oracle.jbo.ViewCriteria;
 import oracle.jbo.ViewCriteriaManager;
 import oracle.jbo.ViewObject;
+import oracle.jbo.domain.Timestamp;
 import oracle.jbo.uicli.binding.JUCtrlHierBinding;
 
 import org.apache.myfaces.trinidad.event.AttributeChangeEvent;
 import org.apache.myfaces.trinidad.event.PollEvent;
 import org.apache.myfaces.trinidad.event.ReturnEvent;
+import org.apache.myfaces.trinidad.event.SelectionEvent;
 import org.apache.myfaces.trinidad.model.CollectionModel;
 import org.apache.myfaces.trinidad.model.RowKeySet;
 
@@ -90,6 +95,7 @@ public class OrdersBean {
     private String del_title;
     private String del_style;
     private String del_label;
+    private String mLastSelectedOID;
 
     public OrdersBean() {
     }
@@ -101,6 +107,11 @@ public class OrdersBean {
     private RichInputText qtt;
     private RichTable mainTable;
     public Boolean refreshNeeded;
+
+
+    public final String getMLastSelectedOID() {
+        return mLastSelectedOID;
+    }
 
     public void setRefreshNeeded(Boolean refreshNeeded) {
         this.refreshNeeded = refreshNeeded;
@@ -809,7 +820,7 @@ public class OrdersBean {
         }
         return RetStr;
     }
-    
+
     public void setDel_label(String del_label) {
         this.del_label = del_label;
     }
@@ -842,6 +853,68 @@ public class OrdersBean {
                 currRow.setAttribute("Deleted", 0);
             }
             commitChange();
+        }
+    }
+
+    public void onQuery(QueryEvent queryEvent) {
+
+        //default EL string created when dragging the table
+        //to the JSF page
+        //#{bindings.allEmployeesQuery.processQuery}
+
+        BindingContext bctx = BindingContext.getCurrent();
+        DCBindingContainer bindings = (DCBindingContainer) bctx.getCurrentBindingsEntry();
+
+        //access the method bindings to set the bind variables on the ViewCriteria
+        OperationBinding rangeStartOperationBinding = bindings.getOperationBinding("setHireDateRangeStart");
+        OperationBinding rangeEndOperationBinding = bindings.getOperationBinding("setHireDateRangeEnd");
+
+        // get the start date and end date from the temporary valiables
+        AttributeBinding attr = (AttributeBinding) bindings.getControlBinding("dateStart1");
+        oracle.jbo.domain.Date sd = (oracle.jbo.domain.Date) attr.getInputValue();
+        attr = (AttributeBinding) bindings.getControlBinding("dateEnd1");
+        oracle.jbo.domain.Date ed = (oracle.jbo.domain.Date) attr.getInputValue();
+
+        //set the start and end date of the range to search
+        rangeStartOperationBinding.getParamsMap().put("value", sd);
+        rangeEndOperationBinding.getParamsMap().put("value", ed);
+
+        //set bind variable on the business service
+        rangeStartOperationBinding.execute();
+        rangeEndOperationBinding.execute();
+
+        invokeMethodExpression("#{bindings.OrdersView1Query.processQuery}", Object.class, QueryEvent.class, queryEvent);
+    }
+
+    // The code below should be in a Utility clas
+
+    public Object invokeMethodExpression(String expr, Class returnType, Class[] argTypes, Object[] args) {
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ELContext elctx = fc.getELContext();
+        ExpressionFactory elFactory = fc.getApplication().getExpressionFactory();
+        MethodExpression methodExpr = elFactory.createMethodExpression(elctx, expr, returnType, argTypes);
+        return methodExpr.invoke(elctx, args);
+    }
+
+    public Object invokeMethodExpression(String expr, Class returnType, Class argType, Object argument) {
+        return invokeMethodExpression(expr, returnType, new Class[] { argType }, new Object[] { argument });
+    }
+
+    public void onRangeSelection(SelectionEvent selectionEvent) {
+        RowKeySet rksAdd = selectionEvent.getAddedSet();
+        if (rksAdd.isEmpty())
+            return; // no selection
+
+        Object[] it = rksAdd.toArray();
+        // as this is for single selection there should only be one, but...
+        for (Object obj : (List) it[0]) {
+            //mLogger.fine("Selected :" + obj);  // log selected row
+            Key k = (Key) obj; // the object is the row key
+            Object[] kv = k.getKeyValues(); // get the key value for later
+            // strore the key value in a bean attribute: mLastSelectedOID is defined in the bean
+            mLastSelectedOID = (String) kv[0]; // store the key value (if the key has multiple parts you need to store them all)
+
         }
     }
 }

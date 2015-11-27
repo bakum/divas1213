@@ -4,14 +4,16 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="RkoView1" RangeSize="30" DataControl="AppModuleDataControl" id="RkoView1Iterator">
+    <iterator Binds="RkoView1" RangeSize="30" DataControl="AppModuleDataControl" id="RkoView1Iterator"
+              RowCountThreshold="-1">
       <sortCriteria>
         <sort attribute="Dat" ascending="false"/>
       </sortCriteria>
     </iterator>
     <iterator Binds="VwRkoMoves2" RangeSize="25" DataControl="AppModuleDataControl" id="VwRkoMoves2Iterator"/>
-    <searchRegion Criteria="RkoViewCriteriaDate" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
-                  Binds="RkoView1Iterator" id="RkoViewCriteriaDateQuery"/>
+    <searchRegion id="RkoView1Query" Binds="RkoView1Iterator"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"/>
+    <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
   </executables>
   <bindings>
     <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
@@ -19,18 +21,15 @@
     <tree IterBinding="RkoView1Iterator" id="RkoView1">
       <nodeDefinition DefName="ua.divas.view.RkoView" Name="RkoView10">
         <AttrNames>
-          <Item Value="Id"/>
           <Item Value="Dat"/>
           <Item Value="Num"/>
           <Item Value="OperationId"/>
           <Item Value="Kontragname"/>
           <Item Value="Summa"/>
-          <Item Value="CurrId"/>
           <Item Value="KassaId"/>
           <Item Value="DivisionId"/>
           <Item Value="UserId"/>
           <Item Value="Posted"/>
-          <Item Value="Comments"/>
           <Item Value="Deleted"/>
         </AttrNames>
       </nodeDefinition>
@@ -59,5 +58,10 @@
       </nodeDefinition>
     </tree>
     <action IterBinding="RkoView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="KassaFetchSize">
+      <AttrNames>
+        <Item Value="KassaFetchSize"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

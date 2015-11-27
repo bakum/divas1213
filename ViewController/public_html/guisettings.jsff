@@ -85,6 +85,20 @@
                                     </af:inputNumberSpinbox>
                                     <af:outputText value="Не более чем 30" id="ot3"/>
                                 </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl5" layout="vertical">
+                                    <af:inputNumberSpinbox value="#{bindings.KassaFetchSize.inputValue}"
+                                                           label="#{bindings.KassaFetchSize.hints.label}"
+                                                           required="#{bindings.KassaFetchSize.hints.mandatory}"
+                                                           columns="#{bindings.KassaFetchSize.hints.displayWidth}"
+                                                           shortDesc="#{bindings.KassaFetchSize.hints.tooltip}"
+                                                           id="it6"
+                                                           readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                        <f:validator binding="#{bindings.KassaFetchSize.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.KassaFetchSize.format}"/>
+                                    </af:inputNumberSpinbox>
+                                    <af:outputText value="Не более чем 30" id="ot4"/>
+                                </af:panelGroupLayout>
                             </af:panelFormLayout>
                         </af:panelBox>
                     </f:facet>

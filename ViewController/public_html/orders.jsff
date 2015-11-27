@@ -10,507 +10,353 @@
                         <af:panelStretchLayout id="psl1" bottomHeight="51px" dimensionsFrom="children">
                             <f:facet name="bottom"/>
                             <f:facet name="center">
-                                <af:panelTabbed id="pt1">
-                                    <af:showDetailItem text="Реестр" id="sdi1" stretchChildren="first">
-                                        <af:panelBox text="Заказы менеджеров" id="pb1" type="flow"
-                                                     icon="/img/shoppingcart.png">
-                                            <f:facet name="toolbar">
-                                                <af:panelGroupLayout id="pgl12" layout="horizontal">
-                                                    <af:menuBar id="mb1" visible="false">
-                                                        <af:menu text="Добавить заказ" id="m2">
-                                                            <af:commandMenuItem text="Новый клиент" id="cmi4"
-                                                                                action="addKontrag"/>
-                                                            <af:commandMenuItem text="Старый клиент"
-                                                                                id="cmib5" action="addOrder"/>
-                                                        </af:menu>
-                                                    </af:menuBar>
-                                                    <af:toolbar id="t4">
-                                                        <af:button text="Новый заказ" id="b19" action="addOrder"/>
-                                                        <af:button actionListener="#{bindings.Commit.execute}"
-                                                                   text="Сохранить"
-                                                                   disabled="#{!bindings.Commit.enabled}" id="b3"
-                                                                   action="#{orders.commitChange}"/>
-                                                        <af:button actionListener="#{bindings.Rollback.execute}"
-                                                                   text="Отменить"
-                                                                   disabled="#{!bindings.Rollback.enabled}"
-                                                                   immediate="true" id="b4">
-                                                            <af:resetActionListener/>
-                                                        </af:button>
-                                                        <af:button text="Обновить" id="b6"
-                                                                   actionListener="#{orders.onRefreshOrders}"
-                                                                   disabled="#{bindings.Commit.enabled}"/>
-                                                    </af:toolbar>
-                                                </af:panelGroupLayout>
+                                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t4">
+                                            <af:button text="Новый заказ" id="b19" action="addOrder"/>
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="b3"
+                                                       action="#{orders.commitChange}"/>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="b4">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                            <af:button text="Обновить" id="b6"
+                                                       actionListener="#{orders.onRefreshOrders}"
+                                                       disabled="#{bindings.Commit.enabled}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.OrdersView1.collectionModel}" var="row"
+                                              rows="#{bindings.OrdersView1.rangeSize}"
+                                              emptyText="#{bindings.OrdersView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.OrdersView1.collectionModel.selectedRow}"
+                                              rowSelection="single"
+                                              fetchSize="#{bindings.OrderFetchSize.inputValue == null ? bindings.OrdersView1.rangeSize : bindings.OrderFetchSize.inputValue}"
+                                              filterModel="#{bindings.OrdersView1Query.queryDescriptor}"
+                                              filterVisible="true" varStatus="vs" id="t1" editingMode="clickToEdit"
+                                              partialTriggers="::b3 ::b4 cmi5" binding="#{orders.mainTable}"
+                                              queryListener="#{bindings.OrdersView1Query.processQuery}"
+                                              scrollPolicy="page"
+                                              selectionListener="#{bindings.OrdersView1.treeModel.makeCurrent}">
+                                        <af:column id="c54" width="30" headerNoWrap="true">
+                                            <af:image id="i1"
+                                                      source="#{row.Posted==1 ? '/img/icon_commit.png' :  row.Deleted == 1 ? '/img/file_delete.png' : '/img/document.png'}"/>
+                                        </af:column>
+                                        <af:column id="c21" rowHeader="true" width="60" headerNoWrap="true">
+                                            <af:toolbar id="t2">
+                                                <af:button id="b1" icon="/img/edit-16.gif"
+                                                           disabled="#{bindings.Commit.enabled}" action="viewOrder"
+                                                           useWindow="true" windowHeight="540" windowWidth="800"
+                                                           returnListener="#{orders.onReturnValue}"/>
+                                                <af:button id="b18" icon="/img/bell.png"
+                                                           disabled="#{bindings.Commit.enabled}">
+                                                    <af:showPopupBehavior popupId="::pNotice"/>
+                                                </af:button>
+                                            </af:toolbar>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrdersView1.hints.Id.name}" sortable="true"
+                                                   headerText="#{bindings.OrdersView1.hints.Id.label}" id="c1"
+                                                   visible="false" inlineStyle="font-weight:bold;" rendered="false"
+                                                   headerNoWrap="true">
+                                            <af:inputText value="#{row.bindings.Id.inputValue}"
+                                                          label="#{bindings.OrdersView1.hints.Id.label}"
+                                                          required="#{bindings.OrdersView1.hints.Id.mandatory}"
+                                                          columns="#{bindings.OrdersView1.hints.Id.displayWidth}"
+                                                          maximumLength="#{bindings.OrdersView1.hints.Id.precision}"
+                                                          shortDesc="#{bindings.OrdersView1.hints.Id.tooltip}" id="it1"
+                                                          readOnly="true">
+                                                <f:validator binding="#{row.bindings.Id.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrdersView1.hints.StatusId.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrdersView1.hints.StatusId.label}" id="c17"
+                                                   inlineStyle="#{row.bindings.CountUslug.inputValue == 1 ? '' : 'font-weight:bold;'}"
+                                                   filterable="true" width="80" headerNoWrap="true">
+                                            <af:selectOneChoice value="#{row.bindings.StatusId.inputValue}"
+                                                                label="#{row.bindings.StatusId.label}"
+                                                                required="#{bindings.OrdersView1.hints.StatusId.mandatory}"
+                                                                shortDesc="#{bindings.OrdersView1.hints.StatusId.tooltip}"
+                                                                id="soc7" autoSubmit="true" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.StatusId.items}" id="si7"/>
+                                                <f:validator binding="#{row.bindings.StatusId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrdersView1.hints.Dat.name}" sortable="true"
+                                                   headerText="#{bindings.OrdersView1.hints.Dat.label}" id="c2"
+                                                   width="80" headerNoWrap="true">
+                                            <f:facet name="filter">
+                                                <af:inputDate value="#{bindings.OrdersView1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.Dat.value}"
+                                                              id="id1">
+                                                    <af:convertDateTime pattern="#{bindings.OrdersView1.hints.Dat.format}"/>
+                                                </af:inputDate>
                                             </f:facet>
-                                            <af:table value="#{bindings.OrdersView1.collectionModel}" var="row"
-                                                      rows="#{bindings.OrdersView1.rangeSize}"
-                                                      emptyText="#{bindings.OrdersView1.viewable ? 'Нет данных для отображения.' : 'В доступе отказано.'}"
-                                                      rowBandingInterval="0"
-                                                      selectedRowKeys="#{bindings.OrdersView1.collectionModel.selectedRow}"
-                                                      selectionListener="#{bindings.OrdersView1.collectionModel.makeCurrent}"
-                                                      rowSelection="single"
-                                                      fetchSize="#{bindings.OrderFetchSize.inputValue == null ? bindings.OrdersView1.rangeSize : bindings.OrderFetchSize.inputValue}"
-                                                      filterModel="#{bindings.OrdersView1Query.queryDescriptor}"
-                                                      queryListener="#{bindings.OrdersView1Query.processQuery}"
-                                                      filterVisible="true" varStatus="vs" id="t1"
-                                                      editingMode="clickToEdit" scrollPolicy="page"
-                                                      partialTriggers="::b3 ::b4 cmi5 ::p1" binding="#{orders.mainTable}">
-                                                <af:column id="c54" width="30">
-                                                    <af:image id="i1"
-                                                              source="#{row.Posted==1 ? '/img/icon_commit.png' :  row.Deleted == 1 ? '/img/file_delete.png' : '/img/document.png'}"/>
-                                                </af:column>
-                                                <af:column id="c21" rowHeader="true" width="60">
-                                                    <af:toolbar id="t2">
-                                                        <af:button id="b1" icon="/img/edit-16.gif"
-                                                                   disabled="#{bindings.Commit.enabled}"
-                                                                   action="viewOrder" useWindow="true"
-                                                                   windowHeight="540" windowWidth="800"
-                                                                   returnListener="#{orders.onReturnValue}"/>
-                                                        <af:button id="b18" icon="/img/bell.png"
-                                                                   disabled="#{bindings.Commit.enabled}">
-                                                            <af:showPopupBehavior popupId="::pNotice"/>
-                                                        </af:button>
-                                                    </af:toolbar>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.Id.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.Id.label}" id="c1"
-                                                           visible="false" inlineStyle="font-weight:bold;"
-                                                           rendered="false">
-                                                    <af:inputText value="#{row.bindings.Id.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.Id.label}"
-                                                                  required="#{bindings.OrdersView1.hints.Id.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.Id.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.Id.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.Id.tooltip}"
-                                                                  id="it1" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.Id.validator}"/>
-                                                    </af:inputText>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.StatusId.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.StatusId.label}"
-                                                           id="c17"
-                                                           inlineStyle="#{row.bindings.CountUslug.inputValue == 1 ? '' : 'font-weight:bold;'}"
-                                                           filterable="true">
-                                                    <af:selectOneChoice value="#{row.bindings.StatusId.inputValue}"
-                                                                        label="#{row.bindings.StatusId.label}"
-                                                                        required="#{bindings.OrdersView1.hints.StatusId.mandatory}"
-                                                                        shortDesc="#{bindings.OrdersView1.hints.StatusId.tooltip}"
-                                                                        id="soc7" autoSubmit="true" readOnly="true">
-                                                        <f:selectItems value="#{row.bindings.StatusId.items}" id="si7"/>
-                                                        <f:validator binding="#{row.bindings.StatusId.validator}"/>
-                                                    </af:selectOneChoice>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.Dat.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.Dat.label}" id="c2">
-                                                    <f:facet name="filter">
-                                                        <af:inputDate value="#{bindings.OrdersView1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.Dat.value}"
-                                                                      id="id1">
-                                                            <af:convertDateTime pattern="#{bindings.OrdersView1.hints.Dat.format}"/>
-                                                        </af:inputDate>
-                                                    </f:facet>
-                                                    <af:inputDate value="#{row.bindings.Dat.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.Dat.label}"
-                                                                  required="#{bindings.OrdersView1.hints.Dat.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.Dat.displayWidth}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.Dat.tooltip}"
-                                                                  id="id2" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.Dat.validator}"/>
-                                                        <af:convertDateTime pattern="#{bindings.OrdersView1.hints.Dat.format}"/>
-                                                    </af:inputDate>
-                                                </af:column>
-                                                <af:column headerText="#{bindings.OrdersView1.hints.DatZam.label}"
-                                                           id="c77" width="120" sortable="true"
-                                                           sortProperty="#{bindings.OrdersView1.hints.DatZam.name}">
-                                                    <af:inputDate value="#{row.bindings.DatZam.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.DatZam.label}"
-                                                                  required="#{bindings.OrdersView1.hints.DatZam.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.DatZam.displayWidth}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.DatZam.tooltip}"
-                                                                  id="id13" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.DatZam.validator}"/>
-                                                        <af:convertDateTime pattern="#{bindings.OrdersView1.hints.DatZam.format}"/>
-                                                    </af:inputDate>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.Num.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.Num.label}" id="c3"
-                                                           filterable="true">
-                                                    <af:inputText value="#{row.bindings.Num.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.Num.label}"
-                                                                  required="#{bindings.OrdersView1.hints.Num.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.Num.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.Num.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.Num.tooltip}"
-                                                                  id="it2" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.Num.validator}"/>
-                                                    </af:inputText>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.Kontragname.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.Kontragname.label}"
-                                                           id="c5" width="200">
-                                                    <af:inputListOfValues id="kontragnameId"
-                                                                          popupTitle="Найти и выбрать: #{bindings.OrdersView1.hints.Kontragname.label}"
-                                                                          value="#{row.bindings.Kontragname.inputValue}"
-                                                                          model="#{row.bindings.Kontragname.listOfValuesModel}"
-                                                                          required="#{bindings.OrdersView1.hints.Kontragname.mandatory}"
-                                                                          columns="#{bindings.OrdersView1.hints.Kontragname.displayWidth}"
-                                                                          shortDesc="#{bindings.OrdersView1.hints.Kontragname.tooltip}"
-                                                                          launchPopupListener="#{orders.onLaunchLov}"
-                                                                          autoSubmit="true" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.Kontragname.validator}"/>
-                                                        <af:autoSuggestBehavior suggestedItems="#{bindings.Kontragname.suggestedItems}"
-                                                                                smartList="#{bindings.Kontragname.smartList}"
-                                                                                maxSuggestedItems="5"/>
-                                                    </af:inputListOfValues>
-                                                </af:column>
-                                                <af:column headerText="#{bindings.OrdersView1.hints.TotalSumOplaty.label}"
-                                                           id="c25" align="right" width="70">
-                                                    <af:inputText value="#{row.bindings.TotalSumOplaty.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.TotalSumOplaty.label}"
-                                                                  required="#{bindings.OrdersView1.hints.TotalSumOplaty.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.TotalSumOplaty.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.TotalSumOplaty.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.TotalSumOplaty.tooltip}"
-                                                                  id="it30" contentStyle="font-weight: bold;"
-                                                                  readOnly="true">
-                                                        <f:validator binding="#{row.bindings.TotalSumOplaty.validator}"/>
-                                                        <af:convertNumber groupingUsed="false"
-                                                                          pattern="#{bindings.OrdersView1.hints.TotalSumOplaty.format}"/>
-                                                    </af:inputText>
-                                                    <f:facet name="footer">
-                                                        <af:outputText value="#{bindings.OrdersView1Iterator.viewObject.sum['TotalSumOplaty']}" id="ot9"
-                                                                       inlineStyle="font-weight: bold;"/>
-                                                    </f:facet>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.TotalSumUslugi.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.TotalSumUslugi.label}"
-                                                           id="c18" visible="false" align="right" width="70"
-                                                           rendered="false">
-                                                    <af:inputText value="#{row.bindings.TotalSumUslugi.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.TotalSumUslugi.label}"
-                                                                  required="#{bindings.OrdersView1.hints.TotalSumUslugi.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.TotalSumUslugi.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.TotalSumUslugi.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.TotalSumUslugi.tooltip}"
-                                                                  id="it7" contentStyle="font-weight: bold;"
-                                                                  readOnly="true">
-                                                        <f:validator binding="#{row.bindings.TotalSumUslugi.validator}"/>
-                                                        <af:convertNumber groupingUsed="false"
-                                                                          pattern="#{bindings.OrdersView1.hints.TotalSumUslugi.format}"/>
-                                                    </af:inputText>
-                                                </af:column>
-                                                <af:column headerText="#{bindings.OrdersView1.hints.TotalSummUslugiAdd.label}"
-                                                           id="c65" visible="false" align="right" width="70"
-                                                           rendered="false">
-                                                    <af:inputText value="#{row.bindings.TotalSummUslugiAdd.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.TotalSummUslugiAdd.label}"
-                                                                  required="#{bindings.OrdersView1.hints.TotalSummUslugiAdd.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.TotalSummUslugiAdd.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.TotalSummUslugiAdd.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.TotalSummUslugiAdd.tooltip}"
-                                                                  id="it46" contentStyle="font-weight: bold;"
-                                                                  readOnly="true">
-                                                        <f:validator binding="#{row.bindings.TotalSummUslugiAdd.validator}"/>
-                                                        <af:convertNumber groupingUsed="false"
-                                                                          pattern="#{bindings.OrdersView1.hints.TotalSummUslugiAdd.format}"/>
-                                                    </af:inputText>
-                                                </af:column>
-                                                <af:column headerText="#{bindings.OrdersView1.hints.TotalSumm.label}"
-                                                           id="c73" align="right" width="80">
-                                                    <af:inputText value="#{row.bindings.TotalSumm.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.TotalSumm.label}"
-                                                                  required="#{bindings.OrdersView1.hints.TotalSumm.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.TotalSumm.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.TotalSumm.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.TotalSumm.tooltip}"
-                                                                  id="it52" contentStyle="font-weight: bold;"
-                                                                  readOnly="true">
-                                                        <f:validator binding="#{row.bindings.TotalSumm.validator}"/>
-                                                        <af:convertNumber groupingUsed="false"
-                                                                          pattern="#{bindings.OrdersView1.hints.TotalSumm.format}"/>
-                                                    </af:inputText>
-                                                    <f:facet name="footer">
-                                                        <af:outputText value="#{bindings.OrdersView1Iterator.viewObject.sum['TotalSumm']}" id="ot10"
-                                                                       inlineStyle="font-weight: bold;"/>
-                                                    </f:facet>
-                                                </af:column>
-                                                <af:column headerText="#{bindings.OrdersView1.hints.DivisionDest.label}"
-                                                           id="c79"
-                                                           sortProperty="#{bindings.OrdersView1.hints.DivisionDest.name}"
-                                                           sortable="true" filterable="true">
-                                                    <af:selectOneChoice value="#{row.bindings.DivisionDest.inputValue}"
-                                                                        label="#{row.bindings.DivisionDest.label}"
-                                                                        required="#{bindings.OrdersView1.hints.DivisionDest.mandatory}"
-                                                                        shortDesc="#{bindings.OrdersView1.hints.DivisionDest.tooltip}"
-                                                                        id="soc26" readOnly="true">
-                                                        <f:selectItems value="#{row.bindings.DivisionDest.items}"
-                                                                       id="si26"/>
-                                                        <f:validator binding="#{row.bindings.DivisionDest.validator}"/>
-                                                    </af:selectOneChoice>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.DivisionId.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.DivisionId.label}"
-                                                           id="c8" visible="false">
-                                                    <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
-                                                                        label="#{row.bindings.DivisionId.label}"
-                                                                        required="#{bindings.OrdersView1.hints.DivisionId.mandatory}"
-                                                                        shortDesc="#{bindings.OrdersView1.hints.DivisionId.tooltip}"
-                                                                        id="soc3" autoSubmit="true" readOnly="true">
-                                                        <f:selectItems value="#{row.bindings.DivisionId.items}"
-                                                                       id="si3"/>
-                                                        <f:validator binding="#{row.bindings.DivisionId.validator}"/>
-                                                    </af:selectOneChoice>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.UserId.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.UserId.label}"
-                                                           id="c9" rendered="false">
-                                                    <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
-                                                                        label="#{row.bindings.UserId.label}"
-                                                                        required="#{bindings.OrdersView1.hints.UserId.mandatory}"
-                                                                        shortDesc="#{bindings.OrdersView1.hints.UserId.tooltip}"
-                                                                        id="soc4" readOnly="true">
-                                                        <f:selectItems value="#{row.bindings.UserId.items}" id="si4"/>
-                                                        <f:validator binding="#{row.bindings.UserId.validator}"/>
-                                                    </af:selectOneChoice>
-                                                </af:column>
-                                                <af:column headerText="#{bindings.OrdersView1.hints.ManagerId.label}"
-                                                           id="c78" width="120"
-                                                           sortProperty="#{bindings.OrdersView1.hints.ManagerId.name}"
-                                                           sortable="true">
-                                                    <af:selectOneChoice value="#{row.bindings.ManagerId.inputValue}"
-                                                                        label="#{row.bindings.ManagerId.label}"
-                                                                        required="#{bindings.OrdersView1.hints.ManagerId.mandatory}"
-                                                                        shortDesc="#{bindings.OrdersView1.hints.ManagerId.tooltip}"
-                                                                        id="soc25" readOnly="true">
-                                                        <f:selectItems value="#{row.bindings.ManagerId.items}"
-                                                                       id="si25"/>
-                                                        <f:validator binding="#{row.bindings.ManagerId.validator}"/>
-                                                    </af:selectOneChoice>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.Posted.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.Posted.label}"
-                                                           id="c14" visible="false">
-                                                    <af:inputText value="#{row.bindings.Posted.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.Posted.label}"
-                                                                  required="#{bindings.OrdersView1.hints.Posted.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.Posted.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.Posted.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.Posted.tooltip}"
-                                                                  id="it6" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.Posted.validator}"/>
-                                                        <af:convertNumber groupingUsed="false"
-                                                                          pattern="#{bindings.OrdersView1.hints.Posted.format}"/>
-                                                    </af:inputText>
-                                                </af:column>
-                                                <af:column sortProperty="#{bindings.OrdersView1.hints.CountUslug.name}"
-                                                           sortable="true"
-                                                           headerText="#{bindings.OrdersView1.hints.CountUslug.label}"
-                                                           id="c19" visible="false">
-                                                    <af:inputText value="#{row.bindings.CountUslug.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.CountUslug.label}"
-                                                                  required="#{bindings.OrdersView1.hints.CountUslug.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.CountUslug.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.CountUslug.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.CountUslug.tooltip}"
-                                                                  id="it8" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.CountUslug.validator}"/>
-                                                        <af:convertNumber groupingUsed="false"
-                                                                          pattern="#{bindings.OrdersView1.hints.CountUslug.format}"/>
-                                                    </af:inputText>
-                                                </af:column>
-                                                <f:facet name="detailStamp">
-                                                    <af:panelLabelAndMessage label="#{bindings.OrdersView1.hints.Discription.label}"
-                                                                             id="plam1">
-                                                        <af:richTextEditor value="#{row.bindings.Discription.inputValue}"
-                                                                           label="#{bindings.OrdersView1.hints.Discription.label}"
-                                                                           required="#{bindings.OrdersView1.hints.Discription.mandatory}"
-                                                                           columns="#{bindings.OrdersView1.hints.Discription.displayWidth}"
-                                                                           shortDesc="#{bindings.OrdersView1.hints.Discription.tooltip}"
-                                                                           id="it9" rows="3"/>
-                                                    </af:panelLabelAndMessage>
-                                                </f:facet>
-                                                <af:column headerText="#{bindings.OrdersView1.hints.OEditable.label}"
-                                                           id="c20" visible="false">
-                                                    <af:inputText value="#{row.bindings.OEditable.inputValue}"
-                                                                  label="#{bindings.OrdersView1.hints.OEditable.label}"
-                                                                  required="#{bindings.OrdersView1.hints.OEditable.mandatory}"
-                                                                  columns="#{bindings.OrdersView1.hints.OEditable.displayWidth}"
-                                                                  maximumLength="#{bindings.OrdersView1.hints.OEditable.precision}"
-                                                                  shortDesc="#{bindings.OrdersView1.hints.OEditable.tooltip}"
-                                                                  id="it10" readOnly="true">
-                                                        <f:validator binding="#{row.bindings.OEditable.validator}"/>
-                                                        <af:convertNumber groupingUsed="false"
-                                                                          pattern="#{bindings.OrdersView1.hints.OEditable.format}"/>
-                                                    </af:inputText>
-                                                </af:column>
-                                                <f:facet name="contextMenu">
-                                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pMenu">
-                                                        <af:menu text="menu 1" id="m1">
-                                                            <af:group id="g2" title="Проводки">
-                                                                <af:commandMenuItem text="Провести" id="cmi1"
-                                                                                    icon="/img/icon_commit.png"
-                                                                                    actionListener="#{orders.onAddEntry}"/>
-                                                                <af:commandMenuItem text="Отменить проведение" id="cmi2"
-                                                                                    icon="/img/icon_rollback.png"
-                                                                                    actionListener="#{orders.onRemoveEntry}"/>
-                                                            </af:group>
-                                                            <af:group id="g3">
-                                                                <af:commandMenuItem
-                                                                                    text="#{orders.del_label}"
-                                                                                    disabled="#{!bindings.Delete.enabled}"
-                                                                                    id="cmi5"
-                                                                                    icon="/img/file_delete.png">
-                                                                    <af:showPopupBehavior popupId="::pDelete"/>
-                                                                </af:commandMenuItem>
-                                                            </af:group>
-                                                            <af:commandMenuItem text="Проводки" id="cmi3">
-                                                                <af:showPopupBehavior popupId="::pEntry"/>
-                                                            </af:commandMenuItem>
-                                                        </af:menu>
-                                                    </af:popup>
-                                                </f:facet><f:facet name="footer"/>
-                                            </af:table>
-                                            <af:poll id="p1" pollListener="#{orders.onPollListener}" rendered="false"/>
-                                            <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete"
-                                                      contentDelivery="lazyUncached">
-                                                <af:dialog id="d9" closeIconVisible="false" title="Внимание!"
-                                                           dialogListener="#{orders.onDeleteDialog}">
-                                                    <f:facet name="buttonBar"/>
-                                                    <af:outputText value="#{orders.del_title}" id="ot11"
-                                                                   inlineStyle="#{orders.del_style}"/>
-                                                </af:dialog>
+                                            <af:inputDate value="#{row.bindings.Dat.inputValue}"
+                                                          label="#{bindings.OrdersView1.hints.Dat.label}"
+                                                          required="#{bindings.OrdersView1.hints.Dat.mandatory}"
+                                                          columns="#{bindings.OrdersView1.hints.Dat.displayWidth}"
+                                                          shortDesc="#{bindings.OrdersView1.hints.Dat.tooltip}" id="id2"
+                                                          readOnly="true">
+                                                <f:validator binding="#{row.bindings.Dat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.OrdersView1.hints.Dat.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrdersView1.hints.DatComplete.label}" id="c6"
+                                                   sortable="true"
+                                                   sortProperty="#{bindings.OrdersView1.hints.DatComplete.name}"
+                                                   width="160" align="center" headerNoWrap="true">
+                                            <af:outputText value="#{row.DatComplete}"
+                                                           shortDesc="#{bindings.OrdersView1.hints.DatComplete.tooltip}"
+                                                           id="ot9">
+                                                <af:convertDateTime pattern="#{bindings.OrdersView1.hints.DatComplete.format}"/>
+                                            </af:outputText>
+                                            <f:facet name="filter"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrdersView1.hints.DatZam.label}" id="c77"
+                                                   width="120" sortable="true"
+                                                   sortProperty="#{bindings.OrdersView1.hints.DatZam.name}"
+                                                   headerNoWrap="true">
+                                            <af:inputDate value="#{row.bindings.DatZam.inputValue}"
+                                                          label="#{bindings.OrdersView1.hints.DatZam.label}"
+                                                          required="#{bindings.OrdersView1.hints.DatZam.mandatory}"
+                                                          columns="#{bindings.OrdersView1.hints.DatZam.displayWidth}"
+                                                          shortDesc="#{bindings.OrdersView1.hints.DatZam.tooltip}"
+                                                          id="id13" readOnly="true">
+                                                <f:validator binding="#{row.bindings.DatZam.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.OrdersView1.hints.DatZam.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrdersView1.hints.Num.name}" sortable="true"
+                                                   headerText="#{bindings.OrdersView1.hints.Num.label}" id="c3"
+                                                   filterable="true" width="80" headerNoWrap="true">
+                                            <af:inputText value="#{row.bindings.Num.inputValue}"
+                                                          label="#{bindings.OrdersView1.hints.Num.label}"
+                                                          required="#{bindings.OrdersView1.hints.Num.mandatory}"
+                                                          columns="#{bindings.OrdersView1.hints.Num.displayWidth}"
+                                                          maximumLength="#{bindings.OrdersView1.hints.Num.precision}"
+                                                          shortDesc="#{bindings.OrdersView1.hints.Num.tooltip}" id="it2"
+                                                          readOnly="true">
+                                                <f:validator binding="#{row.bindings.Num.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.OrdersView1.hints.Kontragname.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.OrdersView1.hints.Kontragname.label}" id="c5"
+                                                   width="200" headerNoWrap="true">
+                                            <af:inputListOfValues id="kontragnameId"
+                                                                  popupTitle="Найти и выбрать: #{bindings.OrdersView1.hints.Kontragname.label}"
+                                                                  value="#{row.bindings.Kontragname.inputValue}"
+                                                                  model="#{row.bindings.Kontragname.listOfValuesModel}"
+                                                                  required="#{bindings.OrdersView1.hints.Kontragname.mandatory}"
+                                                                  columns="#{bindings.OrdersView1.hints.Kontragname.displayWidth}"
+                                                                  shortDesc="#{bindings.OrdersView1.hints.Kontragname.tooltip}"
+                                                                  launchPopupListener="#{orders.onLaunchLov}"
+                                                                  autoSubmit="true" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Kontragname.validator}"/>
+                                                <af:autoSuggestBehavior suggestedItems="#{bindings.Kontragname.suggestedItems}"
+                                                                        smartList="#{bindings.Kontragname.smartList}"
+                                                                        maxSuggestedItems="5"/>
+                                            </af:inputListOfValues>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrdersView1.hints.TotalSumOplaty.label}"
+                                                   id="c25" align="right" width="70" headerNoWrap="true">
+                                            <af:inputText value="#{row.bindings.TotalSumOplaty.inputValue}"
+                                                          label="#{bindings.OrdersView1.hints.TotalSumOplaty.label}"
+                                                          required="#{bindings.OrdersView1.hints.TotalSumOplaty.mandatory}"
+                                                          columns="#{bindings.OrdersView1.hints.TotalSumOplaty.displayWidth}"
+                                                          maximumLength="#{bindings.OrdersView1.hints.TotalSumOplaty.precision}"
+                                                          shortDesc="#{bindings.OrdersView1.hints.TotalSumOplaty.tooltip}"
+                                                          id="it30" contentStyle="font-weight: bold;" readOnly="true">
+                                                <f:validator binding="#{row.bindings.TotalSumOplaty.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OrdersView1.hints.TotalSumOplaty.format}"/>
+                                            </af:inputText>
+                                            <f:facet name="footer"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrdersView1.hints.TotalSumm.label}" id="c73"
+                                                   align="right" width="80" headerNoWrap="true">
+                                            <af:inputText value="#{row.bindings.TotalSumm.inputValue}"
+                                                          label="#{bindings.OrdersView1.hints.TotalSumm.label}"
+                                                          required="#{bindings.OrdersView1.hints.TotalSumm.mandatory}"
+                                                          columns="#{bindings.OrdersView1.hints.TotalSumm.displayWidth}"
+                                                          maximumLength="#{bindings.OrdersView1.hints.TotalSumm.precision}"
+                                                          shortDesc="#{bindings.OrdersView1.hints.TotalSumm.tooltip}"
+                                                          id="it52" contentStyle="font-weight: bold;" readOnly="true">
+                                                <f:validator binding="#{row.bindings.TotalSumm.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.OrdersView1.hints.TotalSumm.format}"/>
+                                            </af:inputText>
+                                            <f:facet name="footer"/>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrdersView1.hints.UserId.label}" id="c4"
+                                                   filterable="true" sortable="true"
+                                                   sortProperty="#{bindings.OrdersView1.hints.UserId.name}"
+                                                   headerNoWrap="true">
+                                            <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                label="#{row.bindings.UserId.label}"
+                                                                required="#{bindings.OrdersView1.hints.UserId.mandatory}"
+                                                                shortDesc="#{bindings.OrdersView1.hints.UserId.tooltip}"
+                                                                id="soc1" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.UserId.items}" id="si1"/>
+                                                <f:validator binding="#{row.bindings.UserId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrdersView1.hints.DivisionDest.label}"
+                                                   id="c79"
+                                                   sortProperty="#{bindings.OrdersView1.hints.DivisionDest.name}"
+                                                   sortable="true" filterable="true" headerNoWrap="true">
+                                            <af:selectOneChoice value="#{row.bindings.DivisionDest.inputValue}"
+                                                                label="#{row.bindings.DivisionDest.label}"
+                                                                required="#{bindings.OrdersView1.hints.DivisionDest.mandatory}"
+                                                                shortDesc="#{bindings.OrdersView1.hints.DivisionDest.tooltip}"
+                                                                id="soc26" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.DivisionDest.items}" id="si26"/>
+                                                <f:validator binding="#{row.bindings.DivisionDest.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column><f:facet name="contextMenu">
+                                            <af:popup childCreation="deferred" autoCancel="disabled" id="pMenu">
+                                                <af:menu text="menu 1" id="m1">
+                                                    <af:group id="g2" title="Проводки">
+                                                        <af:commandMenuItem text="Провести" id="cmi1"
+                                                                            icon="/img/icon_commit.png"
+                                                                            actionListener="#{orders.onAddEntry}"/>
+                                                        <af:commandMenuItem text="Отменить проведение" id="cmi2"
+                                                                            icon="/img/icon_rollback.png"
+                                                                            actionListener="#{orders.onRemoveEntry}"/>
+                                                    </af:group>
+                                                    <af:group id="g3">
+                                                        <af:commandMenuItem text="#{orders.del_label}"
+                                                                            disabled="#{!bindings.Delete.enabled}"
+                                                                            id="cmi5" icon="/img/file_delete.png">
+                                                            <af:showPopupBehavior popupId="::pDelete"/>
+                                                        </af:commandMenuItem>
+                                                    </af:group>
+                                                    <af:commandMenuItem text="Проводки" id="cmi3">
+                                                        <af:showPopupBehavior popupId="::pEntry"/>
+                                                    </af:commandMenuItem>
+                                                </af:menu>
                                             </af:popup>
-                                        </af:panelBox>
-                                        <af:popup childCreation="deferred" autoCancel="disabled" id="pEntry"
-                                                  contentDelivery="lazyUncached">
-                                            <af:dialog id="d5" title="Проводки">
-                                                <f:facet name="buttonBar"/>
-                                                <af:table value="#{bindings.VwOrdersMoves2.collectionModel}" var="row"
-                                                          rows="#{bindings.VwOrdersMoves2.rangeSize}"
-                                                          emptyText="#{bindings.VwOrdersMoves2.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                                          rowBandingInterval="0"
-                                                          selectedRowKeys="#{bindings.VwOrdersMoves2.collectionModel.selectedRow}"
-                                                          selectionListener="#{bindings.VwOrdersMoves2.collectionModel.makeCurrent}"
-                                                          rowSelection="single"
-                                                          fetchSize="#{bindings.VwOrdersMoves2.rangeSize}" id="t15">
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.RegistratorId.label}"
-                                                               id="c55" visible="false">
-                                                        <af:outputText value="#{row.RegistratorId}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.RegistratorId.tooltip}"
-                                                                       id="ot1"/>
-                                                    </af:column>
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.Deb.label}"
-                                                               id="c56" width="50" inlineStyle="font-weight:bold;">
-                                                        <af:outputText value="#{row.Deb}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.Deb.tooltip}"
-                                                                       id="ot2"/>
-                                                    </af:column>
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.SumDeb.label}"
-                                                               id="c57"
-                                                               inlineStyle="#{row.SumDeb &lt; 0 ? 'color: Red' : 'color: Black'}">
-                                                        <af:outputText value="#{row.SumDeb}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.SumDeb.tooltip}"
-                                                                       id="ot3">
-                                                            <af:convertNumber groupingUsed="false"
-                                                                              pattern="#{bindings.VwOrdersMoves2.hints.SumDeb.format}"/>
-                                                        </af:outputText>
-                                                    </af:column>
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.Kred.label}"
-                                                               id="c58" width="50"
-                                                               inlineStyle="font-weight:bold;">
-                                                        <af:outputText value="#{row.Kred}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.Kred.tooltip}"
-                                                                       id="ot4"/>
-                                                    </af:column>
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.SumKred.label}"
-                                                               id="c59"
-                                                               inlineStyle="#{row.SumKred &lt; 0 ? 'color: Red' : 'color: Black'}">
-                                                        <af:outputText value="#{row.SumKred}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.SumKred.tooltip}"
-                                                                       id="ot5">
-                                                            <af:convertNumber groupingUsed="false"
-                                                                              pattern="#{bindings.VwOrdersMoves2.hints.SumKred.format}"/>
-                                                        </af:outputText>
-                                                    </af:column>
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.Subconto1Deb.label}"
-                                                               id="c60">
-                                                        <af:outputText value="#{row.Subconto1Deb}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.Subconto1Deb.tooltip}"
-                                                                       id="ot6"/>
-                                                    </af:column>
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.Subconto1Kred.label}"
-                                                               id="c61">
-                                                        <af:outputText value="#{row.Subconto1Kred}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.Subconto1Kred.tooltip}"
-                                                                       id="ot7"/>
-                                                    </af:column>
-                                                    <af:column headerText="#{bindings.VwOrdersMoves2.hints.Subconto2Kred.label}"
-                                                               id="c62">
-                                                        <af:outputText value="#{row.Subconto2Kred}"
-                                                                       shortDesc="#{bindings.VwOrdersMoves2.hints.Subconto2Kred.tooltip}"
-                                                                       id="ot8"/>
-                                                    </af:column>
-                                                </af:table>
-                                            </af:dialog>
-                                        </af:popup>
-                                        <af:popup childCreation="deferred" autoCancel="disabled" id="pNotice"
-                                                  contentDelivery="lazyUncached">
-                                            <af:dialog id="d8" title="Новое уведомление"
-                                                       dialogListener="#{orders.onNotifiDialog}">
-                                                <f:facet name="buttonBar"/>
-                                                <af:panelFormLayout id="pfl8">
-                                                    <af:inputDate value="#{bindings.dat.inputValue}"
-                                                                  label="Время уведомления"
-                                                                  columns="#{bindings.dat.hints.displayWidth}"
-                                                                  shortDesc="#{bindings.dat.hints.tooltip}" id="id12"
-                                                                  required="true" binding="#{orders.dat}"
-                                                                  autoSubmit="true">
-                                                        <f:validator binding="#{bindings.dat.validator}"/>
-                                                        <af:convertDateTime pattern="dd-MMM-yyy HH:mm"/>
-                                                    </af:inputDate>
-                                                    <af:inputText value="#{bindings.desc.inputValue}"
-                                                                  label="Сообщение"
-                                                                  columns="#{bindings.desc.hints.displayWidth}"
-                                                                  maximumLength="#{bindings.desc.hints.precision}"
-                                                                  shortDesc="#{bindings.desc.hints.tooltip}" id="it53"
-                                                                  required="true" rows="4" binding="#{orders.desc}"
-                                                                  autoSubmit="true">
-                                                        <f:validator binding="#{bindings.desc.validator}"/>
-                                                    </af:inputText>
-                                                    <af:button actionListener="#{bindings.addNotification.execute}"
-                                                               text="addNotification"
-                                                               disabled="#{!bindings.addNotification.enabled}"
-                                                               id="b17" visible="false"/>
-                                                </af:panelFormLayout>
-                                            </af:dialog>
-                                        </af:popup>
-                                    </af:showDetailItem>
-                                </af:panelTabbed>
+                                        </f:facet>
+                                    </af:table>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pDelete"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d9" closeIconVisible="false" title="Внимание!"
+                                                   dialogListener="#{orders.onDeleteDialog}">
+                                            <f:facet name="buttonBar"/>
+                                            <af:outputText value="#{orders.del_title}" id="ot11"
+                                                           inlineStyle="#{orders.del_style}"/>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pEntry"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d5" title="Проводки">
+                                            <f:facet name="buttonBar"/>
+                                            <af:table value="#{bindings.VwOrdersMoves2.collectionModel}" var="row"
+                                                      rows="#{bindings.VwOrdersMoves2.rangeSize}"
+                                                      emptyText="#{bindings.VwOrdersMoves2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                      rowBandingInterval="0"
+                                                      selectedRowKeys="#{bindings.VwOrdersMoves2.collectionModel.selectedRow}"
+                                                      selectionListener="#{bindings.VwOrdersMoves2.collectionModel.makeCurrent}"
+                                                      rowSelection="single"
+                                                      fetchSize="#{bindings.VwOrdersMoves2.rangeSize}" id="t15">
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.RegistratorId.label}"
+                                                           id="c55" visible="false">
+                                                    <af:outputText value="#{row.RegistratorId}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.RegistratorId.tooltip}"
+                                                                   id="ot1"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.Deb.label}"
+                                                           id="c56" width="50" inlineStyle="font-weight:bold;">
+                                                    <af:outputText value="#{row.Deb}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.Deb.tooltip}"
+                                                                   id="ot2"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.SumDeb.label}"
+                                                           id="c57"
+                                                           inlineStyle="#{row.SumDeb &lt; 0 ? 'color: Red' : 'color: Black'}">
+                                                    <af:outputText value="#{row.SumDeb}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.SumDeb.tooltip}"
+                                                                   id="ot3">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.VwOrdersMoves2.hints.SumDeb.format}"/>
+                                                    </af:outputText>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.Kred.label}"
+                                                           id="c58" width="50" inlineStyle="font-weight:bold;">
+                                                    <af:outputText value="#{row.Kred}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.Kred.tooltip}"
+                                                                   id="ot4"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.SumKred.label}"
+                                                           id="c59"
+                                                           inlineStyle="#{row.SumKred &lt; 0 ? 'color: Red' : 'color: Black'}">
+                                                    <af:outputText value="#{row.SumKred}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.SumKred.tooltip}"
+                                                                   id="ot5">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.VwOrdersMoves2.hints.SumKred.format}"/>
+                                                    </af:outputText>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.Subconto1Deb.label}"
+                                                           id="c60">
+                                                    <af:outputText value="#{row.Subconto1Deb}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.Subconto1Deb.tooltip}"
+                                                                   id="ot6"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.Subconto1Kred.label}"
+                                                           id="c61">
+                                                    <af:outputText value="#{row.Subconto1Kred}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.Subconto1Kred.tooltip}"
+                                                                   id="ot7"/>
+                                                </af:column>
+                                                <af:column headerText="#{bindings.VwOrdersMoves2.hints.Subconto2Kred.label}"
+                                                           id="c62">
+                                                    <af:outputText value="#{row.Subconto2Kred}"
+                                                                   shortDesc="#{bindings.VwOrdersMoves2.hints.Subconto2Kred.tooltip}"
+                                                                   id="ot8"/>
+                                                </af:column>
+                                            </af:table>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="pNotice"
+                                              contentDelivery="lazyUncached">
+                                        <af:dialog id="d8" title="Новое уведомление"
+                                                   dialogListener="#{orders.onNotifiDialog}">
+                                            <f:facet name="buttonBar"/>
+                                            <af:panelFormLayout id="pfl8">
+                                                <af:inputDate value="#{bindings.dat.inputValue}"
+                                                              label="Время уведомления"
+                                                              columns="#{bindings.dat.hints.displayWidth}"
+                                                              shortDesc="#{bindings.dat.hints.tooltip}" id="id12"
+                                                              required="true" binding="#{orders.dat}" autoSubmit="true">
+                                                    <f:validator binding="#{bindings.dat.validator}"/>
+                                                    <af:convertDateTime pattern="dd-MMM-yyy HH:mm"/>
+                                                </af:inputDate>
+                                                <af:inputText value="#{bindings.desc.inputValue}" label="Сообщение"
+                                                              columns="#{bindings.desc.hints.displayWidth}"
+                                                              maximumLength="#{bindings.desc.hints.precision}"
+                                                              shortDesc="#{bindings.desc.hints.tooltip}" id="it53"
+                                                              required="true" rows="4" binding="#{orders.desc}"
+                                                              autoSubmit="true">
+                                                    <f:validator binding="#{bindings.desc.validator}"/>
+                                                </af:inputText>
+                                                <af:button actionListener="#{bindings.addNotification.execute}"
+                                                           text="addNotification"
+                                                           disabled="#{!bindings.addNotification.enabled}" id="b17"
+                                                           visible="false"/>
+                                            </af:panelFormLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                    <f:facet name="viewMenu"/>
+                                    <f:facet name="secondaryToolbar"/>
+                                    <f:facet name="afterToolbar"/>
+                                </af:panelCollection>
                             </f:facet>
-                            <f:facet name="start">
-                                <af:panelDrawer id="pd1" position="left" height="60%" width="60%">
-                                    <af:showDetailItem text="Заказы" id="sdi6" icon="/img/search.png">
-                                        <af:panelGroupLayout layout="vertical" id="pgl11">
-                                            <af:panelHeader text="Заказы" id="ph1" type="flow">
-                                                <af:query id="qryId1" headerText="Фильтр" disclosed="true"
-                                                          value="#{bindings.OrdersViewCriteriaQuery.queryDescriptor}"
-                                                          model="#{bindings.OrdersViewCriteriaQuery.queryModel}"
-                                                          queryListener="#{bindings.OrdersViewCriteriaQuery.processQuery}"
-                                                          queryOperationListener="#{bindings.OrdersViewCriteriaQuery.processQueryOperation}"
-                                                          resultComponentId="::t1" type="flow"/>
-                                            </af:panelHeader>
-                                        </af:panelGroupLayout>
-                                    </af:showDetailItem>
-                                </af:panelDrawer>
-                            </f:facet>
+                            <f:facet name="start"/>
                             <f:facet name="end"/>
                             <f:facet name="top"/>
                         </af:panelStretchLayout>
