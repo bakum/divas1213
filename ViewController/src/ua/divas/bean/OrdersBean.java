@@ -702,7 +702,13 @@ public class OrdersBean {
                                                                                                                 "group").build();
                 job.getJobDataMap().put("UserName", getSessionUser());
                 //job.getJobDataMap().put("FacesContext", FacesContext.getCurrentInstance());
-
+                /* String Id;
+                try {
+                    Id = (String) ADFUtil.evaluateEL("#{row.Id}");
+                } catch (Exception e) {
+                    // TODO: Add catch code
+                    Id = null;
+                } */
                 ob.getParamsMap().put("cutid", cutid);
                 ob.getParamsMap().put("dat", runDate);
                 ob.getParamsMap().put("desc", (String) getDesc().getValue());

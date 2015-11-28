@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="NotificationView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -18,24 +18,52 @@
     Name="u_name"
     Kind="where"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
   </Variable>
-  <SQLQuery><![CDATA[SELECT Notification.ID, 
-       Notification.VERSION, 
-       Notification.DAT, 
-       Notification.DESCRIPTION, 
-       Notification.USER_ID, 
-       Notification.CONTACT, 
-       Notification.SERVER, 
-       Notification.CLIENT, 
-       Notification.TRG_NAME, 
-       Notification.USER_LOGIN, 
-       Notification.OBJECT_ID,
-       Notification.START_DATE,
-       Notification.END_DATE,
-       (select nvl(count(*),0) from Notification where server = 1 and client = 0
-       ) Count_Unread
-FROM  NOTIFICATION Notification
+  <SQLQuery><![CDATA[SELECT Notification.ID,
+  Notification.VERSION,
+  Notification.DAT,
+  Notification.DESCRIPTION,
+  Notification.USER_ID,
+  Notification.CONTACT,
+  Notification.SERVER,
+  Notification.CLIENT,
+  Notification.TRG_NAME,
+  Notification.USER_LOGIN,
+  Notification.OBJECT_ID,
+  CASE
+    WHEN Notification.OBJECT_ID IS NULL
+    THEN 'Неопределено'
+    ELSE 'Заказ №'
+      ||
+      (SELECT ORDERS.NUM
+      FROM ORDERS
+      WHERE ORDERS.ID = Notification.OBJECT_ID
+      )
+      || ' от '
+      || TO_CHAR(
+      (SELECT ORDERS.DAT FROM ORDERS WHERE ORDERS.ID = Notification.OBJECT_ID
+      ), 'DD-MM-YYYY')
+  END AS REG_STRING,
+  Notification.START_DATE,
+  Notification.END_DATE,
+  (SELECT NVL(COUNT(*), 0)
+  FROM Notification
+  WHERE Notification.SERVER = 1
+  AND Notification.CLIENT   = 0
+  ) Count_Unread,
+  KONTRAGENTS.FULLNAME,
+  CONTACT_DETAILS.ADRESS,
+  CONTACT_DETAILS.PHONE
+FROM NOTIFICATION Notification
+LEFT JOIN ORDERS
+ON Notification.OBJECT_ID = ORDERS.ID
+LEFT JOIN KONTRAGENTS
+ON KONTRAGENTS.ID = ORDERS.KONTRAG_ID
+LEFT JOIN CONTACT_DETAILS
+ON KONTRAGENTS.ID                    = CONTACT_DETAILS.KONTRAG_ID
+AND CONTACT_DETAILS.ADRESS          IS NOT NULL
 where server = 1 and client = 0 and 
 upper(Notification.USER_LOGIN) = upper(:u_name)]]></SQLQuery>
   <EntityUsage
@@ -112,6 +140,31 @@ upper(Notification.USER_LOGIN) = upper(:u_name)]]></SQLQuery>
     EntityUsage="Notification"
     AliasName="OBJECT_ID"/>
   <ViewAttribute
+    Name="RegString"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="71"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REG_STRING"
+    Expression="REG_STRING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="71"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.NotificationView.RegString_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.NotificationView.RegString_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.NotificationView.RegString_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
     Name="StartDate"
     IsNotNull="true"
     PrecisionRule="true"
@@ -153,6 +206,81 @@ upper(Notification.USER_LOGIN) = upper(:u_name)]]></SQLQuery>
     AliasName="COUNT_UNREAD"
     Expression="COUNT_UNREAD"
     SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Fullname"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FULLNAME"
+    Expression="FULLNAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.NotificationView.Fullname_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.NotificationView.Fullname_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.NotificationView.Fullname_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Adress"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ADRESS"
+    Expression="ADRESS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.NotificationView.Adress_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.NotificationView.Adress_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.NotificationView.Adress_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Phone"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PHONE"
+    Expression="PHONE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="15"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.NotificationView.Phone_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.NotificationView.Phone_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.NotificationView.Phone_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="ua.divas.model.ModelBundle"/>

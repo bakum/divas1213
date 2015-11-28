@@ -267,24 +267,58 @@
                                                                        id="ot6"/>
                                                     </af:column>
                                                     <f:facet name="detailStamp">
-                                                        <af:panelGroupLayout id="pgl3" layout="vertical">
-                                                            <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Description.label}"
-                                                                                     id="plam1">
-                                                                <af:outputFormatted value="#{row.bindings.Description.inputValue}"
-                                                                                    id="of3"
-                                                                                    styleUsage="inContextBranding"
-                                                                                    inlineStyle="font-size:large;"/>
-                                                            </af:panelLabelAndMessage>
-                                                            <af:spacer width="10" height="10" id="s6"/>
-                                                            <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Client.label}"
-                                                                                     id="plam2">
+                                                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                                            <af:panelGroupLayout id="pgl7" layout="vertical"
+                                                                                 halign="left">
+                                                                <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Description.label}"
+                                                                                         id="plam1">
+                                                                    <af:outputFormatted value="#{row.bindings.Description.inputValue}"
+                                                                                        id="of3"
+                                                                                        styleUsage="inContextBranding"
+                                                                                        inlineStyle="font-size:large;"/>
+                                                                </af:panelLabelAndMessage>
+                                                                <af:spacer width="10" height="10" id="s6"/>
+                                                                <f:facet name="separator"/>
                                                                 <af:selectBooleanCheckbox value="#{row.bindings.Client.inputValue}"
+                                                                                          label="#{row.bindings.Client.label}"
                                                                                           shortDesc="#{bindings.NotificationView1.hints.Client.tooltip}"
                                                                                           id="sbc1"/>
-                                                            </af:panelLabelAndMessage>
-                                                            <f:facet name="separator"/>
+                                                            </af:panelGroupLayout>
+                                                            <af:spacer width="10" height="10" id="s10"/>
+                                                            <af:panelGroupLayout id="pgl6" layout="vertical"
+                                                                                 halign="right">
+                                                                <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Fullname.label}"
+                                                                                         id="plam3">
+                                                                    <af:outputFormatted value="#{row.Fullname}"
+                                                                                        shortDesc="#{bindings.NotificationView1.hints.Fullname.tooltip}"
+                                                                                        id="ot10"
+                                                                                        styleUsage="inContextBranding"
+                                                                                        inlineStyle="font-size:large;"/>
+                                                                </af:panelLabelAndMessage>
+                                                                <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Adress.label}"
+                                                                                         id="plam5">
+                                                                    <af:outputFormatted value="#{row.Adress}"
+                                                                                        shortDesc="#{bindings.NotificationView1.hints.Adress.tooltip}"
+                                                                                        id="ot12"
+                                                                                        styleUsage="inContextBranding"/>
+                                                                </af:panelLabelAndMessage>
+                                                                <af:panelLabelAndMessage label="#{bindings.NotificationView1.hints.Phone.label}"
+                                                                                         id="plam4">
+                                                                    <af:outputFormatted value="#{row.Phone}"
+                                                                                        shortDesc="#{bindings.NotificationView1.hints.Phone.tooltip}"
+                                                                                        id="ot11"
+                                                                                        styleUsage="inContextBranding"
+                                                                                        inlineStyle="font-size:large;"/>
+                                                                </af:panelLabelAndMessage>
+                                                            </af:panelGroupLayout>
                                                         </af:panelGroupLayout>
                                                     </f:facet>
+                                                    <af:column headerText="#{bindings.NotificationView1.hints.RegString.label}"
+                                                               id="c12" width="200">
+                                                        <af:outputText value="#{row.RegString}"
+                                                                       shortDesc="#{bindings.NotificationView1.hints.RegString.tooltip}"
+                                                                       id="ot9"/>
+                                                    </af:column>
                                                 </af:table>
                                             </af:panelBox>
                                         </af:dialog>
@@ -392,6 +426,12 @@
                                                     </af:column>
                                                     <af:column id="c11" width="50">
                                                         <af:outputText value="#{row.isIn == true ? 'Приход' : 'Расход'}" id="ot8"/>
+                                                    </af:column>
+                                                    <af:column headerText="#{bindings.supplierList.hints.userId.label}"
+                                                               id="c13" rendered="false">
+                                                        <af:outputText value="#{row.userId}"
+                                                                       shortDesc="#{bindings.supplierList.hints.userId.tooltip}"
+                                                                       id="ot13"/>
                                                     </af:column>
                                                 </af:table>
                                             </af:panelHeader>

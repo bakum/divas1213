@@ -243,11 +243,11 @@ public class NotificationBean {
 
     public void onDeleteSupplier(ActionEvent actionEvent) {
         BindingContainer bd = BindingContext.getCurrent().getCurrentBindingsEntry();
-        OperationBinding oper = bd.getOperationBinding("Delete");
+        OperationBinding oper = bd.getOperationBinding("removeSupplier");
         if (oper != null) {
             oper.execute();
         }
-        SupplierWallet.recalcSumm();
+        //SupplierWallet.recalcSumm();
         onPopupSupplier(null);
 
         AdfFacesContext.getCurrentInstance().addPartialTarget(getBinButton());
@@ -305,26 +305,29 @@ public class NotificationBean {
 
         while (it.hasNext()) {
             SupplierRecord o = it.next();
-            String kontragId = o.getKontragId();
-            String orderId = o.getOrderId();
-            BigDecimal summa = o.getSumma();
-            System.out.println("kontragId: " + kontragId);
-            System.out.println("orderId: " + orderId);
-            System.out.println("summa: " + summa);
-            boolean isIn = o.isIsIn();
-            System.out.println("isIn: " + isIn);
-            if (rko != null && !isIn) {
-                rko.getParamsMap().put("kontragId", kontragId);
-                rko.getParamsMap().put("OrderId", orderId);
-                rko.getParamsMap().put("Summa", summa);
-                rko.execute();
+            if (o.getUserId().equals(SupplierRecord.getSessionUser())) {
+                String kontragId = o.getKontragId();
+                String orderId = o.getOrderId();
+                BigDecimal summa = o.getSumma();
+                System.out.println("kontragId: " + kontragId);
+                System.out.println("orderId: " + orderId);
+                System.out.println("summa: " + summa);
+                boolean isIn = o.isIsIn();
+                System.out.println("isIn: " + isIn);
+                if (rko != null && !isIn) {
+                    rko.getParamsMap().put("kontragId", kontragId);
+                    rko.getParamsMap().put("OrderId", orderId);
+                    rko.getParamsMap().put("Summa", summa);
+                    rko.execute();
+                }
+                if (pko != null && isIn) {
+                    pko.getParamsMap().put("kontragId", kontragId);
+                    pko.getParamsMap().put("OrderId", orderId);
+                    pko.getParamsMap().put("Summa", summa);
+                    pko.execute();
+                }
             }
-            if (pko != null && isIn) {
-                pko.getParamsMap().put("kontragId", kontragId);
-                pko.getParamsMap().put("OrderId", orderId);
-                pko.getParamsMap().put("Summa", summa);
-                pko.execute();
-            }
+           // SupplierWallet.removeSupplier(o.getId());
         }
         //hidePopup(getBinPopup());
         SupplierWallet.clearSupplier();

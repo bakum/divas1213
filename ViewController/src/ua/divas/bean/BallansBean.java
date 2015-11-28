@@ -27,9 +27,11 @@ import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.share.ADFContext;
 import oracle.adf.share.security.SecurityContext;
+import oracle.adf.view.rich.component.rich.RichPoll;
 import oracle.adf.view.rich.component.rich.data.RichTreeTable;
 
 import oracle.adf.view.rich.component.rich.input.RichInputNumberSpinbox;
+import oracle.adf.view.rich.component.rich.nav.RichButton;
 import oracle.adf.view.rich.context.AdfFacesContext;
 
 import oracle.adf.view.rich.event.DialogEvent;
@@ -48,6 +50,7 @@ import oracle.jbo.uicli.binding.JUCtrlHierBinding;
 import oracle.jbo.uicli.binding.JUCtrlHierNodeBinding;
 import oracle.jbo.uicli.binding.JUIteratorBinding;
 
+import org.apache.myfaces.trinidad.event.PollEvent;
 import org.apache.myfaces.trinidad.event.SelectionEvent;
 import org.apache.myfaces.trinidad.model.CollectionModel;
 import org.apache.myfaces.trinidad.model.RowKeySet;
@@ -65,12 +68,30 @@ import ua.divas.classes.StartSchedulerQuartz;
 public class BallansBean {
     private RichTreeTable treeTable;
     private RichInputNumberSpinbox summ;
+    private RichButton calcBtn;
+    private RichPoll pollBinding;
 
     public BallansBean() {
     }
 
+    public void setPollBinding(RichPoll pollBinding) {
+        this.pollBinding = pollBinding;
+    }
+
+    public RichPoll getPollBinding() {
+        return pollBinding;
+    }
+
     public BindingContainer getBindings() {
         return BindingContext.getCurrent().getCurrentBindingsEntry();
+    }
+
+    public void setCalcBtn(RichButton calcBtn) {
+        this.calcBtn = calcBtn;
+    }
+
+    public RichButton getCalcBtn() {
+        return calcBtn;
     }
 
     public void refreshIterator() {
@@ -121,7 +142,7 @@ public class BallansBean {
         }
         return Message;
     }
-    
+
     private String getSessionUser() {
         ADFContext adfCtx = ADFContext.getCurrent();
         SecurityContext secCntx = adfCtx.getSecurityContext();
@@ -133,29 +154,33 @@ public class BallansBean {
         BindingContext bctx = BindingContext.getCurrent();
         BindingContainer bindings = bctx.getCurrentBindingsEntry();
         OperationBinding executeWithParams = bindings.getOperationBinding("refreshBallans");
-        if (executeWithParams != null){
-                String cutid = UUID.randomUUID().toString().substring(0, 7);
-                JobDetail job =
-                    JobBuilder.newJob(BallansJob.class).withDescription("trigger" + cutid).withIdentity("job" + cutid,
+        if (executeWithParams != null) {
+            String cutid = UUID.randomUUID().toString().substring(0, 7);
+            JobDetail job =
+                JobBuilder.newJob(BallansJob.class).withDescription("trigger" + cutid).withIdentity("job" + cutid,
                                                                                                     "group").build();
-                Date runDate = new Date();
-                Trigger trigger =
-                    TriggerBuilder.newTrigger().startAt(runDate).withDescription(getSessionUser()).withIdentity("trigger" +
-                                                                                                                cutid,
-                                                                                                                "group").build();
-                job.getJobDataMap().put("UserName", getSessionUser());
-                job.getJobDataMap().put("f_date", (oracle.jbo.domain.Date) JSFUtils.resolveExpression("#{bindings.f_dat.inputValue}"));
-                job.getJobDataMap().put("l_date", (oracle.jbo.domain.Date) JSFUtils.resolveExpression("#{bindings.l_dat.inputValue}"));
-                if (StartSchedulerQuartz.sched != null) {
-                    StartSchedulerQuartz.sched.scheduleJob(job, trigger);
-                    System.out.println("------- New notification! ----------------");
-                    //ob.execute();
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    ExtendedRenderKitService erks =
-                        Service.getService(context.getRenderKit(), ExtendedRenderKitService.class);
-                    erks.addScript(context, "Growl('Внимание'," + "'Баланс запущен в расчет!','warning')");
-                }
+            Date runDate = new Date();
+            Trigger trigger =
+                TriggerBuilder.newTrigger().startAt(runDate).withDescription(getSessionUser()).withIdentity("trigger" +
+                                                                                                            cutid,
+                                                                                                            "group").build();
+            job.getJobDataMap().put("UserName", getSessionUser());
+            job.getJobDataMap().put("f_date",
+                                    (oracle.jbo.domain.Date) JSFUtils.resolveExpression("#{bindings.f_dat.inputValue}"));
+            job.getJobDataMap().put("l_date",
+                                    (oracle.jbo.domain.Date) JSFUtils.resolveExpression("#{bindings.l_dat.inputValue}"));
+            if (StartSchedulerQuartz.sched != null) {
+                StartSchedulerQuartz.sched.scheduleJob(job, trigger);
+                System.out.println("------- New notification! ----------------");
+                //ob.execute();
+                FacesContext context = FacesContext.getCurrentInstance();
+                ExtendedRenderKitService erks =
+                    Service.getService(context.getRenderKit(), ExtendedRenderKitService.class);
+                erks.addScript(context, "Growl('Внимание'," + "'Баланс запущен в расчет!','warning')");
+                pollBinding.setInterval(1000);
+                AdfFacesContext.getCurrentInstance().addPartialTarget(pollBinding);
             }
+        }
         //executeWithParams.execute();
         //refreshIterator();
 
@@ -339,5 +364,16 @@ public class BallansBean {
         FacesContext context = FacesContext.getCurrentInstance();
         ExtendedRenderKitService erks = Service.getService(context.getRenderKit(), ExtendedRenderKitService.class);
         erks.addScript(context, "Growl('Внимание'," + "'Баланс рассчитан!','notice')");
+    }
+
+    public void onPoll(PollEvent pollEvent) {
+        DCBindingContainer binding = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
+        DCIteratorBinding it = binding.findIteratorBinding("MonitorBallansJobVO1Iterator");
+        it.executeQuery();
+        Integer cnt = (Integer) ADFUtil.evaluateEL("#{bindings.Cnt.inputValue}");
+        if (cnt == null) {
+            pollBinding.setInterval(-1);
+            AdfFacesContext.getCurrentInstance().addPartialTarget(pollBinding);
+        }
     }
 }

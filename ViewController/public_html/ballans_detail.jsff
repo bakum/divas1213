@@ -30,8 +30,10 @@
                                                 <af:convertDateTime pattern="#{bindings.l_dat.format}"/>
                                             </af:inputDate>
                                             <af:button actionListener="#{ballans.onExecute}" text="Рассчитать"
-                                                       disabled="#{!bindings.refreshBallans.enabled}" id="b1"
-                                                       partialSubmit="true"/>
+                                                       disabled="#{bindings.Cnt.inputValue == null ? false : true}" id="b1"
+                                                       partialSubmit="true" binding="#{ballans.calcBtn}"
+                                                       partialTriggers="p2"
+                                                       icon="#{bindings.Cnt.inputValue == null ? '' : '/img/animated-gifs-alarm-11.gif'}"/>
                                             <af:spacer width="10" height="10" id="s1"/>
                                             <af:button text="Обновить" id="b2" actionListener="#{ballans.onRefresh}"/>
                                         </af:panelGroupLayout>
@@ -175,6 +177,8 @@
                                             <f:facet name="buttonBar"/>
                                         </af:dialog>
                                     </af:popup>
+                                    <af:poll id="p2" interval="-1" pollListener="#{ballans.onPoll}"
+                                             binding="#{ballans.pollBinding}"/>
                                 </af:panelBox>
                             </f:facet>
                             <f:facet name="start"/>

@@ -1,6 +1,8 @@
 var wsUri = "ws://",
     wssUri = "wss://",
     socketendpoint = "/service",
+    port= "8101",
+    sslport = "8102",
     wsconn = getWSUri(),
     websocket = new WebSocket(wsconn);
 
@@ -13,14 +15,33 @@ function getWSUri() {
     //console.log(arr[0]);
     //console.log(arr[2]);
     if (arr[0].indexOf("https") == 0) {
-        url = wssUri + arr[2] + "/" + arr[3] + socketendpoint;
+        url = wssUri + getHost(arr[2],1) + "/" + arr[3] + socketendpoint;
         //url = wssUri + "127.0.0.1/" + arr[3] + socketendpoint;
     } else {
-        url = wsUri + arr[2] + "/" + arr[3] + socketendpoint;
+        url = wsUri + getHost(arr[2],0) + "/" + arr[3] + socketendpoint;
         //url = wsUri + "127.0.0.1/" + arr[3] + socketendpoint;
     }
     //console.log('Uri ' + url);
     return url;
+}
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
+}
+
+function getHost(host ,ssl){
+    var host_arr = host.split(":");
+    console.log('port '+host_arr[1]);
+    if (typeof host_arr[1] === 'undefined'){
+        if (ssl == 1)
+        {
+            return host_arr[0] + ":" + sslport;
+        }
+        else {
+            return host_arr[0] + ":" + port;
+        }
+    } 
+    return host;
 }
 
 function onError(evt) {

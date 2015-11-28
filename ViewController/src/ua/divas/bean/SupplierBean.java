@@ -591,7 +591,7 @@ public class SupplierBean {
         if (oper != null) {
             oper.execute();
         }
-        SupplierWallet.recalcSumm();
+//        SupplierWallet.recalcSumm();
         onPopupSupplier(null);
 
         AdfFacesContext.getCurrentInstance().addPartialTarget(getBinButton());

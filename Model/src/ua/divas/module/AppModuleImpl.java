@@ -4584,6 +4584,14 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
       //if (System.getProperty("enableTrace") != null) {
         getDBTransaction().executeCommand("ALTER SESSION SET SQL_TRACE TRUE");
       //}
-    }  
+    }
+
+    /**
+     * Container's getter for MonitorBallansJobVO1.
+     * @return MonitorBallansJobVO1
+     */
+    public ViewObjectImpl getMonitorBallansJobVO1() {
+        return (ViewObjectImpl) findViewObject("MonitorBallansJobVO1");
+    }
 }
 

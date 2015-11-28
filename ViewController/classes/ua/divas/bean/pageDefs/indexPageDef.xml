@@ -86,22 +86,17 @@
         <AttrNames>
           <Item Value="Dat"/>
           <Item Value="Description"/>
-          <Item Value="Server" Binds="Server"/>
+          <Item Value="Server"/>
           <Item Value="Client" Binds="Client"/>
           <Item Value="TrgName"/>
           <Item Value="UserLogin"/>
+          <Item Value="RegString"/>
+          <Item Value="Fullname"/>
+          <Item Value="Phone"/>
+          <Item Value="Adress"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
-    <button IterBinding="NotificationView1Iterator" id="Client" DTSupportsMRU="false" StaticList="true">
-      <AttrNames>
-        <Item Value="Client"/>
-      </AttrNames>
-      <ValueList>
-        <Item Value="1"/>
-        <Item Value="0"/>
-      </ValueList>
-    </button>
     <button IterBinding="NotificationView1Iterator" id="Server" DTSupportsMRU="false" StaticList="true">
       <AttrNames>
         <Item Value="Server"/>
@@ -119,13 +114,13 @@
           <Item Value="kontragId" Binds="kontragId"/>
           <Item Value="orderId" Binds="orderId"/>
           <Item Value="isIn" Binds="isIn"/>
+          <Item Value="userId"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
     <methodAction id="clearSupplier" RequiresUpdateModel="true" Action="invokeMethod" MethodName="clearSupplier"
                   IsViewObjectMethod="false" DataControl="SupplierWallet"
                   InstanceName="data.SupplierWallet.dataProvider"/>
-    <action IterBinding="supplierListIterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
     <methodAction id="getSummAll" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getSummAll"
                   IsViewObjectMethod="false" DataControl="SupplierWallet"
                   InstanceName="data.SupplierWallet.dataProvider"
@@ -192,5 +187,27 @@
         <Item Value="KassaName"/>
       </ListDisplayAttrNames>
     </list>
+    <button IterBinding="NotificationView1Iterator" id="Client" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Client"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <action IterBinding="supplierListIterator" id="Delete"
+            InstanceName="ua.divas.bean.control.SupplierWallet.supplierList" DataControl="SupplierWallet"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="supplierListIterator" id="id">
+      <AttrNames>
+        <Item Value="id"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="removeSupplier" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeSupplier"
+                  IsViewObjectMethod="false" DataControl="SupplierWallet"
+                  InstanceName="data.SupplierWallet.dataProvider">
+      <NamedData NDName="_id" NDValue="#{bindings.id.inputValue}" NDType="java.lang.String"/>
+    </methodAction>
   </bindings>
 </pageDefinition>

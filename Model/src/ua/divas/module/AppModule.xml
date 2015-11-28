@@ -1072,6 +1072,9 @@
   <ViewUsage
     Name="VwSupplierDebtDetail1"
     ViewObjectName="ua.divas.view.VwSupplierDebtDetail"/>
+  <ViewUsage
+    Name="MonitorBallansJobVO1"
+    ViewObjectName="ua.divas.view.MonitorBallansJobVO"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"
