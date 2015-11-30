@@ -19,7 +19,7 @@
                               selectedRowKeys="#{bindings.VwBallansAp1.collectionModel.selectedRow}"
                               selectionListener="#{bindings.VwBallansAp1.collectionModel.makeCurrent}"
                               rowSelection="single" fetchSize="#{bindings.VwBallansAp1.rangeSize}" id="t1"
-                              allDetailsEnabled="true" partialTriggers="::b3">
+                              allDetailsEnabled="true">
                         <af:column headerText="#{bindings.VwBallansAp1.hints.Id.label}" id="c1" visible="false">
                             <af:outputText value="#{row.Id}" shortDesc="#{bindings.VwBallansAp1.hints.Id.tooltip}"
                                            id="ot1"/>

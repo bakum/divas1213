@@ -13,7 +13,7 @@
                                 <af:panelBox text="Баланс за период" id="pb1">
                                     <f:facet name="toolbar">
                                         <af:panelGroupLayout id="pgl2" layout="horizontal">
-                                            <af:link text="Свернутый баланс" id="l1" action="to_main"/>
+                                            <af:link text="Свернутый баланс" id="l1" action="to_main" rendered="false"/>
                                             <af:spacer width="10" height="10" id="s3"/>
                                             <af:inputDate value="#{bindings.f_dat.inputValue}" label="От:"
                                                           required="#{bindings.f_dat.hints.mandatory}"
@@ -133,17 +133,17 @@
                                                        align="right" width="120">
                                                 <af:outputText value="#{node.PassiveEnd}" id="ot11"
                                                                inlineStyle="#{node.PassiveEnd &lt; '0' ? 'font-weight:bold; color:Red' : 'font-weight:bold;'}"
-                                                               rendered="#{node.Code != '900' ? true : node.Fullname != null ? true : node.PassiveEnd &lt;= 0 ? true :false}"/>
+                                                               rendered="#{node.Code != '900' ? true : node.Fullname != null ? true : node.PassiveEnd == 0 ? true :false}"/>
                                                 <f:facet name="footer">
                                                     <af:outputText value="#{bindings.VwBallansAp1Iterator.viewObject.sum['PassiveEnd']}"
                                                                    id="ot14" inlineStyle="font-weight:bold;"/>
                                                 </f:facet>
                                                 <af:panelGroupLayout id="pgl3" layout="horizontal" halign="right">
                                                     <af:toolbar id="t1"
-                                                                rendered="#{node.PassiveEnd &lt;= 0 ? false : node.Fullname != null ? false : node.Code == '900' ? true : false}">
+                                                                rendered="#{node.PassiveEnd == 0 ? false : node.Fullname != null ? false : node.Code == '900' ? true : false}">
                                                         <af:button text="#{node.PassiveEnd}" id="b3"
                                                                    icon="/img/coins.png" shortDesc="Распределить сумму"
-                                                                   inlineStyle="font-weight:bold;">
+                                                                   inlineStyle="#{node.PassiveEnd &lt; '0' ? 'font-weight:bold;Color:Red;' : 'font-weight:bold;Color:Black;'}">
                                                             <af:showPopupBehavior popupId="::p1" align="endAfter"/>
                                                         </af:button>
                                                     </af:toolbar>

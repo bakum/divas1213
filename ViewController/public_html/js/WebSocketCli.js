@@ -1,6 +1,7 @@
 var wsUri = "ws://",
     wssUri = "wss://",
     socketendpoint = "/service",
+    //lochost = "127.0.0.1",
     port= "8101",
     sslport = "8102",
     wsconn = getWSUri(),
@@ -35,9 +36,11 @@ function getHost(host ,ssl){
     if (typeof host_arr[1] === 'undefined'){
         if (ssl == 1)
         {
+            //return lochost + ":" + sslport;
             return host_arr[0] + ":" + sslport;
         }
         else {
+            //return lochost + ":" + port;
             return host_arr[0] + ":" + port;
         }
     } 

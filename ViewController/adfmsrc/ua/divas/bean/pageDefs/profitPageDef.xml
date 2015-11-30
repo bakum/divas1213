@@ -4,16 +4,13 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="ProfitDistribView1" RangeSize="30" DataControl="AppModuleDataControl"
-              id="ProfitDistribView1Iterator">
+    <iterator Binds="ProfitDistribView1" RangeSize="10" DataControl="AppModuleDataControl"
+              id="ProfitDistribView1Iterator" RowCountThreshold="-1">
       <sortCriteria>
         <sort attribute="Dat" ascending="false"/>
       </sortCriteria>
     </iterator>
     <iterator Binds="VwProfitMoveVO1" RangeSize="25" DataControl="AppModuleDataControl" id="VwProfitMoveVO1Iterator"/>
-    <searchRegion Criteria="ProfitDistribViewCriteriaData"
-                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" Binds="ProfitDistribView1Iterator"
-                  id="ProfitDistribViewCriteriaDataQuery"/>
   </executables>
   <bindings>
     <tree IterBinding="ProfitDistribView1Iterator" id="ProfitDistribView1">

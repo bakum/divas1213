@@ -4,16 +4,20 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="ProfitDistribView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
-  PageIterMode="Full"
+  PageIterMode="Partial"
   ComponentClass="ua.divas.view.ProfitDistribViewImpl"
   RowClass="ua.divas.view.ProfitDistribViewRowImpl"
   ComponentInterface="ua.divas.view.common.ProfitDistribView"
   ClientProxyName="ua.divas.view.client.ProfitDistribViewClient"
-  OrderBy="DAT DESC">
+  OrderBy="DAT DESC"
+  QueryHint="FIRST_ROWS"
+  FetchMode="FETCH_AS_NEEDED"
+  FetchSize="50"
+  RangeSize="50">
   <DesignTime>
     <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
     <Attr Name="_isExpertMode" Value="true"/>
@@ -23,7 +27,8 @@
     Name="s_dat"
     Kind="viewcriteria"
     Type="java.sql.Timestamp">
-    <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
   </Variable>
   <ViewAccessor
     Name="DivisionsView1"
@@ -277,8 +282,8 @@ FROM  PROFIT_DISTRIB ProfitDistrib]]></SQLQuery>
     EntityAttrName="Summ"
     EntityUsage="ProfitDistrib"
     AliasName="SUMM">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[viewObject.getProfitByDivision(DivisionId)]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Dependencies>
       <Item
         Value="DivisionId"/>
@@ -340,7 +345,6 @@ FROM  PROFIT_DISTRIB ProfitDistrib]]></SQLQuery>
         Operator="ONORAFTER"
         Conjunction="AND"
         Value=":s_dat"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>

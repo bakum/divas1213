@@ -10,7 +10,8 @@
                         <af:panelStretchLayout id="psl1" dimensionsFrom="children">
                             <f:facet name="bottom"/>
                             <f:facet name="center">
-                                <af:panelBox text="Распределение прибыли" id="pb1" type="flow">
+                                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
                                     <f:facet name="toolbar">
                                         <af:toolbar id="t3">
                                             <af:button text="Добавить" id="b2" action="addProfit" useWindow="true"
@@ -28,6 +29,7 @@
                                                        action="#{profit.refresh}"/>
                                         </af:toolbar>
                                     </f:facet>
+                                    <f:facet name="statusbar"/>
                                     <af:table value="#{bindings.ProfitDistribView1.collectionModel}" var="row"
                                               rows="#{bindings.ProfitDistribView1.rangeSize}"
                                               emptyText="#{bindings.ProfitDistribView1.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
@@ -75,10 +77,6 @@
                                                 <af:convertNumber groupingUsed="false"
                                                                   pattern="#{bindings.ProfitDistribView1.hints.Summ.format}"/>
                                             </af:outputText>
-                                            <f:facet name="footer">
-                                                <af:outputText value="#{bindings.ProfitDistribView1Iterator.viewObject.sum['Summ']}" id="ot14"
-                                                               inlineStyle="font-weight: bold;"/>
-                                            </f:facet>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.ProfitDistribView1.hints.CurrId.name}"
                                                    sortable="true"
@@ -92,28 +90,6 @@
                                                 <f:selectItems value="#{row.bindings.CurrId.items}" id="si3"/>
                                                 <f:validator binding="#{row.bindings.CurrId.validator}"/>
                                             </af:selectOneChoice>
-                                        </af:column>
-                                        <af:column sortProperty="#{bindings.ProfitDistribView1.hints.Deleted.name}"
-                                                   sortable="true"
-                                                   headerText="#{bindings.ProfitDistribView1.hints.Deleted.label}"
-                                                   id="c3" visible="false">
-                                            <af:outputText value="#{row.Deleted}"
-                                                           shortDesc="#{bindings.ProfitDistribView1.hints.Deleted.tooltip}"
-                                                           id="ot3">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.ProfitDistribView1.hints.Deleted.format}"/>
-                                            </af:outputText>
-                                        </af:column>
-                                        <af:column sortProperty="#{bindings.ProfitDistribView1.hints.Posted.name}"
-                                                   sortable="true"
-                                                   headerText="#{bindings.ProfitDistribView1.hints.Posted.label}"
-                                                   id="c4" visible="false">
-                                            <af:outputText value="#{row.Posted}"
-                                                           shortDesc="#{bindings.ProfitDistribView1.hints.Posted.tooltip}"
-                                                           id="ot4">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.ProfitDistribView1.hints.Posted.format}"/>
-                                            </af:outputText>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.ProfitDistribView1.hints.DivisionId.name}"
                                                    sortable="true"
@@ -141,28 +117,6 @@
                                                 <f:validator binding="#{row.bindings.UserId.validator}"/>
                                             </af:selectOneChoice>
                                         </af:column>
-                                        <af:column sortProperty="#{bindings.ProfitDistribView1.hints.Editable.name}"
-                                                   sortable="true"
-                                                   headerText="#{bindings.ProfitDistribView1.hints.Editable.label}"
-                                                   id="c9" visible="false">
-                                            <af:outputText value="#{row.Editable}"
-                                                           shortDesc="#{bindings.ProfitDistribView1.hints.Editable.tooltip}"
-                                                           id="ot6">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.ProfitDistribView1.hints.Editable.format}"/>
-                                            </af:outputText>
-                                        </af:column>
-                                        <af:column sortProperty="#{bindings.ProfitDistribView1.hints.Enbl.name}"
-                                                   sortable="true"
-                                                   headerText="#{bindings.ProfitDistribView1.hints.Enbl.label}"
-                                                   id="c10" visible="false">
-                                            <af:outputText value="#{row.Enbl}"
-                                                           shortDesc="#{bindings.ProfitDistribView1.hints.Enbl.tooltip}"
-                                                           id="ot7">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.ProfitDistribView1.hints.Enbl.format}"/>
-                                            </af:outputText>
-                                        </af:column>
                                         <f:facet name="detailStamp">
                                             <af:panelLabelAndMessage label="#{bindings.ProfitDistribView1.hints.Comments.label}"
                                                                      id="plam1">
@@ -181,8 +135,7 @@
                                                                             actionListener="#{profit.onRemoveEntry}"/>
                                                     </af:group>
                                                     <af:group id="g2">
-                                                        <af:commandMenuItem
-                                                                            text="#{profit.del_label}"
+                                                        <af:commandMenuItem text="#{profit.del_label}"
                                                                             disabled="#{!bindings.Delete.enabled}"
                                                                             id="cmi4" icon="/img/file_delete.png">
                                                             <af:showPopupBehavior popupId="::pDelete"/>
@@ -194,15 +147,6 @@
                                                 </af:menu>
                                             </af:popup>
                                         </f:facet><f:facet name="footer"/>
-                                        <af:column headerText="#{bindings.ProfitDistribView1.hints.Deleted.label}"
-                                                   id="c19" visible="false">
-                                            <af:outputText value="#{row.Deleted}"
-                                                           shortDesc="#{bindings.ProfitDistribView1.hints.Deleted.tooltip}"
-                                                           id="ot15">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.ProfitDistribView1.hints.Deleted.format}"/>
-                                            </af:outputText>
-                                        </af:column>
                                     </af:table>
                                     <af:popup childCreation="deferred" autoCancel="disabled" id="pEntry"
                                               contentDelivery="lazyUncached">
@@ -272,25 +216,9 @@
                                                            inlineStyle="#{profit.del_style}"/>
                                         </af:dialog>
                                     </af:popup>
-                                </af:panelBox>
+                                </af:panelCollection>
                             </f:facet>
-                            <f:facet name="start">
-                                <af:panelDrawer id="pd1" height="60%" width="60%" position="left">
-                                    <af:showDetailItem text="Фильтры" id="sdi1" icon="/img/search.png"
-                                                       stretchChildren="first">
-                                        <af:panelGroupLayout layout="vertical" id="pgl2">
-                                            <af:panelHeader text="Распределение прибыли" id="ph1">
-                                                <af:query id="qryId1" headerText="Фильтр" disclosed="true"
-                                                          value="#{bindings.ProfitDistribViewCriteriaDataQuery.queryDescriptor}"
-                                                          model="#{bindings.ProfitDistribViewCriteriaDataQuery.queryModel}"
-                                                          queryListener="#{bindings.ProfitDistribViewCriteriaDataQuery.processQuery}"
-                                                          queryOperationListener="#{bindings.ProfitDistribViewCriteriaDataQuery.processQueryOperation}"
-                                                          resultComponentId="::t1"/>
-                                            </af:panelHeader>
-                                        </af:panelGroupLayout>
-                                    </af:showDetailItem>
-                                </af:panelDrawer>
-                            </f:facet>
+                            <f:facet name="start"/>
                             <f:facet name="end"/>
                             <f:facet name="top"/>
                         </af:panelStretchLayout>

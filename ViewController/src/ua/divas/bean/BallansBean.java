@@ -241,10 +241,10 @@ public class BallansBean {
             //oper.getParamsMap().put("p_div", getCurrentDivision());
             oper.execute();
 
-            try {
+            /* try {
                 this.onExecute(null);
             } catch (SchedulerException e) {
-            }
+            } */
         }
     }
 
@@ -267,8 +267,8 @@ public class BallansBean {
             fatal = true;
             /* } else if (!isDigit(object.toString())) {
             fatal = true; */
-        } else if (Float.parseFloat(object.toString()) <= 0) {
-            fatal = true;
+        //} else if (Float.parseFloat(object.toString()) <= 0) {
+        //    fatal = true;
         }
 
         if (fatal) {
@@ -276,7 +276,7 @@ public class BallansBean {
                                     new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ошибка",
                                                      "Заработная плата должна быть > 0")); */
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ошибка валидации",
-                                                          "Сумма должна быть > 0"));
+                                                          "Проверьте значение суммы"));
         }
 
 
