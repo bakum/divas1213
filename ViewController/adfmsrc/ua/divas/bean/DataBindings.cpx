@@ -76,6 +76,7 @@
     <page path="/WEB-INF/order-dialog-flow.xml#order-dialog-flow@refreshCurrentRow"
           usageId="ua_divas_bean_order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"/>
     <page path="/dogovor.jsff" usageId="ua_divas_bean_dogovorPageDef"/>
+    <page path="/kreditory.jsff" usageId="ua_divas_bean_kreditoryPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -146,6 +147,7 @@
     <page id="ua_divas_bean_order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"
           path="ua.divas.bean.pageDefs.order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"/>
     <page id="ua_divas_bean_dogovorPageDef" path="ua.divas.bean.pageDefs.dogovorPageDef"/>
+    <page id="ua_divas_bean_kreditoryPageDef" path="ua.divas.bean.pageDefs.kreditoryPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

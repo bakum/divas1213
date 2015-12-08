@@ -1075,6 +1075,16 @@
   <ViewUsage
     Name="MonitorBallansJobVO1"
     ViewObjectName="ua.divas.view.MonitorBallansJobVO"/>
+  <ViewUsage
+    Name="VwKontragKreditory1"
+    ViewObjectName="ua.divas.view.VwKontragKreditory">
+    <ViewCriteriaUsage
+      Name="VwKontragKreditory"
+      FullName="ua.divas.view.VwKontragKreditory.VwKontragKreditory"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="VwKreditoryMove1"
+    ViewObjectName="ua.divas.view.VwKreditoryMove"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"
@@ -2220,6 +2230,12 @@
     ViewLinkObjectName="ua.divas.view.VwSupplMovesNewSupplDetailFkLink"
     SrcViewUsageName="ua.divas.module.AppModule.VwSupplierMovesNew2"
     DstViewUsageName="ua.divas.module.AppModule.VwSupplierDebtDetail1"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="VwKreditoryKreditoryMoveFkLinl1"
+    ViewLinkObjectName="ua.divas.view.VwKreditoryKreditoryMoveFkLinl"
+    SrcViewUsageName="ua.divas.module.AppModule.VwKontragKreditory1"
+    DstViewUsageName="ua.divas.module.AppModule.VwKreditoryMove1"
     Reversed="false"/>
   <ClientInterface
     Name="__clientInterface">

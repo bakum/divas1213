@@ -164,7 +164,7 @@
                                         <af:panelTabbed position="above" id="pt4">
                                             <af:showDetailItem text="Тестирование" id="sdi32"
                                                                stretchChildren="first">
-                                                <af:region value="#{bindings.testingconfig1.regionModel}" id="r10"/>
+                                                <af:region value="#{bindings.kreditoryconfig1.regionModel}" id="r10"/>
                                             </af:showDetailItem>
                                         </af:panelTabbed>
                                     </af:showDetailItem>

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" topHeight="120px" theme="medium" partialTriggers="pc1:b2">
+                    <f:facet name="center">
+                        <af:panelBox text="Кредиторская задолженность" id="pb1">
+                            <f:facet name="toolbar"/>
+                            <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t1">
+                                        <af:button text="Обновить" id="b1" actionListener="#{kreditory.onRefresh}"/>
+                                        <af:button text="Быстрый поиск" id="b2" icon="/img/edit-find.png" type="check"
+                                                   selected="#{bindings.filter_rendered1.inputValue}">
+                                            <af:setPropertyListener from="#{!bindings.filter_rendered1.inputValue}"
+                                                                    to="#{bindings.filter_rendered1.inputValue}"
+                                                                    type="action"/>
+                                        </af:button>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:treeTable value="#{bindings.VwKontragKreditory1.treeModel}" var="node"
+                                              rowSelection="single" id="tt1" binding="#{kreditory.treeTable}">
+                                    <f:facet name="nodeStamp">
+                                        <af:column id="c1" headerText="Наименование/Регистратор" width="300">
+                                            <af:outputText value="#{node.Fullname}" id="ot1"
+                                                           rendered="#{node.Fullname == null ? false : true}"
+                                                           inlineStyle="font-weight:bold;"/>
+                                            <af:outputText value="#{node.RegString}" id="ot3"
+                                                           rendered="#{node.RegString == null ? false : true}"/>
+                                        </af:column>
+                                    </f:facet>
+                                    <f:facet name="pathStamp">
+                                        <af:outputText value="#{node}" id="ot2"/>
+                                    </f:facet>
+                                    <af:column id="c2" headerText="Период" align="center">
+                                        <af:outputText value="#{node.Period}" id="ot4">
+                                            <af:convertDateTime type="date" dateStyle="medium"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column id="c3" headerText="Выплаты" align="right">
+                                        <af:outputText value="#{node.Debet}" id="ot5"
+                                                       inlineStyle="#{node.Debet &lt; 0 ? 'color:Red;' : ''}">
+                                            <af:convertNumber type="number" minFractionDigits="2"
+                                                              maxFractionDigits="2"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column id="c4" headerText="Начисления" align="right">
+                                        <af:outputText value="#{node.Kredit}" id="ot6"
+                                                       inlineStyle="#{node.Kredit > 0 ? 'color:Red;' : ''}">
+                                            <af:convertNumber type="number" minFractionDigits="2"
+                                                              maxFractionDigits="2"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column id="c5" align="right" headerText="Задолженность">
+                                        <af:outputText value="#{node.Ballans}" id="ot7"/>
+                                    </af:column>
+                                </af:treeTable>
+                            </af:panelCollection>
+                        </af:panelBox>
+                    </f:facet>
+                    <f:facet name="top">
+                        <af:panelGroupLayout layout="vertical" id="pgl2"
+                                             rendered="#{bindings.filter_rendered1.inputValue}">
+                            <af:query id="qryId1" headerText="Поиск" disclosed="true"
+                                      value="#{bindings.VwKontragKreditoryQuery.queryDescriptor}"
+                                      model="#{bindings.VwKontragKreditoryQuery.queryModel}"
+                                      queryListener="#{bindings.VwKontragKreditoryQuery.processQuery}"
+                                      queryOperationListener="#{bindings.VwKontragKreditoryQuery.processQueryOperation}"
+                                      saveQueryMode="hidden" resultComponentId="::pc1:tt1"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

@@ -4593,5 +4593,29 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     public ViewObjectImpl getMonitorBallansJobVO1() {
         return (ViewObjectImpl) findViewObject("MonitorBallansJobVO1");
     }
+
+    /**
+     * Container's getter for VwKontragKreditory1.
+     * @return VwKontragKreditory1
+     */
+    public ViewObjectImpl getVwKontragKreditory1() {
+        return (ViewObjectImpl) findViewObject("VwKontragKreditory1");
+    }
+
+    /**
+     * Container's getter for VwKreditoryMove1.
+     * @return VwKreditoryMove1
+     */
+    public ViewObjectImpl getVwKreditoryMove1() {
+        return (ViewObjectImpl) findViewObject("VwKreditoryMove1");
+    }
+
+    /**
+     * Container's getter for VwKreditoryKreditoryMoveFkLinl1.
+     * @return VwKreditoryKreditoryMoveFkLinl1
+     */
+    public ViewLinkImpl getVwKreditoryKreditoryMoveFkLinl1() {
+        return (ViewLinkImpl) findViewLink("VwKreditoryKreditoryMoveFkLinl1");
+    }
 }
 

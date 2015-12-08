@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwKontragKreditorka"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwKontragKreditorka_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      trustMode="untrusted"
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+  </Variable>
+  <SQLQuery><![CDATA[SELECT VW_MOVES.SUBCONTO1_KRED ID,
+  KONTRAGENTS.FULLNAME,
+  SUM(case when VW_MOVES.KRED like '5091' then -VW_MOVES.SUM_KRED else VW_MOVES.SUM_KRED end) KREDIT,
+  MAX(KONTRAGENTS.USER_ID) USER_ID,
+  USER_SETTINGS.DIVISION_ID DIVISION_ID
+FROM VW_MOVES
+LEFT JOIN KONTRAGENTS
+ON VW_MOVES.SUBCONTO1_KRED = KONTRAGENTS.ID
+INNER JOIN USER_SETTINGS
+ON KONTRAGENTS.USER_ID = USER_SETTINGS.USER_ID
+WHERE VW_MOVES.KRED LIKE '5091' or VW_MOVES.KRED LIKE '20711'
+and
+upper(KONTRAGENTS.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as userTable)))
+GROUP BY VW_MOVES.SUBCONTO1_KRED,
+  KONTRAGENTS.FULLNAME,
+  USER_SETTINGS.DIVISION_ID
+ORDER BY KONTRAGENTS.FULLNAME]]></SQLQuery>
+  <ViewAttribute
+    Name="Id"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ID"
+    Expression="ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Fullname"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FULLNAME"
+    Expression="FULLNAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Kredit"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="KREDIT"
+    Expression="KREDIT"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="UserId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="USER_ID"
+    Expression="USER_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivisionId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVISION_ID"
+    Expression="DIVISION_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Id"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

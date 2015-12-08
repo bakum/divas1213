@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwKreditoryKreditoryMoveFkLinl"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwKreditoryKreditoryMoveFkLinl_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="VwKontragKreditory"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.VwKontragKreditory">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwKontragKreditory"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.VwKontragKreditory.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="VwKreditoryMove"
+    Cardinality="-1"
+    Owner="ua.divas.view.VwKreditoryMove">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwKreditoryMove"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.VwKreditoryMove.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>
