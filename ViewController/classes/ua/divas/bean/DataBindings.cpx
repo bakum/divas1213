@@ -77,6 +77,7 @@
           usageId="ua_divas_bean_order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"/>
     <page path="/dogovor.jsff" usageId="ua_divas_bean_dogovorPageDef"/>
     <page path="/kreditory.jsff" usageId="ua_divas_bean_kreditoryPageDef"/>
+    <page path="/callcenter_new.jsff" usageId="ua_divas_bean_callcenter_newPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -148,6 +149,7 @@
           path="ua.divas.bean.pageDefs.order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"/>
     <page id="ua_divas_bean_dogovorPageDef" path="ua.divas.bean.pageDefs.dogovorPageDef"/>
     <page id="ua_divas_bean_kreditoryPageDef" path="ua.divas.bean.pageDefs.kreditoryPageDef"/>
+    <page id="ua_divas_bean_callcenter_newPageDef" path="ua.divas.bean.pageDefs.callcenter_newPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

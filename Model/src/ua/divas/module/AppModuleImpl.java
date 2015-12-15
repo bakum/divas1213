@@ -18,6 +18,7 @@ import oracle.jbo.server.ViewObjectImpl;
 import oracle.jbo.server.ViewRowSetImpl;
 
 import ua.divas.module.common.AppModule;
+import ua.divas.view.CallCenterVOImpl;
 import ua.divas.view.CallLogViewImpl;
 import ua.divas.view.CompaignsViewImpl;
 import ua.divas.view.ContactDetailsViewImpl;
@@ -4616,6 +4617,30 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
      */
     public ViewLinkImpl getVwKreditoryKreditoryMoveFkLinl1() {
         return (ViewLinkImpl) findViewLink("VwKreditoryKreditoryMoveFkLinl1");
+    }
+
+    /**
+     * Container's getter for CallCenterVO1.
+     * @return CallCenterVO1
+     */
+    public CallCenterVOImpl getCallCenterVO1() {
+        return (CallCenterVOImpl) findViewObject("CallCenterVO1");
+    }
+
+    /**
+     * Container's getter for ContactDetailsView3.
+     * @return ContactDetailsView3
+     */
+    public ContactDetailsViewImpl getContactDetailsView3() {
+        return (ContactDetailsViewImpl) findViewObject("ContactDetailsView3");
+    }
+
+    /**
+     * Container's getter for ContactDetailsCCenterFkLink1.
+     * @return ContactDetailsCCenterFkLink1
+     */
+    public ViewLinkImpl getContactDetailsCCenterFkLink1() {
+        return (ViewLinkImpl) findViewLink("ContactDetailsCCenterFkLink1");
     }
 }
 

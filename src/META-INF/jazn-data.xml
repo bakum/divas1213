@@ -512,6 +512,11 @@
                 <name>/WEB-INF/kreditory-config.xml#kreditory-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -744,6 +749,11 @@
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/supplier-debt_new.xml#supplier-debt_new</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
                 <actions>view</actions>
               </permission>
             </permissions>
@@ -1113,6 +1123,11 @@
                 <name>/WEB-INF/kreditory-config.xml#kreditory-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1198,6 +1213,11 @@
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
                 <actions>view</actions>
               </permission>
             </permissions>
@@ -1388,6 +1408,11 @@
                 <name>/WEB-INF/gui-config.xml#gui-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1478,6 +1503,11 @@
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/call_center.xml#call_center</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
                 <actions>view</actions>
               </permission>
             </permissions>

@@ -36,8 +36,7 @@ public class ContactDetailsImpl extends DivasEntityNoDelete {
         CallLog,
         CompaignsDetails,
         Kontragents;
-        static AttributesEnum[] vals = null;
-        ;
+        private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
         public int index() {

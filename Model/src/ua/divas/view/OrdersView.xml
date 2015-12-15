@@ -783,14 +783,16 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
         </DesignTime>
         <Properties>
             <SchemaBasedProperties>
+                <TOOLTIP
+                    ResId="ua.divas.view.OrdersView.Zamername_TOOLTIP"/>
+                <DISPLAYWIDTH
+                    Value="20"/>
+                <CONTROLTYPE
+                    Value="combo_lov"/>
                 <LABEL
                   ResId="ua.divas.view.OrdersView.Zamername_LABEL"/>
-                <TOOLTIP
-                  ResId="ua.divas.view.OrdersView.Zamername_TOOLTIP"/>
-                <DISPLAYWIDTH
-                  Value="20"/>
-                <CONTROLTYPE
-                  Value="combo_lov"/>
+                <LABEL_PLURAL
+                    ResId="ua.divas.view.OrdersView.Zamername_LABEL_PLURAL"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>
@@ -849,14 +851,16 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as 
         </DesignTime>
         <Properties>
             <SchemaBasedProperties>
-                <LABEL
-                    ResId="ua.divas.view.OrdersView.AgentName_LABEL"/>
-                <TOOLTIP
-                    ResId="ua.divas.view.OrdersView.AgentName_TOOLTIP"/>
                 <DISPLAYWIDTH
                     Value="20"/>
                 <CONTROLTYPE
                     Value="combo_lov"/>
+                <LABEL
+                    ResId="ua.divas.view.OrdersView.AgentName_LABEL"/>
+                <LABEL_PLURAL
+                    ResId="ua.divas.view.OrdersView.AgentName_LABEL_PLURAL"/>
+                <TOOLTIP
+                    ResId="ua.divas.view.OrdersView.AgentName_TOOLTIP"/>
             </SchemaBasedProperties>
         </Properties>
     </ViewAttribute>

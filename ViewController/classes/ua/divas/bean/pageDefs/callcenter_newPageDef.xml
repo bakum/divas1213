@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="callcenter_newPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CallCenterVO1" RangeSize="25" DataControl="AppModuleDataControl" id="CallCenterVO1Iterator"
+              RowCountThreshold="-1">
+      <sortCriteria>
+        <sort attribute="Fullname" ascending="true"/>
+      </sortCriteria>
+    </iterator>
+    <searchRegion Binds="CallCenterVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CallCenterVO1Query"/>
+    <iterator Binds="ContactDetailsView3" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ContactDetailsView3Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CallCenterVO1Iterator" id="CallCenterVO1">
+      <nodeDefinition DefName="ua.divas.view.CallCenterVO" Name="CallCenterVO10">
+        <AttrNames>
+          <Item Value="Version"/>
+          <Item Value="Fullname"/>
+          <Item Value="CityId"/>
+          <Item Value="UserId"/>
+          <Item Value="Editable"/>
+          <Item Value="LastOrder"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action IterBinding="CallCenterVO1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="ContactDetailsView3Iterator" id="Adress">
+      <AttrNames>
+        <Item Value="Adress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView3Iterator" id="Phone">
+      <AttrNames>
+        <Item Value="Phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView3Iterator" id="Email">
+      <AttrNames>
+        <Item Value="Email"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView3Iterator" id="Editable1">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ContactDetailsView3Iterator" id="First" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="ContactDetailsView3Iterator" id="Previous" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="ContactDetailsView3Iterator" id="Next" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="ContactDetailsView3Iterator" id="Last" RequiresUpdateModel="true" Action="last"/>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="Fullname">
+      <AttrNames>
+        <Item Value="Fullname"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ContactDetailsView3Iterator" id="CreateInsert1" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

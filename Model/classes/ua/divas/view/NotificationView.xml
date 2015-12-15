@@ -52,6 +52,7 @@
   FROM Notification
   WHERE Notification.SERVER = 1
   AND Notification.CLIENT   = 0
+  AND upper(Notification.USER_LOGIN) = upper(:u_name)
   ) Count_Unread,
   KONTRAGENTS.FULLNAME,
   CONTACT_DETAILS.ADRESS,

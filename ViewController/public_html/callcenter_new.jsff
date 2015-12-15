@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t2">
+                                            <af:button actionListener="#{bindings.CreateInsert.execute}"
+                                                       text="Добавить" disabled="#{bindings.Commit.enabled}"
+                                                       id="b4"/>
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="bCommit4">
+                                                <af:setPropertyListener from="#{0}" to="#{bindings.Editable.inputValue}"
+                                                                        type="action"/>
+                                            </af:button>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="bRollback5">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                            <af:button text="Обновить" id="b5" disabled="#{bindings.Commit.enabled}"
+                                                       actionListener="#{ccenter_new.onRefresh}"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.CallCenterVO1.collectionModel}" var="row"
+                                              rows="#{bindings.CallCenterVO1.rangeSize}"
+                                              emptyText="#{bindings.CallCenterVO1.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.CallCenterVO1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.CallCenterVO1.collectionModel.makeCurrent}"
+                                              rowSelection="#{bindings.Editable.inputValue == 1 ? 'none' : 'single'}" fetchSize="#{bindings.CallCenterVO1.rangeSize}"
+                                              filterModel="#{bindings.CallCenterVO1Query.queryDescriptor}"
+                                              queryListener="#{bindings.CallCenterVO1Query.processQuery}"
+                                              filterVisible="true" varStatus="vs" id="t1" scrollPolicy="page"
+                                              partialTriggers="::bCommit4 ::bRollback5 ::b4"
+                                              binding="#{ccenter_new.table}">
+                                        <af:column id="c6" rowHeader="true">
+                                            <af:toolbar id="t3">
+                                                <af:button id="b2" icon="/img/edit-16.gif" shortDesc="Редактировать"
+                                                           immediate="true" disabled="#{bindings.Commit.enabled}">
+                                                    <af:setPropertyListener from="#{1}"
+                                                                            to="#{bindings.Editable.inputValue}"
+                                                                            type="action"/>
+                                                </af:button>
+                                                <af:button id="b3" icon="/img/bell.png"
+                                                           shortDesc="Создать напоминание" immediate="true"
+                                                           disabled="#{bindings.Commit.enabled}"/>
+                                                <af:button id="b1" icon="/img/Symbol_Add.png"
+                                                           shortDesc="Создать договор" immediate="true"
+                                                           disabled="#{bindings.Commit.enabled}"/>
+                                            </af:toolbar>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CallCenterVO1.hints.Version.name}" sortable="true"
+                                                   headerText="Дата" id="c1"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                                   width="80">
+                                            <f:facet name="filter">
+                                                <af:inputDate value="#{bindings.CallCenterVO1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.Version.value}"
+                                                              id="id1">
+                                                    <af:convertDateTime pattern="#{bindings.CallCenterVO1.hints.Version.format}"/>
+                                                </af:inputDate>
+                                            </f:facet>
+                                            <af:inputDate value="#{row.bindings.Version.inputValue}"
+                                                          label="#{bindings.CallCenterVO1.hints.Version.label}"
+                                                          required="#{bindings.CallCenterVO1.hints.Version.mandatory}"
+                                                          columns="#{bindings.CallCenterVO1.hints.Version.displayWidth}"
+                                                          shortDesc="#{bindings.CallCenterVO1.hints.Version.tooltip}"
+                                                          id="id2" readOnly="true">
+                                                <f:validator binding="#{row.bindings.Version.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.CallCenterVO1.hints.Version.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CallCenterVO1.hints.Fullname.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="Клиент" id="c2" width="250"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                                   align="center">
+                                            <af:inputText value="#{row.bindings.Fullname.inputValue}"
+                                                          label="#{bindings.CallCenterVO1.hints.Fullname.label}"
+                                                          required="#{bindings.CallCenterVO1.hints.Fullname.mandatory}"
+                                                          columns="#{bindings.CallCenterVO1.hints.Fullname.displayWidth}"
+                                                          maximumLength="#{bindings.CallCenterVO1.hints.Fullname.precision}"
+                                                          shortDesc="#{bindings.CallCenterVO1.hints.Fullname.tooltip}"
+                                                          id="it1">
+                                                <f:validator binding="#{row.bindings.Fullname.validator}"/>
+                                            </af:inputText>
+                                            <f:facet name="context">
+                                                <af:contextInfo id="ci1" visible="#{!bindings.Commit.enabled}">
+                                                    <af:showPopupBehavior popupId="::p1" align="beforeStart"
+                                                                          triggerType="contextInfo"/>
+                                                </af:contextInfo>
+                                            </f:facet>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CallCenterVO1.hints.CityId.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.CallCenterVO1.hints.CityId.label}" id="c3"
+                                                   width="150"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.CityId.inputValue}"
+                                                                label="#{row.bindings.CityId.label}"
+                                                                required="#{bindings.CallCenterVO1.hints.CityId.mandatory}"
+                                                                shortDesc="#{bindings.CallCenterVO1.hints.CityId.tooltip}"
+                                                                id="soc1">
+                                                <f:selectItems value="#{row.bindings.CityId.items}" id="si1"/>
+                                                <f:validator binding="#{row.bindings.CityId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CallCenterVO1.hints.UserId.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.CallCenterVO1.hints.UserId.label}" id="c4"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.UserId.inputValue}"
+                                                                label="#{row.bindings.UserId.label}"
+                                                                required="#{bindings.CallCenterVO1.hints.UserId.mandatory}"
+                                                                shortDesc="#{bindings.CallCenterVO1.hints.UserId.tooltip}"
+                                                                id="soc2" readOnly="true">
+                                                <f:selectItems value="#{row.bindings.UserId.items}" id="si2"/>
+                                                <f:validator binding="#{row.bindings.UserId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.CallCenterVO1.hints.LastOrder.label}" id="c5"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                                   width="180">
+                                            <af:outputText value="#{row.LastOrder}"
+                                                           shortDesc="#{bindings.CallCenterVO1.hints.LastOrder.tooltip}"
+                                                           id="ot1"/>
+                                        </af:column>
+                                    </af:table>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                              contentDelivery="lazyUncached" resetEditableValues="whenCanceled">
+                                        <af:dialog id="d1" title="Контакты: #{bindings.Fullname.inputValue}">
+                                            <f:facet name="buttonBar"/>
+                                            <af:panelFormLayout id="pfl1">
+                                                <af:inputText value="#{bindings.Adress.inputValue}"
+                                                              label="#{bindings.Adress.hints.label}"
+                                                              required="#{bindings.Adress.hints.mandatory}"
+                                                              columns="#{bindings.Adress.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Adress.hints.precision}"
+                                                              shortDesc="#{bindings.Adress.hints.tooltip}" id="it2"
+                                                              rows="5">
+                                                    <f:validator binding="#{bindings.Adress.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Phone.inputValue}"
+                                                              label="#{bindings.Phone.hints.label}"
+                                                              required="#{bindings.Phone.hints.mandatory}"
+                                                              columns="#{bindings.Phone.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Phone.hints.precision}"
+                                                              shortDesc="#{bindings.Phone.hints.tooltip}" id="it3">
+                                                    <f:validator binding="#{bindings.Phone.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Email.inputValue}"
+                                                              label="#{bindings.Email.hints.label}"
+                                                              required="#{bindings.Email.hints.mandatory}"
+                                                              columns="#{bindings.Email.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Email.hints.precision}"
+                                                              shortDesc="#{bindings.Email.hints.tooltip}" id="it4">
+                                                    <f:validator binding="#{bindings.Email.validator}"/>
+                                                </af:inputText>
+                                                <af:inputText value="#{bindings.Editable1.inputValue}"
+                                                              label="#{bindings.Editable1.hints.label}"
+                                                              required="#{bindings.Editable1.hints.mandatory}"
+                                                              columns="#{bindings.Editable1.hints.displayWidth}"
+                                                              maximumLength="#{bindings.Editable1.hints.precision}"
+                                                              shortDesc="#{bindings.Editable1.hints.tooltip}" id="it5"
+                                                              visible="false">
+                                                    <f:validator binding="#{bindings.Editable1.validator}"/>
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.Editable1.format}"/>
+                                                </af:inputText>
+                                                <f:facet name="footer">
+                                                    <af:panelGroupLayout layout="horizontal" id="pgl2">
+                                                        <af:button actionListener="#{bindings.CreateInsert1.execute}"
+                                                                   text="Добавить"
+                                                                   disabled="#{!bindings.CreateInsert1.enabled}"
+                                                                   id="b10"/>
+                                                        <af:spacer width="20" height="10" id="s1"/>
+                                                        <af:button actionListener="#{bindings.First.execute}"
+                                                                   text="First" disabled="#{!bindings.First.enabled}"
+                                                                   partialSubmit="true" id="b6"/>
+                                                        <af:button actionListener="#{bindings.Previous.execute}"
+                                                                   text="Previous"
+                                                                   disabled="#{!bindings.Previous.enabled}"
+                                                                   partialSubmit="true" id="b7"/>
+                                                        <af:button actionListener="#{bindings.Next.execute}" text="Next"
+                                                                   disabled="#{!bindings.Next.enabled}"
+                                                                   partialSubmit="true" id="b8"/>
+                                                        <af:button actionListener="#{bindings.Last.execute}" text="Last"
+                                                                   disabled="#{!bindings.Last.enabled}"
+                                                                   partialSubmit="true" id="b9"/>
+                                                    </af:panelGroupLayout>
+                                                </f:facet>
+                                            </af:panelFormLayout>
+                                        </af:dialog>
+                                    </af:popup>
+                                </af:panelCollection>
+                            </f:facet>
+                            <f:facet name="start"/>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

@@ -162,6 +162,9 @@
                                                        icon="/img/analytics.png"
                                                        rendered="#{securityContext.userInRole['tester']}">
                                         <af:panelTabbed position="above" id="pt4">
+                                            <af:showDetailItem text="Колл-центр (тест)" id="sdi33">
+                                                <af:region value="#{bindings.ccenter_new1.regionModel}" id="r18"/>
+                                            </af:showDetailItem>
                                             <af:showDetailItem text="Тестирование" id="sdi32"
                                                                stretchChildren="first">
                                                 <af:region value="#{bindings.kreditoryconfig1.regionModel}" id="r10"/>
