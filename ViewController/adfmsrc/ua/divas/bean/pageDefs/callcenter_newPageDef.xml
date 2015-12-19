@@ -3,8 +3,13 @@
                 Package="ua.divas.bean.pageDefs">
   <parameters/>
   <executables>
-    <variableIterator id="variables"/>
-    <iterator Binds="CallCenterVO1" RangeSize="25" DataControl="AppModuleDataControl" id="CallCenterVO1Iterator"
+    <variableIterator id="variables">
+      <variable Type="void" Name="addNotification_return" IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.addNotification.result}"/>
+      <variable Type="java.lang.String" Name="addNotification_desc" IsQueriable="false"/>
+      <variable Type="java.util.Date" Name="addNotification_dat" IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="CallCenterVO1" RangeSize="10" DataControl="AppModuleDataControl" id="CallCenterVO1Iterator"
               RowCountThreshold="-1">
       <sortCriteria>
         <sort attribute="Fullname" ascending="true"/>
@@ -14,6 +19,8 @@
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CallCenterVO1Query"/>
     <iterator Binds="ContactDetailsView3" RangeSize="25" DataControl="AppModuleDataControl"
               id="ContactDetailsView3Iterator"/>
+    <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
+    <iterator Binds="OrdersView1" RangeSize="10" DataControl="AppModuleDataControl" id="OrdersView1Iterator"/>
   </executables>
   <bindings>
     <tree IterBinding="CallCenterVO1Iterator" id="CallCenterVO1">
@@ -25,6 +32,12 @@
           <Item Value="UserId"/>
           <Item Value="Editable"/>
           <Item Value="LastOrder"/>
+          <Item Value="Phone"/>
+          <Item Value="Datzam"/>
+          <Item Value="Comments"/>
+          <Item Value="LastOrderId"/>
+          <Item Value="Deleted"/>
+          <Item Value="ContactId"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
@@ -67,5 +80,70 @@
     </attributeValues>
     <action IterBinding="ContactDetailsView3Iterator" id="CreateInsert1" RequiresUpdateModel="true"
             Action="createInsertRow"/>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="OrderFetchSize">
+      <AttrNames>
+        <Item Value="OrderFetchSize"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="Datzam">
+      <AttrNames>
+        <Item Value="Datzam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="Comments1">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="addOrder" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addOrder"
+                  IsViewObjectMethod="false" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.dataProvider"
+                  ReturnName="data.AppModuleDataControl.methodResults.addOrder_AppModuleDataControl_dataProvider_addOrder_result">
+      <NamedData NDName="kontragId" NDValue="#{bindings.Id.inputValue}" NDType="java.lang.String"/>
+      <NamedData NDName="comment" NDValue="#{bindings.Comments.inputValue}" NDType="java.lang.String"/>
+      <NamedData NDName="DatZam" NDValue="#{bindings.Datzam.inputValue}" NDType="java.lang.String"/>
+    </methodAction>
+    <action IterBinding="CallCenterVO1Iterator" id="Delete" InstanceName="AppModuleDataControl.CallCenterVO1"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="addNotification" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addNotification"
+                  IsViewObjectMethod="false" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.dataProvider"
+                  ReturnName="data.AppModuleDataControl.methodResults.addNotification_AppModuleDataControl_dataProvider_addNotification_result">
+      <NamedData NDName="cutid" NDType="java.lang.String"/>
+      <NamedData NDName="desc" NDType="java.lang.String" NDValue="${bindings.addNotification_desc}"/>
+      <NamedData NDName="dat" NDType="java.util.Date" NDValue="${bindings.addNotification_dat}"/>
+      <NamedData NDName="ObjId" NDType="java.lang.String"/>
+      <NamedData NDName="ContId" NDType="java.lang.String" NDValue="${bindings.ContactId.inputValue}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="desc">
+      <AttrNames>
+        <Item Value="addNotification_desc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dat">
+      <AttrNames>
+        <Item Value="addNotification_dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="LastOrderId">
+      <AttrNames>
+        <Item Value="LastOrderId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CallCenterVO1Iterator" id="ContactId">
+      <AttrNames>
+        <Item Value="ContactId"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

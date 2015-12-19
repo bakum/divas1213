@@ -51,6 +51,8 @@ public class KontragentsImpl extends DivasEntity {
         UserId,
         Photo,
         CityId,
+        Datzam,
+        Comments,
         Kontragents,
         ParentIdKontragents,
         CompaignsDetails,
@@ -108,6 +110,8 @@ public class KontragentsImpl extends DivasEntity {
     public static final int USERID = AttributesEnum.UserId.index();
     public static final int PHOTO = AttributesEnum.Photo.index();
     public static final int CITYID = AttributesEnum.CityId.index();
+    public static final int DATZAM = AttributesEnum.Datzam.index();
+    public static final int COMMENTS = AttributesEnum.Comments.index();
     public static final int KONTRAGENTS = AttributesEnum.Kontragents.index();
     public static final int PARENTIDKONTRAGENTS = AttributesEnum.ParentIdKontragents.index();
     public static final int COMPAIGNSDETAILS = AttributesEnum.CompaignsDetails.index();
@@ -425,6 +429,38 @@ public class KontragentsImpl extends DivasEntity {
      */
     public void setCityId(String value) {
         setAttributeInternal(CITYID, value);
+    }
+
+    /**
+     * Gets the attribute value for Datzam, using the alias name Datzam.
+     * @return the value of Datzam
+     */
+    public Timestamp getDatzam() {
+        return (Timestamp) getAttributeInternal(DATZAM);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for Datzam.
+     * @param value value to set the Datzam
+     */
+    public void setDatzam(Timestamp value) {
+        setAttributeInternal(DATZAM, value);
+    }
+
+    /**
+     * Gets the attribute value for Comments, using the alias name Comments.
+     * @return the value of Comments
+     */
+    public String getComments() {
+        return (String) getAttributeInternal(COMMENTS);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for Comments.
+     * @param value value to set the Comments
+     */
+    public void setComments(String value) {
+        setAttributeInternal(COMMENTS, value);
     }
 
     /**

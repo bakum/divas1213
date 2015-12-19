@@ -13,6 +13,46 @@
     <view id="callcenter_new">
       <page>/callcenter_new.jsff</page>
     </view>
+    <task-flow-call id="order-dialog-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/order-dialog-flow.xml</document>
+        <id>order-dialog-flow</id>
+      </task-flow-reference>
+      <return-value id="__7">
+        <name>OrderId</name>
+        <value>#{pageFlowScope.OrderId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+        <dialog-return-value>#{pageFlowScope.OrderId}</dialog-return-value>
+      </run-as-dialog>
+    </task-flow-call>
+    <method-call id="addOrder">
+      <method>#{bindings.addOrder.execute}</method>
+      <outcome>
+        <fixed-outcome>addOrder</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>callcenter_new</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>viewOrder</from-outcome>
+        <to-activity-id>order-dialog-flow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__4">
+        <from-outcome>newOrder</from-outcome>
+        <to-activity-id>addOrder</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>addOrder</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>addOrder</from-outcome>
+        <to-activity-id>order-dialog-flow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
     <use-page-fragments/>
   </task-flow-definition>
 </adfc-config>

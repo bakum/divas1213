@@ -2,6 +2,11 @@ package ua.divas.module;
 
 import java.math.BigDecimal;
 
+import java.text.DateFormat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 import oracle.jbo.Key;
@@ -3425,6 +3430,36 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
         }
 
     }
+    
+    public void addOrder(String kontragId, String comment, String DatZam){
+        DateFormat formatter;
+        java.util.Date date;
+            
+        formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        System.out.println("DatZam: "+DatZam);
+        
+        try {
+            date = formatter.parse(DatZam);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            date = new java.util.Date();
+        }
+        ViewObjectImpl order = getOrdersView1();
+            Row r2 = order.createRow();
+
+            r2.setAttribute("KontragId", kontragId);
+            r2.setAttribute("Discription", comment);
+            r2.setAttribute("DatZam", new oracle.jbo.domain.Timestamp(date.getTime()));
+            
+            try {
+                order.insertRow(r2); //Insert that row in ViewObject
+                //getDBTransaction().commit(); //Commit the changes
+                //pko.executeQuery();
+            } catch (Exception e) {
+                getDBTransaction().rollback(); //Commit the changes
+                e.printStackTrace();
+            }
+        }
 
     public void addPkoOrder(String kassaId, String kontragId, String OrderId, BigDecimal Summa) {
 

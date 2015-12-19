@@ -2625,5 +2625,21 @@
         Name="row"
         Type="oracle.jbo.Row"/>
     </Method>
+    <Method
+      Name="addOrder"
+      MethodName="addOrder">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="kontragId"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="comment"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="DatZam"
+        Type="java.lang.String"/>
+    </Method>
   </ClientInterface>
 </AppModule>

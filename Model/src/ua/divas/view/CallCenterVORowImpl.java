@@ -64,6 +64,11 @@ public class CallCenterVORowImpl extends ViewRowImpl {
         Version,
         Editable,
         LastOrder,
+        LastOrderId,
+        Phone,
+        ContactId,
+        Datzam,
+        Comments,
         ContactDetailsView,
         CityesView1,
         UsersView1;
@@ -112,6 +117,11 @@ public class CallCenterVORowImpl extends ViewRowImpl {
     public static final int VERSION = AttributesEnum.Version.index();
     public static final int EDITABLE = AttributesEnum.Editable.index();
     public static final int LASTORDER = AttributesEnum.LastOrder.index();
+    public static final int LASTORDERID = AttributesEnum.LastOrderId.index();
+    public static final int PHONE = AttributesEnum.Phone.index();
+    public static final int CONTACTID = AttributesEnum.ContactId.index();
+    public static final int DATZAM = AttributesEnum.Datzam.index();
+    public static final int COMMENTS = AttributesEnum.Comments.index();
     public static final int CONTACTDETAILSVIEW = AttributesEnum.ContactDetailsView.index();
     public static final int CITYESVIEW1 = AttributesEnum.CityesView1.index();
     public static final int USERSVIEW1 = AttributesEnum.UsersView1.index();
@@ -441,6 +451,62 @@ public class CallCenterVORowImpl extends ViewRowImpl {
      */
     public String getLastOrder() {
         return (String) getAttributeInternal(LASTORDER);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute LastOrderId.
+     * @return the LastOrderId
+     */
+    public String getLastOrderId() {
+        return (String) getAttributeInternal(LASTORDERID);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute Phone.
+     * @return the Phone
+     */
+    public String getPhone() {
+        return (String) getAttributeInternal(PHONE);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute ContactId.
+     * @return the ContactId
+     */
+    public String getContactId() {
+        return (String) getAttributeInternal(CONTACTID);
+    }
+
+    /**
+     * Gets the attribute value for DATZAM using the alias name Datzam.
+     * @return the DATZAM
+     */
+    public Timestamp getDatzam() {
+        return (Timestamp) getAttributeInternal(DATZAM);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for DATZAM using the alias name Datzam.
+     * @param value value to set the DATZAM
+     */
+    public void setDatzam(Timestamp value) {
+        setAttributeInternal(DATZAM, value);
+    }
+
+    /**
+     * Gets the attribute value for COMMENTS using the alias name Comments.
+     * @return the COMMENTS
+     */
+    public String getComments() {
+        return (String) getAttributeInternal(COMMENTS);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for COMMENTS using the alias name Comments.
+     * @param value value to set the COMMENTS
+     */
+    public void setComments(String value) {
+        setAttributeInternal(COMMENTS, value);
     }
 
     /**

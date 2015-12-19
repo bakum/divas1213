@@ -414,6 +414,46 @@
       </SchemaBasedProperties>
     </Properties>
   </Attribute>
+  <Attribute
+    Name="Datzam"
+    ColumnName="DATZAM"
+    SQLType="DATE"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    TableName="KONTRAGENTS">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kontragents.Datzam_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.Kontragents.Datzam_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kontragents.Datzam_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Comments"
+    Precision="2000"
+    ColumnName="COMMENTS"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KONTRAGENTS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kontragents.Comments_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.Kontragents.Comments_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kontragents.Comments_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
   <AccessorAttribute
     Name="Kontragents"
     Association="ua.divas.model.KontragentsKontragentsFk1Assoc"

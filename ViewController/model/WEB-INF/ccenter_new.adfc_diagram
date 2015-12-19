@@ -21,4 +21,66 @@
       <property
          name="pageFragment">true</property>
    </View>
+   <TaskFlowCall
+      id="TaskFlowCall3">
+      <property
+         name="taskFlowId">order-dialog-flow</property>
+      <property
+         name="activityId">order-dialog-flow</property>
+      <property
+         name="documentReference">/WEB-INF/order-dialog-flow.xml</property>
+      <property
+         name="runAsDialog">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>order-dialog-flow&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">106.53125</property>
+      <property
+         name="x">301.09082</property>
+   </TaskFlowCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="TaskFlowCall3">
+      <property
+         name="fromOutcome">viewOrder</property>
+      <property
+         name="sdm:polyPoints">R50,116.0,106.0625,260.09082,106.546875,L50</property>
+   </ControlFlowCase>
+   <MethodCall
+      id="MethodCall5">
+      <property
+         name="activityId">addOrder</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>addOrder&lt;/b>&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">264.51562</property>
+      <property
+         name="x">191.5</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View2"
+      to="MethodCall5">
+      <property
+         name="fromOutcome">newOrder</property>
+      <property
+         name="sdm:polyPoints">B50,75.0,160.0625,191.5,210.53125,T50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="MethodCall5"
+      to="TaskFlowCall3">
+      <property
+         name="fromOutcome">addOrder</property>
+      <property
+         name="sdm:polyPoints">T56,195.0,210.53125,301.09082,160.54688,B50</property>
+   </ControlFlowCase>
 </SDM>

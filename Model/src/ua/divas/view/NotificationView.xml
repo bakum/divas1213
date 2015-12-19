@@ -54,9 +54,21 @@
   AND Notification.CLIENT   = 0
   AND upper(Notification.USER_LOGIN) = upper(:u_name)
   ) Count_Unread,
-  KONTRAGENTS.FULLNAME,
-  CONTACT_DETAILS.ADRESS,
+  case 
+  when Notification.CONTACT is null then
+  KONTRAGENTS.FULLNAME
+  else (select fullname from kontragents where id = (select kontrag_id from CONTACT_DETAILS where id = Notification.CONTACT))
+  end FULLNAME,
+  case
+  when Notification.CONTACT is null then
+  CONTACT_DETAILS.ADRESS
+  else (select ADRESS from CONTACT_DETAILS where id = Notification.CONTACT)
+  end ADRESS,
+  case
+  when Notification.CONTACT is null then
   CONTACT_DETAILS.PHONE
+  else (select PHONE from CONTACT_DETAILS where id = Notification.CONTACT)
+  end PHONE
 FROM NOTIFICATION Notification
 LEFT JOIN ORDERS
 ON Notification.OBJECT_ID = ORDERS.ID

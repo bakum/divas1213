@@ -9,11 +9,12 @@
   BindingStyle="OracleName"
   CustomQuery="true"
   PageIterMode="Partial"
-  FetchSize="50"
+  FetchSize="100"
   FetchMode="FETCH_AS_NEEDED"
-  RangeSize="50"
+  RangeSize="100"
   ComponentClass="ua.divas.view.CallCenterVOImpl"
-  RowClass="ua.divas.view.CallCenterVORowImpl">
+  RowClass="ua.divas.view.CallCenterVORowImpl"
+  QueryHint="FIRST_ROWS">
   <DesignTime>
     <Attr Name="_isExpertMode" Value="true"/>
     <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
@@ -90,7 +91,13 @@
        Kontragents.VERSION,
        (select 0 from dual) editable,
        (select regstring FROM orders_by_dat o where o.kontrag_id = Kontragents.ID and
-        rownum = 1) last_order
+        rownum = 1) last_order,
+        (select id FROM orders_by_dat o where o.kontrag_id = Kontragents.ID and
+        rownum = 1) last_order_id,
+        (select phone from contact_details where kontrag_id = Kontragents.ID and rownum = 1) phone,
+        (select id from contact_details where kontrag_id = Kontragents.ID and rownum = 1) contact_id,
+        Kontragents.DATZAM,
+        Kontragents.COMMENTS
 FROM  KONTRAGENTS Kontragents
 where Kontragents.IS_BUYER = 1 and Kontragents.IS_GROUP = 0
 order by Kontragents.FULLNAME]]></SQLQuery>
@@ -298,6 +305,96 @@ order by Kontragents.FULLNAME]]></SQLQuery>
           ResId="ua.divas.view.CallCenterVO.LastOrder_LABEL_PLURAL"/>
         <TOOLTIP
           ResId="ua.divas.view.CallCenterVO.LastOrder_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LastOrderId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LAST_ORDER_ID"
+    Expression="LAST_ORDER_ID"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Phone"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PHONE"
+    Expression="PHONE"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="15"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.CallCenterVO.Phone_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.CallCenterVO.Phone_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.CallCenterVO.Phone_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ContactId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CONTACT_ID"
+    Expression="CONTACT_ID"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Datzam"
+    PrecisionRule="true"
+    EntityAttrName="Datzam"
+    EntityUsage="Kontragents"
+    AliasName="DATZAM"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMAT
+          ResId="ua.divas.view.CallCenterVO.Datzam_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="ua.divas.view.CallCenterVO.Datzam_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Comments"
+    PrecisionRule="true"
+    EntityAttrName="Comments"
+    EntityUsage="Kontragents"
+    AliasName="COMMENTS"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="50"/>
+        <DISPLAYHEIGHT
+          Value="3"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
