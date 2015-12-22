@@ -80,6 +80,7 @@
     <page path="/callcenter_new.jsff" usageId="ua_divas_bean_callcenter_newPageDef"/>
     <page path="/WEB-INF/ccenter_new.xml#ccenter_new@addOrder"
           usageId="ua_divas_bean_ccenter_new_ccenter_new_addOrderPageDef"/>
+    <page path="/infocard.jsff" usageId="ua_divas_bean_infocardPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -154,6 +155,7 @@
     <page id="ua_divas_bean_callcenter_newPageDef" path="ua.divas.bean.pageDefs.callcenter_newPageDef"/>
     <page id="ua_divas_bean_ccenter_new_ccenter_new_addOrderPageDef"
           path="ua.divas.bean.pageDefs.ccenter_new_ccenter_new_addOrderPageDef"/>
+    <page id="ua_divas_bean_infocardPageDef" path="ua.divas.bean.pageDefs.infocardPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

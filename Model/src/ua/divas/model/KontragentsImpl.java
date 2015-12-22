@@ -53,6 +53,7 @@ public class KontragentsImpl extends DivasEntity {
         CityId,
         Datzam,
         Comments,
+        InfocardId,
         Kontragents,
         ParentIdKontragents,
         CompaignsDetails,
@@ -112,6 +113,7 @@ public class KontragentsImpl extends DivasEntity {
     public static final int CITYID = AttributesEnum.CityId.index();
     public static final int DATZAM = AttributesEnum.Datzam.index();
     public static final int COMMENTS = AttributesEnum.Comments.index();
+    public static final int INFOCARDID = AttributesEnum.InfocardId.index();
     public static final int KONTRAGENTS = AttributesEnum.Kontragents.index();
     public static final int PARENTIDKONTRAGENTS = AttributesEnum.ParentIdKontragents.index();
     public static final int COMPAIGNSDETAILS = AttributesEnum.CompaignsDetails.index();
@@ -461,6 +463,22 @@ public class KontragentsImpl extends DivasEntity {
      */
     public void setComments(String value) {
         setAttributeInternal(COMMENTS, value);
+    }
+
+    /**
+     * Gets the attribute value for InfocardId, using the alias name InfocardId.
+     * @return the value of InfocardId
+     */
+    public String getInfocardId() {
+        return (String) getAttributeInternal(INFOCARDID);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for InfocardId.
+     * @param value value to set the InfocardId
+     */
+    public void setInfocardId(String value) {
+        setAttributeInternal(INFOCARDID, value);
     }
 
     /**

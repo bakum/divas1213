@@ -6,8 +6,6 @@
     <variableIterator id="variables">
       <variable Name="kassa" Type="java.lang.String"/>
     </variableIterator>
-    <taskFlow id="call_center1" taskFlowId="/WEB-INF/call_center.xml#call_center" activation="deferred"
-              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="direct1" taskFlowId="/WEB-INF/directories.xml#direct" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="users1" taskFlowId="/WEB-INF/users.xml#users" activation="deferred"
@@ -73,6 +71,8 @@
     <taskFlow id="kreditoryconfig1" taskFlowId="/WEB-INF/kreditory-config.xml#kreditory-config" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="ccenter_new1" taskFlowId="/WEB-INF/ccenter_new.xml#ccenter_new" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="infoconfig1" taskFlowId="/WEB-INF/info-config.xml#info-config" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>

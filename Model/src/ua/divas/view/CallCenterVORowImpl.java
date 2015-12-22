@@ -69,9 +69,11 @@ public class CallCenterVORowImpl extends ViewRowImpl {
         ContactId,
         Datzam,
         Comments,
+        InfocardId,
         ContactDetailsView,
         CityesView1,
-        UsersView1;
+        UsersView1,
+        InfocardView1;
         static AttributesEnum[] vals = null;
         ;
         private static final int firstIndex = 0;
@@ -122,9 +124,11 @@ public class CallCenterVORowImpl extends ViewRowImpl {
     public static final int CONTACTID = AttributesEnum.ContactId.index();
     public static final int DATZAM = AttributesEnum.Datzam.index();
     public static final int COMMENTS = AttributesEnum.Comments.index();
+    public static final int INFOCARDID = AttributesEnum.InfocardId.index();
     public static final int CONTACTDETAILSVIEW = AttributesEnum.ContactDetailsView.index();
     public static final int CITYESVIEW1 = AttributesEnum.CityesView1.index();
     public static final int USERSVIEW1 = AttributesEnum.UsersView1.index();
+    public static final int INFOCARDVIEW1 = AttributesEnum.InfocardView1.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -510,6 +514,22 @@ public class CallCenterVORowImpl extends ViewRowImpl {
     }
 
     /**
+     * Gets the attribute value for INFOCARD_ID using the alias name InfocardId.
+     * @return the INFOCARD_ID
+     */
+    public String getInfocardId() {
+        return (String) getAttributeInternal(INFOCARDID);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for INFOCARD_ID using the alias name InfocardId.
+     * @param value value to set the INFOCARD_ID
+     */
+    public void setInfocardId(String value) {
+        setAttributeInternal(INFOCARDID, value);
+    }
+
+    /**
      * Gets the associated <code>RowIterator</code> using master-detail link ContactDetailsView.
      */
     public RowIterator getContactDetailsView() {
@@ -528,6 +548,13 @@ public class CallCenterVORowImpl extends ViewRowImpl {
      */
     public RowSet getUsersView1() {
         return (RowSet) getAttributeInternal(USERSVIEW1);
+    }
+
+    /**
+     * Gets the view accessor <code>RowSet</code> InfocardView1.
+     */
+    public RowSet getInfocardView1() {
+        return (RowSet) getAttributeInternal(INFOCARDVIEW1);
     }
 
 }

@@ -110,6 +110,19 @@
                                                 </af:contextInfo>
                                             </f:facet>
                                         </af:column>
+                                        <af:column headerText="#{bindings.CallCenterVO1.hints.InfocardId.label}"
+                                                   id="c11" width="60" filterable="true"
+                                                   sortProperty="#{bindings.CallCenterVO1.hints.InfocardId.name}"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                            <af:selectOneChoice value="#{row.bindings.InfocardId.inputValue}"
+                                                                label="#{row.bindings.InfocardId.label}"
+                                                                required="#{bindings.CallCenterVO1.hints.InfocardId.mandatory}"
+                                                                shortDesc="#{bindings.CallCenterVO1.hints.InfocardId.tooltip}"
+                                                                id="soc3">
+                                                <f:selectItems value="#{row.bindings.InfocardId.items}" id="si3"/>
+                                                <f:validator binding="#{row.bindings.InfocardId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
                                         <af:column headerText="#{bindings.CallCenterVO1.hints.Phone.label}" id="c7"
                                                    inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
                                             <af:outputText value="#{row.Phone}"
@@ -165,13 +178,13 @@
                                                                 label="#{row.bindings.UserId.label}"
                                                                 required="#{bindings.CallCenterVO1.hints.UserId.mandatory}"
                                                                 shortDesc="#{bindings.CallCenterVO1.hints.UserId.tooltip}"
-                                                                id="soc2" readOnly="true">
+                                                                id="soc2">
                                                 <f:selectItems value="#{row.bindings.UserId.items}" id="si2"/>
                                                 <f:validator binding="#{row.bindings.UserId.validator}"/>
                                             </af:selectOneChoice>
                                         </af:column>
                                         <af:column headerText="#{bindings.CallCenterVO1.hints.Comments.label}" id="c9"
-                                                   width="280"
+                                                   width="200"
                                                    inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
                                             <af:inputText value="#{row.bindings.Comments.inputValue}"
                                                           label="#{bindings.CallCenterVO1.hints.Comments.label}"

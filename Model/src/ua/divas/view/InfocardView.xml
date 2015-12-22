@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="InfocardView"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ua.divas.view.InfocardViewRowImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <SQLQuery><![CDATA[SELECT Infocard.ID, 
+       Infocard.FULLNAME, 
+       Infocard.SUMMA,
+       (select 0 from dual) Editable
+FROM  INFOCARD Infocard]]></SQLQuery>
+  <EntityUsage
+    Name="Infocard"
+    Entity="ua.divas.model.Infocard"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Infocard"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Fullname"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Fullname"
+    EntityUsage="Infocard"
+    AliasName="FULLNAME"/>
+  <ViewAttribute
+    Name="Summa"
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="Infocard"
+    AliasName="SUMMA"/>
+  <ViewAttribute
+    Name="Editable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="EDITABLE"
+    Expression="EDITABLE"
+    SQLType="NUMERIC"
+    IsQueriable="false"/>
+</ViewObject>

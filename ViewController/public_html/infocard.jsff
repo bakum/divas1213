@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:decorativeBox id="db1" theme="medium">
+                    <f:facet name="center">
+                        <af:panelStretchLayout id="psl1">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center">
+                                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t3">
+                                            <af:button actionListener="#{bindings.Commit.execute}" text="Сохранить"
+                                                       disabled="#{!bindings.Commit.enabled}" id="b2">
+                                                <af:setPropertyListener from="#{0}" to="#{bindings.Editable.inputValue}"
+                                                                        type="action"/>
+                                            </af:button>
+                                            <af:button actionListener="#{bindings.Rollback.execute}" text="Отменить"
+                                                       disabled="#{!bindings.Rollback.enabled}" immediate="true"
+                                                       id="b3">
+                                                <af:resetActionListener/>
+                                            </af:button>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.InfocardView1.collectionModel}" var="row"
+                                              rows="#{bindings.InfocardView1.rangeSize}"
+                                              emptyText="#{bindings.InfocardView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.InfocardView1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.InfocardView1.collectionModel.makeCurrent}"
+                                              rowSelection="#{bindings.Editable.inputValue == 1 ? 'none' : 'single'}" fetchSize="#{bindings.InfocardView1.rangeSize}"
+                                              id="t1">
+                                        <af:column id="c1" width="50" rowHeader="true">
+                                            <af:toolbar id="t2">
+                                                <af:button id="b1" icon="/img/edit-16.gif"
+                                                           disabled="#{bindings.Commit.enabled}" immediate="true"
+                                                           shortDesc="Редактировать">
+                                                    <af:setPropertyListener from="#{1}"
+                                                                            to="#{bindings.Editable.inputValue}"
+                                                                            type="action"/>
+                                                </af:button>
+                                            </af:toolbar>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.InfocardView1.hints.Fullname.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.InfocardView1.hints.Fullname.label}" id="c2"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                            <af:inputText value="#{row.bindings.Fullname.inputValue}"
+                                                          label="#{bindings.InfocardView1.hints.Fullname.label}"
+                                                          required="#{bindings.InfocardView1.hints.Fullname.mandatory}"
+                                                          columns="#{bindings.InfocardView1.hints.Fullname.displayWidth}"
+                                                          maximumLength="#{bindings.InfocardView1.hints.Fullname.precision}"
+                                                          shortDesc="#{bindings.InfocardView1.hints.Fullname.tooltip}"
+                                                          id="it2">
+                                                <f:validator binding="#{row.bindings.Fullname.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.InfocardView1.hints.Summa.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.InfocardView1.hints.Summa.label}" id="c3"
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                            <af:inputNumberSpinbox value="#{row.bindings.Summa.inputValue}"
+                                                                   label="#{bindings.InfocardView1.hints.Summa.label}"
+                                                                   required="#{bindings.InfocardView1.hints.Summa.mandatory}"
+                                                                   columns="#{bindings.InfocardView1.hints.Summa.displayWidth}"
+                                                                   shortDesc="#{bindings.InfocardView1.hints.Summa.tooltip}"
+                                                                   id="it3">
+                                                <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.InfocardView1.hints.Summa.format}"/>
+                                            </af:inputNumberSpinbox>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </f:facet>
+                            <f:facet name="start"/>
+                            <f:facet name="end"/>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                    <f:facet name="top"/>
+                </af:decorativeBox>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

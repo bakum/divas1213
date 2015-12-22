@@ -38,6 +38,7 @@
           <Item Value="LastOrderId"/>
           <Item Value="Deleted"/>
           <Item Value="ContactId"/>
+          <Item Value="InfocardId"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

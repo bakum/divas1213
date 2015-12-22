@@ -26,6 +26,20 @@
         ResId="ua.divas.view.CallCenterVO_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression
+      trustMode="untrusted"
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
   <ViewAccessor
     Name="CityesView1"
     ViewObjectName="ua.divas.view.CityesView"
@@ -33,6 +47,10 @@
   <ViewAccessor
     Name="UsersView1"
     ViewObjectName="ua.divas.view.UsersView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="InfocardView1"
+    ViewObjectName="ua.divas.view.InfocardView"
     RowLevelBinds="true"/>
   <ListBinding
     Name="LOV_CityId"
@@ -71,6 +89,25 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
+  <ListBinding
+    Name="LOV_InfocardId"
+    ListVOName="InfocardView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="InfocardId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery><![CDATA[SELECT Kontragents.CITY_ID, 
        Kontragents.DELETED, 
        Kontragents.FULLNAME, 
@@ -97,9 +134,12 @@
         (select phone from contact_details where kontrag_id = Kontragents.ID and rownum = 1) phone,
         (select id from contact_details where kontrag_id = Kontragents.ID and rownum = 1) contact_id,
         Kontragents.DATZAM,
-        Kontragents.COMMENTS
+        Kontragents.COMMENTS,
+        Kontragents.INFOCARD_ID
 FROM  KONTRAGENTS Kontragents
 where Kontragents.IS_BUYER = 1 and Kontragents.IS_GROUP = 0
+and 
+upper(Kontragents.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as userTable))) 
 order by Kontragents.FULLNAME]]></SQLQuery>
   <EntityUsage
     Name="Kontragents"
@@ -395,6 +435,22 @@ order by Kontragents.FULLNAME]]></SQLQuery>
           Value="50"/>
         <DISPLAYHEIGHT
           Value="3"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="InfocardId"
+    PrecisionRule="true"
+    EntityAttrName="InfocardId"
+    EntityUsage="Kontragents"
+    AliasName="INFOCARD_ID"
+    LOVName="LOV_InfocardId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

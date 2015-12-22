@@ -1091,6 +1091,9 @@
   <ViewUsage
     Name="ContactDetailsView3"
     ViewObjectName="ua.divas.view.ContactDetailsView"/>
+  <ViewUsage
+    Name="InfocardView1"
+    ViewObjectName="ua.divas.view.InfocardView"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"

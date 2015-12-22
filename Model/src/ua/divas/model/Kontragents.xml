@@ -454,6 +454,28 @@
       </SchemaBasedProperties>
     </Properties>
   </Attribute>
+  <Attribute
+    Name="InfocardId"
+    Precision="50"
+    ColumnName="INFOCARD_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="KONTRAGENTS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kontragents.InfocardId_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.Kontragents.InfocardId_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kontragents.InfocardId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
   <AccessorAttribute
     Name="Kontragents"
     Association="ua.divas.model.KontragentsKontragentsFk1Assoc"

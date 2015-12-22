@@ -4677,5 +4677,13 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     public ViewLinkImpl getContactDetailsCCenterFkLink1() {
         return (ViewLinkImpl) findViewLink("ContactDetailsCCenterFkLink1");
     }
+
+    /**
+     * Container's getter for InfocardView1.
+     * @return InfocardView1
+     */
+    public ViewObjectImpl getInfocardView1() {
+        return (ViewObjectImpl) findViewObject("InfocardView1");
+    }
 }
 
