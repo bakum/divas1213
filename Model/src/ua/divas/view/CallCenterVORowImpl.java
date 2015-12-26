@@ -70,6 +70,7 @@ public class CallCenterVORowImpl extends ViewRowImpl {
         Datzam,
         Comments,
         InfocardId,
+        Created,
         ContactDetailsView,
         CityesView1,
         UsersView1,
@@ -125,6 +126,7 @@ public class CallCenterVORowImpl extends ViewRowImpl {
     public static final int DATZAM = AttributesEnum.Datzam.index();
     public static final int COMMENTS = AttributesEnum.Comments.index();
     public static final int INFOCARDID = AttributesEnum.InfocardId.index();
+    public static final int CREATED = AttributesEnum.Created.index();
     public static final int CONTACTDETAILSVIEW = AttributesEnum.ContactDetailsView.index();
     public static final int CITYESVIEW1 = AttributesEnum.CityesView1.index();
     public static final int USERSVIEW1 = AttributesEnum.UsersView1.index();
@@ -527,6 +529,22 @@ public class CallCenterVORowImpl extends ViewRowImpl {
      */
     public void setInfocardId(String value) {
         setAttributeInternal(INFOCARDID, value);
+    }
+
+    /**
+     * Gets the attribute value for CREATED using the alias name Created.
+     * @return the CREATED
+     */
+    public Timestamp getCreated() {
+        return (Timestamp) getAttributeInternal(CREATED);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for CREATED using the alias name Created.
+     * @param value value to set the CREATED
+     */
+    public void setCreated(Timestamp value) {
+        setAttributeInternal(CREATED, value);
     }
 
     /**

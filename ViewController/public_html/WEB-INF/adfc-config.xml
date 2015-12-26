@@ -9,17 +9,31 @@
   <view id="reg_code">
     <page>/reg_code.jsf</page>
   </view>
+  <view id="financial">
+    <page>/financial.jsf</page>
+  </view>
   <control-flow-rule id="__1">
     <from-activity-id>index</from-activity-id>
     <control-flow-case id="__2">
       <from-outcome>home</from-outcome>
       <to-activity-id>home</to-activity-id>
     </control-flow-case>
+    <control-flow-case id="__13">
+      <from-outcome>finance</from-outcome>
+      <to-activity-id>financial</to-activity-id>
+    </control-flow-case>
   </control-flow-rule>
   <control-flow-rule id="__3">
     <from-activity-id>home</from-activity-id>
     <control-flow-case id="__4">
       <from-outcome>index</from-outcome>
+      <to-activity-id>index</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__14">
+    <from-activity-id>financial</from-activity-id>
+    <control-flow-case id="__15">
+      <from-outcome>home</from-outcome>
       <to-activity-id>index</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
@@ -51,7 +65,7 @@
   <managed-bean id="__10">
     <managed-bean-name>notification</managed-bean-name>
     <managed-bean-class>ua.divas.bean.control.NotificationBean</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
+    <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
   <managed-bean id="__11">
     <managed-bean-name>reminder</managed-bean-name>

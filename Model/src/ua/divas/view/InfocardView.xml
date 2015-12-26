@@ -8,8 +8,12 @@
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
-  PageIterMode="Full"
-  RowClass="ua.divas.view.InfocardViewRowImpl">
+  PageIterMode="Partial"
+  RowClass="ua.divas.view.InfocardViewRowImpl"
+  FetchMode="FETCH_AS_NEEDED"
+  FetchSize="20"
+  QueryHint="FIRST_ROWS"
+  RangeSize="20">
   <DesignTime>
     <Attr Name="_isExpertMode" Value="true"/>
     <Attr Name="_codeGenFlag2" Value="Access"/>
@@ -29,7 +33,8 @@ FROM  INFOCARD Infocard]]></SQLQuery>
     PrecisionRule="true"
     EntityAttrName="Id"
     EntityUsage="Infocard"
-    AliasName="ID"/>
+    AliasName="ID"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="Fullname"
     IsNotNull="true"

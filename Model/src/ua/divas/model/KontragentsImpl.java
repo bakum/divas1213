@@ -54,6 +54,7 @@ public class KontragentsImpl extends DivasEntity {
         Datzam,
         Comments,
         InfocardId,
+        Created,
         Kontragents,
         ParentIdKontragents,
         CompaignsDetails,
@@ -114,6 +115,7 @@ public class KontragentsImpl extends DivasEntity {
     public static final int DATZAM = AttributesEnum.Datzam.index();
     public static final int COMMENTS = AttributesEnum.Comments.index();
     public static final int INFOCARDID = AttributesEnum.InfocardId.index();
+    public static final int CREATED = AttributesEnum.Created.index();
     public static final int KONTRAGENTS = AttributesEnum.Kontragents.index();
     public static final int PARENTIDKONTRAGENTS = AttributesEnum.ParentIdKontragents.index();
     public static final int COMPAIGNSDETAILS = AttributesEnum.CompaignsDetails.index();
@@ -479,6 +481,22 @@ public class KontragentsImpl extends DivasEntity {
      */
     public void setInfocardId(String value) {
         setAttributeInternal(INFOCARDID, value);
+    }
+
+    /**
+     * Gets the attribute value for Created, using the alias name Created.
+     * @return the value of Created
+     */
+    public Timestamp getCreated() {
+        return (Timestamp) getAttributeInternal(CREATED);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for Created.
+     * @param value value to set the Created
+     */
+    public void setCreated(Timestamp value) {
+        setAttributeInternal(CREATED, value);
     }
 
     /**

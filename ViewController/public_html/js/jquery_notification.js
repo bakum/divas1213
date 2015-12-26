@@ -72,7 +72,7 @@ function Growl(ttl,mess, stl){
           style: stl,
           size: "large",
           message: mess,
-          duration: 6200
+          duration: 300000
         }
     );
 } 

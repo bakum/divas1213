@@ -9,7 +9,12 @@
   DBObjectType="table"
   DBObjectName="INFOCARD"
   AliasName="Infocard"
-  BindingStyle="OracleName">
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.InfocardImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
   <Attribute
     Name="Id"
     IsNotNull="true"

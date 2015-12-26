@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
-    <af:document title="SiGRAND CRM" id="d1">
+    <af:document title="SiGRAND CRM - Главная" id="d1">
         <af:messages id="m1"/>
         <af:form id="f1" usesUpload="true">
             <af:panelGridLayout id="pgl1">
@@ -208,6 +208,11 @@
                                     <af:spacer width="10" height="10" id="s8"/>
                                     <af:link id="l4" targetFrame="_blank" destination="http://bmexp.com"
                                              text="#{login.versionStr}"/>
+                                    <af:spacer width="10" height="10" id="s11"/>
+                                    <af:navigationPane id="np1" hint="choice">
+                                        <af:commandNavigationItem id="ni1" text="Главная" selected="true"/>
+                                        <af:commandNavigationItem text="Финансы" id="cni1" action="finance"/>
+                                    </af:navigationPane>
                                     <af:popup childCreation="deferred" autoCancel="disabled" id="pLogin">
                                         <af:dialog id="d2" title="Авторизация" dialogListener="#{login.OnLoginAction}">
                                             <f:facet name="buttonBar"/>

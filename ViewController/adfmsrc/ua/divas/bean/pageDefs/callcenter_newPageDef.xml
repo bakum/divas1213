@@ -26,19 +26,19 @@
     <tree IterBinding="CallCenterVO1Iterator" id="CallCenterVO1">
       <nodeDefinition DefName="ua.divas.view.CallCenterVO" Name="CallCenterVO10">
         <AttrNames>
-          <Item Value="Version"/>
-          <Item Value="Fullname"/>
           <Item Value="CityId"/>
-          <Item Value="UserId"/>
-          <Item Value="Editable"/>
-          <Item Value="LastOrder"/>
-          <Item Value="Phone"/>
-          <Item Value="Datzam"/>
           <Item Value="Comments"/>
-          <Item Value="LastOrderId"/>
-          <Item Value="Deleted"/>
           <Item Value="ContactId"/>
+          <Item Value="Created"/>
+          <Item Value="Datzam"/>
+          <Item Value="Editable"/>
+          <Item Value="Fullname"/>
+          <Item Value="Deleted"/>
           <Item Value="InfocardId"/>
+          <Item Value="LastOrder"/>
+          <Item Value="LastOrderId"/>
+          <Item Value="Phone"/>
+          <Item Value="UserId"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

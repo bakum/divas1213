@@ -522,6 +522,11 @@
                 <name>/WEB-INF/info-config.xml#info-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.financialPageDef</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1138,6 +1143,11 @@
                 <name>/WEB-INF/info-config.xml#info-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.financialPageDef</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1518,6 +1528,11 @@
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/order-dialog-flow.xml#order-dialog-flow</name>
                 <actions>view</actions>
               </permission>
             </permissions>

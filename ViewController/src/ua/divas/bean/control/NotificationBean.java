@@ -62,7 +62,9 @@ public class NotificationBean {
     public void refresh() {
         DCBindingContainer binding = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
         DCIteratorBinding it = binding.findIteratorBinding("NotificationView1Iterator");
-        it.executeQuery();
+        if (it != null) {
+            it.executeQuery();
+        }
     }
 
     public String commitChange() {
@@ -327,7 +329,7 @@ public class NotificationBean {
                     pko.execute();
                 }
             }
-           // SupplierWallet.removeSupplier(o.getId());
+            // SupplierWallet.removeSupplier(o.getId());
         }
         //hidePopup(getBinPopup());
         SupplierWallet.clearSupplier();

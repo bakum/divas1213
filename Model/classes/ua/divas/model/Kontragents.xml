@@ -476,6 +476,25 @@
       </SchemaBasedProperties>
     </Properties>
   </Attribute>
+  <Attribute
+    Name="Created"
+    IsNotNull="true"
+    ColumnName="CREATED"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="KONTRAGENTS">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Kontragents.Created_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.Kontragents.Created_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Kontragents.Created_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
   <AccessorAttribute
     Name="Kontragents"
     Association="ua.divas.model.KontragentsKontragentsFk1Assoc"

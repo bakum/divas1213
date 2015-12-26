@@ -4,7 +4,8 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="InfocardView1" RangeSize="25" DataControl="AppModuleDataControl" id="InfocardView1Iterator"/>
+    <iterator Binds="InfocardView1" RangeSize="25" DataControl="AppModuleDataControl" id="InfocardView1Iterator"
+              RowCountThreshold="-1"/>
   </executables>
   <bindings>
     <tree IterBinding="InfocardView1Iterator" id="InfocardView1">

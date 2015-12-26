@@ -74,4 +74,39 @@
       <property
          name="x">-122.0</property>
    </View>
+   <View
+      id="View7">
+      <property
+         name="activityId">financial</property>
+      <property
+         name="page">/financial.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>financial&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">236.10938</property>
+      <property
+         name="x">94.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase8"
+      from="View2"
+      to="View7">
+      <property
+         name="fromOutcome">finance</property>
+      <property
+         name="sdm:polyPoints">B44,90.40918,137.52275,90.5,182.125,T44</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase9"
+      from="View7"
+      to="View2">
+      <property
+         name="fromOutcome">home</property>
+      <property
+         name="sdm:polyPoints">T56,97.5,182.11787,97.40918,137.51562,B56</property>
+   </ControlFlowCase>
 </SDM>

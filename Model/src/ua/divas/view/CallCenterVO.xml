@@ -135,7 +135,8 @@
         (select id from contact_details where kontrag_id = Kontragents.ID and rownum = 1) contact_id,
         Kontragents.DATZAM,
         Kontragents.COMMENTS,
-        Kontragents.INFOCARD_ID
+        Kontragents.INFOCARD_ID,
+        Kontragents.CREATED
 FROM  KONTRAGENTS Kontragents
 where Kontragents.IS_BUYER = 1 and Kontragents.IS_GROUP = 0
 and 
@@ -453,6 +454,17 @@ order by Kontragents.FULLNAME]]></SQLQuery>
           Value="true"/>
       </SchemaBasedProperties>
     </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Created"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Created"
+    EntityUsage="Kontragents"
+    AliasName="CREATED"
+    IsQueriable="false">
+    <TransientExpression
+      trustMode="untrusted"><![CDATA[adf.currentDateTime]]></TransientExpression>
   </ViewAttribute>
   <ViewLinkAccessor
     Name="ContactDetailsView"
