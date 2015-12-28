@@ -69,7 +69,9 @@
                                                       source="#{row.Deleted == 1 ? '/img/delete-1.png' : '/img/minus.png'}"/>
                                         </af:column>
                                         <af:column headerText="#{bindings.CallCenterVO1.hints.Created.label}" id="c12"
-                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                                   sortProperty="#{bindings.CallCenterVO1.hints.Created.name}"
+                                                   sortable="true">
                                             <af:inputDate value="#{row.bindings.Created.inputValue}"
                                                           label="#{bindings.CallCenterVO1.hints.Created.label}"
                                                           required="#{bindings.CallCenterVO1.hints.Created.mandatory}"
@@ -81,7 +83,9 @@
                                             </af:inputDate>
                                         </af:column>
                                         <af:column headerText="#{bindings.CallCenterVO1.hints.Datzam.label}" id="c8"
-                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                                   sortProperty="#{bindings.CallCenterVO1.hints.Datzam.name}"
+                                                   sortable="true">
                                             <af:inputDate value="#{row.bindings.Datzam.inputValue}"
                                                           label="#{bindings.CallCenterVO1.hints.Datzam.label}"
                                                           required="#{bindings.CallCenterVO1.hints.Datzam.mandatory}"

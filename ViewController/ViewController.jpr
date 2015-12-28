@@ -383,6 +383,10 @@
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
+            <value n="id" v="Commons Digester 1.8"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
             <value n="id" v="Oracle XML Parser v2"/>
             <value n="isJDK" v="false"/>
          </hash>
@@ -556,6 +560,10 @@
          </hash>
          <hash>
             <value n="id" v="ADF Faces Change Manager Runtime 11"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="Commons Digester 1.8"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>

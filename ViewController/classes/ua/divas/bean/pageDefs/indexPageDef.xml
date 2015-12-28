@@ -6,6 +6,7 @@
     <variableIterator id="variables">
       <variable Name="kassa" Type="java.lang.String"/>
     </variableIterator>
+    <page path="ua.divas.bean.pageDefs.mainTemplatePageDef" id="ptb1" Refresh="ifNeeded"/>
     <taskFlow id="direct1" taskFlowId="/WEB-INF/directories.xml#direct" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="users1" taskFlowId="/WEB-INF/users.xml#users" activation="deferred"
@@ -30,8 +31,6 @@
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="zatratyconfig1" taskFlowId="/WEB-INF/zatraty-config.xml#zatraty-config" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
-    <iterator Binds="NotificationView1" RangeSize="6" DataControl="AppModuleDataControl"
-              id="NotificationView1Iterator"/>
     <taskFlow id="moneyconfig1" taskFlowId="/WEB-INF/money-config.xml#money-config" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <taskFlow id="calendarconfig1" taskFlowId="/WEB-INF/calendar-config.xml#calendar-config" activation="deferred"
@@ -76,38 +75,8 @@
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
-    <attributeValues IterBinding="NotificationView1Iterator" id="CountUnread">
-      <AttrNames>
-        <Item Value="CountUnread"/>
-      </AttrNames>
-    </attributeValues>
     <action id="Commit" DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
     <action id="Rollback" DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
-    <tree IterBinding="NotificationView1Iterator" id="NotificationView1">
-      <nodeDefinition DefName="ua.divas.view.NotificationView" Name="NotificationView10">
-        <AttrNames>
-          <Item Value="Dat"/>
-          <Item Value="Description"/>
-          <Item Value="Server"/>
-          <Item Value="Client" Binds="Client"/>
-          <Item Value="TrgName"/>
-          <Item Value="UserLogin"/>
-          <Item Value="RegString"/>
-          <Item Value="Fullname"/>
-          <Item Value="Phone"/>
-          <Item Value="Adress"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <button IterBinding="NotificationView1Iterator" id="Server" DTSupportsMRU="false" StaticList="true">
-      <AttrNames>
-        <Item Value="Server"/>
-      </AttrNames>
-      <ValueList>
-        <Item Value="1"/>
-        <Item Value="0"/>
-      </ValueList>
-    </button>
     <tree IterBinding="supplierListIterator" id="supplierList">
       <nodeDefinition DefName="ua.divas.bean.control.SupplierRecord" Name="supplierList0">
         <AttrNames>
@@ -189,15 +158,6 @@
         <Item Value="KassaName"/>
       </ListDisplayAttrNames>
     </list>
-    <button IterBinding="NotificationView1Iterator" id="Client" DTSupportsMRU="false" StaticList="true">
-      <AttrNames>
-        <Item Value="Client"/>
-      </AttrNames>
-      <ValueList>
-        <Item Value="1"/>
-        <Item Value="0"/>
-      </ValueList>
-    </button>
     <action IterBinding="supplierListIterator" id="Delete"
             InstanceName="ua.divas.bean.control.SupplierWallet.supplierList" DataControl="SupplierWallet"
             RequiresUpdateModel="false" Action="removeCurrentRow"/>

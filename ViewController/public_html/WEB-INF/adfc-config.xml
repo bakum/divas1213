@@ -12,6 +12,9 @@
   <view id="financial">
     <page>/financial.jsf</page>
   </view>
+  <view id="options">
+    <page>/options.jsf</page>
+  </view>
   <control-flow-rule id="__1">
     <from-activity-id>index</from-activity-id>
     <control-flow-case id="__2">
@@ -35,6 +38,25 @@
     <control-flow-case id="__15">
       <from-outcome>home</from-outcome>
       <to-activity-id>index</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__16">
+    <from-activity-id>*</from-activity-id>
+    <control-flow-case id="__17">
+      <from-outcome>adfMenu_index</from-outcome>
+      <to-activity-id>index</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__18">
+      <from-outcome>adfMenu_home</from-outcome>
+      <to-activity-id>home</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__20">
+      <from-outcome>adfMenu_financial</from-outcome>
+      <to-activity-id>financial</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__24">
+      <from-outcome>adfMenu_options</from-outcome>
+      <to-activity-id>options</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
   <managed-bean id="__6">
@@ -76,5 +98,20 @@
     <managed-bean-name>rks</managed-bean-name>
     <managed-bean-class>ua.divas.bean.RksBean</managed-bean-class>
     <managed-bean-scope>pageFlow</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__21">
+    <description>Menu Model Managed Bean</description>
+    <managed-bean-name>root_menu</managed-bean-name>
+    <managed-bean-class>oracle.adf.view.rich.model.MDSMenuModel</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property id="__22">
+      <property-name>createHiddenNodes</property-name>
+      <value>false</value>
+    </managed-property>
+    <managed-property id="__23">
+      <property-name>source</property-name>
+      <property-class>java.lang.String</property-class>
+      <value>/WEB-INF/root_menu.xml</value>
+    </managed-property>
   </managed-bean>
 </adfc-config>

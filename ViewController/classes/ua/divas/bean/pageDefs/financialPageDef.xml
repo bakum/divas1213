@@ -4,38 +4,7 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="NotificationView1" RangeSize="6" DataControl="AppModuleDataControl"
-              id="NotificationView1Iterator"/>
+    <page path="ua.divas.bean.pageDefs.mainTemplatePageDef" id="ptb1" Refresh="ifNeeded"/>
   </executables>
-  <bindings>
-    <tree IterBinding="NotificationView1Iterator" id="NotificationView1">
-      <nodeDefinition DefName="ua.divas.view.NotificationView" Name="NotificationView10">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="Version"/>
-          <Item Value="Dat"/>
-          <Item Value="Description"/>
-          <Item Value="UserId"/>
-          <Item Value="Contact"/>
-          <Item Value="Server"/>
-          <Item Value="Client"/>
-          <Item Value="TrgName"/>
-          <Item Value="UserLogin"/>
-          <Item Value="ObjectId"/>
-          <Item Value="RegString"/>
-          <Item Value="StartDate"/>
-          <Item Value="EndDate"/>
-          <Item Value="CountUnread"/>
-          <Item Value="Fullname"/>
-          <Item Value="Adress"/>
-          <Item Value="Phone"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <attributeValues IterBinding="NotificationView1Iterator" id="CountUnread">
-      <AttrNames>
-        <Item Value="CountUnread"/>
-      </AttrNames>
-    </attributeValues>
-  </bindings>
+  <bindings/>
 </pageDefinition>
