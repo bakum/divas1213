@@ -59,7 +59,7 @@ public class LoginBean {
     static protected String USERNAMETOKEN = "_____demoOnlyUsernameAttrString___________";
     static protected String PASSWORDTOKEN = "_____demoOnlyPasswordAttrString___________";
     static protected String ENABLEDTOKEN = "UserEnabled";
-    public static final String VERSION = "Copyright by BMExpert 2015 v0.1.16";
+    public static final String VERSION = "Copyright by BMExpert 2016 v0.1.17";
 
     private String versionStr;
     private RichPopup popup;

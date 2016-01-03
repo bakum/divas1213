@@ -199,7 +199,7 @@ public class ZamerDebtNewBean {
 
     public void refreshParent() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        UIComponent shoppingbtn = facesContext.getViewRoot().findComponent("bShoppingcart");
+        UIComponent shoppingbtn = facesContext.getViewRoot().findComponent("ptb1:bShoppingcart");
         AdfFacesContext.getCurrentInstance().addPartialTarget(shoppingbtn);
 
         /* UIComponent foundComponent = null;

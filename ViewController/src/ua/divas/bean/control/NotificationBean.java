@@ -67,11 +67,26 @@ public class NotificationBean {
         }
     }
 
+    private AppModuleImpl getAppModule() {
+        BindingContext bindingContext = BindingContext.getCurrent();
+        DCDataControl dc = bindingContext.findDataControl("AppModuleDataControl");
+        AppModuleImpl am = (AppModuleImpl) dc.getDataProvider();
+        return am;
+    }
+
     public String commitChange() {
-        BindingContainer binding = BindingContext.getCurrent().getCurrentBindingsEntry();
+        /* BindingContainer binding = BindingContext.getCurrent().getCurrentBindingsEntry();
         OperationBinding ob = binding.getOperationBinding("Commit");
-        ob.execute();
-        refresh();
+        if (ob != null) {
+            ob.execute();
+        } */
+        try {
+            getAppModule().getTransaction().commit();
+            refresh();
+        } catch (Exception e) {
+            getAppModule().getTransaction().rollback();
+            e.printStackTrace();
+        }
         //ADFContext.getCurrent().getRequestScope().put("refreshNeeded", Boolean.TRUE);
         return null;
     }
@@ -79,7 +94,9 @@ public class NotificationBean {
     public String rollbackChange() {
         BindingContainer binding = BindingContext.getCurrent().getCurrentBindingsEntry();
         OperationBinding ob = binding.getOperationBinding("Rollback");
-        ob.execute();
+        if (ob != null) {
+            ob.execute();
+        }
         refresh();
         return null;
     }
@@ -278,8 +295,8 @@ public class NotificationBean {
 
     public void onCloseBin(ActionEvent actionEvent) {
         hidePopup(getBinPopup());
-        refreshTree("rZamer", "ttZamer");
-        refreshTree("rSupp", "tt1");
+        refreshTree("ptb1:rZamer", "ttZamer");
+        refreshTree("ptb1:rSupp", "tt1");
     }
 
     public void setRetImpTextAll(RichOutputText retImpTextAll) {
@@ -359,7 +376,7 @@ public class NotificationBean {
                 AppModuleImpl am = (AppModuleImpl) dc.getDataProvider();
                 am.getVwBallansAp1().clearCache();
                 am.getVwBallansAp1().executeQuery();
-                refreshTree("r13", "tt1");
+                refreshTree("ptb1:r13", "tt1");
             } catch (Exception e) {
                 // TODO: Add catch code
                 e.printStackTrace();

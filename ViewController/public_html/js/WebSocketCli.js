@@ -79,7 +79,7 @@ function handleMessage(message) {
     msgOutput.setValue('an image was selected: '+image)
     showPopup(image);
    }*/
-   var component = AdfPage.PAGE.findComponentByAbsoluteId("pgl2");
+   var component = AdfPage.PAGE.findComponentByAbsoluteId("ptb1:pgl2");
    AdfCustomEvent.queue(component,"customEvent",
                 {payload:message}, true);                     
    console.log(message);

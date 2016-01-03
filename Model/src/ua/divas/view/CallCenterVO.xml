@@ -141,7 +141,7 @@ FROM  KONTRAGENTS Kontragents
 where Kontragents.IS_BUYER = 1 and Kontragents.IS_GROUP = 0
 and 
 upper(Kontragents.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as userTable))) 
-order by Kontragents.FULLNAME]]></SQLQuery>
+order by Kontragents.CREATED desc]]></SQLQuery>
   <EntityUsage
     Name="Kontragents"
     Entity="ua.divas.model.Kontragents"/>

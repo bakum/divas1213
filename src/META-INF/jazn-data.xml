@@ -527,6 +527,11 @@
                 <name>ua.divas.bean.pageDefs.financialPageDef</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.optionsPageDef</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1146,6 +1151,11 @@
               <permission>
                 <class>oracle.adf.share.security.authorization.RegionPermission</class>
                 <name>ua.divas.bean.pageDefs.financialPageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.optionsPageDef</name>
                 <actions>view</actions>
               </permission>
             </permissions>

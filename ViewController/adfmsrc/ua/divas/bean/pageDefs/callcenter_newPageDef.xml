@@ -9,12 +9,8 @@
       <variable Type="java.lang.String" Name="addNotification_desc" IsQueriable="false"/>
       <variable Type="java.util.Date" Name="addNotification_dat" IsQueriable="false"/>
     </variableIterator>
-    <iterator Binds="CallCenterVO1" RangeSize="10" DataControl="AppModuleDataControl" id="CallCenterVO1Iterator"
-              RowCountThreshold="-1">
-      <sortCriteria>
-        <sort attribute="Fullname" ascending="true"/>
-      </sortCriteria>
-    </iterator>
+    <iterator Binds="CallCenterVO1" RangeSize="25" DataControl="AppModuleDataControl" id="CallCenterVO1Iterator"
+              RowCountThreshold="-1"/>
     <searchRegion Binds="CallCenterVO1Iterator" Criteria=""
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CallCenterVO1Query"/>
     <iterator Binds="ContactDetailsView3" RangeSize="25" DataControl="AppModuleDataControl"
