@@ -59,9 +59,11 @@ public class LoginBean {
     static protected String USERNAMETOKEN = "_____demoOnlyUsernameAttrString___________";
     static protected String PASSWORDTOKEN = "_____demoOnlyPasswordAttrString___________";
     static protected String ENABLEDTOKEN = "UserEnabled";
-    public static final String VERSION = "Copyright by BMExpert 2016 v0.1.17";
+    public static final String VERSION = "Copyright by BMExpert 2016";
+    public static final String APP_VER = "SiGRAND CRM v0.1.17";
 
     private String versionStr;
+    private String versionApp;
     private RichPopup popup;
 
     public LoginBean() {
@@ -230,6 +232,11 @@ public class LoginBean {
 
     public String getVersionStr() {
         return this.VERSION;
+    }
+
+
+    public final String getVersionApp() {
+        return this.APP_VER;
     }
 
     public void onCodeComplete(DialogEvent dialogEvent) {

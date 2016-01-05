@@ -44,11 +44,13 @@
                                     <af:link text="#{login.versionStr}" id="l2" targetFrame="_blank"
                                              destination="http://bmexp.com"/>
                                     <af:spacer width="10" height="10" id="s5"/>
-                            <af:navigationPane hint="choice" id="pt_np1" var="menuInfo" value="#{root_menu}">
+                            <af:navigationPane hint="choice" id="pt_np1" var="menuInfo" value="#{root_menu}"
+                                               title="#{login.versionApp}">
                                 <f:facet name="nodeStamp">
                                     <af:commandNavigationItem id="ni1" text="#{menuInfo.label}"
                                                               destination="#{menuInfo.destination}"
-                                                              action="#{menuInfo.doAction}"/>
+                                                              action="#{menuInfo.doAction}"
+                                                              rendered="#{menuInfo.rendered}" icon="#{menuInfo.icon}"/>
                                 </f:facet>
                             </af:navigationPane>
                                     <af:serverListener type="customEvent" method="#{notification.onCustomEvent}"/>

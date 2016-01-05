@@ -146,7 +146,7 @@
       <property
          name="fromsrcid">__16</property>
       <property
-         name="sdm:polyPoints">B50,14.0,216.625,83.0,328.28125,L50</property>
+         name="sdm:polyPoints">B57,17.5,216.625,83.0,328.28125,L50</property>
    </ControlFlowCase>
    <ControlFlowCase
       islink="true"
@@ -190,5 +190,34 @@
          name="fromsrcid">__16</property>
       <property
          name="sdm:polyPoints">L50,-22.0,174.125,-89.0,180.07812,R50</property>
+   </ControlFlowCase>
+   <View
+      id="View16">
+      <property
+         name="activityId">tests</property>
+      <property
+         name="page">/tests.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>tests&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">359.09375</property>
+      <property
+         name="x">-65.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase17"
+      from="WildcardControlFlowRule10"
+      to="View16">
+      <property
+         name="fromOutcome">adfMenu_tests</property>
+      <property
+         name="tosrcid">__19</property>
+      <property
+         name="fromsrcid">__16</property>
+      <property
+         name="sdm:polyPoints">B43,10.5,216.625,-65.0,305.10938,T50</property>
    </ControlFlowCase>
 </SDM>

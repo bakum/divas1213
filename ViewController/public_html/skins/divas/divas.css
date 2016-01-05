@@ -57,3 +57,7 @@ af|menu.RedClass::bar-item-text {
     color: red;
     font-weight:bold;
 }
+
+af|navigationPane-choice::label[theme="dark"] {
+    color: #C3EAF3; 
+}

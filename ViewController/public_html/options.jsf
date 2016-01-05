@@ -4,7 +4,65 @@
     <af:document title="SiGRAND CRM - Настройки и опции" id="d1">
         <af:form id="f1">
             <af:pageTemplate viewId="/mainTemplate.jsf" value="#{bindings.ptb1}" id="ptb1">
-                <f:facet name="body"/>
+                <f:facet name="body">
+                    <af:panelSpringboard id="ps1" displayMode="grid">
+                        <af:showDetailItem text="Cправочники" id="sdi1" stretchChildren="first"
+                                           icon="/img/tSystCmp_picture_52.png"
+                                           rendered="#{securityContext.taskflowViewable['/WEB-INF/directories.xml#direct']}">
+                            <af:region value="#{bindings.direct1.regionModel}" id="r1"/>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="Настройки" id="sdi2" stretchChildren="first" icon="/img/options.png">
+                            <af:panelTabbed id="pt1">
+                                <af:showDetailItem text="Настройки начислений" id="sdi24"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/pay-config.xml#pay-config']}"
+                                                   stretchChildren="first">
+                                    <af:region value="#{bindings.payconfig1.regionModel}" id="r21"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Программные настройки" id="sdi27" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/program-config.xml#program-config']}">
+                                    <af:region value="#{bindings.programconfig1.regionModel}" id="r24"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Начальные остатки" id="sdi25" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/start_ost-config.xml#start_ost-config']}">
+                                    <af:region value="#{bindings.start_ostconfig1.regionModel}" id="r22"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Распределение прибыли" id="sdi26" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/profit-config.xml#profit-config']}">
+                                    <af:region value="#{bindings.profitconfig1.regionModel}" id="r23"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Прайс-лист" id="sdi8" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/import-price-config.xml#import-price-config']}">
+                                    <af:region value="#{bindings.importpriceconfig1.regionModel}" id="r6"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Проводки" id="sdi9" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/entry.xml#entry']}">
+                                    <af:region value="#{bindings.entry1.regionModel}" id="r7"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="План счетов" id="sdi10" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/plan_acc.xml#plan_acc']}">
+                                    <af:region value="#{bindings.plan_acc1.regionModel}" id="r8"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Календарь" id="sdi20" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/calendar-config.xml#calendar-config']}">
+                                    <af:region value="#{bindings.calendarconfig1.regionModel}" id="r17"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Интерфейс (настройки)" id="sdi30" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/gui-config.xml#gui-config']}">
+                                    <af:region value="#{bindings.guiconfig1.regionModel}" id="r27"/>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="Дисконтные карты" id="sdi34" stretchChildren="first"
+                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/info-config.xml#info-config']}">
+                                    <af:region value="#{bindings.infoconfig1.regionModel}" id="r2"/>
+                                </af:showDetailItem>
+                            </af:panelTabbed>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="Пользователи" id="sdi3" stretchChildren="first"
+                                           rendered="#{securityContext.taskflowViewable['/WEB-INF/users.xml#users']}"
+                                           icon="/img/people.png">
+                            <af:region value="#{bindings.users1.regionModel}" id="r3"/>
+                        </af:showDetailItem>
+                    </af:panelSpringboard>
+                </f:facet>
             </af:pageTemplate>
         </af:form>
         <f:facet name="metaContainer">

@@ -1158,6 +1158,11 @@
                 <name>ua.divas.bean.pageDefs.optionsPageDef</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.testsPageDef</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>

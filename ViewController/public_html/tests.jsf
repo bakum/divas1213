@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="SiGRAND CRM - Тестирование" id="d1">
+        <af:form id="f1">
+            <af:pageTemplate viewId="/mainTemplate.jsf" value="#{bindings.ptb1}" id="ptb1">
+                <f:facet name="body">
+                    <af:panelSpringboard id="ps1" displayMode="grid">
+                        <af:showDetailItem text="Аналитика(тест)" id="sdi1" stretchChildren="first"
+                                           icon="/img/analytics.png">
+                            <af:region value="#{bindings.kreditoryconfig1.regionModel}" id="r1"/>
+                        </af:showDetailItem>
+                    </af:panelSpringboard>
+                </f:facet>
+                <f:facet name="wallet"/>
+            </af:pageTemplate>
+        </af:form>
+        <f:facet name="metaContainer">
+            <af:group id="gp12">
+                <af:resource type="javascript" source="/js/jquery-2.1.3.min.js"/>
+                <af:resource type="javascript" source="/js/jquery.growl.js"/>
+                <af:resource type="javascript" source="/js/jquery_notification.js"/>
+                <af:resource type="javascript" source="/js/WebSocketCli.js"/>
+                <af:resource type="css" source="/css/jquery.growl.css"/>
+            </af:group>
+        </f:facet>
+    </af:document>
+</f:view>
