@@ -76,6 +76,7 @@ import ua.divas.view.VwInsideMasterImpl;
 import ua.divas.view.VwKassaMovesImpl;
 import ua.divas.view.VwKontragAllItemsImpl;
 import ua.divas.view.VwKontragDebImpl;
+import ua.divas.view.VwKontragKreditoryImpl;
 import ua.divas.view.VwKontragSupplierNewImpl;
 import ua.divas.view.VwKontragZamerImpl;
 import ua.divas.view.VwKontragZamerNewImpl;
@@ -4634,8 +4635,8 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
      * Container's getter for VwKontragKreditory1.
      * @return VwKontragKreditory1
      */
-    public ViewObjectImpl getVwKontragKreditory1() {
-        return (ViewObjectImpl) findViewObject("VwKontragKreditory1");
+    public VwKontragKreditoryImpl getVwKontragKreditory1() {
+        return (VwKontragKreditoryImpl) findViewObject("VwKontragKreditory1");
     }
 
     /**

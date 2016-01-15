@@ -41,6 +41,7 @@
           <Item Value="DatZam"/>
           <Item Value="ManagerId"/>
           <Item Value="Phone"/>
+          <Item Value="Infocard"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

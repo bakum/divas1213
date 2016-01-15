@@ -70,7 +70,7 @@
                                         <af:column sortProperty="#{bindings.OrderZamerView1.hints.Dat.name}"
                                                    sortable="true"
                                                    headerText="#{bindings.OrderZamerView1.hints.Dat.label}" id="c2"
-                                                   width="101"
+                                                   width="80"
                                                    inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
                                             <af:inputDate value="#{row.bindings.Dat.inputValue}"
                                                           label="#{bindings.OrderZamerView1.hints.Dat.label}"
@@ -177,7 +177,7 @@
                                         <af:column sortProperty="#{bindings.OrderZamerView1.hints.Kontragname.name}"
                                                    sortable="true"
                                                    headerText="#{bindings.OrderZamerView1.hints.Kontragname.label}"
-                                                   id="c5" width="300"
+                                                   id="c5" width="250"
                                                    inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
                                             <af:inputListOfValues id="kontragnameId"
                                                                   popupTitle="Search and Select: #{bindings.OrderZamerView1.hints.Kontragname.label}"
@@ -190,6 +190,14 @@
                                                                   readOnly="true">
                                                 <f:validator binding="#{row.bindings.Kontragname.validator}"/>
                                             </af:inputListOfValues>
+                                        </af:column>
+                                        <af:column headerText="#{bindings.OrderZamerView1.hints.Infocard.label}"
+                                                   id="c21" width="80"
+                                                   inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}"
+                                                   align="center">
+                                            <af:outputText value="#{row.Infocard}"
+                                                           shortDesc="#{bindings.OrderZamerView1.hints.Infocard.tooltip}"
+                                                           id="ot1"/>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.OrderZamerView1.hints.ActivitiesId.name}"
                                                    sortable="true"

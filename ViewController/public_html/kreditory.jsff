@@ -58,6 +58,13 @@
                                     </af:column>
                                     <af:column id="c5" align="right" headerText="Задолженность">
                                         <af:outputText value="#{node.Ballans}" id="ot7"/>
+                                        <f:facet name="header">
+                                            <af:panelGroupLayout id="pgl3" layout="vertical">
+                                                <af:outputText value="Задолженность" id="ot8"/>
+                                                <af:outputText value="#{bindings.VwKontragKreditory1Iterator.viewObject.sum['Ballans']}" id="ot9"
+                                                               inlineStyle="font-weight:bold; color:Red;"/>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
                                     </af:column>
                                 </af:treeTable>
                             </af:panelCollection>

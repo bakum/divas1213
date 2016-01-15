@@ -432,7 +432,8 @@
        (select adress from contact_details where kontrag_id = Orders.KONTRAG_ID and rownum = 1) adress,
        (select phone from contact_details where kontrag_id = Orders.KONTRAG_ID and rownum = 1) phone,
        UTILITY.enable_edit(Orders.ID, 'orders') enbl,
-       (select kontrag_id from user_settings where user_id = Orders.USER_ID) Manager_ID
+       (select kontrag_id from user_settings where user_id = Orders.USER_ID) Manager_ID,
+       (select fullname from infocard where id = (select INFOCARD_ID from kontragents where id = Orders.KONTRAG_ID and rownum = 1) and rownum = 1) infocard
 FROM  ORDERS Orders
 where deleted = 0 and
 status_id in (:name1,:name2,:name3,:name4,:name5) and
@@ -827,6 +828,32 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u
           ResId="ua.divas.view.OrderZamerView.ManagerId_TOOLTIP"/>
         <CONTROLTYPE
           Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Infocard"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="INFOCARD"
+    Expression="INFOCARD"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.Infocard_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.OrderZamerView.Infocard_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.Infocard_TOOLTIP"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

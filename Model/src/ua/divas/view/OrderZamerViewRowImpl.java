@@ -70,6 +70,7 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
         Phone,
         Enbl,
         ManagerId,
+        Infocard,
         OrdersTpOplatyView,
         OrdersTpRashodyView,
         TypeOfActivitiesView1,
@@ -135,6 +136,7 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
     public static final int PHONE = AttributesEnum.Phone.index();
     public static final int ENBL = AttributesEnum.Enbl.index();
     public static final int MANAGERID = AttributesEnum.ManagerId.index();
+    public static final int INFOCARD = AttributesEnum.Infocard.index();
     public static final int ORDERSTPOPLATYVIEW = AttributesEnum.OrdersTpOplatyView.index();
     public static final int ORDERSTPRASHODYVIEW = AttributesEnum.OrdersTpRashodyView.index();
     public static final int TYPEOFACTIVITIESVIEW1 = AttributesEnum.TypeOfActivitiesView1.index();
@@ -553,6 +555,14 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
      */
     public String getManagerId() {
         return (String) getAttributeInternal(MANAGERID);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute Infocard.
+     * @return the Infocard
+     */
+    public String getInfocard() {
+        return (String) getAttributeInternal(INFOCARD);
     }
 
     /**

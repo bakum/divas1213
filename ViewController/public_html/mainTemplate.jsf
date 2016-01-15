@@ -23,16 +23,16 @@
                     </f:facet>
                     <f:facet name="top">
                         <af:panelGroupLayout id="pgl2" layout="horizontal" valign="middle">
-                                    <af:spacer width="30" height="10" id="s1"/>
+                            <af:spacer width="10" height="10" id="s1"/>
                                     <af:link text="Выйти" id="l1" rendered="#{securityContext.authenticated}"
                                              icon="/img/glbl_logout.gif" action="#{login.logout}"/>
-                                    <af:spacer width="50" height="10" id="s2"/>
+                            <af:spacer width="10" height="10" id="s2"/>
                                     <af:outputFormatted value="Пользователь: #{securityContext.userName}" id="of1"
                                                         styleClass="Linkclass"/>
                                     <af:spacer width="10" height="10" id="s3"/>
                                     <af:outputFormatted value="Права: #{login.roleUser}" id="of2"
                                                         styleClass="Linkclass"/>
-                                    <af:spacer width="50" height="10" id="s4"/>
+                                    <af:spacer width="10" height="10" id="s4"/>
                             <af:facetRef facetName="wallet"/>
                             <af:spacer width="10" height="10" id="pt_s1"/>
                             <af:link text="Непрочитанных оповещений: #{bindings.CountUnread.inputValue == null ? 0 : bindings.CountUnread.inputValue}" id="l3"
@@ -53,7 +53,7 @@
                                                               rendered="#{menuInfo.rendered}" icon="#{menuInfo.icon}"/>
                                 </f:facet>
                             </af:navigationPane>
-                                    <af:serverListener type="customEvent" method="#{notification.onCustomEvent}"/>
+                            <af:serverListener type="customEvent" method="#{notification.onCustomEvent}"/>
                                     <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
                                               contentDelivery="lazyUncached">
                                         <af:dialog id="d2" title="Панель уведомлений"
