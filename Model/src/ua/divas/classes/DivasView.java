@@ -69,7 +69,7 @@ public class DivasView extends ViewObjectImpl {
     @Override
     public CriteriaClauses buildViewCriteriaClauses(ViewCriteria viewCriteria) {
         // TODO Implement this method
-        System.out.println("viewCriteria name"+viewCriteria.getName());
+        System.out.println("viewCriteria name: "+viewCriteria.getName());
         viewCriteria.setUpperColumns(true);
         return super.buildViewCriteriaClauses(viewCriteria);
     } 

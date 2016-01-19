@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import oracle.jbo.AttributeList;
 import oracle.jbo.Row;
 import oracle.jbo.RowIterator;
+import oracle.jbo.domain.BlobDomain;
 import oracle.jbo.domain.Date;
 import oracle.jbo.server.AttributeDefImpl;
 import oracle.jbo.server.ViewRowImpl;
@@ -59,6 +60,7 @@ public class UsersViewRowImpl extends ViewRowImpl {
         DateBefore,
         DateBeforeAccept,
         UsrEnbl,
+        Photo,
         OrdersView,
         UsersGroupsView,
         UserSettingsView,
@@ -114,6 +116,7 @@ public class UsersViewRowImpl extends ViewRowImpl {
     public static final int DATEBEFORE = AttributesEnum.DateBefore.index();
     public static final int DATEBEFOREACCEPT = AttributesEnum.DateBeforeAccept.index();
     public static final int USRENBL = AttributesEnum.UsrEnbl.index();
+    public static final int PHOTO = AttributesEnum.Photo.index();
     public static final int ORDERSVIEW = AttributesEnum.OrdersView.index();
     public static final int USERSGROUPSVIEW = AttributesEnum.UsersGroupsView.index();
     public static final int USERSETTINGSVIEW = AttributesEnum.UserSettingsView.index();
@@ -389,6 +392,22 @@ public class UsersViewRowImpl extends ViewRowImpl {
      */
     public Integer getUsrEnbl() {
         return (Integer) getAttributeInternal(USRENBL);
+    }
+
+    /**
+     * Gets the attribute value for PHOTO using the alias name Photo.
+     * @return the PHOTO
+     */
+    public BlobDomain getPhoto() {
+        return (BlobDomain) getAttributeInternal(PHOTO);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for PHOTO using the alias name Photo.
+     * @param value value to set the PHOTO
+     */
+    public void setPhoto(BlobDomain value) {
+        setAttributeInternal(PHOTO, value);
     }
 
     /**

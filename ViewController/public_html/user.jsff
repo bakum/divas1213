@@ -298,8 +298,16 @@
                                                                               shortDesc="#{bindings.IsZamer.hints.tooltip}"
                                                                               id="sbc4"
                                                                               readOnly="#{bindings.UEditable.inputValue == 1 ? false : true}"/>
-                                                    <f:facet name="footer"/>
-                                                    <af:spacer width="10" height="10" id="s1"/>
+                                                    <f:facet name="footer">
+                                                        <af:panelGroupLayout id="pgl7" layout="vertical">
+                                                            <af:image id="it31"
+                                                                      source="/userimageviewer?id=#{bindings.Id.inputValue}"
+                                                                      inlineStyle="width:130px; height:160px;"/>
+                                                            <af:inputFile label="Фото (130х160)" id="if1"
+                                                                          valueChangeListener="#{users.onFileUploaded}"
+                                                                          autoSubmit="true"/>
+                                                        </af:panelGroupLayout>
+                                                    </f:facet>
                                                     <af:group id="g2" title="Настройки доступа">
                                                         <af:panelLabelAndMessage label="#{bindings.DateBefore.hints.label}" id="plam4">
                                                             <af:panelGroupLayout id="pgl6" layout="horizontal">

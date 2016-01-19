@@ -72,6 +72,7 @@ function Growl(ttl,mess, stl){
           style: stl,
           size: "large",
           message: mess,
+          location: "tl",
           duration: 300000
         }
     );

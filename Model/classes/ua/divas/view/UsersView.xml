@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="UsersView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -22,7 +22,8 @@
     Name="u_name"
     Kind="where"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
@@ -53,7 +54,8 @@
        when trunc(date_before) < trunc(sysdate)
        then 0
        else 1
-       end as Usr_Enbl
+       end as Usr_Enbl,
+       Users.PHOTO
 FROM  USERS Users
 where
 upper(Users.ID) in (select upper(N) from table(cast(get_users(:u_name) as userTable)))]]></SQLQuery>
@@ -181,8 +183,15 @@ upper(Users.ID) in (select upper(N) from table(cast(get_users(:u_name) as userTa
     ColumnType="NUMBER"
     AliasName="USR_ENBL"
     Expression="USR_ENBL"
-    SQLType="NUMERIC"
+    SQLType="INTEGER"
     IsQueriable="false"/>
+  <ViewAttribute
+    Name="Photo"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="Photo"
+    EntityUsage="Users"
+    AliasName="PHOTO"/>
   <ViewCriteria
     Name="UsersViewExists"
     ViewObjectName="ua.divas.view.UsersView"
@@ -215,7 +224,6 @@ upper(Users.ID) in (select upper(N) from table(cast(get_users(:u_name) as userTa
         Operator="="
         Conjunction="AND"
         Value=":u_login"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
       <ViewCriteriaItem
@@ -224,7 +232,6 @@ upper(Users.ID) in (select upper(N) from table(cast(get_users(:u_name) as userTa
         Operator="="
         Conjunction="AND"
         Value="1"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>

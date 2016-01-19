@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import oracle.jbo.Key;
 import oracle.jbo.RowIterator;
+import oracle.jbo.domain.BlobDomain;
 import oracle.jbo.domain.DBSequence;
 import oracle.jbo.domain.Date;
 import oracle.jbo.server.AttributeDefImpl;
@@ -43,6 +44,7 @@ public class UsersImpl extends DivasEntityNoDelete {
         IsActive,
         DateBefore,
         DateBefireAccept,
+        Photo,
         Orders,
         UsersGroups,
         UserSettings,
@@ -94,6 +96,7 @@ public class UsersImpl extends DivasEntityNoDelete {
     public static final int ISACTIVE = AttributesEnum.IsActive.index();
     public static final int DATEBEFORE = AttributesEnum.DateBefore.index();
     public static final int DATEBEFIREACCEPT = AttributesEnum.DateBefireAccept.index();
+    public static final int PHOTO = AttributesEnum.Photo.index();
     public static final int ORDERS = AttributesEnum.Orders.index();
     public static final int USERSGROUPS = AttributesEnum.UsersGroups.index();
     public static final int USERSETTINGS = AttributesEnum.UserSettings.index();
@@ -344,6 +347,22 @@ public class UsersImpl extends DivasEntityNoDelete {
      */
     public void setDateBefireAccept(Integer value) {
         setAttributeInternal(DATEBEFIREACCEPT, value);
+    }
+
+    /**
+     * Gets the attribute value for Photo, using the alias name Photo.
+     * @return the value of Photo
+     */
+    public BlobDomain getPhoto() {
+        return (BlobDomain) getAttributeInternal(PHOTO);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for Photo.
+     * @param value value to set the Photo
+     */
+    public void setPhoto(BlobDomain value) {
+        setAttributeInternal(PHOTO, value);
     }
 
     /**

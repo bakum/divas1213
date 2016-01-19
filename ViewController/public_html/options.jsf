@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
     <af:document title="SiGRAND CRM - Настройки и опции" id="d1">
-        <af:form id="f1">
+        <af:form id="f1" usesUpload="true">
             <af:pageTemplate viewId="/mainTemplate.jsf" value="#{bindings.ptb1}" id="ptb1">
                 <f:facet name="body">
                     <af:panelSpringboard id="ps1" displayMode="grid">
