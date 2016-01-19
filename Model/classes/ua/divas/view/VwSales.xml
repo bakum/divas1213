@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwSales"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  ComponentClass="ua.divas.view.VwSalesImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwSales_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="u_name"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <Variable
+    Name="s_dat"
+    Kind="viewcriteria"
+    Type="java.sql.Timestamp">
+    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+  </Variable>
+  <Variable
+    Name="f_dat"
+    Kind="viewcriteria"
+    Type="java.sql.Timestamp">
+    <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+  </Variable>
+  <Variable
+    Name="u_status_complete"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[viewObject.getCompleteStatus()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <ViewAccessor
+    Name="OrdersView1"
+    ViewObjectName="ua.divas.view.OrdersView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragentsView1"
+    ViewObjectName="ua.divas.view.KontragentsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="DivisionsView1"
+    ViewObjectName="ua.divas.view.DivisionsView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="DivisionsViewItems"
+      FullName="ua.divas.view.DivisionsView.DivisionsViewItems"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="OrderStatusView1"
+    ViewObjectName="ua.divas.view.OrderStatusView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_OrderId"
+    ListVOName="OrdersView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OrderId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Objname"/>
+      <Item Value="Num"/>
+      <Item Value="Dat"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KontragId"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="KontragId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_DivisionId"
+    ListVOName="DivisionsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DivisionId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_StatusId"
+    ListVOName="OrderStatusView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="StatusId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT 
+    VW_SALES.ORDER_ID ORDER_ID, 
+    VW_SALES.KONTRAG_ID KONTRAG_ID, 
+    VW_SALES.DIVISION_ID DIVISION_ID, 
+    VW_SALES.PERIOD PERIOD, 
+    VW_SALES.SALES_SUMMA SALES_SUMMA, 
+    VW_SALES.FACT_SEBEST_SUMMA FACT_SEBEST_SUMMA, 
+    VW_SALES.PLAN_SEBEST_SUMMA PLAN_SEBEST_SUMMA,
+    VW_SALES.STATUS_ID STATUS_ID
+FROM 
+ VW_SALES
+where
+ upper(VW_SALES.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_name) as divisionTable)))]]></SQLQuery>
+  <ViewAttribute
+    Name="OrderId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ORDER_ID"
+    Expression="ORDER_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_OrderId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.OrderId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.OrderId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KontragId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KONTRAG_ID"
+    Expression="KONTRAG_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_KontragId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.KontragId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.KontragId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivisionId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVISION_ID"
+    Expression="DIVISION_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_DivisionId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.DivisionId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.DivisionId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Period"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    AliasName="PERIOD"
+    Expression="PERIOD"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.Period_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.Period_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SalesSumma"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SALES_SUMMA"
+    Expression="SALES_SUMMA"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.SalesSumma_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.SalesSumma_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FactSebestSumma"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="FACT_SEBEST_SUMMA"
+    Expression="FACT_SEBEST_SUMMA"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.FactSebestSumma_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.FactSebestSumma_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PlanSebestSumma"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="PLAN_SEBEST_SUMMA"
+    Expression="PLAN_SEBEST_SUMMA"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.PlanSebestSumma_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.PlanSebestSumma_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StatusId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STATUS_ID"
+    Expression="STATUS_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_StatusId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="ua.divas.view.VwSales.StatusId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.StatusId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DeltaSebest"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC"
+    IsQueriable="false">
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
+    <TransientExpression><![CDATA[((PlanSebestSumma == null ? 0 : PlanSebestSumma)-(FactSebestSumma == null ? 0 : FactSebestSumma))]]></TransientExpression>
+    <Dependencies>
+      <Item
+        Value="FactSebestSumma"/>
+      <Item
+        Value="PlanSebestSumma"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.DeltaSebest_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.DeltaSebest_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MargaAbs"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
+    <TransientExpression><![CDATA[((SalesSumma == null ? 0 : SalesSumma)-(FactSebestSumma == null ? 0 : FactSebestSumma))]]></TransientExpression>
+    <Dependencies>
+      <Item
+        Value="FactSebestSumma"/>
+      <Item
+        Value="SalesSumma"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.MargaAbs_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.MargaAbs_TOOLTIP"/>
+        <FMT_FORMATTER
+          ResId="ua.divas.view.VwSales.MargaAbs_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="ua.divas.view.VwSales.MargaAbs_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Rentabel"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
+    <TransientExpression><![CDATA[(FactSebestSumma == null ? 100 : (MargaAbs*100/FactSebestSumma))]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.Rentabel_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.Rentabel_TOOLTIP"/>
+        <FMT_FORMAT
+          ResId="ua.divas.view.VwSales.Rentabel_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="ua.divas.view.VwSales.Rentabel_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="FactSebestSumma"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="VwSalesCriteriaDate"
+    ViewObjectName="ua.divas.view.VwSales"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="displayName"
+          ResId="displayName"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="VwSalesCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Period"
+        ViewAttribute="Period"
+        Operator="BETWEEN"
+        Conjunction="AND"
+        GenerateIsNullClauseForBindVars="false"
+        Required="Optional">
+        <ViewCriteriaItemValue
+          Name="VwSalesCriteriaDate_VwSalesCriteria_row_0_Period_vcval0"
+          Value=":f_dat"
+          IsBindVarValue="true"/>
+        <ViewCriteriaItemValue
+          Name="VwSalesCriteriaDate_VwSalesCriteria_row_0_Period_vcval1"
+          Value=":s_dat"
+          IsBindVarValue="true"/>
+      </ViewCriteriaItem>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="VwSalesCriteriaComplete"
+    ViewObjectName="ua.divas.view.VwSales"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="displayName"
+          ResId="displayName"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="VwSalesCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Period"
+        ViewAttribute="Period"
+        Operator="BETWEEN"
+        Conjunction="AND"
+        GenerateIsNullClauseForBindVars="false"
+        Required="Optional">
+        <ViewCriteriaItemValue
+          Name="VwSalesCriteriaComplete_VwSalesCriteria_row_0_Period_vcval0"
+          Value=":f_dat"
+          IsBindVarValue="true"/>
+        <ViewCriteriaItemValue
+          Name="VwSalesCriteriaComplete_VwSalesCriteria_row_0_Period_vcval1"
+          Value=":s_dat"
+          IsBindVarValue="true"/>
+      </ViewCriteriaItem>
+      <ViewCriteriaItem
+        Name="StatusId"
+        ViewAttribute="StatusId"
+        Operator="="
+        Conjunction="AND"
+        GenerateIsNullClauseForBindVars="false"
+        Required="Optional"
+        Value=":u_status_complete"
+        IsBindVarValue="true"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="OrderId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

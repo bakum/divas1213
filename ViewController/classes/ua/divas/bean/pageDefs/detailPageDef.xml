@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="detailPageDef"
+                Package="ua.divas.bean.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ContactDetailsView2" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ContactDetailsView2Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Adress">
+      <AttrNames>
+        <Item Value="Adress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Phone">
+      <AttrNames>
+        <Item Value="Phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Email">
+      <AttrNames>
+        <Item Value="Email"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ContactDetailsView2Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <attributeValues IterBinding="ContactDetailsView2Iterator" id="KontragId">
+      <AttrNames>
+        <Item Value="KontragId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

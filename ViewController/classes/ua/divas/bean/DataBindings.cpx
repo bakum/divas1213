@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.2.66.68" id="DataBindings"
+             SeparateXMLFiles="false" Package="ua.divas.bean" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+             className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+    <factory className="oracle.adfinternal.view.faces.model.binding.ExtendedFacesBindingDefFactoryImpl"
+             nameSpace="http://xmlns.oracle.com/adf/faces/binding"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/index.jsf" usageId="ua_divas_view_indexPageDef"/>
+    <page path="/ccenter.jsff" usageId="ua_divas_view_ccenterPageDef"/>
+    <page path="/director.jsff" usageId="ua_divas_view_directorPageDef"/>
+    <page path="/user.jsff" usageId="ua_divas_view_userPageDef"/>
+    <page path="/orders.jsff" usageId="ua_divas_view_ordersPageDef"/>
+    <page path="/zamer.jsff" usageId="ua_divas_view_zamerPageDef"/>
+    <page path="/import_price.jsff" usageId="ua_divas_view_import_pricePageDef"/>
+    <page path="/provodky.jsff" usageId="ua_divas_view_provodkyPageDef"/>
+    <page path="/plan.jsff" usageId="ua_divas_view_planPageDef"/>
+    <page path="/kassa.jsff" usageId="ua_divas_view_kassaPageDef"/>
+    <page path="/order.jsf" usageId="ua_divas_view_orderPageDef"/>
+    <page path="/WEB-INF/addKontrag.xml#addKontrag@CreateInsert"
+          usageId="ua_divas_view_addKontrag_addKontrag_CreateInsertPageDef"/>
+    <page path="/newKontrag.jsff" usageId="ua_divas_view_newKontragPageDef"/>
+    <page path="/detail.jsff" usageId="ua_divas_view_detailPageDef"/>
+    <page path="/zamer_debt.jsff" usageId="ua_divas_view_zamer_debtPageDef"/>
+    <page path="/buyer_debt.jsff" usageId="ua_divas_view_buyer_debtPageDef"/>
+    <page path="/other_zatr.jsff" usageId="ua_divas_view_other_zatrPageDef"/>
+    <page path="/other.jsf" usageId="ua_divas_view_otherPageDef"/>
+    <page path="/ballans.jsff" usageId="ua_divas_view_ballansPageDef"/>
+    <page path="/sales.jsff" usageId="ua_divas_view_salesPageDef"/>
+    <page path="/zatraty.jsff" usageId="ua_divas_view_zatratyPageDef"/>
+    <page path="/WEB-INF/addOrder.xml#addOrder@CreateInsert"
+          usageId="ua_divas_bean_addOrder_addOrder_CreateInsertPageDef"/>
+    <page path="/newOrder.jsff" usageId="ua_divas_bean_newOrderPageDef"/>
+    <page path="/rko.jsff" usageId="ua_divas_bean_rkoPageDef"/>
+    <page path="/pko.jsff" usageId="ua_divas_bean_pkoPageDef"/>
+    <page path="/editpko.jsf" usageId="ua_divas_bean_editpkoPageDef"/>
+    <page path="/editrko.jsf" usageId="ua_divas_bean_editrkoPageDef"/>
+    <page path="/WEB-INF/newRko.xml#newRko@CreateInsert" usageId="ua_divas_bean_newRko_newRko_CreateInsertPageDef"/>
+    <page path="/WEB-INF/newPko.xml#newPko@CreateInsert" usageId="ua_divas_bean_newPko_newPko_CreateInsertPageDef"/>
+    <page path="/calendar.jsff" usageId="ua_divas_bean_calendarPageDef"/>
+    <page path="/WEB-INF/newOther.xml#newOther@CreateInsert"
+          usageId="ua_divas_bean_newOther_newOther_CreateInsertPageDef"/>
+    <page path="/supplier_debt.jsff" usageId="ua_divas_bean_supplier_debtPageDef"/>
+    <page path="/prorab.jsff" usageId="ua_divas_bean_prorabPageDef"/>
+    <page path="/kontrag_calc.jsff" usageId="ua_divas_bean_kontrag_calcPageDef"/>
+    <page path="/pay.jsff" usageId="ua_divas_bean_payPageDef"/>
+    <page path="/other_kontrag.jsff" usageId="ua_divas_bean_other_kontragPageDef"/>
+    <page path="/WEB-INF/newStart.xml#newStart@CreateInsert"
+          usageId="ua_divas_bean_newStart_newStart_CreateInsertPageDef"/>
+    <page path="/start_ost.jsff" usageId="ua_divas_bean_start_ostPageDef"/>
+    <page path="/editstart.jsf" usageId="ua_divas_bean_editstartPageDef"/>
+    <page path="/ballans_detail.jsff" usageId="ua_divas_bean_ballans_detailPageDef"/>
+    <page path="/WEB-INF/newProfit.xml#newProfit@CreateInsert"
+          usageId="ua_divas_bean_newProfit_newProfit_CreateInsertPageDef"/>
+    <page path="/editProfit.jsf" usageId="ua_divas_bean_editProfitPageDef"/>
+    <page path="/profit.jsff" usageId="ua_divas_bean_profitPageDef"/>
+    <page path="/prog_config.jsff" usageId="ua_divas_bean_prog_configPageDef"/>
+    <page path="/prorab_report.jsff" usageId="ua_divas_bean_prorab_reportPageDef"/>
+    <page path="/rating.jsff" usageId="ua_divas_bean_ratingPageDef"/>
+    <page path="/rating_sett.jsff" usageId="ua_divas_bean_rating_settPageDef"/>
+    <page path="/zatraty_dir.jsff" usageId="ua_divas_bean_zatraty_dirPageDef"/>
+    <page path="/kontrag_dir.jsff" usageId="ua_divas_bean_kontrag_dirPageDef"/>
+    <page path="/obj_deleted.jsff" usageId="ua_divas_bean_obj_deletedPageDef"/>
+    <page path="/home.jsf" usageId="ua_divas_bean_homePageDef"/>
+    <page path="/reg_code.jsf" usageId="ua_divas_bean_reg_codePageDef"/>
+    <page path="/inside.jsff" usageId="ua_divas_bean_insidePageDef"/>
+    <page path="/createBuer.jsf" usageId="ua_divas_bean_createBuerPageDef"/>
+    <page path="/guisettings.jsff" usageId="ua_divas_bean_guisettingsPageDef"/>
+    <page path="/zamer_debt_new.jsff" usageId="ua_divas_bean_zamer_debt_newPageDef"/>
+    <page path="/supplier_debt_new.jsff" usageId="ua_divas_bean_supplier_debt_newPageDef"/>
+    <page path="/WEB-INF/order-dialog-flow.xml#order-dialog-flow@refreshCurrentRow"
+          usageId="ua_divas_bean_order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"/>
+    <page path="/dogovor.jsff" usageId="ua_divas_bean_dogovorPageDef"/>
+    <page path="/kreditory.jsff" usageId="ua_divas_bean_kreditoryPageDef"/>
+    <page path="/callcenter_new.jsff" usageId="ua_divas_bean_callcenter_newPageDef"/>
+    <page path="/WEB-INF/ccenter_new.xml#ccenter_new@addOrder"
+          usageId="ua_divas_bean_ccenter_new_ccenter_new_addOrderPageDef"/>
+    <page path="/infocard.jsff" usageId="ua_divas_bean_infocardPageDef"/>
+    <page path="/financial.jsf" usageId="ua_divas_bean_financialPageDef"/>
+    <page path="/mainTemplate.jsf" usageId="ua_divas_bean_mainTemplatePageDef"/>
+    <page path="/options.jsf" usageId="ua_divas_bean_optionsPageDef"/>
+    <page path="/tests.jsf" usageId="ua_divas_bean_testsPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
+    <page id="ua_divas_view_ccenterPageDef" path="ua.divas.bean.pageDefs.ccenterPageDef"/>
+    <page id="ua_divas_view_directorPageDef" path="ua.divas.bean.pageDefs.directorPageDef"/>
+    <page id="ua_divas_view_userPageDef" path="ua.divas.bean.pageDefs.userPageDef"/>
+    <page id="ua_divas_view_ordersPageDef" path="ua.divas.bean.pageDefs.ordersPageDef"/>
+    <page id="ua_divas_view_zamerPageDef" path="ua.divas.bean.pageDefs.zamerPageDef"/>
+    <page id="ua_divas_view_import_pricePageDef" path="ua.divas.bean.pageDefs.import_pricePageDef"/>
+    <page id="ua_divas_view_provodkyPageDef" path="ua.divas.bean.pageDefs.provodkyPageDef"/>
+    <page id="ua_divas_view_planPageDef" path="ua.divas.bean.pageDefs.planPageDef"/>
+    <page id="ua_divas_view_kassaPageDef" path="ua.divas.bean.pageDefs.kassaPageDef"/>
+    <page id="ua_divas_view_orderPageDef" path="ua.divas.bean.pageDefs.orderPageDef"/>
+    <page id="ua_divas_view_addKontrag_addKontrag_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.addKontrag_addKontrag_CreateInsertPageDef"/>
+    <page id="ua_divas_view_newKontragPageDef" path="ua.divas.bean.pageDefs.newKontragPageDef"/>
+    <page id="ua_divas_view_detailPageDef" path="ua.divas.bean.pageDefs.detailPageDef"/>
+    <page id="ua_divas_view_addKontragentPageDef" path="ua.divas.bean.pageDefs.addKontragentPageDef"/>
+    <page id="ua_divas_view_zamer_debtPageDef" path="ua.divas.bean.pageDefs.zamer_debtPageDef"/>
+    <page id="ua_divas_view_buyer_debtPageDef" path="ua.divas.bean.pageDefs.buyer_debtPageDef"/>
+    <page id="ua_divas_view_other_zatrPageDef" path="ua.divas.bean.pageDefs.other_zatrPageDef"/>
+    <page id="ua_divas_view_otherPageDef" path="ua.divas.bean.pageDefs.otherPageDef"/>
+    <page id="ua_divas_view_ballansPageDef" path="ua.divas.bean.pageDefs.ballansPageDef"/>
+    <page id="ua_divas_view_salesPageDef" path="ua.divas.bean.pageDefs.salesPageDef"/>
+    <page id="ua_divas_view_zatratyPageDef" path="ua.divas.bean.pageDefs.zatratyPageDef"/>
+    <page id="ua_divas_bean_addOrder_addOrder_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.addOrder_addOrder_CreateInsertPageDef"/>
+    <page id="ua_divas_bean_newOrderPageDef" path="ua.divas.bean.pageDefs.newOrderPageDef"/>
+    <page id="ua_divas_bean_rkoPageDef" path="ua.divas.bean.pageDefs.rkoPageDef"/>
+    <page id="ua_divas_bean_pkoPageDef" path="ua.divas.bean.pageDefs.pkoPageDef"/>
+    <page id="ua_divas_bean_editpkoPageDef" path="ua.divas.bean.pageDefs.editpkoPageDef"/>
+    <page id="ua_divas_bean_editrkoPageDef" path="ua.divas.bean.pageDefs.editrkoPageDef"/>
+    <page id="ua_divas_bean_newRko_newRko_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.newRko_newRko_CreateInsertPageDef"/>
+    <page id="ua_divas_bean_newPko_newPko_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.newPko_newPko_CreateInsertPageDef"/>
+    <page id="ua_divas_bean_calendarPageDef" path="ua.divas.bean.pageDefs.calendarPageDef"/>
+    <page id="ua_divas_bean_newOther_newOther_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.newOther_newOther_CreateInsertPageDef"/>
+    <page id="ua_divas_bean_supplier_debtPageDef" path="ua.divas.bean.pageDefs.supplier_debtPageDef"/>
+    <page id="ua_divas_bean_prorabPageDef" path="ua.divas.bean.pageDefs.prorabPageDef"/>
+    <page id="ua_divas_bean_kontrag_calcPageDef" path="ua.divas.bean.pageDefs.kontrag_calcPageDef"/>
+    <page id="ua_divas_bean_payPageDef" path="ua.divas.bean.pageDefs.payPageDef"/>
+    <page id="ua_divas_bean_other_kontragPageDef" path="ua.divas.bean.pageDefs.other_kontragPageDef"/>
+    <page id="ua_divas_bean_newStart_newStart_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.newStart_newStart_CreateInsertPageDef"/>
+    <page id="ua_divas_bean_start_ostPageDef" path="ua.divas.bean.pageDefs.start_ostPageDef"/>
+    <page id="ua_divas_bean_editstartPageDef" path="ua.divas.bean.pageDefs.editstartPageDef"/>
+    <page id="ua_divas_bean_ballans_detailPageDef" path="ua.divas.bean.pageDefs.ballans_detailPageDef"/>
+    <page id="ua_divas_bean_newProfit_newProfit_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.newProfit_newProfit_CreateInsertPageDef"/>
+    <page id="ua_divas_bean_editProfitPageDef" path="ua.divas.bean.pageDefs.editProfitPageDef"/>
+    <page id="ua_divas_bean_profitPageDef" path="ua.divas.bean.pageDefs.profitPageDef"/>
+    <page id="ua_divas_bean_prog_configPageDef" path="ua.divas.bean.pageDefs.prog_configPageDef"/>
+    <page id="ua_divas_bean_prorab_reportPageDef" path="ua.divas.bean.pageDefs.prorab_reportPageDef"/>
+    <page id="ua_divas_bean_ratingPageDef" path="ua.divas.bean.pageDefs.ratingPageDef"/>
+    <page id="ua_divas_bean_rating_settPageDef" path="ua.divas.bean.pageDefs.rating_settPageDef"/>
+    <page id="ua_divas_bean_zatraty_dirPageDef" path="ua.divas.bean.pageDefs.zatraty_dirPageDef"/>
+    <page id="ua_divas_bean_kontrag_dirPageDef" path="ua.divas.bean.pageDefs.kontrag_dirPageDef"/>
+    <page id="ua_divas_bean_obj_deletedPageDef" path="ua.divas.bean.pageDefs.obj_deletedPageDef"/>
+    <page id="ua_divas_bean_homePageDef" path="ua.divas.bean.pageDefs.homePageDef"/>
+    <page id="ua_divas_bean_reg_codePageDef" path="ua.divas.bean.pageDefs.reg_codePageDef"/>
+    <page id="ua_divas_bean_insidePageDef" path="ua.divas.bean.pageDefs.insidePageDef"/>
+    <page id="ua_divas_bean_createBuerPageDef" path="ua.divas.bean.pageDefs.createBuerPageDef"/>
+    <page id="ua_divas_bean_guisettingsPageDef" path="ua.divas.bean.pageDefs.guisettingsPageDef"/>
+    <page id="ua_divas_bean_zamer_debt_newPageDef" path="ua.divas.bean.pageDefs.zamer_debt_newPageDef"/>
+    <page id="ua_divas_bean_supplier_debt_newPageDef" path="ua.divas.bean.pageDefs.supplier_debt_newPageDef"/>
+    <page id="ua_divas_bean_order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"
+          path="ua.divas.bean.pageDefs.order_dialog_flow_order_dialog_flow_refreshCurrentRowPageDef"/>
+    <page id="ua_divas_bean_dogovorPageDef" path="ua.divas.bean.pageDefs.dogovorPageDef"/>
+    <page id="ua_divas_bean_kreditoryPageDef" path="ua.divas.bean.pageDefs.kreditoryPageDef"/>
+    <page id="ua_divas_bean_callcenter_newPageDef" path="ua.divas.bean.pageDefs.callcenter_newPageDef"/>
+    <page id="ua_divas_bean_ccenter_new_ccenter_new_addOrderPageDef"
+          path="ua.divas.bean.pageDefs.ccenter_new_ccenter_new_addOrderPageDef"/>
+    <page id="ua_divas_bean_infocardPageDef" path="ua.divas.bean.pageDefs.infocardPageDef"/>
+    <page id="ua_divas_bean_financialPageDef" path="ua.divas.bean.pageDefs.financialPageDef"/>
+    <page id="ua_divas_bean_mainTemplatePageDef" path="ua.divas.bean.pageDefs.mainTemplatePageDef"/>
+    <page id="ua_divas_bean_optionsPageDef" path="ua.divas.bean.pageDefs.optionsPageDef"/>
+    <page id="ua_divas_bean_testsPageDef" path="ua.divas.bean.pageDefs.testsPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>
+    <dc id="OnlineUserData" path="ua.divas.bean.OnlineUserData"/>
+    <dc id="DataPackage" path="ua.divas.bean.DataPackage"/>
+    <BC4JDataControl id="AppModuleDataControl" Package="ua.divas.module"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

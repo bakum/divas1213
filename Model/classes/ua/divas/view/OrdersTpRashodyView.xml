@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTpRashodyView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ua.divas.view.OrdersTpRashodyViewRowImpl"
+  ComponentClass="ua.divas.view.OrdersTpRashodyViewImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="OrdersView1"
+    ViewObjectName="ua.divas.view.OrdersView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KontragentsView1"
+    ViewObjectName="ua.divas.view.KontragentsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="ZatratyView1"
+    ViewObjectName="ua.divas.view.ZatratyView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="KassaSettingsView1"
+    ViewObjectName="ua.divas.view.KassaSettingsView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="KassaSettingsByUser"
+      FullName="ua.divas.view.KassaSettingsView.KassaSettingsByUser"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="KontragentsSupplier1"
+    ViewObjectName="ua.divas.view.KontragentsSupplier"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_OrderId"
+    ListVOName="OrdersView1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OrderId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Num"/>
+      <Item Value="Dat"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KontrId"
+    ListVOName="KontragentsView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="5">
+    <AttrArray Name="AttrNames">
+      <Item Value="KontrId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Kontname"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="KontragentsSupplierCriteria"/>
+    <ViewCriteriaUsage
+      Name="KontragentsSupplierCriteria"
+      FullName="ua.divas.view.KontragentsView.KontragentsSupplierCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Kontname"
+    ListVOName="KontragentsSupplier1"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0"
+    ComboRowCountHint="15">
+    <AttrArray Name="AttrNames">
+      <Item Value="Kontname"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="KontrId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+    <ViewCriteriaUsage
+      Name="KontragentsSupplierNoDelete"
+      FullName="ua.divas.view.KontragentsSupplier.KontragentsSupplierNoDelete"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ZatratyId"
+    ListVOName="ZatratyView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    MRUCount="0"
+    ComboRowCountHint="10"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZatratyId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Zatrname"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="ZatratyViewCriteria"/>
+    <ViewCriteriaUsage
+      Name="ZatratyViewCriteria"
+      FullName="ua.divas.view.ZatratyView.ZatratyViewCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Zatrname"
+    ListVOName="ZatratyView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Zatrname"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ZatratyId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="ZatratyViewCriteria"/>
+    <ViewCriteriaUsage
+      Name="ZatratyViewCriteria"
+      FullName="ua.divas.view.ZatratyView.ZatratyViewCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_KassaId"
+    ListVOName="KassaSettingsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="KassaId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="KassaId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="KassaName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT OrdersTpRashody.ID, 
+       OrdersTpRashody.ORDER_ID, 
+       OrdersTpRashody.DAT_RASH, 
+       OrdersTpRashody.KONTR_ID,
+       (SELECT 
+        FULLNAME 
+    FROM 
+        KONTRAGENTS 
+    WHERE 
+        ID = KONTR_ID) KontName, 
+       OrdersTpRashody.SUMM, 
+       OrdersTpRashody.DESCRIPTION, 
+       OrdersTpRashody.ZATRATY_ID,
+       OrdersTpRashody.KASSA_ID,
+       (select fullname from zatraty where id = ZATRATY_ID) ZatrName,
+       (select 0 from dual) OtpR_Editable
+FROM  ORDERS_TP_RASHODY OrdersTpRashody]]></SQLQuery>
+  <EntityUsage
+    Name="OrdersTpRashody"
+    Entity="ua.divas.model.OrdersTpRashody"/>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="OrdersTpRashody"
+    AliasName="ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.Id_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OrderId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="OrderId"
+    EntityUsage="OrdersTpRashody"
+    AliasName="ORDER_ID"
+    LOVName="LOV_OrderId">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.OrderId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.OrderId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DatRash"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="DatRash"
+    EntityUsage="OrdersTpRashody"
+    AliasName="DAT_RASH">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.DatRash_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.DatRash_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KontrId"
+    PrecisionRule="true"
+    EntityAttrName="KontrId"
+    EntityUsage="OrdersTpRashody"
+    AliasName="KONTR_ID"
+    LOVName="LOV_KontrId">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.KontrId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.KontrId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="Kontname"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Kontname"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KONTNAME"
+    Expression="KONTNAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_Kontname">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.Kontname_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.Kontname_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summ"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Summ"
+    EntityUsage="OrdersTpRashody"
+    AliasName="SUMM">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.Summ_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.Summ_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Description"
+    PrecisionRule="true"
+    EntityAttrName="Description"
+    EntityUsage="OrdersTpRashody"
+    AliasName="DESCRIPTION">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.Description_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.Description_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ZatratyId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ZatratyId"
+    EntityUsage="OrdersTpRashody"
+    AliasName="ZATRATY_ID"
+    LOVName="LOV_ZatratyId">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.ZatratyId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.ZatratyId_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="Zatrname"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="KassaId"
+    PrecisionRule="true"
+    EntityAttrName="KassaId"
+    EntityUsage="OrdersTpRashody"
+    AliasName="KASSA_ID"
+    LOVName="LOV_KassaId">
+    <TransientExpression><![CDATA[viewObject.retrieveKassaId()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Zatrname"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ZATRNAME"
+    Expression="ZATRNAME"
+    SQLType="VARCHAR"
+    IsNotNull="true"
+    LOVName="LOV_Zatrname">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrdersTpRashodyView.Zatrname_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrdersTpRashodyView.Zatrname_TOOLTIP"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OtprEditable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="OTPR_EDITABLE"
+    Expression="OTPR_EDITABLE"
+    SQLType="NUMERIC"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

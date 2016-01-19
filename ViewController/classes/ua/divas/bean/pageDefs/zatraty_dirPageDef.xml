@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="zatraty_dirPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ZatratyView1" RangeSize="12" DataControl="AppModuleDataControl" id="ZatratyView1Iterator"/>
+    <searchRegion Binds="ZatratyView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ZatratyView1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ZatratyView1Iterator" id="ZatratyView1">
+      <nodeDefinition DefName="ua.divas.view.ZatratyView" Name="ZatratyView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="IsGroup"/>
+          <Item Value="ParentId"/>
+          <Item Value="Deleted"/>
+          <Item Value="Fullname"/>
+          <Item Value="Version"/>
+          <Item Value="Predefined"/>
+          <Item Value="Editable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="ZatratyView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ZatratyView1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action IterBinding="ZatratyView1Iterator" id="Delete" InstanceName="AppModuleDataControl.ZatratyView1"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

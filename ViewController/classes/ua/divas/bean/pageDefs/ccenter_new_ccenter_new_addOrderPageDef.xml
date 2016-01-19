@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11"
+                id="ccenter_new_ccenter_new_addOrderPageDef" Package="ua.divas.bean.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="addOrder" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addOrder"
+                  IsViewObjectMethod="false" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.dataProvider"
+                  ReturnName="data.AppModuleDataControl.methodResults.addOrder_AppModuleDataControl_dataProvider_addOrder_result">
+      <NamedData NDName="kontragId" NDValue="#{data.ua_divas_bean_callcenter_newPageDef.Id.inputValue}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="comment" NDValue="#{data.ua_divas_bean_callcenter_newPageDef.Comments.inputValue}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="DatZam" NDValue="#{data.ua_divas_bean_callcenter_newPageDef.Datzam.inputValue}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

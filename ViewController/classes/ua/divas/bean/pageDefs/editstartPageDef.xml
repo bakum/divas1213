@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="editstartPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="StartOstView1" RangeSize="25" DataControl="AppModuleDataControl" id="StartOstView1Iterator"/>
+    <iterator Binds="StartOstTpView2" RangeSize="25" DataControl="AppModuleDataControl" id="StartOstTpView2Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="StartOstView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="StartOstView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="StartOstView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="StartOstView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="StartOstView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="StartOstView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="StartOstView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="StartOstView1Iterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="StartOstView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="StartOstTpView2Iterator" id="StartOstTpView2">
+      <nodeDefinition DefName="ua.divas.view.StartOstTpView" Name="StartOstTpView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="StartOstId"/>
+          <Item Value="PlanAccDebId"/>
+          <Item Value="PlanaccDebName"/>
+          <Item Value="Subconto1Deb"/>
+          <Item Value="Subconto2Deb"/>
+          <Item Value="PlanAccKredId"/>
+          <Item Value="PlanaccKredName"/>
+          <Item Value="Subconto1Kred"/>
+          <Item Value="Subconto2Kred"/>
+          <Item Value="Summ"/>
+          <Item Value="SoEditable"/>
+          <Item Value="DebSubcCount"/>
+          <Item Value="KredSubcCount"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="StartOstTpView2Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <listOfValues Uses="LOV_PlanaccDebName" StaticList="false" IterBinding="StartOstTpView2Iterator"
+                  id="PlanaccDebName"/>
+    <listOfValues Uses="LOV_PlanaccKredName" StaticList="false" IterBinding="StartOstTpView2Iterator"
+                  id="PlanaccKredName"/>
+    <attributeValues IterBinding="StartOstTpView2Iterator" id="SoEditable">
+      <AttrNames>
+        <Item Value="SoEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="StartOstTpView2Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="StartOstView1Iterator" id="Enbl">
+      <AttrNames>
+        <Item Value="Enbl"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

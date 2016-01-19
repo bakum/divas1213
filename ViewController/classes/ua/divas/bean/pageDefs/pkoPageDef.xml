@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="pkoPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PkoView1" RangeSize="30" DataControl="AppModuleDataControl" id="PkoView1Iterator"
+              RowCountThreshold="-1">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="VwPkoMoves2" RangeSize="25" DataControl="AppModuleDataControl" id="VwPkoMoves2Iterator"/>
+    <searchRegion id="PkoView1Query" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="PkoView1Iterator"/>
+    <iterator Binds="GuiSettingsView1" RangeSize="10" DataControl="AppModuleDataControl" id="GuiSettingsView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PkoView1Iterator" id="PkoView1">
+      <nodeDefinition DefName="ua.divas.view.PkoView" Name="PkoView10">
+        <AttrNames>
+          <Item Value="Dat"/>
+          <Item Value="Num"/>
+          <Item Value="OperationId"/>
+          <Item Value="Kontragname"/>
+          <Item Value="Summa"/>
+          <Item Value="KassaId"/>
+          <Item Value="DivisionId"/>
+          <Item Value="UserId"/>
+          <Item Value="Posted"/>
+          <Item Value="Deleted"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <methodAction id="addEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.PkoView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removeEntry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeEntry"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.PkoView1">
+      <NamedData NDName="_id" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="VwPkoMoves2Iterator" id="VwPkoMoves2">
+      <nodeDefinition DefName="ua.divas.view.VwPkoMoves" Name="VwPkoMoves20">
+        <AttrNames>
+          <Item Value="RegistratorId"/>
+          <Item Value="Deb"/>
+          <Item Value="SumDeb"/>
+          <Item Value="Kred"/>
+          <Item Value="SumKred"/>
+          <Item Value="SubcontoDeb1"/>
+          <Item Value="SubcontoKred1"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="PkoView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="GuiSettingsView1Iterator" id="KassaFetchSize">
+      <AttrNames>
+        <Item Value="KassaFetchSize"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

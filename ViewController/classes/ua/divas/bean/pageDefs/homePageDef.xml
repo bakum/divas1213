@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="homePageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+  </executables>
+  <bindings>
+    <methodAction id="userExistsAndActive" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="userExistsAndActive" IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.UsersView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.userExistsAndActive_AppModuleDataControl_UsersView1_userExistsAndActive_result">
+      <NamedData NDName="u_login" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="accessEnabled" RequiresUpdateModel="true" Action="invokeMethod" MethodName="accessEnabled"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.UsersView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.accessEnabled_AppModuleDataControl_UsersView1_accessEnabled_result">
+      <NamedData NDName="u_login" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Pko"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="PKO"
+  AliasName="Pko"
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.PkoImpl"
+  xmlns:validation="http://xmlns.oracle.com/adfm/validation">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <TransientExpression><![CDATA[(Id==null?UUID.randomUUID().toString():Id)]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Id_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Dat"
+    IsNotNull="true"
+    ColumnName="DAT"
+    SQLType="DATE"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    TableName="PKO">
+    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Dat_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Dat_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Num"
+    Precision="50"
+    ColumnName="NUM"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Num_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Num_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Deleted"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="DELETED"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="PKO"
+    DefaultValue="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Deleted_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Deleted_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Posted"
+    IsNotNull="true"
+    Precision="1"
+    Scale="0"
+    ColumnName="POSTED"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="PKO"
+    DefaultValue="0">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Posted_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Posted_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="DivisionId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="DIVISION_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Permission
+      target="ua.divas.model.Pko.DivisionId"
+      permissionClass="oracle.adf.share.security.authorization.EntityAttributePermission">
+      <privilege-map
+        operation="update"
+        privilege="update"/>
+    </Permission>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.DivisionId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.DivisionId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="UserId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="USER_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Permission
+      target="ua.divas.model.Pko.UserId"
+      permissionClass="oracle.adf.share.security.authorization.EntityAttributePermission">
+      <privilege-map
+        operation="update"
+        privilege="update"/>
+    </Permission>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.UserId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.UserId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Comments"
+    Precision="255"
+    ColumnName="COMMENTS"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="255"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Comments_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Comments_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Version"
+    ColumnName="VERSION"
+    SQLType="TIMESTAMP"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="PKO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Version_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Version_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="CurrId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="CURR_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.CurrId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.CurrId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="KassaId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="KASSA_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.KassaId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.KassaId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="ActivitiesId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ACTIVITIES_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Permission
+      target="ua.divas.model.Pko.ActivitiesId"
+      permissionClass="oracle.adf.share.security.authorization.EntityAttributePermission">
+      <privilege-map
+        operation="update"
+        privilege="update"/>
+    </Permission>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.ActivitiesId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.ActivitiesId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="OperationId"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="OPERATION_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.OperationId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.OperationId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="KontragId"
+    Precision="50"
+    ColumnName="KONTRAG_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.KontragId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.KontragId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="Summa"
+    IsNotNull="true"
+    ColumnName="SUMMA"
+    SQLType="VARCHAR"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.Summa_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.Summa_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="OrderId"
+    Precision="50"
+    ColumnName="ORDER_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="PKO">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Pko.OrderId_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Pko.OrderId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="Orders"
+    Association="ua.divas.model.PkoOrderFkAssoc"
+    AssociationEnd="ua.divas.model.PkoOrderFkAssoc.Orders"
+    AssociationOtherEnd="ua.divas.model.PkoOrderFkAssoc.Pko"
+    Type="ua.divas.model.OrdersImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="PkoPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PKO_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PkoFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="DIVISIONS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PKO_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.DivisionId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PkoFk2">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="USERS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PKO_FK2"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.UserId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PkoFk3">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="CURRENCY_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PKO_FK3"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.CurrId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PkoFk4">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="KASSA_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PKO_FK4"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.KassaId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PkoFk5">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="TYPE_OF_ACTIVITIES_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PKO_FK5"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.ActivitiesId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="PkoFk6">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="OPERATION_PKO_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="PKO_FK6"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.OperationId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_Pko">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="ORDERS_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_PKO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.Pko.OrderId"/>
+    </AttrArray>
+  </Key>
+  <validation:MethodValidationBean
+    Name="PkoRule0"
+    ResId="ua.divas.model.Pko_Rule_0"
+    MethodName="validatePko"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>

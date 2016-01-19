@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OperationRkoView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="OperationRko.ID, 
+       OperationRko.NAME, 
+       OperationRko.FULLNAME"
+  FromList="OPERATION_RKO OperationRko"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full">
+  <EntityUsage
+    Name="OperationRko"
+    Entity="ua.divas.model.OperationRko"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="OperationRko"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Name"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="OperationRko"
+    AliasName="NAME"/>
+  <ViewAttribute
+    Name="Fullname"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Fullname"
+    EntityUsage="OperationRko"
+    AliasName="FULLNAME"/>
+  <ViewCriteria
+    Name="OperationRkoToSupplier"
+    ViewObjectName="ua.divas.view.OperationRkoView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="OperationRkoViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Name"
+        ViewAttribute="Name"
+        Operator="="
+        Conjunction="AND"
+        Value="PAYMENT_SUPPLIER"
+        GenerateIsNullClauseForBindVars="false"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+</ViewObject>

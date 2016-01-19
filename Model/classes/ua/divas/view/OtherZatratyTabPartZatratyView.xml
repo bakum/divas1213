@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OtherZatratyTabPartZatratyView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="ua.divas.view.OtherZatratyTabPartZatratyViewRowImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="ZatratyView1"
+    ViewObjectName="ua.divas.view.ZatratyView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="ZatratyViewCriteria"
+      FullName="ua.divas.view.ZatratyView.ZatratyViewCriteria"/>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_ZatrId"
+    ListVOName="ZatratyView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ZatrId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Zatrname"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Zatrname"
+    ListVOName="ZatratyView1"
+    ListRangeSize="-1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Zatrname"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ZatrId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT OtherZatratyTabPartZatraty.ID, 
+       OtherZatratyTabPartZatraty.OTH_ID, 
+       OtherZatratyTabPartZatraty.ZATR_ID,
+       (select fullname from zatraty where id = ZATR_ID) ZatrName,
+       OtherZatratyTabPartZatraty.SUMMA,
+       (select 0 from dual) othtp_editable
+FROM  OTHER_ZATRATY_TAB_PART_ZATRATY OtherZatratyTabPartZatraty]]></SQLQuery>
+  <EntityUsage
+    Name="OtherZatratyTabPartZatraty"
+    Entity="ua.divas.model.OtherZatratyTabPartZatraty"/>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="OthId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="OthId"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="OTH_ID"/>
+  <ViewAttribute
+    Name="ZatrId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="ZatrId"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="ZATR_ID"
+    LOVName="LOV_ZatrId">
+    <Dependencies>
+      <Item
+        Value="Zatrname"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Zatrname"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ZATRNAME"
+    Expression="ZATRNAME"
+    SQLType="VARCHAR"
+    IsNotNull="true"
+    LOVName="LOV_Zatrname">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <LABEL
+          ResId="ua.divas.view.OtherZatratyTabPartZatratyView.Zatrname_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OtherZatratyTabPartZatratyView.Zatrname_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Summa"
+    IsNotNull="true"    
+    PrecisionRule="true"
+    EntityAttrName="Summa"
+    EntityUsage="OtherZatratyTabPartZatraty"
+    AliasName="SUMMA"/>
+  <ViewAttribute
+    Name="OthtpEditable"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="OTHTP_EDITABLE"
+    Expression="OTHTP_EDITABLE"
+    SQLType="NUMERIC"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

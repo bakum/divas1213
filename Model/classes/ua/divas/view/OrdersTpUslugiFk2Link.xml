@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OrdersTpUslugiFk2Link"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  EntityAssociation="ua.divas.model.OrdersTpUslugiFk2Assoc">
+  <ViewLinkDefEnd
+    Name="NomenklaturaView"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.NomenklaturaView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="NomenklaturaView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.NomenklaturaView.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="OrdersTpUslugiView"
+    Cardinality="-1"
+    Owner="ua.divas.view.OrdersTpUslugiView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="OrdersTpUslugiView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.OrdersTpUslugiView.NomId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>
