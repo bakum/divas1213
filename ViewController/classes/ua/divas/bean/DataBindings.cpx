@@ -85,6 +85,7 @@
     <page path="/mainTemplate.jsf" usageId="ua_divas_bean_mainTemplatePageDef"/>
     <page path="/options.jsf" usageId="ua_divas_bean_optionsPageDef"/>
     <page path="/tests.jsf" usageId="ua_divas_bean_testsPageDef"/>
+    <page path="/analkredit_out.jsff" usageId="ua_divas_bean_analkredit_outPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -164,6 +165,7 @@
     <page id="ua_divas_bean_mainTemplatePageDef" path="ua.divas.bean.pageDefs.mainTemplatePageDef"/>
     <page id="ua_divas_bean_optionsPageDef" path="ua.divas.bean.pageDefs.optionsPageDef"/>
     <page id="ua_divas_bean_testsPageDef" path="ua.divas.bean.pageDefs.testsPageDef"/>
+    <page id="ua_divas_bean_analkredit_outPageDef" path="ua.divas.bean.pageDefs.analkredit_outPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

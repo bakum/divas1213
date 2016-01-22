@@ -5,26 +5,95 @@
         <af:gridRow height="100%" id="gr1">
             <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                 <!-- Content -->
-                <af:decorativeBox id="db1" theme="medium">
+                <af:decorativeBox id="db2" theme="medium">
                     <f:facet name="center">
-                        <af:panelStretchLayout id="psl1" topHeight="24px">
-                            <f:facet name="bottom"/>
-                            <f:facet name="center"/>
-                            <f:facet name="start"/>
-                            <f:facet name="end"/>
+                        <af:decorativeBox id="db1" theme="medium" topHeight="24px">
+                            <f:facet name="center">
+                                <af:panelStretchLayout id="psl1" topHeight="120px" partialTriggers="pc1:b1">
+                                    <f:facet name="bottom"/>
+                                    <f:facet name="center">
+                                        <af:panelBox text="Кредиты" id="pb1">
+                                            <f:facet name="toolbar"/>
+                                            <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                                <f:facet name="menus"/>
+                                                <f:facet name="toolbar">
+                                                    <af:toolbar id="t1">
+                                                        <af:button text="Быстрый поиск" id="b1"
+                                                                   icon="/img/edit-find.png"
+                                                                   selected="#{bindings.filter_rendered1.inputValue}"
+                                                                   type="check">
+                                                            <af:setPropertyListener from="#{!bindings.filter_rendered1.inputValue}"
+                                                                                    to="#{bindings.filter_rendered1.inputValue}"
+                                                                                    type="action"/>
+                                                        </af:button>
+                                                    </af:toolbar>
+                                                </f:facet>
+                                                <f:facet name="statusbar"/>
+                                                <af:treeTable value="#{bindings.VwKontragKreditOut1.treeModel}"
+                                                              var="node"
+                                                              selectionListener="#{bindings.VwKontragKreditOut1.treeModel.makeCurrent}"
+                                                              rowSelection="single" id="tt1">
+                                                    <f:facet name="nodeStamp">
+                                                        <af:column id="c1" headerText="Имя/Регистратор" width="300">
+                                                            <af:outputText value="#{node.Fullname}" id="ot1"
+                                                                           inlineStyle="font-weight:bold;"
+                                                                           rendered="#{node.Fullname == null ? false : true}"/>
+                                                            <af:outputText value="#{node.RegString}" id="ot3"
+                                                                           rendered="#{node.RegString == null ? false : true}"/>
+                                                        </af:column>
+                                                    </f:facet>
+                                                    <f:facet name="pathStamp">
+                                                        <af:outputText value="#{node}" id="ot2"/>
+                                                    </f:facet>
+                                                    <af:column id="c2" headerText="Период" align="center">
+                                                        <af:outputText value="#{node.Period}" id="ot4"/>
+                                                    </af:column>
+                                                    <af:column id="c3" headerText="Выплаты" align="right">
+                                                        <af:outputText value="#{node.Debet}" id="ot5"
+                                                                       inlineStyle="#{node.Debet &lt; 0 ? 'color:Red;' : ''}"/>
+                                                    </af:column>
+                                                    <af:column id="c4" align="right" headerText="Возвраты">
+                                                        <af:outputText value="#{node.Kredit}" id="ot6"
+                                                                       inlineStyle="#{node.Kredit > 0 ? 'color:Red;' : ''}"/>
+                                                    </af:column>
+                                                    <af:column id="c5" headerText="Задолженность" align="right">
+                                                        <f:facet name="header">
+                                                            <af:panelGroupLayout id="pgl2" layout="vertical">
+                                                                <af:outputText value="Задолженность" id="ot7"/>
+                                                                <af:outputText value="#{bindings.VwKontragKreditOut1Iterator.viewObject.sum['Ballans']}" id="ot8"
+                                                                               inlineStyle="font-weight:bold; color:Red;"/>
+                                                            </af:panelGroupLayout>
+                                                        </f:facet>
+                                                        <af:outputText value="#{node.Ballans}" id="ot9"/>
+                                                    </af:column>
+                                                </af:treeTable>
+                                            </af:panelCollection>
+                                        </af:panelBox>
+                                    </f:facet>
+                                    <f:facet name="start"/>
+                                    <f:facet name="end"/>
+                                    <f:facet name="top">
+                                        <af:panelGroupLayout layout="vertical" id="pgl3"
+                                                             rendered="#{bindings.filter_rendered1.inputValue}">
+                                            <af:query id="qryId1" headerText="Поиск" disclosed="true"
+                                                      value="#{bindings.VwKontragKreditOutCriteriaQuery.queryDescriptor}"
+                                                      model="#{bindings.VwKontragKreditOutCriteriaQuery.queryModel}"
+                                                      queryListener="#{bindings.VwKontragKreditOutCriteriaQuery.processQuery}"
+                                                      queryOperationListener="#{bindings.VwKontragKreditOutCriteriaQuery.processQueryOperation}"
+                                                      resultComponentId="::pc1:tt1" saveQueryMode="hidden"/>
+                                        </af:panelGroupLayout>
+                                    </f:facet>
+                                </af:panelStretchLayout>
+                            </f:facet>
                             <f:facet name="top">
                                 <af:navigationPane hint="buttons" id="np1">
-                                    <af:commandNavigationItem id="ni1" text="Кредиты полученные" action="an_in"
+                                    <af:commandNavigationItem text="Кредиты" id="cni1" selected="true"
                                                               icon="/img/coins.png"/>
-                                    <af:commandNavigationItem text="Кредиты выданные" id="cni1" selected="true"
-                                                              icon="/img/coins.png"/>
-                                    <af:commandNavigationItem text="Проценты по полученным кредитам" id="cni2"
-                                                              action="an_perc_in" icon="/img/coins.png"/>
-                                    <af:commandNavigationItem text="Проценты по выданным кредитам" id="cni3"
+                                    <af:commandNavigationItem text="Проценты по кредитам" id="cni2"
                                                               action="an_prc_out" icon="/img/coins.png"/>
                                 </af:navigationPane>
                             </f:facet>
-                        </af:panelStretchLayout>
+                        </af:decorativeBox>
                     </f:facet>
                     <f:facet name="top"/>
                 </af:decorativeBox>

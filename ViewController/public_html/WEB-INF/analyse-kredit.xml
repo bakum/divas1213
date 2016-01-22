@@ -5,31 +5,17 @@
     <data-control-scope>
       <shared/>
     </data-control-scope>
-    <view id="analkredit_in">
-      <page>/analkredit_in.jsff</page>
-    </view>
     <view id="analkredit_out">
       <page>/analkredit_out.jsff</page>
-    </view>
-    <view id="anal_perc_in">
-      <page>/anal_perc_in.jsff</page>
     </view>
     <view id="anal_pecr_out">
       <page>/anal_pecr_out.jsff</page>
     </view>
     <control-flow-rule id="__1">
       <from-activity-id>*</from-activity-id>
-      <control-flow-case id="__4">
-        <from-outcome>an_in</from-outcome>
-        <to-activity-id>analkredit_in</to-activity-id>
-      </control-flow-case>
       <control-flow-case id="__5">
         <from-outcome>an_out</from-outcome>
         <to-activity-id>analkredit_out</to-activity-id>
-      </control-flow-case>
-      <control-flow-case id="__6">
-        <from-outcome>an_perc_in</from-outcome>
-        <to-activity-id>anal_perc_in</to-activity-id>
       </control-flow-case>
       <control-flow-case id="__7">
         <from-outcome>an_prc_out</from-outcome>

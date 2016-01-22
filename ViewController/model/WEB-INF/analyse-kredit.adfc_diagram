@@ -3,25 +3,6 @@
    <OverallProperties
       id="OverallProperties1"/>
    <View
-      id="View2">
-      <property
-         name="activityId">analkredit_in</property>
-      <property
-         name="page">/analkredit_in.jsff</property>
-      <property
-         name="start">false</property>
-      <property
-         name="description">&lt;html>&lt;p>&lt;b>analkredit_in&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
-      <property
-         name="exceptionHandler">false</property>
-      <property
-         name="y">138.04688</property>
-      <property
-         name="pageFragment">true</property>
-      <property
-         name="x">101.0</property>
-   </View>
-   <View
       id="View3">
       <property
          name="activityId">analkredit_out</property>
@@ -36,9 +17,9 @@
       <property
          name="y">135.07812</property>
       <property
-         name="pageFragment">true</property>
-      <property
          name="x">272.0</property>
+      <property
+         name="pageFragment">true</property>
    </View>
    <WildcardControlFlowRule
       id="WildcardControlFlowRule4">
@@ -51,16 +32,6 @@
    </WildcardControlFlowRule>
    <ControlFlowCase
       islink="true"
-      id="ControlFlowCase6"
-      from="WildcardControlFlowRule4"
-      to="View2">
-      <property
-         name="fromOutcome">an_in</property>
-      <property
-         name="sdm:polyPoints">L50,150.0,256.54688,101.0,192.0625,B50</property>
-   </ControlFlowCase>
-   <ControlFlowCase
-      islink="true"
       id="ControlFlowCase7"
       from="WildcardControlFlowRule4"
       to="View3">
@@ -69,23 +40,6 @@
       <property
          name="sdm:polyPoints">R50,222.0,256.54688,272.0,189.09375,B50</property>
    </ControlFlowCase>
-   <View
-      id="View8">
-      <property
-         name="activityId">anal_perc_in</property>
-      <property
-         name="page">/anal_perc_in.jsff</property>
-      <property
-         name="description">&lt;html>&lt;p>&lt;b>anal_perc_in&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
-      <property
-         name="exceptionHandler">false</property>
-      <property
-         name="y">375.09375</property>
-      <property
-         name="pageFragment">true</property>
-      <property
-         name="x">83.0</property>
-   </View>
    <View
       id="View9">
       <property
@@ -97,22 +51,12 @@
       <property
          name="exceptionHandler">false</property>
       <property
-         name="y">376.10938</property>
+         name="y">130.125</property>
+      <property
+         name="x">81.0</property>
       <property
          name="pageFragment">true</property>
-      <property
-         name="x">319.0</property>
    </View>
-   <ControlFlowCase
-      islink="true"
-      id="ControlFlowCase10"
-      from="WildcardControlFlowRule4"
-      to="View8">
-      <property
-         name="fromOutcome">an_perc_in</property>
-      <property
-         name="sdm:polyPoints">L55,150.0,260.04688,83.0,321.10938,T50</property>
-   </ControlFlowCase>
    <ControlFlowCase
       islink="true"
       id="ControlFlowCase11"
@@ -121,6 +65,6 @@
       <property
          name="fromOutcome">an_prc_out</property>
       <property
-         name="sdm:polyPoints">R55,222.0,260.04688,319.0,322.125,T50</property>
+         name="sdm:polyPoints">L50,150.0,256.54688,81.0,184.125,B50</property>
    </ControlFlowCase>
 </SDM>

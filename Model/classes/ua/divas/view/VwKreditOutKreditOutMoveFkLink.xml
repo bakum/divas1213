@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwKreditOutKreditOutMoveFkLink"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwKreditOutKreditOutMoveFkLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="VwKontragKreditOut"
+    Cardinality="1"
+    Source="true"
+    Owner="ua.divas.view.VwKontragKreditOut">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwKontragKreditOut"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.VwKontragKreditOut.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="VwKreditOutMove"
+    Cardinality="-1"
+    Owner="ua.divas.view.VwKreditOutMove">
+    <DesignTime>
+      <Attr Name="_finderName" Value="VwKreditOutMove"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.view.VwKreditOutMove.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

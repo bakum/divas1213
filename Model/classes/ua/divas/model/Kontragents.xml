@@ -484,6 +484,8 @@
     Type="java.sql.Timestamp"
     ColumnType="TIMESTAMP"
     TableName="KONTRAGENTS">
+    <TransientExpression
+      trustMode="untrusted"><![CDATA[adf.currentDateTime]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <LABEL
