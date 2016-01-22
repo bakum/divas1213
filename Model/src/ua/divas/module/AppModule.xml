@@ -1094,6 +1094,15 @@
   <ViewUsage
     Name="InfocardView1"
     ViewObjectName="ua.divas.view.InfocardView"/>
+  <ViewUsage
+    Name="VwKontragKreditOut1"
+    ViewObjectName="ua.divas.view.VwKontragKreditOut"/>
+  <ViewUsage
+    Name="VwKreditOutMove1"
+    ViewObjectName="ua.divas.view.VwKreditOutMove"/>
+  <ViewUsage
+    Name="VwKreditOutMove2"
+    ViewObjectName="ua.divas.view.VwKreditOutMove"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"
@@ -2251,6 +2260,12 @@
     ViewLinkObjectName="ua.divas.view.ContactDetailsCCenterFkLink"
     SrcViewUsageName="ua.divas.module.AppModule.CallCenterVO1"
     DstViewUsageName="ua.divas.module.AppModule.ContactDetailsView3"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="VwKreditOutKreditOutMoveFkLink1"
+    ViewLinkObjectName="ua.divas.view.VwKreditOutKreditOutMoveFkLink"
+    SrcViewUsageName="ua.divas.module.AppModule.VwKontragKreditOut1"
+    DstViewUsageName="ua.divas.module.AppModule.VwKreditOutMove2"
     Reversed="false"/>
   <ClientInterface
     Name="__clientInterface">

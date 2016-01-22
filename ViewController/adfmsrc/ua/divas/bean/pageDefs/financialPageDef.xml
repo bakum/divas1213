@@ -5,6 +5,8 @@
   <executables>
     <variableIterator id="variables"/>
     <page path="ua.divas.bean.pageDefs.mainTemplatePageDef" id="ptb1" Refresh="ifNeeded"/>
+    <taskFlow id="analysekredit1" taskFlowId="/WEB-INF/analyse-kredit.xml#analyse-kredit" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings/>
 </pageDefinition>

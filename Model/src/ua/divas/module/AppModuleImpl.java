@@ -4686,5 +4686,37 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     public ViewObjectImpl getInfocardView1() {
         return (ViewObjectImpl) findViewObject("InfocardView1");
     }
+
+    /**
+     * Container's getter for VwKontragKreditOut1.
+     * @return VwKontragKreditOut1
+     */
+    public ViewObjectImpl getVwKontragKreditOut1() {
+        return (ViewObjectImpl) findViewObject("VwKontragKreditOut1");
+    }
+
+    /**
+     * Container's getter for VwKreditOutMove1.
+     * @return VwKreditOutMove1
+     */
+    public ViewObjectImpl getVwKreditOutMove1() {
+        return (ViewObjectImpl) findViewObject("VwKreditOutMove1");
+    }
+
+    /**
+     * Container's getter for VwKreditOutMove2.
+     * @return VwKreditOutMove2
+     */
+    public ViewObjectImpl getVwKreditOutMove2() {
+        return (ViewObjectImpl) findViewObject("VwKreditOutMove2");
+    }
+
+    /**
+     * Container's getter for VwKreditOutKreditOutMoveFkLink1.
+     * @return VwKreditOutKreditOutMoveFkLink1
+     */
+    public ViewLinkImpl getVwKreditOutKreditOutMoveFkLink1() {
+        return (ViewLinkImpl) findViewLink("VwKreditOutKreditOutMoveFkLink1");
+    }
 }
 

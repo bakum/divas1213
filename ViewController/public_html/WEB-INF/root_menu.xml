@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <menu xmlns="http://myfaces.apache.org/trinidad/menu">
   <itemNode id="itemNode_index" label="Строительство и ремонт" action="adfMenu_index" focusViewId="/index"/>
-  <itemNode id="itemNode_financial" label="Кредитная деятельность и финансы" action="adfMenu_financial" focusViewId="/financial"/>
+  <itemNode id="itemNode_financial" label="Кредитная деятельность и финансы" action="adfMenu_financial" focusViewId="/financial"
+            rendered="#{securityContext.taskflowViewable['/WEB-INF/analyse-kredit.xml#analyse-kredit']}"/>
   <itemNode id="itemNode_options" label="Настройки и опции" action="adfMenu_options" focusViewId="/options"/>
   <itemNode id="itemNode_tests" label="Тестирование" action="adfMenu_tests" focusViewId="/tests"
             rendered="#{securityContext.userInRole['tester']}"/>

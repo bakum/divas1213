@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
@@ -191,12 +193,21 @@ public class UsersBean {
             DCBindingContainer binding = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
             DCIteratorBinding it = binding.findIteratorBinding("UsersView1Iterator");
             //if (it != null) {
-                Row curRow = it.getCurrentRow();
-                curRow.setAttribute("Photo", createBlobDomain(file));
+            Row curRow = it.getCurrentRow();
+            curRow.setAttribute("Photo", createBlobDomain(file));
             //}
 
         } catch (Exception e) {
             System.out.println(e.getMessage().toString());
         }
+    }
+
+    public void hardRefresh(ActionEvent actionEvent) {
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        String refreshpage = fctx.getViewRoot().getViewId();
+        ViewHandler ViewH = fctx.getApplication().getViewHandler();
+        UIViewRoot UIV = ViewH.createView(fctx, refreshpage);
+        UIV.setViewId(refreshpage);
+        fctx.setViewRoot(UIV);
     }
 }

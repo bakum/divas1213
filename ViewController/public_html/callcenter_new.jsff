@@ -29,6 +29,11 @@
                                             </af:button>
                                             <af:button text="Обновить" id="b5" disabled="#{bindings.Commit.enabled}"
                                                        actionListener="#{ccenter_new.onRefresh}"/>
+                                            <af:group id="g1">
+                                                <af:button text="Перезагрузить" id="b12"
+                                                           disabled="#{bindings.Commit.enabled}"
+                                                           actionListener="#{ccenter_new.onReload}"/>
+                                            </af:group>
                                         </af:toolbar>
                                     </f:facet>
                                     <f:facet name="statusbar"/>

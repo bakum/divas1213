@@ -28,6 +28,10 @@
                                             <af:button text="Обновить" id="b12"
                                                        actionListener="#{shuttle_group.onRefresh}"
                                                        disabled="#{bindings.Commit.enabled}"/>
+                                            <af:group id="g3">
+                                                <af:button text="Перезагрузить" id="b20"
+                                                           actionListener="#{users.hardRefresh}"/>
+                                            </af:group>
                                         </af:toolbar>
                                     </f:facet>
                                     <af:table value="#{bindings.UsersView1.collectionModel}" var="row"

@@ -62,7 +62,7 @@ public class CcenterNewBean {
     public RichTable getTable() {
         return table;
     }
-    
+
     public void setDat(RichInputDate dat) {
         this.dat = dat;
     }
@@ -84,8 +84,9 @@ public class CcenterNewBean {
                 rks = it.getCurrentRow().getKey().toStringFormat(true);
             } catch (Exception e) {
                 rks = null;
+            } finally {
+                it.executeQuery();
             }
-            it.executeQuery();
             if (rks != null) {
                 try {
                     it.setCurrentRowWithKey(rks);
@@ -153,9 +154,9 @@ public class CcenterNewBean {
         ob = binding.getOperationBinding("Commit");
         if (ob != null) {
             //if (dcbind.getDataControl().isTransactionModified()) {
-                ob.execute();
-                AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
-           // }
+            ob.execute();
+            AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
+            // }
         }
     }
 
@@ -170,7 +171,7 @@ public class CcenterNewBean {
         Row row = rsi.findByKey(k, 1)[0];
         rsi.setCurrentRow(row);
     }
-    
+
     public void setDel_title(String del_title) {
         this.del_title = del_title;
     }
@@ -188,7 +189,7 @@ public class CcenterNewBean {
         }
         return RetStr;
     }
-    
+
     public void setDel_style(String del_style) {
         this.del_style = del_style;
     }
@@ -206,7 +207,7 @@ public class CcenterNewBean {
         }
         return RetStr;
     }
-    
+
     public void setDel_label(String del_label) {
         this.del_label = del_label;
     }
@@ -224,7 +225,7 @@ public class CcenterNewBean {
         }
         return RetStr;
     }
-    
+
     public void onDeleteDialog(DialogEvent dialogEvent) {
         if (dialogEvent.getOutcome().name().equals("ok")) {
             DCBindingContainer bd = (DCBindingContainer) BindingContext.getCurrent().getCurrentBindingsEntry();
@@ -243,14 +244,14 @@ public class CcenterNewBean {
             refresh();
         }
     }
-    
+
     private String getSessionUser() {
         ADFContext adfCtx = ADFContext.getCurrent();
         SecurityContext secCntx = adfCtx.getSecurityContext();
         String user = secCntx.getUserPrincipal().getName();
         return user;
     }
-    
+
     public void resetBindingValue(String expression, Object newValue) {
         FacesContext ctx = FacesContext.getCurrentInstance();
         Application app = ctx.getApplication();
@@ -262,7 +263,7 @@ public class CcenterNewBean {
         valueExp.setValue(elContext, newValue);
         //}
     }
-    
+
     public void onNotifiDialog(DialogEvent dialogEvent) throws SchedulerException {
         if (dialogEvent.getOutcome().name().equals("ok")) {
             BindingContainer binding = BindingContext.getCurrent().getCurrentBindingsEntry();
@@ -308,5 +309,9 @@ public class CcenterNewBean {
     public void onNotifPopup(PopupFetchEvent popupFetchEvent) {
         resetBindingValue("#{bindings.dat.inputValue}", null);
         resetBindingValue("#{bindings.desc.inputValue}", null);
+    }
+
+    public void onReload(ActionEvent actionEvent) {
+        refresh();
     }
 }

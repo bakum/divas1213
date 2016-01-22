@@ -6,8 +6,10 @@
             <af:pageTemplate viewId="/mainTemplate.jsf" value="#{bindings.ptb1}" id="ptb1">
                 <f:facet name="body">
                     <af:panelSpringboard id="ps1" displayMode="grid">
-                        <af:showDetailItem text="Кредитование" id="sdi1" stretchChildren="first"
-                                           icon="/img/money.png"/>
+                        <af:showDetailItem text="Аналитика" id="sdi1" stretchChildren="first"
+                                           icon="/img/analytics.png">
+                            <af:region value="#{bindings.analysekredit1.regionModel}" id="r1"/>
+                        </af:showDetailItem>
                     </af:panelSpringboard>
                 </f:facet>
             </af:pageTemplate>
