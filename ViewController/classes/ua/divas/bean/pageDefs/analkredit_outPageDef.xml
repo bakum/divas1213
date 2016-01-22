@@ -7,7 +7,7 @@
       <variable Name="filter_rendered" Type="boolean" DefaultValue="false" DiscrColumn="false"/>
     </variableIterator>
     <iterator Binds="VwKontragKreditOut1" RangeSize="25" DataControl="AppModuleDataControl"
-              id="VwKontragKreditOut1Iterator"/>
+              id="VwKontragKreditOut1Iterator" RowCountThreshold="-1"/>
     <searchRegion Criteria="VwKontragKreditOutCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   Binds="VwKontragKreditOut1Iterator" id="VwKontragKreditOutCriteriaQuery"/>
   </executables>

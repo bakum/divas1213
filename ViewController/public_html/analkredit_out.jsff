@@ -18,6 +18,8 @@
                                                 <f:facet name="menus"/>
                                                 <f:facet name="toolbar">
                                                     <af:toolbar id="t1">
+                                                        <af:button text="Обновить" id="b2"
+                                                                   actionListener="#{analkredit.onRefresh}"/>
                                                         <af:button text="Быстрый поиск" id="b1"
                                                                    icon="/img/edit-find.png"
                                                                    selected="#{bindings.filter_rendered1.inputValue}"
@@ -31,8 +33,8 @@
                                                 <f:facet name="statusbar"/>
                                                 <af:treeTable value="#{bindings.VwKontragKreditOut1.treeModel}"
                                                               var="node"
-                                                              selectionListener="#{bindings.VwKontragKreditOut1.treeModel.makeCurrent}"
-                                                              rowSelection="single" id="tt1">
+                                                              rowSelection="single" id="tt1"
+                                                              binding="#{analkredit.treeTable}">
                                                     <f:facet name="nodeStamp">
                                                         <af:column id="c1" headerText="Имя/Регистратор" width="300">
                                                             <af:outputText value="#{node.Fullname}" id="ot1"
@@ -48,11 +50,11 @@
                                                     <af:column id="c2" headerText="Период" align="center">
                                                         <af:outputText value="#{node.Period}" id="ot4"/>
                                                     </af:column>
-                                                    <af:column id="c3" headerText="Выплаты" align="right">
+                                                    <af:column id="c3" headerText="Выдано" align="right">
                                                         <af:outputText value="#{node.Debet}" id="ot5"
                                                                        inlineStyle="#{node.Debet &lt; 0 ? 'color:Red;' : ''}"/>
                                                     </af:column>
-                                                    <af:column id="c4" align="right" headerText="Возвраты">
+                                                    <af:column id="c4" align="right" headerText="Получено">
                                                         <af:outputText value="#{node.Kredit}" id="ot6"
                                                                        inlineStyle="#{node.Kredit > 0 ? 'color:Red;' : ''}"/>
                                                     </af:column>
