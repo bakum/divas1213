@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="DivisionsView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -22,7 +22,8 @@
     Name="u_name"
     Kind="where"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
@@ -190,8 +191,8 @@ order by Divisions.IS_GROUP DESC]]></SQLQuery>
     ColumnType="NUMBER"
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[VwBallansAp.sum("ActiveStart != null ? ActiveStart : 0")]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
   </ViewAttribute>
   <ViewAttribute
     Name="TotalActiveOborot"
@@ -203,8 +204,8 @@ order by Divisions.IS_GROUP DESC]]></SQLQuery>
     ColumnType="NUMBER"
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[VwBallansAp.sum("ActiveOborot != null ? ActiveOborot : 0")]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
   </ViewAttribute>
   <ViewCriteria
     Name="DivisionsViewGroup"
@@ -238,14 +239,12 @@ order by Divisions.IS_GROUP DESC]]></SQLQuery>
         Operator="="
         Conjunction="AND"
         Value="1"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
       <ViewCriteriaItem
         Name="ParentId"
         ViewAttribute="ParentId"
         Operator="ISNOTBLANK"
         Conjunction="AND"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -281,7 +280,6 @@ order by Divisions.IS_GROUP DESC]]></SQLQuery>
         Operator="="
         Conjunction="AND"
         Value="0"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -345,8 +343,26 @@ order by Divisions.IS_GROUP DESC]]></SQLQuery>
     ViewLink="ua.divas.view.ProfitDistribFk1Link"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="KreditOutView"
+    ViewLink="ua.divas.view.KreditOutFk2Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ClientInterface
     Name="__clientInterface">
+    <Method
+      Name="changeParentInDivisions"
+      MethodName="changeParentInDivisions">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="Id"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="ParentId"
+        Type="java.lang.String"/>
+    </Method>
     <Method
       Name="changeParentInDivisions"
       MethodName="changeParentInDivisions">

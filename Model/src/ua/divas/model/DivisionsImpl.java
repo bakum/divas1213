@@ -51,7 +51,8 @@ public class DivisionsImpl extends DivasEntity {
         OtherZatraty,
         NachislSettings,
         StartOst,
-        ProfitDistrib;
+        ProfitDistrib,
+        KreditOut;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -96,6 +97,7 @@ public class DivisionsImpl extends DivasEntity {
     public static final int NACHISLSETTINGS = AttributesEnum.NachislSettings.index();
     public static final int STARTOST = AttributesEnum.StartOst.index();
     public static final int PROFITDISTRIB = AttributesEnum.ProfitDistrib.index();
+    public static final int KREDITOUT = AttributesEnum.KreditOut.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -345,6 +347,13 @@ public class DivisionsImpl extends DivasEntity {
      */
     public RowIterator getProfitDistrib() {
         return (RowIterator) getAttributeInternal(PROFITDISTRIB);
+    }
+
+    /**
+     * @return the associated entity oracle.jbo.RowIterator.
+     */
+    public RowIterator getKreditOut() {
+        return (RowIterator) getAttributeInternal(KREDITOUT);
     }
 
     /**

@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="KontragentsAllRoot"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -154,10 +154,15 @@ where parent_id is null]]></SQLQuery>
     ColumnType="NUMBER"
     AliasName="SUPP_SETTING"
     Expression="SUPP_SETTING"
-    SQLType="NUMERIC"/>
+    SQLType="INTEGER"/>
   <ViewLinkAccessor
     Name="KontragentsAll"
     ViewLink="ua.divas.view.KontragentsRootAllFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="KreditOutView"
+    ViewLink="ua.divas.view.KreditOutFk6Link"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
   <ResourceBundle>

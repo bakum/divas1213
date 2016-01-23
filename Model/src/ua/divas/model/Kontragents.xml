@@ -602,6 +602,13 @@
     AssociationOtherEnd="ua.divas.model.ProfitDistribTpFk2Assoc.Kontragents"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="KreditOut"
+    Association="ua.divas.model.KreditOutFk6Assoc"
+    AssociationEnd="ua.divas.model.KreditOutFk6Assoc.KreditOut"
+    AssociationOtherEnd="ua.divas.model.KreditOutFk6Assoc.Kontragents"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <Key
     Name="KontragentsIdCheck">
     <DesignTime>

@@ -413,6 +413,13 @@
     AssociationOtherEnd="ua.divas.model.ProfitDistribFk2Assoc.Users"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="KreditOut"
+    Association="ua.divas.model.KreditOutFk1Assoc"
+    AssociationEnd="ua.divas.model.KreditOutFk1Assoc.KreditOut"
+    AssociationOtherEnd="ua.divas.model.KreditOutFk1Assoc.Users"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <Key
     Name="UsersPk"
     PrimaryKey="true">

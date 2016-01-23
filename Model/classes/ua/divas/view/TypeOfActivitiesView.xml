@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="TypeOfActivitiesView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   SelectList="TypeOfActivities.ID, 
        TypeOfActivities.VERSION, 
@@ -70,6 +70,11 @@
   <ViewLinkAccessor
     Name="ProfitDistribView"
     ViewLink="ua.divas.view.ProfitDistribFk4Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="KreditOutView"
+    ViewLink="ua.divas.view.KreditOutFk5Link"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
 </ViewObject>

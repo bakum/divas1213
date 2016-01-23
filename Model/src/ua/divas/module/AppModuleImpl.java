@@ -45,6 +45,7 @@ import ua.divas.view.KontragentsLookupVOImpl;
 import ua.divas.view.KontragentsMeasurerImpl;
 import ua.divas.view.KontragentsSupplierImpl;
 import ua.divas.view.KontragentsViewImpl;
+import ua.divas.view.KreditOutViewImpl;
 import ua.divas.view.LastPriceVOImpl;
 import ua.divas.view.NachislSettingsViewImpl;
 import ua.divas.view.NomenklaturaViewImpl;
@@ -4718,6 +4719,126 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
      */
     public ViewLinkImpl getVwKreditOutKreditOutMoveFkLink1() {
         return (ViewLinkImpl) findViewLink("VwKreditOutKreditOutMoveFkLink1");
+    }
+
+    /**
+     * Container's getter for KreditCalcEnumView1.
+     * @return KreditCalcEnumView1
+     */
+    public ViewObjectImpl getKreditCalcEnumView1() {
+        return (ViewObjectImpl) findViewObject("KreditCalcEnumView1");
+    }
+
+    /**
+     * Container's getter for KreditPercentEnumView1.
+     * @return KreditPercentEnumView1
+     */
+    public ViewObjectImpl getKreditPercentEnumView1() {
+        return (ViewObjectImpl) findViewObject("KreditPercentEnumView1");
+    }
+
+    /**
+     * Container's getter for KreditOutView1.
+     * @return KreditOutView1
+     */
+    public KreditOutViewImpl getKreditOutView1() {
+        return (KreditOutViewImpl) findViewObject("KreditOutView1");
+    }
+
+    /**
+     * Container's getter for KreditOutView2.
+     * @return KreditOutView2
+     */
+    public KreditOutViewImpl getKreditOutView2() {
+        return (KreditOutViewImpl) findViewObject("KreditOutView2");
+    }
+
+    /**
+     * Container's getter for KreditOutFk3Link1.
+     * @return KreditOutFk3Link1
+     */
+    public ViewLinkImpl getKreditOutFk3Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutFk3Link1");
+    }
+
+    /**
+     * Container's getter for KreditOutView3.
+     * @return KreditOutView3
+     */
+    public KreditOutViewImpl getKreditOutView3() {
+        return (KreditOutViewImpl) findViewObject("KreditOutView3");
+    }
+
+    /**
+     * Container's getter for KreditOutFk2Link1.
+     * @return KreditOutFk2Link1
+     */
+    public ViewLinkImpl getKreditOutFk2Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutFk2Link1");
+    }
+
+    /**
+     * Container's getter for KreditOutView4.
+     * @return KreditOutView4
+     */
+    public KreditOutViewImpl getKreditOutView4() {
+        return (KreditOutViewImpl) findViewObject("KreditOutView4");
+    }
+
+    /**
+     * Container's getter for KreditOutFk4Link1.
+     * @return KreditOutFk4Link1
+     */
+    public ViewLinkImpl getKreditOutFk4Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutFk4Link1");
+    }
+
+    /**
+     * Container's getter for KreditOutView5.
+     * @return KreditOutView5
+     */
+    public KreditOutViewImpl getKreditOutView5() {
+        return (KreditOutViewImpl) findViewObject("KreditOutView5");
+    }
+
+    /**
+     * Container's getter for KreditOutFk8Link1.
+     * @return KreditOutFk8Link1
+     */
+    public ViewLinkImpl getKreditOutFk8Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutFk8Link1");
+    }
+
+    /**
+     * Container's getter for KreditOutView6.
+     * @return KreditOutView6
+     */
+    public KreditOutViewImpl getKreditOutView6() {
+        return (KreditOutViewImpl) findViewObject("KreditOutView6");
+    }
+
+    /**
+     * Container's getter for KreditOutFk7Link1.
+     * @return KreditOutFk7Link1
+     */
+    public ViewLinkImpl getKreditOutFk7Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutFk7Link1");
+    }
+
+    /**
+     * Container's getter for KreditOutView7.
+     * @return KreditOutView7
+     */
+    public KreditOutViewImpl getKreditOutView7() {
+        return (KreditOutViewImpl) findViewObject("KreditOutView7");
+    }
+
+    /**
+     * Container's getter for KreditOutFk1Link1.
+     * @return KreditOutFk1Link1
+     */
+    public ViewLinkImpl getKreditOutFk1Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutFk1Link1");
     }
 }
 

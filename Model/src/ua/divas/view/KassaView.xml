@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="KassaView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -32,7 +32,8 @@
     Name="u_name"
     Kind="where"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
@@ -44,7 +45,8 @@
     Name="p_fd"
     Kind="where"
     Type="oracle.jbo.domain.Date">
-    <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <LABEL
@@ -58,7 +60,8 @@
     Name="p_ld"
     Kind="where"
     Type="oracle.jbo.domain.Date">
-    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[adf.currentDate]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <LABEL
@@ -276,8 +279,8 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC"
     IsQueriable="false">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[viewObject.getBallans(Id,'2081')]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
   </ViewAttribute>
   <ViewAttribute
     Name="TotalPrihod"
@@ -290,8 +293,8 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC"
     IsQueriable="false">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[viewObject.getprihod_by_kassa(Id)]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Dependencies>
       <Item
         Value="TotalSumm"/>
@@ -310,8 +313,8 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC"
     IsQueriable="false">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[viewObject.getrashod_by_kassa(Id)]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Dependencies>
       <Item
         Value="TotalSumm"/>
@@ -330,8 +333,8 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC"
     IsQueriable="false">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[viewObject.getFirstBallans(Id,'2081')]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
   </ViewAttribute>
   <ViewCriteria
     Name="KassaViewByCurrAndDivisions"
@@ -365,7 +368,6 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
         Operator="="
         Conjunction="AND"
         Value=":CId"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
       <ViewCriteriaItem
@@ -374,7 +376,6 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
         Operator="="
         Conjunction="AND"
         Value=":DId"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>
@@ -414,7 +415,6 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
         Operator="STARTSWITH"
         Conjunction="AND"
         Value=":KassaName"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
       <ViewCriteriaItem
@@ -423,7 +423,6 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
         Operator="="
         Conjunction="AND"
         Value="0"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -462,7 +461,6 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
         Operator="STARTSWITH"
         Conjunction="AND"
         Value=":KassaName"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>
@@ -505,6 +503,11 @@ upper(Kassa.DIVISION_ID) in (select upper(N) from table(cast(get_divisions(:u_na
   <ViewLinkAccessor
     Name="OrdersTpOplatyView"
     ViewLink="ua.divas.view.OrderTpOplatyKassaFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="KreditOutView"
+    ViewLink="ua.divas.view.KreditOutFk4Link"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
   <ResourceBundle>

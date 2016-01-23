@@ -51,7 +51,8 @@ public class KassaImpl extends DivasEntity {
         UserSettings,
         OtherZatraty,
         KassaSettings,
-        OrdersTpOplaty;
+        OrdersTpOplaty,
+        KreditOut;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -96,6 +97,7 @@ public class KassaImpl extends DivasEntity {
     public static final int OTHERZATRATY = AttributesEnum.OtherZatraty.index();
     public static final int KASSASETTINGS = AttributesEnum.KassaSettings.index();
     public static final int ORDERSTPOPLATY = AttributesEnum.OrdersTpOplaty.index();
+    public static final int KREDITOUT = AttributesEnum.KreditOut.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -367,6 +369,13 @@ public class KassaImpl extends DivasEntity {
      */
     public RowIterator getOrdersTpOplaty() {
         return (RowIterator) getAttributeInternal(ORDERSTPOPLATY);
+    }
+
+    /**
+     * @return the associated entity oracle.jbo.RowIterator.
+     */
+    public RowIterator getKreditOut() {
+        return (RowIterator) getAttributeInternal(KREDITOUT);
     }
 
     /**

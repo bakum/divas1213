@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="CurrencyView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -166,8 +166,20 @@ where deleted = 0]]></SQLQuery>
     ViewLink="ua.divas.view.ProfitDistribFk3Link"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="KreditOutView"
+    ViewLink="ua.divas.view.KreditOutFk3Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ClientInterface
     Name="__clientInterface">
+    <Method
+      Name="doCurrencyExchange"
+      MethodName="doCurrencyExchange">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
     <Method
       Name="doCurrencyExchange"
       MethodName="doCurrencyExchange">
