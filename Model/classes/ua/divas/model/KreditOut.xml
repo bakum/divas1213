@@ -56,7 +56,6 @@
   </Attribute>
   <Attribute
     Name="Num"
-    IsNotNull="true"
     Precision="50"
     ColumnName="NUM"
     SQLType="VARCHAR"

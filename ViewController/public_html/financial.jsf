@@ -10,6 +10,10 @@
                                            icon="/img/analytics.png">
                             <af:region value="#{bindings.analysekredit1.regionModel}" id="r1"/>
                         </af:showDetailItem>
+                        <af:showDetailItem text="Кредиты" id="sdi2" stretchChildren="first"
+                                           icon="/img/money.png">
+                            <af:region value="#{bindings.kreditconfig1.regionModel}" id="r2"/>
+                        </af:showDetailItem>
                     </af:panelSpringboard>
                 </f:facet>
             </af:pageTemplate>

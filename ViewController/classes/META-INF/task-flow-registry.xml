@@ -1,6 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
    <task-flow-descriptor path="WEB-INF/editStart.xml" id="editStart" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/newKredit.xml" id="newKredit" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/ballans-config.xml" id="ballans-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/newStart.xml" id="newStart" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/zamer-config.xml" id="zamer-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
@@ -23,6 +24,7 @@
    <task-flow-descriptor path="WEB-INF/inside_debt.xml" id="inside_debt" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/EditRko.xml" id="EditRko" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/zamer_debt-config.xml" id="zamer_debt-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/editKredit.xml" id="editKredit" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/rating-config.xml" id="rating-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/gui-config.xml" id="gui-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/testing-config.xml" id="testing-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
@@ -35,6 +37,7 @@
    <task-flow-descriptor path="WEB-INF/other-dialod-flow.xml" id="other-dialod-flow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/start_ost-config.xml" id="start_ost-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/profit-config.xml" id="profit-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/kredit-config.xml" id="kredit-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/plan_acc.xml" id="plan_acc" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/kreditory-config.xml" id="kreditory-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
    <task-flow-descriptor path="WEB-INF/buyer_debt-config.xml" id="buyer_debt-config" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>

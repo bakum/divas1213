@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="Кредит выданный #{bindings.Num.inputValue == null ? '(Новый)': bindings.Num.inputValue}" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:panelHeader text="Основные реквизиты" id="ph1">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t2">
+                                    <af:button text="Редактировать" id="b3" icon="/img/edit-16.gif"
+                                               disabled="#{bindings.Enbl.inputValue == 0 ? true : bindings.Editable.inputValue == '1' ? true : false}">
+                                        <af:setPropertyListener from="#{1}" to="#{bindings.Editable.inputValue}"
+                                                                type="action"/>
+                                    </af:button>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:panelFormLayout id="pfl1">
+                                <af:panelLabelAndMessage label="#{bindings.Dat.hints.label}" id="plam1"
+                                                         showRequired="#{bindings.Dat.hints.mandatory}">
+                                    <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                        <af:inputDate value="#{bindings.Dat.inputValue}"
+                                                      columns="#{bindings.Dat.hints.displayWidth}"
+                                                      shortDesc="#{bindings.Dat.hints.tooltip}" id="id1"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.Dat.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.Dat.format}"/>
+                                        </af:inputDate>
+                                        <af:inputText value="#{bindings.Num.inputValue}"
+                                                      label="#{bindings.Num.hints.label}"
+                                                      required="#{bindings.Num.hints.mandatory}"
+                                                      columns="#{bindings.Num.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Num.hints.precision}"
+                                                      shortDesc="#{bindings.Num.hints.tooltip}" id="it1"
+                                                      readOnly="true">
+                                            <f:validator binding="#{bindings.Num.validator}"/>
+                                        </af:inputText>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:inputText value="#{bindings.KontragId.inputValue}"
+                                              label="#{bindings.KontragId.hints.label}"
+                                              required="#{bindings.KontragId.hints.mandatory}"
+                                              columns="#{bindings.KontragId.hints.displayWidth}"
+                                              maximumLength="#{bindings.KontragId.hints.precision}"
+                                              shortDesc="#{bindings.KontragId.hints.tooltip}"
+                                              partialTriggers="kontragnameId" id="it4" visible="false">
+                                    <f:validator binding="#{bindings.KontragId.validator}"/>
+                                </af:inputText>
+                                <af:inputListOfValues id="kontragnameId"
+                                                      popupTitle="Search and Select: #{bindings.Kontragname.hints.label}"
+                                                      value="#{bindings.Kontragname.inputValue}"
+                                                      label="#{bindings.Kontragname.hints.label}"
+                                                      model="#{bindings.Kontragname.listOfValuesModel}"
+                                                      required="#{bindings.Kontragname.hints.mandatory}"
+                                                      columns="#{bindings.Kontragname.hints.displayWidth}"
+                                                      shortDesc="#{bindings.Kontragname.hints.tooltip}"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:validator binding="#{bindings.Kontragname.validator}"/>
+                                </af:inputListOfValues>
+                                <af:panelLabelAndMessage label="#{bindings.KassaId.label}" id="plam3">
+                                    <af:panelGroupLayout id="pgl6" layout="horizontal">
+                                        <af:selectOneChoice value="#{bindings.KassaId.inputValue}"
+                                                            required="#{bindings.KassaId.hints.mandatory}"
+                                                            shortDesc="#{bindings.KassaId.hints.tooltip}" id="soc4"
+                                                            readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:selectItems value="#{bindings.KassaId.items}" id="si4"/>
+                                            <f:validator binding="#{bindings.KassaId.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:selectOneChoice value="#{bindings.CurrId.inputValue}"
+                                                            label="#{bindings.CurrId.label}"
+                                                            required="#{bindings.CurrId.hints.mandatory}"
+                                                            shortDesc="#{bindings.CurrId.hints.tooltip}" id="soc3"
+                                                            readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:selectItems value="#{bindings.CurrId.items}" id="si3"/>
+                                            <f:validator binding="#{bindings.CurrId.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:inputNumberSpinbox value="#{bindings.Summa.inputValue}"
+                                                       label="#{bindings.Summa.hints.label}"
+                                                       required="#{bindings.Summa.hints.mandatory}"
+                                                       columns="#{bindings.Summa.hints.displayWidth}"
+                                                       shortDesc="#{bindings.Summa.hints.tooltip}" id="it3"
+                                                       readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:validator binding="#{bindings.Summa.validator}"/>
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Summa.format}"/>
+                                </af:inputNumberSpinbox>
+                                <af:panelLabelAndMessage label="#{bindings.Percent.hints.label}" id="plam2">
+                                    <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                        <af:inputText value="#{bindings.Percent.inputValue}"
+                                                      required="#{bindings.Percent.hints.mandatory}"
+                                                      columns="#{bindings.Percent.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Percent.hints.precision}"
+                                                      shortDesc="#{bindings.Percent.hints.tooltip}" id="it5"
+                                                      readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.Percent.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.Percent.format}"/>
+                                        </af:inputText>
+                                        <af:panelGroupLayout id="pgl5" layout="vertical">
+                                            <af:selectOneChoice value="#{bindings.PercentId.inputValue}"
+                                                                label="#{bindings.PercentId.label}"
+                                                                required="#{bindings.PercentId.hints.mandatory}"
+                                                                shortDesc="#{bindings.PercentId.hints.tooltip}"
+                                                                id="soc6"
+                                                                readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                                <f:selectItems value="#{bindings.PercentId.items}" id="si6"/>
+                                                <f:validator binding="#{bindings.PercentId.validator}"/>
+                                            </af:selectOneChoice>
+                                            <af:selectOneChoice value="#{bindings.CalcId.inputValue}"
+                                                                label="#{bindings.CalcId.label}"
+                                                                required="#{bindings.CalcId.hints.mandatory}"
+                                                                shortDesc="#{bindings.CalcId.hints.tooltip}" id="soc7"
+                                                                readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                                <f:selectItems value="#{bindings.CalcId.items}" id="si7"/>
+                                                <f:validator binding="#{bindings.CalcId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:panelGroupLayout>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:inputText value="#{bindings.Comments.inputValue}"
+                                              label="#{bindings.Comments.hints.label}"
+                                              required="#{bindings.Comments.hints.mandatory}"
+                                              columns="#{bindings.Comments.hints.displayWidth}"
+                                              maximumLength="#{bindings.Comments.hints.precision}"
+                                              shortDesc="#{bindings.Comments.hints.tooltip}" id="it2" rows="5"
+                                              readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:validator binding="#{bindings.Comments.validator}"/>
+                                </af:inputText>
+                                <af:panelLabelAndMessage label="#{bindings.DivisionId.label}" id="plam4">
+                                    <af:panelGroupLayout id="pgl7" layout="horizontal">
+                                        <af:selectOneChoice value="#{bindings.DivisionId.inputValue}"
+                                                            required="#{bindings.DivisionId.hints.mandatory}"
+                                                            shortDesc="#{bindings.DivisionId.hints.tooltip}" id="soc1"
+                                                            readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:selectItems value="#{bindings.DivisionId.items}" id="si1"/>
+                                            <f:validator binding="#{bindings.DivisionId.validator}"/>
+                                        </af:selectOneChoice>
+                                        <af:selectOneChoice value="#{bindings.UserId.inputValue}"
+                                                            label="#{bindings.UserId.label}"
+                                                            required="#{bindings.UserId.hints.mandatory}"
+                                                            shortDesc="#{bindings.UserId.hints.tooltip}" id="soc2"
+                                                            readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:selectItems value="#{bindings.UserId.items}" id="si2"/>
+                                            <f:validator binding="#{bindings.UserId.validator}"/>
+                                        </af:selectOneChoice>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:selectOneChoice value="#{bindings.ActivitiesId.inputValue}"
+                                                    label="#{bindings.ActivitiesId.label}"
+                                                    required="#{bindings.ActivitiesId.hints.mandatory}"
+                                                    shortDesc="#{bindings.ActivitiesId.hints.tooltip}" id="soc5"
+                                                    readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                    <f:selectItems value="#{bindings.ActivitiesId.items}" id="si5"/>
+                                    <f:validator binding="#{bindings.ActivitiesId.validator}"/>
+                                </af:selectOneChoice>
+                                <f:facet name="footer"/>
+                            </af:panelFormLayout>
+                        </af:panelHeader>
+                        <af:spacer width="10" height="10" id="s1"/>
+                        <af:panelTabbed position="above" id="pt1">
+                            <af:showDetailItem id="tab1" text="Насчитанные проценты" stretchChildren="first"/>
+                            <af:showDetailItem text="Погашения" id="sdi1" stretchChildren="first"/>
+                        </af:panelTabbed>
+                        <af:panelGroupLayout id="pgl2" layout="horizontal" halign="right"
+                                             inlineStyle="background-color:#e7e7e7;">
+                            <af:toolbar id="t1">
+                                <af:button text="Ok" id="b1" action="ok"/>
+                                <af:button text="Отмена" id="b2" action="cancel" immediate="true"/>
+                            </af:toolbar>
+                        </af:panelGroupLayout>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

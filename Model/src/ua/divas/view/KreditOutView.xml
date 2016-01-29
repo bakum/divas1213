@@ -270,11 +270,17 @@ FROM  KREDIT_OUT KreditOut]]></SQLQuery>
     IsQueriable="false"/>
   <ViewAttribute
     Name="Num"
-    IsNotNull="true"
     PrecisionRule="true"
     EntityAttrName="Num"
     EntityUsage="KreditOut"
-    AliasName="NUM"/>
+    AliasName="NUM">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="Deleted"
     IsNotNull="true"
@@ -331,7 +337,14 @@ FROM  KREDIT_OUT KreditOut]]></SQLQuery>
     EntityAttrName="Comments"
     EntityUsage="KreditOut"
     AliasName="COMMENTS"
-    IsQueriable="false"/>
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="Version"
     PrecisionRule="true"
@@ -419,7 +432,6 @@ FROM  KREDIT_OUT KreditOut]]></SQLQuery>
   </ViewAttribute>
   <ViewAttribute
     Name="Kontragname"
-    IsUpdateable="false"
     IsPersistent="false"
     PrecisionRule="true"
     Precision="150"
@@ -436,6 +448,14 @@ FROM  KREDIT_OUT KreditOut]]></SQLQuery>
       <SchemaBasedProperties>
         <CONTROLTYPE
           Value="input_text_lov"/>
+        <LABEL
+          ResId="ua.divas.view.KreditOutView.Kontragname_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.KreditOutView.Kontragname_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.KreditOutView.Kontragname_TOOLTIP"/>
+        <DISPLAYWIDTH
+          Value="30"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -495,4 +515,8 @@ FROM  KREDIT_OUT KreditOut]]></SQLQuery>
     AliasName="ENBL"
     Expression="ENBL"
     SQLType="NUMERIC"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
 </ViewObject>

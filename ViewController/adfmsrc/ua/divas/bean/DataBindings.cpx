@@ -86,6 +86,10 @@
     <page path="/options.jsf" usageId="ua_divas_bean_optionsPageDef"/>
     <page path="/tests.jsf" usageId="ua_divas_bean_testsPageDef"/>
     <page path="/analkredit_out.jsff" usageId="ua_divas_bean_analkredit_outPageDef"/>
+    <page path="/kredity.jsff" usageId="ua_divas_bean_kredityPageDef"/>
+    <page path="/WEB-INF/newKredit.xml#newKredit@CreateInsert"
+          usageId="ua_divas_bean_newKredit_newKredit_CreateInsertPageDef"/>
+    <page path="/editKred.jsf" usageId="ua_divas_bean_editKredPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -166,6 +170,10 @@
     <page id="ua_divas_bean_optionsPageDef" path="ua.divas.bean.pageDefs.optionsPageDef"/>
     <page id="ua_divas_bean_testsPageDef" path="ua.divas.bean.pageDefs.testsPageDef"/>
     <page id="ua_divas_bean_analkredit_outPageDef" path="ua.divas.bean.pageDefs.analkredit_outPageDef"/>
+    <page id="ua_divas_bean_kredityPageDef" path="ua.divas.bean.pageDefs.kredityPageDef"/>
+    <page id="ua_divas_bean_newKredit_newKredit_CreateInsertPageDef"
+          path="ua.divas.bean.pageDefs.newKredit_newKredit_CreateInsertPageDef"/>
+    <page id="ua_divas_bean_editKredPageDef" path="ua.divas.bean.pageDefs.editKredPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

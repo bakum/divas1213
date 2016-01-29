@@ -370,6 +370,14 @@ public class KreditOutViewRowImpl extends ViewRowImpl {
     }
 
     /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute Kontragname.
+     * @param value value to set the  Kontragname
+     */
+    public void setKontragname(String value) {
+        setAttributeInternal(KONTRAGNAME, value);
+    }
+
+    /**
      * Gets the attribute value for PERCENT using the alias name Percent.
      * @return the PERCENT
      */

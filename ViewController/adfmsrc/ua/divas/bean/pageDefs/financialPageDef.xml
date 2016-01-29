@@ -7,6 +7,8 @@
     <page path="ua.divas.bean.pageDefs.mainTemplatePageDef" id="ptb1" Refresh="ifNeeded"/>
     <taskFlow id="analysekredit1" taskFlowId="/WEB-INF/analyse-kredit.xml#analyse-kredit" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="kreditconfig1" taskFlowId="/WEB-INF/kredit-config.xml#kredit-config" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings/>
 </pageDefinition>
