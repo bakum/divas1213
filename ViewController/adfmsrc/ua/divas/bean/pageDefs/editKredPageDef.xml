@@ -5,6 +5,20 @@
   <executables>
     <variableIterator id="variables"/>
     <iterator Binds="KreditOutView1" RangeSize="25" DataControl="AppModuleDataControl" id="KreditOutView1Iterator"/>
+    <iterator Binds="KreditOutTpPercentView2" RangeSize="5" DataControl="AppModuleDataControl"
+              id="KreditOutTpPercentView2Iterator">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="KreditOutTpPaymentView2" RangeSize="5" DataControl="AppModuleDataControl"
+              id="KreditOutTpPaymentView2Iterator">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <searchRegion Binds="KreditOutTpPaymentView2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="KreditOutTpPaymentView2Query"/>
   </executables>
   <bindings>
     <listOfValues IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_Kontragname" id="Kontragname"/>
@@ -62,5 +76,34 @@
         <Item Value="Enbl"/>
       </AttrNames>
     </attributeValues>
+    <tree IterBinding="KreditOutTpPercentView2Iterator" id="KreditOutTpPercentView2">
+      <nodeDefinition DefName="ua.divas.view.KreditOutTpPercentView" Name="KreditOutTpPercentView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="KreditId"/>
+          <Item Value="Dat"/>
+          <Item Value="Summa"/>
+          <Item Value="PEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="KreditOutTpPaymentView2Iterator" id="KreditOutTpPaymentView2">
+      <nodeDefinition DefName="ua.divas.view.KreditOutTpPaymentView" Name="KreditOutTpPaymentView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="KreditId"/>
+          <Item Value="Dat"/>
+          <Item Value="Summa"/>
+          <Item Value="PayId"/>
+          <Item Value="TEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="KreditOutTpPercentView2Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="KreditOutTpPaymentView2Iterator" id="CreateInsert1" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="KreditOutTpPercentView2Iterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
   </bindings>
 </pageDefinition>

@@ -19,7 +19,7 @@ public class KreditOutViewImpl extends DivasView {
      */
     public KreditOutViewImpl() {
     }
-    
+
     private ViewRowSetImpl getSettingsRowSet() {
         VariableImpl z = new VariableImpl();
         z.setName("UserKey");
@@ -40,7 +40,7 @@ public class KreditOutViewImpl extends DivasView {
         }
         return null;
     }
-    
+
     public String retrieveDivisionId() {
         ViewRowSetImpl rs = this.getSettingsRowSet();
         Row row = rs.first();
@@ -50,7 +50,7 @@ public class KreditOutViewImpl extends DivasView {
         }
         return null;
     }
-    
+
     public String retrieveKassaId() {
         ViewRowSetImpl rs = this.getSettingsRowSet();
         Row row = rs.first();
@@ -60,7 +60,7 @@ public class KreditOutViewImpl extends DivasView {
         }
         return null;
     }
-    
+
     public String retrieveActivitiesId() {
         ViewRowSetImpl rs = this.getSettingsRowSet();
         Row row = rs.first();
@@ -70,13 +70,13 @@ public class KreditOutViewImpl extends DivasView {
         }
         return null;
     }
-    
+
     public void addEntry(String _id) {
-        callStoredProcedure("RKO_ENTRY.rko_move_plan_acc(?)", new Object[] { _id });
+        callStoredProcedure("KREDIT_ENTRY.kredit_move_plan_acc(?)", new Object[] { _id });
     }
-    
+
     public void removeEntry(String _id) {
-        callStoredProcedure("RKO_ENTRY.rko_remove_plan_acc(?)", new Object[] { _id });
+        callStoredProcedure("KREDIT_ENTRY.kredit_remove_plan_acc(?)", new Object[] { _id });
     }
 }
 

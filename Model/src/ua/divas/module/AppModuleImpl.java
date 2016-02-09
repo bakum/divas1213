@@ -45,6 +45,8 @@ import ua.divas.view.KontragentsLookupVOImpl;
 import ua.divas.view.KontragentsMeasurerImpl;
 import ua.divas.view.KontragentsSupplierImpl;
 import ua.divas.view.KontragentsViewImpl;
+import ua.divas.view.KreditOutTpPaymentViewImpl;
+import ua.divas.view.KreditOutTpPercentViewImpl;
 import ua.divas.view.KreditOutViewImpl;
 import ua.divas.view.LastPriceVOImpl;
 import ua.divas.view.NachislSettingsViewImpl;
@@ -4839,6 +4841,54 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
      */
     public ViewLinkImpl getKreditOutFk1Link1() {
         return (ViewLinkImpl) findViewLink("KreditOutFk1Link1");
+    }
+
+    /**
+     * Container's getter for KreditOutTpPaymentView1.
+     * @return KreditOutTpPaymentView1
+     */
+    public KreditOutTpPaymentViewImpl getKreditOutTpPaymentView1() {
+        return (KreditOutTpPaymentViewImpl) findViewObject("KreditOutTpPaymentView1");
+    }
+
+    /**
+     * Container's getter for KreditOutTpPercentView1.
+     * @return KreditOutTpPercentView1
+     */
+    public KreditOutTpPercentViewImpl getKreditOutTpPercentView1() {
+        return (KreditOutTpPercentViewImpl) findViewObject("KreditOutTpPercentView1");
+    }
+
+    /**
+     * Container's getter for KreditOutTpPaymentView2.
+     * @return KreditOutTpPaymentView2
+     */
+    public KreditOutTpPaymentViewImpl getKreditOutTpPaymentView2() {
+        return (KreditOutTpPaymentViewImpl) findViewObject("KreditOutTpPaymentView2");
+    }
+
+    /**
+     * Container's getter for KreditOutTpPaymentFk1Link1.
+     * @return KreditOutTpPaymentFk1Link1
+     */
+    public ViewLinkImpl getKreditOutTpPaymentFk1Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutTpPaymentFk1Link1");
+    }
+
+    /**
+     * Container's getter for KreditOutTpPercentView2.
+     * @return KreditOutTpPercentView2
+     */
+    public KreditOutTpPercentViewImpl getKreditOutTpPercentView2() {
+        return (KreditOutTpPercentViewImpl) findViewObject("KreditOutTpPercentView2");
+    }
+
+    /**
+     * Container's getter for KreditOutTpPercentFk1Link1.
+     * @return KreditOutTpPercentFk1Link1
+     */
+    public ViewLinkImpl getKreditOutTpPercentFk1Link1() {
+        return (ViewLinkImpl) findViewLink("KreditOutTpPercentFk1Link1");
     }
 }
 

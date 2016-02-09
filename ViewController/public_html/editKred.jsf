@@ -166,8 +166,154 @@
                         </af:panelHeader>
                         <af:spacer width="10" height="10" id="s1"/>
                         <af:panelTabbed position="above" id="pt1">
-                            <af:showDetailItem id="tab1" text="Насчитанные проценты" stretchChildren="first"/>
-                            <af:showDetailItem text="Погашения" id="sdi1" stretchChildren="first"/>
+                            <af:showDetailItem id="tab1" text="Насчитанные проценты" stretchChildren="first">
+                                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t5">
+                                            <af:button actionListener="#{bindings.CreateInsert.execute}"
+                                                       text="Добавить" disabled="#{!bindings.CreateInsert.enabled}"
+                                                       id="b4"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.KreditOutTpPercentView2.collectionModel}" var="row"
+                                              rows="#{bindings.KreditOutTpPercentView2.rangeSize}"
+                                              emptyText="#{bindings.KreditOutTpPercentView2.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.KreditOutTpPercentView2.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.KreditOutTpPercentView2.collectionModel.makeCurrent}"
+                                              rowSelection="single"
+                                              fetchSize="#{bindings.KreditOutTpPercentView2.rangeSize}" id="t3"
+                                              partialTriggers="::b4 b6" scrollPolicy="page">
+                                        <af:column id="c2" width="60" rowHeader="true">
+                                            <af:toolbar id="t7">
+                                                <af:button id="b7" icon="/img/edit-16.gif"/>
+                                                <af:button actionListener="#{bindings.Delete.execute}"
+                                                           disabled="#{!bindings.Delete.enabled}" id="b6"
+                                                           icon="/img/delete-1.png"/>
+                                            </af:toolbar>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.KreditOutTpPercentView2.hints.Dat.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.KreditOutTpPercentView2.hints.Dat.label}"
+                                                   id="c3" width="200">
+                                            <af:inputDate value="#{row.bindings.Dat.inputValue}"
+                                                          label="#{bindings.KreditOutTpPercentView2.hints.Dat.label}"
+                                                          required="#{bindings.KreditOutTpPercentView2.hints.Dat.mandatory}"
+                                                          columns="#{bindings.KreditOutTpPercentView2.hints.Dat.displayWidth}"
+                                                          shortDesc="#{bindings.KreditOutTpPercentView2.hints.Dat.tooltip}"
+                                                          id="id2">
+                                                <f:validator binding="#{row.bindings.Dat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.KreditOutTpPercentView2.hints.Dat.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.KreditOutTpPercentView2.hints.Summa.name}"
+                                                   sortable="true"
+                                                   headerText="#{bindings.KreditOutTpPercentView2.hints.Summa.label}"
+                                                   id="c4" width="100" align="right">
+                                            <af:inputNumberSpinbox value="#{row.bindings.Summa.inputValue}"
+                                                                   label="#{bindings.KreditOutTpPercentView2.hints.Summa.label}"
+                                                                   required="#{bindings.KreditOutTpPercentView2.hints.Summa.mandatory}"
+                                                                   columns="#{bindings.KreditOutTpPercentView2.hints.Summa.displayWidth}"
+                                                                   shortDesc="#{bindings.KreditOutTpPercentView2.hints.Summa.tooltip}"
+                                                                   id="it8">
+                                                <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.KreditOutTpPercentView2.hints.Summa.format}"/>
+                                            </af:inputNumberSpinbox>
+                                            <f:facet name="header">
+                                                <af:panelGroupLayout id="pgl9" layout="vertical">
+                                                    <af:outputText value="#{bindings.KreditOutTpPercentView2.hints.Summa.label}"
+                                                                   id="ot4"/>
+                                                    <af:outputText value="ИТОГО: #{bindings.KreditOutTpPercentView2Iterator.viewObject.sum['Summa']}"
+                                                                   id="ot3"/>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </af:showDetailItem>
+                            <af:showDetailItem text="Погашения" id="sdi1" stretchChildren="first">
+                                <af:panelCollection id="pc2" styleClass="AFStretchWidth">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar">
+                                        <af:toolbar id="t6">
+                                            <af:button actionListener="#{bindings.CreateInsert1.execute}"
+                                                       text="Добавить"
+                                                       disabled="#{!bindings.CreateInsert1.enabled}" id="b5"/>
+                                        </af:toolbar>
+                                    </f:facet>
+                                    <af:table value="#{bindings.KreditOutTpPaymentView2.collectionModel}" var="row"
+                                              rows="#{bindings.KreditOutTpPaymentView2.rangeSize}"
+                                              emptyText="#{bindings.KreditOutTpPaymentView2.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.KreditOutTpPaymentView2.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.KreditOutTpPaymentView2.collectionModel.makeCurrent}"
+                                              rowSelection="single"
+                                              fetchSize="#{bindings.KreditOutTpPaymentView2.rangeSize}"
+                                              filterModel="#{bindings.KreditOutTpPaymentView2Query.queryDescriptor}"
+                                              queryListener="#{bindings.KreditOutTpPaymentView2Query.processQuery}" varStatus="vs" id="t4" partialTriggers="::b5"
+                                              scrollPolicy="page">
+                                        <af:column id="c1" width="60" rowHeader="true"/>
+                                        <af:column sortProperty="#{bindings.KreditOutTpPaymentView2.hints.Dat.name}" sortable="true"
+                                                   headerText="#{bindings.KreditOutTpPaymentView2.hints.Dat.label}"
+                                                   id="c8" width="200">
+                                            <f:facet name="filter">
+                                                <af:inputDate value="#{bindings.KreditOutTpPaymentView2Query.queryDescriptor.filterConjunctionCriterion.criterionMap.Dat.value}"
+                                                              id="id3">
+                                                    <af:convertDateTime pattern="#{bindings.KreditOutTpPaymentView2.hints.Dat.format}"/>
+                                                </af:inputDate>
+                                            </f:facet>
+                                            <af:inputDate value="#{row.bindings.Dat.inputValue}"
+                                                          label="#{bindings.KreditOutTpPaymentView2.hints.Dat.label}"
+                                                          required="#{bindings.KreditOutTpPaymentView2.hints.Dat.mandatory}"
+                                                          columns="#{bindings.KreditOutTpPaymentView2.hints.Dat.displayWidth}"
+                                                          shortDesc="#{bindings.KreditOutTpPaymentView2.hints.Dat.tooltip}"
+                                                          id="id4">
+                                                <f:validator binding="#{row.bindings.Dat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.KreditOutTpPaymentView2.hints.Dat.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.KreditOutTpPaymentView2.hints.PayId.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.KreditOutTpPaymentView2.hints.PayId.label}"
+                                                   id="c10" width="150">
+                                            <af:selectOneChoice value="#{row.bindings.PayId.inputValue}"
+                                                                label="#{row.bindings.PayId.label}"
+                                                                required="#{bindings.KreditOutTpPaymentView2.hints.PayId.mandatory}"
+                                                                shortDesc="#{bindings.KreditOutTpPaymentView2.hints.PayId.tooltip}"
+                                                                id="soc8">
+                                                <f:selectItems value="#{row.bindings.PayId.items}" id="si8"/>
+                                                <f:validator binding="#{row.bindings.PayId.validator}"/>
+                                            </af:selectOneChoice>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.KreditOutTpPaymentView2.hints.Summa.name}" sortable="true"
+                                                   headerText="#{bindings.KreditOutTpPaymentView2.hints.Summa.label}"
+                                                   id="c9" align="right">
+                                            <af:inputNumberSpinbox value="#{row.bindings.Summa.inputValue}"
+                                                                   label="#{bindings.KreditOutTpPaymentView2.hints.Summa.label}"
+                                                                   required="#{bindings.KreditOutTpPaymentView2.hints.Summa.mandatory}"
+                                                                   columns="#{bindings.KreditOutTpPaymentView2.hints.Summa.displayWidth}"
+                                                                   shortDesc="#{bindings.KreditOutTpPaymentView2.hints.Summa.tooltip}"
+                                                                   id="it12">
+                                                <f:validator binding="#{row.bindings.Summa.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.KreditOutTpPaymentView2.hints.Summa.format}"/>
+                                            </af:inputNumberSpinbox>
+                                            <f:facet name="header">
+                                                <af:panelGroupLayout id="pgl8" layout="vertical">
+                                                    <af:outputText value="#{bindings.KreditOutTpPaymentView2.hints.Summa.label}"
+                                                                   id="ot2"/>
+                                                    <af:outputText value="ИТОГО: #{bindings.KreditOutTpPaymentView2Iterator.viewObject.sum['Summa']}"
+                                                                   id="ot1"/>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                        </af:column>
+                                    </af:table>
+                                    <f:facet name="statusbar"/>
+                                </af:panelCollection>
+                            </af:showDetailItem>
                         </af:panelTabbed>
                         <af:panelGroupLayout id="pgl2" layout="horizontal" halign="right"
                                              inlineStyle="background-color:#e7e7e7;">

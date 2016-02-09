@@ -515,6 +515,16 @@ FROM  KREDIT_OUT KreditOut]]></SQLQuery>
     AliasName="ENBL"
     Expression="ENBL"
     SQLType="NUMERIC"/>
+  <ViewLinkAccessor
+    Name="KreditOutTpPercentView"
+    ViewLink="ua.divas.view.KreditOutTpPercentFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="KreditOutTpPaymentView"
+    ViewLink="ua.divas.view.KreditOutTpPaymentFk1Link"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="ua.divas.model.ModelBundle"/>

@@ -7,8 +7,11 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 import oracle.jbo.Key;
+import oracle.jbo.RowIterator;
 import oracle.jbo.server.EntityDefImpl;
 import oracle.jbo.server.EntityImpl;
+
+import oracle.jbo.server.TransactionEvent;
 
 import ua.divas.classes.DivasEntity;
 // ---------------------------------------------------------------------
@@ -18,6 +21,13 @@ import ua.divas.classes.DivasEntity;
 // ---    Warning: Do not modify method signatures of generated methods.
 // ---------------------------------------------------------------------
 public class KreditOutImpl extends DivasEntity {
+    
+    @Override
+    protected void doDML(int i, TransactionEvent transactionEvent) {
+        super.doDML(i, transactionEvent);
+        String _id = this.getId();
+        callStoredProcedure("KREDIT_ENTRY.kredit_move_plan_acc(?)", new Object[] { _id });
+    }
     
     @Override
     protected void callDeleted() {
@@ -56,7 +66,9 @@ public class KreditOutImpl extends DivasEntity {
         Currency,
         KreditPercentEnum,
         TypeOfActivities,
-        Users;
+        Users,
+        KreditOutTpPercent,
+        KreditOutTpPayment;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -79,6 +91,8 @@ public class KreditOutImpl extends DivasEntity {
             return vals;
         }
     }
+
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int DAT = AttributesEnum.Dat.index();
     public static final int NUM = AttributesEnum.Num.index();
@@ -104,12 +118,22 @@ public class KreditOutImpl extends DivasEntity {
     public static final int KREDITPERCENTENUM = AttributesEnum.KreditPercentEnum.index();
     public static final int TYPEOFACTIVITIES = AttributesEnum.TypeOfActivities.index();
     public static final int USERS = AttributesEnum.Users.index();
+    public static final int KREDITOUTTPPERCENT = AttributesEnum.KreditOutTpPercent.index();
+    public static final int KREDITOUTTPPAYMENT = AttributesEnum.KreditOutTpPayment.index();
 
     /**
      * This is the default constructor (do not remove).
      */
     public KreditOutImpl() {
     }
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        return EntityDefImpl.findDefObject("ua.divas.model.KreditOut");
+    }
+
 
     /**
      * Gets the attribute value for Id, using the alias name Id.
@@ -496,6 +520,20 @@ public class KreditOutImpl extends DivasEntity {
     }
 
     /**
+     * @return the associated entity oracle.jbo.RowIterator.
+     */
+    public RowIterator getKreditOutTpPercent() {
+        return (RowIterator) getAttributeInternal(KREDITOUTTPPERCENT);
+    }
+
+    /**
+     * @return the associated entity oracle.jbo.RowIterator.
+     */
+    public RowIterator getKreditOutTpPayment() {
+        return (RowIterator) getAttributeInternal(KREDITOUTTPPAYMENT);
+    }
+
+    /**
      * @param id key constituent
 
      * @return a Key object based on given key constituents.
@@ -504,11 +542,6 @@ public class KreditOutImpl extends DivasEntity {
         return new Key(new Object[] { id });
     }
 
-    /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        return EntityDefImpl.findDefObject("ua.divas.model.KreditOut");
-    }
+
 }
 

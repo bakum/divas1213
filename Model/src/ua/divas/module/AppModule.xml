@@ -1130,6 +1130,18 @@
   <ViewUsage
     Name="KreditOutView7"
     ViewObjectName="ua.divas.view.KreditOutView"/>
+  <ViewUsage
+    Name="KreditOutTpPaymentView1"
+    ViewObjectName="ua.divas.view.KreditOutTpPaymentView"/>
+  <ViewUsage
+    Name="KreditOutTpPercentView1"
+    ViewObjectName="ua.divas.view.KreditOutTpPercentView"/>
+  <ViewUsage
+    Name="KreditOutTpPaymentView2"
+    ViewObjectName="ua.divas.view.KreditOutTpPaymentView"/>
+  <ViewUsage
+    Name="KreditOutTpPercentView2"
+    ViewObjectName="ua.divas.view.KreditOutTpPercentView"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"
@@ -2329,6 +2341,18 @@
     ViewLinkObjectName="ua.divas.view.KreditOutFk1Link"
     SrcViewUsageName="ua.divas.module.AppModule.UsersView1"
     DstViewUsageName="ua.divas.module.AppModule.KreditOutView7"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="KreditOutTpPaymentFk1Link1"
+    ViewLinkObjectName="ua.divas.view.KreditOutTpPaymentFk1Link"
+    SrcViewUsageName="ua.divas.module.AppModule.KreditOutView1"
+    DstViewUsageName="ua.divas.module.AppModule.KreditOutTpPaymentView2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="KreditOutTpPercentFk1Link1"
+    ViewLinkObjectName="ua.divas.view.KreditOutTpPercentFk1Link"
+    SrcViewUsageName="ua.divas.module.AppModule.KreditOutView1"
+    DstViewUsageName="ua.divas.module.AppModule.KreditOutTpPercentView2"
     Reversed="false"/>
   <ClientInterface
     Name="__clientInterface">

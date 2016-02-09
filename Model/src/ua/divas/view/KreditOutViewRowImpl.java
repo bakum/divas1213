@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import oracle.jbo.AttributeList;
+import oracle.jbo.RowIterator;
 import oracle.jbo.RowSet;
 import oracle.jbo.server.ViewRowImpl;
 
@@ -61,6 +62,8 @@ public class KreditOutViewRowImpl extends ViewRowImpl {
         CalcId,
         Editable,
         Enbl,
+        KreditOutTpPercentView,
+        KreditOutTpPaymentView,
         DivisionsView1,
         UsersView1,
         CurrencyView1,
@@ -114,6 +117,8 @@ public class KreditOutViewRowImpl extends ViewRowImpl {
     public static final int CALCID = AttributesEnum.CalcId.index();
     public static final int EDITABLE = AttributesEnum.Editable.index();
     public static final int ENBL = AttributesEnum.Enbl.index();
+    public static final int KREDITOUTTPPERCENTVIEW = AttributesEnum.KreditOutTpPercentView.index();
+    public static final int KREDITOUTTPPAYMENTVIEW = AttributesEnum.KreditOutTpPaymentView.index();
     public static final int DIVISIONSVIEW1 = AttributesEnum.DivisionsView1.index();
     public static final int USERSVIEW1 = AttributesEnum.UsersView1.index();
     public static final int CURRENCYVIEW1 = AttributesEnum.CurrencyView1.index();
@@ -447,6 +452,20 @@ public class KreditOutViewRowImpl extends ViewRowImpl {
      */
     public BigDecimal getEnbl() {
         return (BigDecimal) getAttributeInternal(ENBL);
+    }
+
+    /**
+     * Gets the associated <code>RowIterator</code> using master-detail link KreditOutTpPercentView.
+     */
+    public RowIterator getKreditOutTpPercentView() {
+        return (RowIterator) getAttributeInternal(KREDITOUTTPPERCENTVIEW);
+    }
+
+    /**
+     * Gets the associated <code>RowIterator</code> using master-detail link KreditOutTpPaymentView.
+     */
+    public RowIterator getKreditOutTpPaymentView() {
+        return (RowIterator) getAttributeInternal(KREDITOUTTPPAYMENTVIEW);
     }
 
     /**

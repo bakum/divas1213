@@ -447,6 +447,20 @@
     AssociationOtherEnd="ua.divas.model.KreditOutFk1Assoc.KreditOut"
     Type="ua.divas.model.UsersImpl"
     IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="KreditOutTpPercent"
+    Association="ua.divas.model.KreditOutTpPercentFk1Assoc"
+    AssociationEnd="ua.divas.model.KreditOutTpPercentFk1Assoc.KreditOutTpPercent"
+    AssociationOtherEnd="ua.divas.model.KreditOutTpPercentFk1Assoc.KreditOut"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="KreditOutTpPayment"
+    Association="ua.divas.model.KreditOutTpPaymentFk1Assoc"
+    AssociationEnd="ua.divas.model.KreditOutTpPaymentFk1Assoc.KreditOutTpPayment"
+    AssociationOtherEnd="ua.divas.model.KreditOutTpPaymentFk1Assoc.KreditOut"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <Key
     Name="KreditOutPk"
     PrimaryKey="true">
