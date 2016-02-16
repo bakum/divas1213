@@ -29,6 +29,7 @@
           <Item Value="UserId"/>
           <Item Value="Posted"/>
           <Item Value="Deleted"/>
+          <Item Value="Comments"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

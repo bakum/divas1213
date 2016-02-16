@@ -28,7 +28,7 @@
       Kind="where"
       Type="java.lang.String">
         <TransientExpression
-          Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+            Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
         <Properties>
             <SchemaBasedProperties>
                 <DISPLAYHINT
@@ -305,9 +305,8 @@
             <Item Value="Id"/>
         </AttrArray>
         <AttrArray Name="ListDisplayAttrNames">
-            <Item Value="Kontragname"/>
             <Item Value="Num"/>
-            <Item Value="Dat"/>
+            <Item Value="Kontragname"/>
         </AttrArray>
         <DisplayCriteria/>
     </ListBinding>
@@ -634,6 +633,8 @@ upper(Rko.USER_ID) in (select upper(N) from table(cast(get_users(:u_name) as use
       IsQueriable="false">
         <Properties>
             <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                    Value="30"/>
                 <CONTROLTYPE
                   Value="choice"/>
             </SchemaBasedProperties>

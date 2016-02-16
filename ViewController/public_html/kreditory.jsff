@@ -42,16 +42,16 @@
                                             <af:convertDateTime type="date" dateStyle="medium"/>
                                         </af:outputText>
                                     </af:column>
-                                    <af:column id="c3" headerText="Выплаты" align="right">
-                                        <af:outputText value="#{node.Debet}" id="ot5"
-                                                       inlineStyle="#{node.Debet &lt; 0 ? 'color:Red;' : ''}">
+                                    <af:column id="c4" headerText="Начисления" align="right">
+                                        <af:outputText value="#{node.Kredit}" id="ot6"
+                                                       inlineStyle="#{node.Kredit > 0 ? 'color:Red;' : ''}">
                                             <af:convertNumber type="number" minFractionDigits="2"
                                                               maxFractionDigits="2"/>
                                         </af:outputText>
                                     </af:column>
-                                    <af:column id="c4" headerText="Начисления" align="right">
-                                        <af:outputText value="#{node.Kredit}" id="ot6"
-                                                       inlineStyle="#{node.Kredit > 0 ? 'color:Red;' : ''}">
+                                    <af:column id="c3" headerText="Выплаты" align="right">
+                                        <af:outputText value="#{node.Debet}" id="ot5"
+                                                       inlineStyle="#{node.Debet &lt; 0 ? 'color:Red;' : ''}">
                                             <af:convertNumber type="number" minFractionDigits="2"
                                                               maxFractionDigits="2"/>
                                         </af:outputText>

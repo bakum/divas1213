@@ -375,8 +375,7 @@ order by Kontragents.CREATED desc]]></SQLQuery>
     ColumnType="VARCHAR2"
     AliasName="PHONE"
     Expression="PHONE"
-    SQLType="VARCHAR"
-    IsQueriable="false">
+    SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="15"/>
     </DesignTime>

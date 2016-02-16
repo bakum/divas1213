@@ -136,7 +136,9 @@
                                             </af:selectOneChoice>
                                         </af:column>
                                         <af:column headerText="#{bindings.CallCenterVO1.hints.Phone.label}" id="c7"
-                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
+                                                   inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}"
+                                                   sortProperty="#{bindings.CallCenterVO1.hints.Phone.name}"
+                                                   filterable="true">
                                             <af:outputText value="#{row.Phone}"
                                                            shortDesc="#{bindings.CallCenterVO1.hints.Phone.tooltip}"
                                                            id="ot2"/>

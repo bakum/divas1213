@@ -81,14 +81,14 @@
                                         <af:column sortProperty="#{bindings.RkoView1.hints.Kontragname.name}"
                                                    sortable="true"
                                                    headerText="#{bindings.RkoView1.hints.Kontragname.label}" id="c5"
-                                                   width="250">
+                                                   width="200">
                                             <af:outputText value="#{row.Kontragname}"
                                                            shortDesc="#{bindings.RkoView1.hints.Kontragname.tooltip}"
                                                            id="ot4"/>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.RkoView1.hints.Summa.name}" sortable="true"
                                                    headerText="#{bindings.RkoView1.hints.Summa.label}" id="c6"
-                                                   align="right">
+                                                   align="right" width="80">
                                             <af:outputText value="#{row.Summa}"
                                                            shortDesc="#{bindings.RkoView1.hints.Summa.tooltip}"
                                                            id="ot5">
@@ -98,7 +98,7 @@
                                         </af:column>
                                         <af:column sortProperty="#{bindings.RkoView1.hints.KassaId.name}"
                                                    sortable="true" headerText="#{bindings.RkoView1.hints.KassaId.label}"
-                                                   id="c8" width="150">
+                                                   id="c8" width="130">
                                             <af:selectOneChoice value="#{row.bindings.KassaId.inputValue}"
                                                                 label="#{row.bindings.KassaId.label}"
                                                                 required="#{bindings.RkoView1.hints.KassaId.mandatory}"
@@ -156,6 +156,12 @@
                                                 </af:menu>
                                             </af:popup>
                                         </f:facet>
+                                        <af:column headerText="#{bindings.RkoView1.hints.Comments.label}" id="c1"
+                                                   width="130">
+                                            <af:outputText value="#{row.Comments}"
+                                                           shortDesc="#{bindings.RkoView1.hints.Comments.tooltip}"
+                                                           id="ot1"/>
+                                        </af:column>
                                     </af:table>
                                     <af:popup childCreation="deferred" autoCancel="disabled" id="pEntryRko"
                                               contentDelivery="lazyUncached">
