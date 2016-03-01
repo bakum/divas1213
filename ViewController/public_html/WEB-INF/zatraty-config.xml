@@ -10,6 +10,20 @@
     <view id="zatraty">
       <page>/zatraty.jsff</page>
     </view>
+    <view id="zatraty_new">
+      <page>/zatraty_new.jsff</page>
+    </view>
+    <control-flow-rule id="__2">
+      <from-activity-id>*</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>to_zatraty</from-outcome>
+        <to-activity-id>zatraty</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__4">
+        <from-outcome>to_zatratynew</from-outcome>
+        <to-activity-id>zatraty_new</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
     <use-page-fragments/>
   </task-flow-definition>
 </adfc-config>

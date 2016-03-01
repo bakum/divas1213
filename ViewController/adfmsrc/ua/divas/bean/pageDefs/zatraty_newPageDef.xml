@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="zatraty_newPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="VwZatraty1.variablesMap.f_dat"
+                     Name="ExecuteWithParams_f_dat" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="VwZatraty1.variablesMap.l_dat"
+                     Name="ExecuteWithParams_l_dat" IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="VwZatraty1" RangeSize="25" DataControl="AppModuleDataControl" id="VwZatraty1Iterator"
+              RowCountThreshold="-1"/>
+    <searchRegion Binds="VwZatraty1Iterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="VwZatraty1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="VwZatraty1Iterator" id="VwZatraty1">
+      <nodeDefinition DefName="ua.divas.view.VwZatraty" Name="VwZatraty10">
+        <AttrNames>
+          <Item Value="RegistratorId"/>
+          <Item Value="Comments"/>
+          <Item Value="TableName"/>
+          <Item Value="Code"/>
+          <Item Value="Summa"/>
+          <Item Value="ZatratyId"/>
+          <Item Value="ZatratyName"/>
+          <Item Value="DivisionId"/>
+          <Item Value="Period"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="VwZatraty1Iterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="u_name" NDType="java.lang.String"/>
+      <NamedData NDName="f_dat" NDType="java.sql.Timestamp" NDValue="${bindings.ExecuteWithParams_f_dat}"/>
+      <NamedData NDName="l_dat" NDType="java.sql.Timestamp" NDValue="${bindings.ExecuteWithParams_l_dat}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="f_dat">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_f_dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="l_dat">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_l_dat"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -45,9 +45,16 @@ public class VwZatratyImpl extends DivasView {
         //calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); // это будет конец месяца
         //calendar.set(Calendar.DAY_OF_YEAR, calendar.getActualMaximum(Calendar.DAY_OF_YEAR)); // это будет конец года
         //calendar.set(Calendar.DAY_OF_YEAR, calendar.getActualMinimum(Calendar.DAY_OF_YEAR)); // это будет начало года
+        calendar.clear(Calendar.HOUR);
+        calendar.clear(Calendar.MINUTE);
+        calendar.clear(Calendar.SECOND);
+        calendar.clear(Calendar.MILLISECOND);
         java.util.Date pDate = calendar.getTime();
         oracle.jbo.domain.Date dbDate= new oracle.jbo.domain.Date(new java.sql.Date(pDate.getTime()));
         //oracle.jbo.domain.Date time = new oracle.jbo.domain.Date(pDate);
+        
+        //Date newDate = new oracle.jbo.domain.Date(calendar.getTimeInMillis());
+        System.out.println("dbDate: "+dbDate.toString());
         return dbDate;
     }
 
@@ -72,15 +79,15 @@ public class VwZatratyImpl extends DivasView {
      * Returns the variable value for f_dat.
      * @return variable value for f_dat
      */
-    public Timestamp getf_dat() {
-        return (Timestamp) ensureVariableManager().getVariableValue("f_dat");
+    public Date getf_dat() {
+        return (Date) ensureVariableManager().getVariableValue("f_dat");
     }
 
     /**
      * Sets <code>value</code> for variable f_dat.
      * @param value value to bind as f_dat
      */
-    public void setf_dat(Timestamp value) {
+    public void setf_dat(Date value) {
         ensureVariableManager().setVariableValue("f_dat", value);
     }
 
@@ -88,15 +95,15 @@ public class VwZatratyImpl extends DivasView {
      * Returns the variable value for l_dat.
      * @return variable value for l_dat
      */
-    public Timestamp getl_dat() {
-        return (Timestamp) ensureVariableManager().getVariableValue("l_dat");
+    public Date getl_dat() {
+        return (Date) ensureVariableManager().getVariableValue("l_dat");
     }
 
     /**
      * Sets <code>value</code> for variable l_dat.
      * @param value value to bind as l_dat
      */
-    public void setl_dat(Timestamp value) {
+    public void setl_dat(Date value) {
         ensureVariableManager().setVariableValue("l_dat", value);
     }
 

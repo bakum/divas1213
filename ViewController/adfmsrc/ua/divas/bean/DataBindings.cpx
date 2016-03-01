@@ -90,6 +90,7 @@
     <page path="/WEB-INF/newKredit.xml#newKredit@CreateInsert"
           usageId="ua_divas_bean_newKredit_newKredit_CreateInsertPageDef"/>
     <page path="/editKred.jsf" usageId="ua_divas_bean_editKredPageDef"/>
+    <page path="/zatraty_new.jsff" usageId="ua_divas_bean_zatraty_newPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -174,6 +175,7 @@
     <page id="ua_divas_bean_newKredit_newKredit_CreateInsertPageDef"
           path="ua.divas.bean.pageDefs.newKredit_newKredit_CreateInsertPageDef"/>
     <page id="ua_divas_bean_editKredPageDef" path="ua.divas.bean.pageDefs.editKredPageDef"/>
+    <page id="ua_divas_bean_zatraty_newPageDef" path="ua.divas.bean.pageDefs.zatraty_newPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

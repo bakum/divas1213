@@ -3,7 +3,8 @@
                 Package="ua.divas.bean.pageDefs">
   <parameters/>
   <executables>
-    <iterator Binds="VwZatraty1" RangeSize="15" DataControl="AppModuleDataControl" id="VwZatraty1Iterator"/>
+    <iterator Binds="VwZatraty1" RangeSize="15" DataControl="AppModuleDataControl" id="VwZatraty1Iterator"
+              RowCountThreshold="-1"/>
     <searchRegion Binds="VwZatraty1Iterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
                   id="VwZatraty1Query"/>
     <iterator id="DivisionsView1_1Iterator" Binds="DivisionsView1_1" DataControl="AppModuleDataControl" RangeSize="-1">

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                    <f:facet name="menus"/>
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t2">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                <af:inputDate value="#{bindings.f_dat.inputValue}" label="#{bindings.f_dat.hints.label}"
+                                              required="#{bindings.f_dat.hints.mandatory}"
+                                              columns="#{bindings.f_dat.hints.displayWidth}"
+                                              shortDesc="#{bindings.f_dat.hints.tooltip}" id="id2" autoSubmit="true">
+                                    <f:validator binding="#{bindings.f_dat.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.f_dat.format}"/>
+                                </af:inputDate>
+                                <af:inputDate value="#{bindings.l_dat.inputValue}" label="#{bindings.l_dat.hints.label}"
+                                              required="#{bindings.l_dat.hints.mandatory}"
+                                              columns="#{bindings.l_dat.hints.displayWidth}"
+                                              shortDesc="#{bindings.l_dat.hints.tooltip}" id="id3" autoSubmit="true">
+                                    <f:validator binding="#{bindings.l_dat.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.l_dat.format}"/>
+                                </af:inputDate>
+                                <af:button actionListener="#{bindings.ExecuteWithParams.execute}"
+                                           text="Обновить" disabled="#{!bindings.ExecuteWithParams.enabled}"
+                                           id="b1"/>
+                            </af:panelGroupLayout>
+                        </af:toolbar>
+                    </f:facet>
+                    <af:table value="#{bindings.VwZatraty1.collectionModel}" var="row"
+                              rows="#{bindings.VwZatraty1.rangeSize}"
+                              emptyText="#{bindings.VwZatraty1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.VwZatraty1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.VwZatraty1.collectionModel.makeCurrent}"
+                              rowSelection="single" fetchSize="#{bindings.VwZatraty1.rangeSize}"
+                              filterModel="#{bindings.VwZatraty1Query.queryDescriptor}"
+                              queryListener="#{bindings.VwZatraty1Query.processQuery}" filterVisible="true"
+                              varStatus="vs" id="t1" editingMode="clickToEdit" scrollPolicy="page"
+                              partialTriggers="::b1">
+                        <af:column sortProperty="#{bindings.VwZatraty1.hints.ZatratyId.name}" filterable="true"
+                                   headerText="#{bindings.VwZatraty1.hints.ZatratyId.label}" id="c6" width="200">
+                            <af:selectOneChoice value="#{row.bindings.ZatratyId.inputValue}"
+                                                label="#{row.bindings.ZatratyId.label}"
+                                                required="#{bindings.VwZatraty1.hints.ZatratyId.mandatory}"
+                                                shortDesc="#{bindings.VwZatraty1.hints.ZatratyId.tooltip}"
+                                                readOnly="true" id="soc3">
+                                <f:selectItems value="#{row.bindings.ZatratyId.items}" id="si3"/>
+                                <f:validator binding="#{row.bindings.ZatratyId.validator}"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwZatraty1.hints.Period.name}"
+                                   headerText="#{bindings.VwZatraty1.hints.Period.label}" id="c9">
+                            <f:facet name="filter">
+                                <af:inputDate value="#{bindings.VwZatraty1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.Period.value}"
+                                              id="id1">
+                                    <af:convertDateTime pattern="#{bindings.VwZatraty1.hints.Period.format}"/>
+                                </af:inputDate>
+                            </f:facet>
+                            <af:outputText value="#{row.Period}" shortDesc="#{bindings.VwZatraty1.hints.Period.tooltip}"
+                                           id="ot5">
+                                <af:convertDateTime pattern="#{bindings.VwZatraty1.hints.Period.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column headerText="#{bindings.VwZatraty1.hints.Summa.label}" id="c5" width="150">
+                            <af:outputText value="#{row.Summa}" shortDesc="#{bindings.VwZatraty1.hints.Summa.tooltip}"
+                                           id="ot3" inlineStyle="font-weight:bold;">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwZatraty1.hints.Summa.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwZatraty1.hints.DivisionId.name}" filterable="true"
+                                   headerText="#{bindings.VwZatraty1.hints.DivisionId.label}" id="c8" width="200">
+                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
+                                                label="#{row.bindings.DivisionId.label}"
+                                                required="#{bindings.VwZatraty1.hints.DivisionId.mandatory}"
+                                                shortDesc="#{bindings.VwZatraty1.hints.DivisionId.tooltip}"
+                                                readOnly="true" id="soc4">
+                                <f:selectItems value="#{row.bindings.DivisionId.items}" id="si4"/>
+                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                        <af:column headerText="#{bindings.VwZatraty1.hints.Comments.label}" id="c2" width="200">
+                            <af:selectOneChoice value="#{row.bindings.Comments.inputValue}"
+                                                label="#{row.bindings.Comments.label}"
+                                                required="#{bindings.VwZatraty1.hints.Comments.mandatory}"
+                                                shortDesc="#{bindings.VwZatraty1.hints.Comments.tooltip}"
+                                                readOnly="true" id="soc2">
+                                <f:selectItems value="#{row.bindings.Comments.items}" id="si2"/>
+                                <f:validator binding="#{row.bindings.Comments.validator}"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                    </af:table>
+                    <f:facet name="statusbar"/>
+                </af:panelCollection>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

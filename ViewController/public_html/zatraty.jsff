@@ -7,14 +7,14 @@
                 <!-- Content -->
                 <af:decorativeBox id="db1" theme="medium">
                     <f:facet name="center">
-                        <af:panelStretchLayout id="psl1" dimensionsFrom="children">
+                        <af:panelStretchLayout id="psl1" dimensionsFrom="children" topHeight="85px">
                             <f:facet name="bottom"/>
                             <f:facet name="center">
                                 <af:panelBox text="Административные затраты" id="pb1" type="flow">
                                     <f:facet name="toolbar">
                                         <af:toolbar id="t2">
                                             <af:button actionListener="#{bindings.Execute.execute}" text="Обновить"
-                                                       disabled="#{!bindings.Execute.enabled}" id="b1"/>
+                                                       disabled="#{!bindings.Execute.enabled}" id="b1" visible="false"/>
                                         </af:toolbar>
                                     </f:facet>
                                     <af:table value="#{bindings.VwZatraty1.collectionModel}" var="row"
@@ -26,10 +26,11 @@
                                               rowSelection="single" fetchSize="#{bindings.VwZatraty1.rangeSize}"
                                               filterModel="#{bindings.VwZatraty1Query.queryDescriptor}"
                                               queryListener="#{bindings.VwZatraty1Query.processQuery}" varStatus="vs" id="t1" scrollPolicy="page"
-                                              binding="#{ZatrBean.tb}" partialTriggers="::b1">
+                                              binding="#{ZatrBean.tb}" partialTriggers="::b1" filterVisible="true">
+                                        <af:column id="c8" rowHeader="true" width="40"/>
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.ZatratyId.name}"
                                                    headerText="#{bindings.VwZatraty1.hints.ZatratyId.label}" id="c1"
-                                                   width="200">
+                                                   width="200" filterable="true">
                                             <af:selectOneChoice value="#{row.bindings.ZatratyId.inputValue}"
                                                                 label="#{row.bindings.ZatratyId.label}"
                                                                 required="#{bindings.VwZatraty1.hints.ZatratyId.mandatory}"
@@ -47,9 +48,8 @@
                                             </f:facet>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.RegistratorId.name}"
-                                                   filterable="true"
                                                    headerText="#{bindings.VwZatraty1.hints.RegistratorId.label}" id="c2"
-                                                   width="300">
+                                                   width="300" visible="false">
                                             <af:selectOneChoice value="#{row.bindings.RegistratorId.inputValue}"
                                                                 label="#{row.bindings.RegistratorId.label}"
                                                                 required="#{bindings.VwZatraty1.hints.RegistratorId.mandatory}"
@@ -60,7 +60,6 @@
                                             </af:selectOneChoice>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.Code.name}"
-                                                   filterable="true"
                                                    headerText="#{bindings.VwZatraty1.hints.Code.label}" id="c3"
                                                    visible="false">
                                             <af:outputText value="#{row.Code}"
@@ -77,7 +76,6 @@
                                             </af:outputText>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.Summa.name}"
-                                                   filterable="true"
                                                    headerText="#{bindings.VwZatraty1.hints.Summa.label}" id="c5"
                                                    align="right" width="80">
                                             <af:outputText value="#{row.Summa}"
@@ -93,7 +91,7 @@
                                         </af:column>
                                         <af:column sortProperty="#{bindings.VwZatraty1.hints.DivisionId.name}"
                                                    headerText="#{bindings.VwZatraty1.hints.DivisionId.label}" id="c6"
-                                                   align="center" width="150">
+                                                   align="center" width="150" filterable="true">
                                             <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
                                                                 label="#{row.bindings.DivisionId.label}"
                                                                 required="#{bindings.VwZatraty1.hints.DivisionId.mandatory}"
@@ -106,7 +104,7 @@
                                         </af:column>
                                         <f:facet name="footer"/>
                                         <af:column headerText="#{bindings.VwZatraty1.hints.Comments.label}" id="c7"
-                                                   width="250">
+                                                   width="300">
                                             <af:selectOneChoice value="#{row.bindings.Comments.inputValue}"
                                                                 label="#{row.bindings.Comments.label}"
                                                                 required="#{bindings.VwZatraty1.hints.Comments.mandatory}"
@@ -119,24 +117,19 @@
                                     </af:table>
                                 </af:panelBox>
                             </f:facet>
-                            <f:facet name="start">
-                                <af:panelDrawer id="pd1" height="60%" width="60%" position="left">
-                                    <af:showDetailItem text="Фильтр" id="sdi1" icon="/img/search.png">
-                                        <af:panelGroupLayout layout="vertical" id="pgl2">
-                                            <af:panelHeader text="Административные затраты" id="ph1">
-                                                <af:query id="qryId1" headerText="Фильтр" disclosed="true"
-                                                          value="#{bindings.VwZatratyCriteriaDateQuery.queryDescriptor}"
-                                                          model="#{bindings.VwZatratyCriteriaDateQuery.queryModel}"
-                                                          queryListener="#{bindings.VwZatratyCriteriaDateQuery.processQuery}"
-                                                          queryOperationListener="#{bindings.VwZatratyCriteriaDateQuery.processQueryOperation}"
-                                                          resultComponentId="::t1"/>
-                                            </af:panelHeader>
-                                        </af:panelGroupLayout>
-                                    </af:showDetailItem>
-                                </af:panelDrawer>
-                            </f:facet>
+                            <f:facet name="start"/>
                             <f:facet name="end"/>
-                            <f:facet name="top"/>
+                            <f:facet name="top">
+                                <af:panelGroupLayout layout="vertical" id="pgl2">
+                                    <af:query id="qryId1" headerText="Период"
+                                              value="#{bindings.VwZatratyCriteriaDateQuery.queryDescriptor}"
+                                              model="#{bindings.VwZatratyCriteriaDateQuery.queryModel}"
+                                              queryListener="#{bindings.VwZatratyCriteriaDateQuery.processQuery}"
+                                              queryOperationListener="#{bindings.VwZatratyCriteriaDateQuery.processQueryOperation}"
+                                              resultComponentId="::t1" saveQueryMode="hidden" disclosed="true"
+                                              modeChangeVisible="false"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
                         </af:panelStretchLayout>
                     </f:facet>
                     <f:facet name="top"/>

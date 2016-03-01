@@ -8,8 +8,11 @@
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
-  PageIterMode="Full"
-  ComponentClass="ua.divas.view.VwZatratyImpl">
+  PageIterMode="Partial"
+  ComponentClass="ua.divas.view.VwZatratyImpl"
+  FetchSize="100"
+  FetchMode="FETCH_AS_NEEDED"
+  RangeSize="100">
   <DesignTime>
     <Attr Name="_isExpertMode" Value="true"/>
     <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
@@ -36,16 +39,36 @@
   <Variable
     Name="f_dat"
     Kind="viewcriteria"
-    Type="java.sql.Timestamp">
+    Type="oracle.jbo.domain.Date">
     <TransientExpression
       Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwZatraty.f_dat_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwZatraty.f_dat_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwZatraty.f_dat_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
   </Variable>
   <Variable
     Name="l_dat"
     Kind="viewcriteria"
-    Type="java.sql.Timestamp">
+    Type="oracle.jbo.domain.Date">
     <TransientExpression
       Name="expression"><![CDATA[adf.currentDate]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwZatraty.l_dat_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwZatraty.l_dat_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwZatraty.l_dat_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
   </Variable>
   <ViewAccessor
     Name="OtherZatratyView1"
@@ -85,8 +108,8 @@
     ListVOName="ZatratyView1"
     ListRangeSize="-1"
     NullValueFlag="start"
-    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
-    MRUCount="0">
+    MRUCount="0"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}">
     <AttrArray Name="AttrNames">
       <Item Value="ZatratyId"/>
     </AttrArray>
@@ -146,7 +169,7 @@
     VW_ZATRATY.ZATRATY_ID ZATRATY_ID, 
     VW_ZATRATY.ZATRATY_NAME ZATRATY_NAME, 
     VW_ZATRATY.DIVISION_ID DIVISION_ID, 
-    VW_ZATRATY.PERIOD PERIOD
+    TRUNC(VW_ZATRATY.PERIOD) PERIOD
 FROM 
   VW_ZATRATY
 where
@@ -296,6 +319,8 @@ order by period desc]]></SQLQuery>
           ResId="ua.divas.view.VwZatraty.ZatratyId_LABEL"/>
         <TOOLTIP
           ResId="ua.divas.view.VwZatraty.ZatratyId_TOOLTIP"/>
+        <AUTOSUBMIT
+          Value="true"/>
         <CONTROLTYPE
           Value="choice"/>
       </SchemaBasedProperties>
@@ -311,8 +336,7 @@ order by period desc]]></SQLQuery>
     ColumnType="VARCHAR2"
     AliasName="ZATRATY_NAME"
     Expression="ZATRATY_NAME"
-    SQLType="VARCHAR"
-    IsQueriable="false">
+    SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="150"/>
     </DesignTime>
@@ -322,6 +346,8 @@ order by period desc]]></SQLQuery>
           ResId="ua.divas.view.VwZatraty.ZatratyName_LABEL"/>
         <TOOLTIP
           ResId="ua.divas.view.VwZatraty.ZatratyName_TOOLTIP"/>
+        <AUTOSUBMIT
+          Value="true"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -357,7 +383,7 @@ order by period desc]]></SQLQuery>
     IsUpdateable="false"
     IsPersistent="false"
     PrecisionRule="true"
-    Type="java.sql.Timestamp"
+    Type="oracle.jbo.domain.Date"
     ColumnType="TIMESTAMP"
     AliasName="PERIOD"
     Expression="PERIOD"
