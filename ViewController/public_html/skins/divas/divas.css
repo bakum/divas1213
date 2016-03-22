@@ -61,3 +61,17 @@ af|menu.RedClass::bar-item-text {
 af|navigationPane-choice::label[theme="dark"] {
     color: #C3EAF3; 
 }
+
+.AFBrandingBar {
+    background-color: #D07700; 
+}
+
+.AFBrandingBarLogoLarge {
+    background-image: url("../../img/sigrand_logo.png"); 
+    height: 6em; 
+    width: 230px; 
+}
+
+.AFBrandingLogoTitleContainer {
+    top: 5px; 
+}

@@ -6,4 +6,6 @@
   <itemNode id="itemNode_options" label="Настройки и опции" action="adfMenu_options" focusViewId="/options"/>
   <itemNode id="itemNode_tests" label="Тестирование" action="adfMenu_tests" focusViewId="/tests"
             rendered="#{securityContext.userInRole['tester']}"/>
+  <itemNode id="itemNode_dashboard" label="Панель управления" action="adfMenu_dashboard" focusViewId="/dashboard"
+            rendered="#{securityContext.userInRole['administrator'] || securityContext.userInRole['tester']}"/>
 </menu>

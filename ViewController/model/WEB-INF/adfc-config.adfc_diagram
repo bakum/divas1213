@@ -160,7 +160,7 @@
       <property
          name="fromsrcid">__16</property>
       <property
-         name="sdm:polyPoints">R50,50.0,174.125,244.90918,108.578125,L58</property>
+         name="sdm:polyPoints">R45,50.0,170.625,244.90918,108.578125,L58</property>
    </ControlFlowCase>
    <View
       id="View15">
@@ -219,5 +219,30 @@
          name="fromsrcid">__16</property>
       <property
          name="sdm:polyPoints">B43,10.5,216.625,-65.0,305.10938,T50</property>
+   </ControlFlowCase>
+   <View
+      id="View18">
+      <property
+         name="activityId">dashboard</property>
+      <property
+         name="page">/dashboard.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>dashboard&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">332.09375</property>
+      <property
+         name="x">286.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase19"
+      from="WildcardControlFlowRule10"
+      to="View18">
+      <property
+         name="fromOutcome">adfMenu_dashboard</property>
+      <property
+         name="sdm:polyPoints">R55,50.0,177.625,245.0,332.10938,L50</property>
    </ControlFlowCase>
 </SDM>

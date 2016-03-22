@@ -74,6 +74,7 @@
    </hash>
    <hash n="oracle.adfdtinternal.view.rich.setting.ADFViewSettings">
       <value n="ENABLE_ADF_WEBAPP_LIB_SUPPORT" v="true"/>
+      <value n="ENABLE_SKINNING_JMX_SUPPORT" v="true"/>
       <value n="KEY_ENABLE_SEEDED_CUSTOMIZATIONS" v="false"/>
       <value n="KEY_ENABLE_USER_CUSTOMIZATIONS" v="1"/>
    </hash>
@@ -418,6 +419,10 @@
             <value n="id" v="BC4J Oracle Domains"/>
             <value n="isJDK" v="false"/>
          </hash>
+         <hash>
+            <value n="id" v="Oracle Page Templates"/>
+            <value n="isJDK" v="false"/>
+         </hash>
       </list>
       <hash n="internalDefinitions">
          <list n="libraryDefinitions">
@@ -600,6 +605,10 @@
          </hash>
          <hash>
             <value n="id" v="BC4J Oracle Domains"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="Oracle Page Templates"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>

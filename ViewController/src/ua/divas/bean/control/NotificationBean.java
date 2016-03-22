@@ -12,6 +12,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import javax.faces.event.PhaseEvent;
 import javax.faces.event.ValueChangeEvent;
 
 import javax.servlet.http.HttpServletRequest;
@@ -383,5 +384,12 @@ public class NotificationBean {
             }
             return;
         }
+    }
+
+    public void bfPhase(PhaseEvent phaseEvent) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        String vr = context.getViewRoot().getViewId();
+        
+        System.out.println("dashboarid: " + vr);
     }
 }

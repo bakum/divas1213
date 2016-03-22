@@ -18,6 +18,9 @@
   <view id="tests">
     <page>/tests.jsf</page>
   </view>
+  <view id="dashboard">
+    <page>/dashboard.jsf</page>
+  </view>
   <control-flow-rule id="__1">
     <from-activity-id>index</from-activity-id>
     <control-flow-case id="__2">
@@ -64,6 +67,10 @@
     <control-flow-case id="__19">
       <from-outcome>adfMenu_tests</from-outcome>
       <to-activity-id>tests</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__25">
+      <from-outcome>adfMenu_dashboard</from-outcome>
+      <to-activity-id>dashboard</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
   <managed-bean id="__6">

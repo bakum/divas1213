@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+    xmlns:trh="http://myfaces.apache.org/trinidad/html">
+    <af:document title="SiGRAND CRM - Панель управления" id="d1">
+        <af:form id="f1">
+            <af:pageTemplate viewId="/oracle/templates/tabletFirstTemplate.jspx" value="#{bindings.ptb1}" id="ptb1">
+                <f:facet name="header">
+                    <af:outputText value="Панель управления" id="ot1"/>
+                </f:facet>
+                <f:facet name="status"/>
+                <f:facet name="appNav"/>
+                <f:facet name="globalLinks"/>
+                <f:facet name="footer">
+                    <af:navigationPane hint="bar" id="np1" value="#{root_menu}" var="menuInfo">
+                        <f:facet name="nodeStamp">
+                            <af:commandNavigationItem id="ni1" text="#{menuInfo.label}"
+                                                      destination="#{menuInfo.destination}"
+                                                      rendered="#{menuInfo.rendered}" action="#{menuInfo.doAction}"
+                                                      icon="#{menuInfo.icon}"/>
+                        </f:facet>
+                    </af:navigationPane>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGridLayout id="pgl1">
+                        <af:gridRow marginTop="5px" height="auto" id="gr1">
+                            <af:gridCell marginStart="5px" columnSpan="2" marginEnd="5px" id="gc1" halign="stretch">
+                                <af:panelBox text="PanelBox1" id="pb1" background="medium" showDisclosure="false">
+                                    <f:facet name="toolbar"/>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr2">
+                            <af:gridCell marginStart="5px" width="40%" id="gc2" halign="stretch">
+                                <af:panelBox text="PanelBox2" id="pb2">
+                                    <f:facet name="toolbar"/>
+                                </af:panelBox>
+                            </af:gridCell>
+                            <af:gridCell marginStart="5px" width="60%" marginEnd="5px" id="gc3" halign="stretch">
+                                <af:panelBox text="PanelBox3" id="pb3">
+                                    <f:facet name="toolbar"/>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+                            <af:gridCell marginStart="5px" width="40%" id="gc4" halign="stretch">
+                                <af:panelBox text="PanelBox4" id="pb4">
+                                    <f:facet name="toolbar"/>
+                                </af:panelBox>
+                            </af:gridCell>
+                            <af:gridCell marginStart="5px" width="60%" marginEnd="5px" id="gc5" halign="stretch">
+                                <af:panelBox text="PanelBox5" id="pb5" background="light">
+                                    <f:facet name="toolbar"/>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:attribute name="startWidth" value="0px"/>
+                <f:attribute name="endWidth" value="0px"/>
+                <f:attribute name="brandingMaxWidth" value="1024px"/>
+                <f:attribute name="logoStyleClass" value="SiBrandingBarLogo"/>
+                <f:attribute name="showFooter" value="true"/>
+            </af:pageTemplate>
+        </af:form>
+        <f:facet name="metaContainer">
+            <trh:meta name="apple-mobile-web-app-capable" content="yes"/>
+            <trh:meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+            <af:group id="gp12">
+                <af:resource type="javascript" source="/js/jquery-2.1.3.min.js"/>
+                <af:resource type="javascript" source="/js/jquery.growl.js"/>
+                <af:resource type="javascript" source="/js/jquery_notification.js"/>
+                <af:resource type="javascript" source="/js/WebSocketCli.js"/>
+                <af:resource type="css" source="/css/jquery.growl.css"/>
+            </af:group>
+        </f:facet>
+    </af:document>
+</f:view>

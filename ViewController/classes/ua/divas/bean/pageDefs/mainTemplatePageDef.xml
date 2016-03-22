@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="mainTemplatePageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="NotificationView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="NotificationView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="NotificationView1Iterator" id="NotificationView1">
+      <nodeDefinition DefName="ua.divas.view.NotificationView" Name="NotificationView10">
+        <AttrNames>
+          <Item Value="Dat"/>
+          <Item Value="Server"/>
+          <Item Value="RegString"/>
+          <Item Value="Description"/>
+          <Item Value="Client" Binds="Client"/>
+          <Item Value="Fullname"/>
+          <Item Value="Adress"/>
+          <Item Value="Phone"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="NotificationView1Iterator" id="CountUnread">
+      <AttrNames>
+        <Item Value="CountUnread"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="NotificationView1Iterator" id="Client" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Client"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

@@ -8,7 +8,7 @@
                 <af:gridRow height="100%" id="gr1">
                     <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                         <!-- Content -->
-                        <af:decorativeBox id="db1" topHeight="220px"
+                        <af:decorativeBox id="db1" topHeight="130px"
                                           inlineStyle="background-color:#D07700;">
                             <f:facet name="center">
                                 <af:panelBorderLayout id="pbl1" inlineStyle="background-color:#848484;">
@@ -38,7 +38,7 @@
                                                           placeholder="Пароль" showRequired="false"/>
                                         </af:panelFormLayout>
                                         <af:spacer width="20" height="10" id="s2"/>
-                                        <af:image id="i3" source="/img/sigrand_logo 1.png"/>
+                                        <af:image id="i3" source="/img/sigrand_logo.png"/>
                                     </af:panelGroupLayout>
                                 </af:panelGroupLayout>
                             </f:facet>

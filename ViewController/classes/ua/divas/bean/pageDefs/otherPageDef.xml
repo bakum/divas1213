@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="otherPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Name="ZatrName" Type="java.lang.String"/>
+    </variableIterator>
+    <iterator Binds="OtherZatratyView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="OtherZatratyView1Iterator"/>
+    <iterator Binds="OtherZatratyTabPartZatratyView2" RangeSize="5" DataControl="AppModuleDataControl"
+              id="OtherZatratyTabPartZatratyView2Iterator"/>
+    <iterator Binds="ZatratyView1" RangeSize="10" DataControl="AppModuleDataControl" id="ZatratyView1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_KassaId" id="KassaId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="OthEditable">
+      <AttrNames>
+        <Item Value="OthEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OtherZatratyView1Iterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <tree IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="OtherZatratyTabPartZatratyView2">
+      <nodeDefinition DefName="ua.divas.view.OtherZatratyTabPartZatratyView" Name="OtherZatratyTabPartZatratyView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="OthId"/>
+          <Item Value="ZatrId"/>
+          <Item Value="Zatrname"/>
+          <Item Value="Summa"/>
+          <Item Value="OthtpEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="OthtpEditable">
+      <AttrNames>
+        <Item Value="OthtpEditable"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <attributeValues IterBinding="variables" id="ZatrName1">
+      <AttrNames>
+        <Item Value="ZatrName"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ZatratyView1Iterator" id="CreateInsert1" InstanceName="AppModuleDataControl.ZatratyView1"
+            DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <action id="Rollback" DataControl="AppModuleDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="TotalZatr">
+      <AttrNames>
+        <Item Value="TotalZatr"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createZatraty" RequiresUpdateModel="true" Action="invokeMethod" MethodName="createZatraty"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.ZatratyView1">
+      <NamedData NDName="p_name" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="OtherZatratyView1Iterator" id="Enbl">
+      <AttrNames>
+        <Item Value="Enbl"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="OtherZatratyTabPartZatratyView2Iterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <listOfValues Uses="LOV_Zatrname" StaticList="false" IterBinding="OtherZatratyTabPartZatratyView2Iterator"
+                  id="Zatrname"/>
+  </bindings>
+</pageDefinition>

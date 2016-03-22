@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="editKredPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="KreditOutView1" RangeSize="25" DataControl="AppModuleDataControl" id="KreditOutView1Iterator"/>
+    <iterator Binds="KreditOutTpPercentView2" RangeSize="5" DataControl="AppModuleDataControl"
+              id="KreditOutTpPercentView2Iterator">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <iterator Binds="KreditOutTpPaymentView2" RangeSize="5" DataControl="AppModuleDataControl"
+              id="KreditOutTpPaymentView2Iterator">
+      <sortCriteria>
+        <sort attribute="Dat" ascending="false"/>
+      </sortCriteria>
+    </iterator>
+    <searchRegion Binds="KreditOutTpPaymentView2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="KreditOutTpPaymentView2Query"/>
+  </executables>
+  <bindings>
+    <listOfValues IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_Kontragname" id="Kontragname"/>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_KassaId" id="KassaId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="KontragId">
+      <AttrNames>
+        <Item Value="KontragId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="Percent">
+      <AttrNames>
+        <Item Value="Percent"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_PercentId" id="PercentId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="KreditOutView1Iterator" StaticList="false" Uses="LOV_CalcId" id="CalcId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="Editable">
+      <AttrNames>
+        <Item Value="Editable"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="KreditOutView1Iterator" id="Enbl">
+      <AttrNames>
+        <Item Value="Enbl"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="KreditOutTpPercentView2Iterator" id="KreditOutTpPercentView2">
+      <nodeDefinition DefName="ua.divas.view.KreditOutTpPercentView" Name="KreditOutTpPercentView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="KreditId"/>
+          <Item Value="Dat"/>
+          <Item Value="Summa"/>
+          <Item Value="PEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="KreditOutTpPaymentView2Iterator" id="KreditOutTpPaymentView2">
+      <nodeDefinition DefName="ua.divas.view.KreditOutTpPaymentView" Name="KreditOutTpPaymentView20">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="KreditId"/>
+          <Item Value="Dat"/>
+          <Item Value="Summa"/>
+          <Item Value="PayId"/>
+          <Item Value="TEditable"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="KreditOutTpPercentView2Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="KreditOutTpPaymentView2Iterator" id="CreateInsert1" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="KreditOutTpPercentView2Iterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>
