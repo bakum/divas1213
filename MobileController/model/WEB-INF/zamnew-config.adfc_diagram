@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">zammobile</property>
+      <property
+         name="page">/zammobile.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>zammobile&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">143.04688</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">98.0</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">edit_zammobile</property>
+      <property
+         name="page">/edit_zammobile.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>edit_zammobile&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">135.0625</property>
+      <property
+         name="x">338.0</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">to_edit</property>
+      <property
+         name="sdm:polyPoints">R50,139.0,143.0625,297.0,135.07812,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">to_view</property>
+      <property
+         name="sdm:polyPoints">L54,297.0,138.57812,139.17676,146.5625,R54</property>
+   </ControlFlowCase>
+</SDM>

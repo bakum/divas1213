@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.23.11" id="DataBindings"
+             SeparateXMLFiles="false" Package="ua.divas.mobile" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/index.jsf" usageId="ua_divas_mobile_indexPageDef"/>
+    <page path="/login.jsf" usageId="ua_divas_mobile_loginPageDef"/>
+    <page path="/zammobile.jsff" usageId="ua_divas_mobile_zammobilePageDef"/>
+    <page path="/edit_zammobile.jsff" usageId="ua_divas_mobile_edit_zammobilePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="ua_divas_mobile_indexPageDef" path="ua.divas.mobile.pageDefs.indexPageDef"/>
+    <page id="ua_divas_mobile_loginPageDef" path="ua.divas.mobile.pageDefs.loginPageDef"/>
+    <page id="ua_divas_mobile_zammobilePageDef" path="ua.divas.mobile.pageDefs.zammobilePageDef"/>
+    <page id="ua_divas_mobile_edit_zammobilePageDef" path="ua.divas.mobile.pageDefs.edit_zammobilePageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="AppModuleDataControl" Package="ua.divas.module"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

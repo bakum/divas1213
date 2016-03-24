@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="SiGRAND CRM - Авторизация" id="d1">
+        <af:messages id="m1" inline="true"/>
+        <af:form id="f1" defaultCommand="pt1:cBodFDC:b1">
+            <af:pageTemplate viewId="/oracle/templates/tabletFirstTemplate.jspx" id="pt1">
+                <f:facet name="header"/>
+                <f:facet name="status"/>
+                <f:facet name="appNav"/>
+                <f:facet name="globalLinks"/>
+                <f:facet name="footer"/>
+                <f:facet name="center">
+                    <af:panelGridLayout id="pgl2">
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc1" halign="stretch">
+                                <af:messages id="m3"/>
+                                <af:panelBox text="Авторизация" id="pb1" showDisclosure="false" background="light">
+                                    <f:facet name="toolbar"/>
+                                    <af:panelFormLayout id="pfl1">
+                                        <f:facet name="footer">
+                                            <af:panelGroupLayout id="pgl1" layout="horizontal" halign="right">
+                                                <af:toolbar id="t1">
+                                                    <af:button text="Войти" id="b1" actionListener="#{login.onLogin}"
+                                                               styleClass="AFAppNavbarButton"/>
+                                                </af:toolbar>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                        <af:inputText label="Логин" id="it1" required="true" value="#{login.username}"/>
+                                        <af:inputText label="Пароль" id="it2" required="true" secret="true"
+                                                      value="#{login.password}"/>
+                                    </af:panelFormLayout>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:attribute name="brandingMaxWidth" value="0px"/>
+                <f:attribute name="endWidth" value="0px"/>
+                <f:attribute name="startWidth" value="0px"/>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>

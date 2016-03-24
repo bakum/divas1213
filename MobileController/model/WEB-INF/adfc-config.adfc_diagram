@@ -1,0 +1,39 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">index</property>
+      <property
+         name="page">/index.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>index&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">110.03125</property>
+      <property
+         name="x">120.0</property>
+   </View>
+   <WildcardControlFlowRule
+      id="WildcardControlFlowRule3">
+      <property
+         name="activityId">*</property>
+      <property
+         name="y">60.03125</property>
+      <property
+         name="x">269.0</property>
+   </WildcardControlFlowRule>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="WildcardControlFlowRule3"
+      to="View2">
+      <property
+         name="fromOutcome">to_index</property>
+      <property
+         name="sdm:polyPoints">L50,233.0,60.546875,161.0,110.046875,R50</property>
+   </ControlFlowCase>
+</SDM>

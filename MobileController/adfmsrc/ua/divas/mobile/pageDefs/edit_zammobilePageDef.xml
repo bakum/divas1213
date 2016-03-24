@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="edit_zammobilePageDef"
+                Package="ua.divas.mobile.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="OrderZamerView1" RangeSize="25" DataControl="AppModuleDataControl" id="OrderZamerView1Iterator"/>
+  </executables>
+  <bindings>
+    <listOfValues IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_KontragId" id="KontragId"/>
+    <listOfValues IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_Kontragname" id="Kontragname"/>
+    <listOfValues IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_ZamerId" id="ZamerId"/>
+    <listOfValues IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_Zamername" id="Zamername"/>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="DatZam">
+      <AttrNames>
+        <Item Value="DatZam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="Discription">
+      <AttrNames>
+        <Item Value="Discription"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_KassaId" id="KassaId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_StatusId" id="StatusId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="Adress">
+      <AttrNames>
+        <Item Value="Adress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="Phone">
+      <AttrNames>
+        <Item Value="Phone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="Enbl">
+      <AttrNames>
+        <Item Value="Enbl"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="OrderZamerView1Iterator" StaticList="false" Uses="LOV_ManagerId" id="ManagerId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="OrderZamerView1Iterator" id="Infocard">
+      <AttrNames>
+        <Item Value="Infocard"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+        <af:group id="g1">
+        <af:panelGridLayout id="pgl1">
+            <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
+                <af:gridCell valign="middle" id="gc1">
+                    <af:outputFormatted value="Замеры" id="of1" styleClass="WBPageTitleText"/>
+                </af:gridCell>
+                <af:gridCell marginStart="5px" width="30%" halign="stretch" valign="middle" id="gc2"/>
+                <af:gridCell marginStart="5px" width="auto" id="gc3" valign="middle" marginEnd="20px">
+                    <af:quickQuery label="Поиск" id="qq1"
+                                   value="#{bindings.ImplicitViewCriteriaQuery.quickQueryDescriptor}"
+                                   model="#{bindings.ImplicitViewCriteriaQuery.queryModel}"
+                                   queryListener="#{bindings.ImplicitViewCriteriaQuery.processQuery}">
+                        <f:facet name="end">
+                            <af:button text="button 1" id="b1" immediate="true" visible="false"/>
+                        </f:facet>
+                    </af:quickQuery>
+                </af:gridCell>
+                <af:gridCell marginStart="5px" width="auto" id="gc4" valign="middle" halign="end">
+                    <af:navigationPane hint="bar" id="np1" styleClass="WBToggleBar">
+                        <af:commandNavigationItem id="ni1"
+                                                  selected="#{sessionScope.DisplayType == 'list' or sessionScope.DisplayType == null}"
+                                                  icon="#{sessionScope.DisplayType == 'list' or sessionScope.DisplayType == null ? '/img/func_list-view_16_act.png' : '/img/func_list-view_16_ena.png'}">
+                            <af:setPropertyListener type="action" from="list" to="#{sessionScope.DisplayType}"/>
+                            <af:setPropertyListener from="false" to="#{sessionScope.showGrid}" type="action"/>
+                        </af:commandNavigationItem>
+                        <af:commandNavigationItem id="ni3" selected="#{sessionScope.DisplayType == 'grid'}"
+                                                  icon="#{sessionScope.DisplayType == 'grid' ? '/img/func_matrix_16_act.png' : '/img/func_matrix_16_ena.png'}">
+                            <af:setPropertyListener from="grid" to="#{sessionScope.DisplayType}" type="action"/>
+                            <af:setPropertyListener from="true" to="#{sessionScope.showGrid}" type="action"/>
+                        </af:commandNavigationItem>
+                    </af:navigationPane>
+                </af:gridCell>
+            </af:gridRow>
+            <af:gridRow id="gr2">
+                <af:gridCell columnSpan="4" halign="stretch" id="gc5">
+                    <af:listView value="#{bindings.OrderZamerView1.collectionModel}" var="item"
+                                 emptyText="#{bindings.OrderZamerView1.viewable ? 'Нет данных.' : 'В доступе отказано.'}"
+                                 fetchSize="#{bindings.OrderZamerView1.rangeSize}" id="lv1" selection="single"
+                                 selectedRowKeys="#{bindings.OrderZamerView1.collectionModel.selectedRow}"
+                                 selectionListener="#{bindings.OrderZamerView1.treeModel.makeCurrent}"
+                                 partialTriggers="::qq1">
+                        <af:listItem id="li1"
+                                     styleClass="#{sessionScope.showGrid ? 'WBDisplayBlock WBDisplayBlockPadding WBDisplayBlockCenterUndo' : 'WBListPadding'}">
+                            <af:panelGridLayout id="pgl2"
+                                                rendered="#{sessionScope.DisplayType == 'list' or sessionScope.DisplayType == null}"
+                                                shortDesc="List View">
+                                <af:gridRow height="auto" id="gr3">
+                                    <af:gridCell marginStart="0px" width="80px" id="gc6" valign="middle"
+                                                 marginEnd="10px">
+                                        <af:image source="/img/people/nopic.png" id="i1"
+                                                  styleClass="WBImage WBImageBorder"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" id="gc7" valign="middle" marginEnd="5px" width="82%">
+                                        <af:panelGroupLayout id="pgl3" layout="vertical">
+                                            <af:outputFormatted value="#{item.bindings.Kontragname.inputValue}" id="of2"
+                                                                styleClass="WBNameText"/>
+                                            <af:outputFormatted value="#{item.bindings.StatusName.inputValue}" id="of4"
+                                                                styleClass="WBJobTitleText"/>
+                                            <af:outputFormatted value="#{item.bindings.DatZam.inputValue}" id="of5"
+                                                                styleClass="WBDeptText"/>
+                                        </af:panelGroupLayout>
+                                    </af:gridCell>
+                                </af:gridRow>
+                                <af:clientListener method="WBClient.clientClickProxy" type="click"/>
+                                <af:serverListener type="clientClickProxyEvent"
+                                                   method="#{backingBeanScope.zamerBean.doEditZamer}"/>
+                            </af:panelGridLayout>
+                        </af:listItem>
+                    </af:listView>
+                </af:gridCell>
+            </af:gridRow>
+        </af:panelGridLayout>
+        <!--Hidden button used by the server listener to navigate to ViewPerson with the current row id-->
+        <af:button text="Hidden Navigation" id="h_navb2" action="to_edit" visible="false"/>
+    </af:group>
+</ui:composition>

@@ -4,7 +4,7 @@
     xmlns:trh="http://myfaces.apache.org/trinidad/html">
     <af:document title="SiGRAND CRM - Панель управления" id="d1">
         <af:form id="f1">
-            <af:pageTemplate viewId="/oracle/templates/tabletFirstTemplate.jspx" value="#{bindings.ptb1}" id="ptb1">
+            <af:pageTemplate viewId="/oracle/templates/tabletFirstTemplate.jspx" id="ptb1">
                 <f:facet name="header">
                     <af:outputText value="Панель управления" id="ot1"/>
                 </f:facet>

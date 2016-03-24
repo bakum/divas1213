@@ -557,6 +557,21 @@
                 <name>ua.divas.bean.pageDefs.dashboardPageDef</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.mobile.pageDefs.indexPageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-config_mobile.xml#zamer-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1223,6 +1238,21 @@
                 <name>ua.divas.bean.pageDefs.dashboardPageDef</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.mobile.pageDefs.indexPageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-config_mobile.xml#zamer-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1387,6 +1417,21 @@
                 <name>/WEB-INF/zamer-debt_new.xml#zamer-debt_new</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.mobile.pageDefs.indexPageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-config_mobile.xml#zamer-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1414,6 +1459,21 @@
                 <name>ua.divas.model.OrdersTpOplaty</name>
                 <actions>delete,read,update</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.mobile.pageDefs.indexPageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamer-config_mobile.xml#zamer-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1429,6 +1489,11 @@
               <permission>
                 <class>oracle.adf.share.security.authorization.RegionPermission</class>
                 <name>ua.divas.bean.pageDefs.homePageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.mobile.pageDefs.loginPageDef</name>
                 <actions>view</actions>
               </permission>
             </permissions>

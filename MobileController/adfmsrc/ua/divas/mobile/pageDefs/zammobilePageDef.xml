@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="zammobilePageDef"
+                Package="ua.divas.mobile.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="OrderZamerView1" RangeSize="12" DataControl="AppModuleDataControl" id="OrderZamerView1Iterator"
+              RowCountThreshold="-1"/>
+    <searchRegion Criteria="__ImplicitViewCriteria__" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="OrderZamerView1Iterator" id="ImplicitViewCriteriaQuery" InitialQueryOverridden="true"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="OrderZamerView1Iterator" id="OrderZamerView1">
+      <nodeDefinition DefName="ua.divas.view.OrderZamerView" Name="OrderZamerView10">
+        <AttrNames>
+          <Item Value="Kontragname"/>
+          <Item Value="StatusName"/>
+          <Item Value="DatZam"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>
