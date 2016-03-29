@@ -76,7 +76,8 @@ public class DivasView extends ViewObjectImpl {
         System.out.println("viewCriteria name: " + viewCriteria.getName());
         try {
             if (viewCriteria != null) {
-                if (viewCriteria.getName().toLowerCase().contains("filterviewcriteria")) {
+                if (viewCriteria.getName().toLowerCase().contains("filterviewcriteria") ||
+                    viewCriteria.getName().toLowerCase().contains("implicitviewcriteria")) {
                     ViewCriteriaRow row = (ViewCriteriaRow) viewCriteria.getCurrentRow();
                     if (row != null) {
                         ArrayList criteriaItems = (ArrayList) row.getCriteriaItems();

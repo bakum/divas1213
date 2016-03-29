@@ -479,13 +479,15 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u
     PrecisionRule="true"
     EntityAttrName="Dat"
     EntityUsage="Orders"
-    AliasName="DAT"/>
+    AliasName="DAT"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="DatZam"
     PrecisionRule="true"
     AliasName="DAT_ZAM"
     EntityAttrName="DatZam"
-    EntityUsage="Orders"/>
+    EntityUsage="Orders"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="Deleted"
     IsNotNull="true"
@@ -754,8 +756,7 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u
     ColumnType="VARCHAR2"
     AliasName="ADRESS"
     Expression="ADRESS"
-    SQLType="VARCHAR"
-    IsQueriable="false">
+    SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="1000"/>
     </DesignTime>
@@ -778,8 +779,7 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u
     ColumnType="VARCHAR2"
     AliasName="PHONE"
     Expression="PHONE"
-    SQLType="VARCHAR"
-    IsQueriable="false">
+    SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="15"/>
     </DesignTime>

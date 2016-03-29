@@ -133,6 +133,7 @@
         rownum = 1) last_order_id,
         (select phone from contact_details where kontrag_id = Kontragents.ID and rownum = 1) phone,
         (select id from contact_details where kontrag_id = Kontragents.ID and rownum = 1) contact_id,
+        (select Adress from contact_details where kontrag_id = Kontragents.ID and rownum = 1) Adress,
         Kontragents.DATZAM,
         Kontragents.COMMENTS,
         Kontragents.INFOCARD_ID,
@@ -405,6 +406,27 @@ order by Kontragents.CREATED desc]]></SQLQuery>
     <DesignTime>
       <Attr Name="_DisplaySize" Value="50"/>
     </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Adress"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ADRESS"
+    Expression="ADRESS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
   </ViewAttribute>
   <ViewAttribute
     Name="Datzam"

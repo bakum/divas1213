@@ -35,6 +35,7 @@
           <Item Value="LastOrderId"/>
           <Item Value="Phone"/>
           <Item Value="UserId"/>
+          <Item Value="Adress"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

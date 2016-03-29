@@ -67,6 +67,7 @@ public class CallCenterVORowImpl extends ViewRowImpl {
         LastOrderId,
         Phone,
         ContactId,
+        Adress,
         Datzam,
         Comments,
         InfocardId,
@@ -123,6 +124,7 @@ public class CallCenterVORowImpl extends ViewRowImpl {
     public static final int LASTORDERID = AttributesEnum.LastOrderId.index();
     public static final int PHONE = AttributesEnum.Phone.index();
     public static final int CONTACTID = AttributesEnum.ContactId.index();
+    public static final int ADRESS = AttributesEnum.Adress.index();
     public static final int DATZAM = AttributesEnum.Datzam.index();
     public static final int COMMENTS = AttributesEnum.Comments.index();
     public static final int INFOCARDID = AttributesEnum.InfocardId.index();
@@ -481,6 +483,14 @@ public class CallCenterVORowImpl extends ViewRowImpl {
      */
     public String getContactId() {
         return (String) getAttributeInternal(CONTACTID);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute Adress.
+     * @return the Adress
+     */
+    public String getAdress() {
+        return (String) getAttributeInternal(ADRESS);
     }
 
     /**

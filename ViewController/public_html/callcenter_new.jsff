@@ -10,7 +10,7 @@
                         <af:panelStretchLayout id="psl1" dimensionsFrom="children">
                             <f:facet name="bottom"/>
                             <f:facet name="center">
-                                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                <af:panelCollection id="pc1" styleClass="AFStretchWidth" featuresOff="statusBar">
                                     <f:facet name="menus"/>
                                     <f:facet name="toolbar">
                                         <af:toolbar id="t2">
@@ -121,6 +121,16 @@
                                                                           triggerType="contextInfo"/>
                                                 </af:contextInfo>
                                             </f:facet>
+                                            <f:facet name="filter">
+                                                <af:panelGroupLayout id="pgl3" layout="vertical">
+                                                    <af:inputText label="Клиент" id="it9"
+                                                                  value="#{vs.filterCriteria.Fullname}"
+                                                                  placeholder="Клиент"/>
+                                                    <af:inputText label="Адрес" id="it11"
+                                                                  value="#{vs.filterCriteria.Adress}"
+                                                                  placeholder="Адрес"/>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
                                         </af:column>
                                         <af:column headerText="#{bindings.CallCenterVO1.hints.InfocardId.label}"
                                                    id="c11" width="60" filterable="true"
@@ -216,6 +226,20 @@
                                                 </af:menu>
                                             </af:popup>
                                         </f:facet>
+                                        <af:column headerText="#{bindings.CallCenterVO1.hints.Adress.label}" id="c1"
+                                                   sortable="true" filterable="true"
+                                                   sortProperty="#{bindings.CallCenterVO1.hints.Adress.name}"
+                                                   visible="false">
+                                            <af:inputText value="#{row.bindings.Adress.inputValue}"
+                                                          label="#{bindings.CallCenterVO1.hints.Adress.label}"
+                                                          required="#{bindings.CallCenterVO1.hints.Adress.mandatory}"
+                                                          columns="#{bindings.CallCenterVO1.hints.Adress.displayWidth}"
+                                                          maximumLength="#{bindings.CallCenterVO1.hints.Adress.precision}"
+                                                          shortDesc="#{bindings.CallCenterVO1.hints.Adress.tooltip}"
+                                                          id="it10">
+                                                <f:validator binding="#{row.bindings.Adress.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
                                     </af:table>
                                     <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
                                               contentDelivery="lazyUncached" resetEditableValues="whenCanceled"

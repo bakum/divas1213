@@ -2,7 +2,7 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
                 xmlns:f="http://java.sun.com/jsf/core">
     <af:group id="g1">
-        <af:panelHeader text="panelHeader 1" id="ph1">
+        <af:panelHeader text="#{bindings.Kontragname.inputValue}" id="ph1">
             <f:facet name="context"/>
             <f:facet name="menuBar"/>
             <f:facet name="toolbar">
@@ -31,7 +31,7 @@
                               required="#{bindings.Discription.hints.mandatory}"
                               columns="#{bindings.Discription.hints.displayWidth}"
                               maximumLength="#{bindings.Discription.hints.precision}"
-                              shortDesc="#{bindings.Discription.hints.tooltip}" id="it1">
+                              shortDesc="#{bindings.Discription.hints.tooltip}" id="it1" rows="4">
                     <f:validator binding="#{bindings.Discription.validator}"/>
                 </af:inputText>
                 <af:selectOneChoice value="#{bindings.KassaId.inputValue}" label="#{bindings.KassaId.label}"

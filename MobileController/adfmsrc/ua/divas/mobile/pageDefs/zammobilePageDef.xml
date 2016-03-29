@@ -16,6 +16,8 @@
           <Item Value="Kontragname"/>
           <Item Value="StatusName"/>
           <Item Value="DatZam"/>
+          <Item Value="Adress"/>
+          <Item Value="Phone"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
