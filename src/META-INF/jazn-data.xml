@@ -31,6 +31,11 @@
           <display-name></display-name>
           <description></description>
         </role>
+        <role>
+          <name>agent</name>
+          <display-name>agent</display-name>
+          <description></description>
+        </role>
       </roles>
     </realm>
   </jazn-realm>
@@ -117,6 +122,17 @@
               <member>
                 <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
                 <name>office_manager</name>
+              </member>
+            </members>
+          </app-role>
+          <app-role>
+            <name>agent</name>
+            <class>oracle.security.jps.service.policystore.ApplicationRole</class>
+            <display-name>agent</display-name>
+            <members>
+              <member>
+                <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
+                <name>agent</name>
               </member>
             </members>
           </app-role>
@@ -528,11 +544,6 @@
                 <actions>view</actions>
               </permission>
               <permission>
-                <class>oracle.adf.share.security.authorization.RegionPermission</class>
-                <name>ua.divas.bean.pageDefs.optionsPageDef</name>
-                <actions>view</actions>
-              </permission>
-              <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/analyse-kredit.xml#analyse-kredit</name>
                 <actions>view</actions>
@@ -592,6 +603,11 @@
               <permission>
                 <class>oracle.adf.share.security.authorization.RegionPermission</class>
                 <name>ua.divas.bean.pageDefs.reg_codePageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.optionsPageDef</name>
                 <actions>view</actions>
               </permission>
             </permissions>
@@ -1205,11 +1221,6 @@
               </permission>
               <permission>
                 <class>oracle.adf.share.security.authorization.RegionPermission</class>
-                <name>ua.divas.bean.pageDefs.optionsPageDef</name>
-                <actions>view</actions>
-              </permission>
-              <permission>
-                <class>oracle.adf.share.security.authorization.RegionPermission</class>
                 <name>ua.divas.bean.pageDefs.testsPageDef</name>
                 <actions>view</actions>
               </permission>
@@ -1668,6 +1679,53 @@
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/order-dialog-flow.xml#order-dialog-flow</name>
+                <actions>view</actions>
+              </permission>
+            </permissions>
+          </grant>
+          <grant>
+            <grantee>
+              <principals>
+                <principal>
+                  <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
+                  <name>agent</name>
+                </principal>
+              </principals>
+            </grantee>
+            <permissions>
+              <permission>
+                <class>oracle.adf.share.security.authorization.EntityAttributePermission</class>
+                <name>ua.divas.model.GuiSettings.OrderFetchSize</name>
+                <actions>update</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/addOrder.xml#addOrder</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/calendar-config.xml#calendar-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/ccenter_new.xml#ccenter_new</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/gui-config.xml#gui-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/newOther.xml#newOther</name>
                 <actions>view</actions>
               </permission>
               <permission>

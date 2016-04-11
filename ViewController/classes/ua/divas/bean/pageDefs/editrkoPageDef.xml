@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="editrkoPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RkoView1" RangeSize="25" DataControl="AppModuleDataControl" id="RkoView1Iterator"/>
+  </executables>
+  <bindings>
+    <listOfValues IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_KontragId" id="KontragId"/>
+    <listOfValues IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_Kontragname" id="Kontragname"/>
+    <attributeValues IterBinding="RkoView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RkoView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RkoView1Iterator" id="Num">
+      <AttrNames>
+        <Item Value="Num"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_DivisionId" id="DivisionId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="RkoView1Iterator" id="Comments">
+      <AttrNames>
+        <Item Value="Comments"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_CurrId" id="CurrId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_KassaId" id="KassaId" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_ActivitiesId" id="ActivitiesId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_OperationId" id="OperationId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="RkoView1Iterator" id="Summa">
+      <AttrNames>
+        <Item Value="Summa"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RkoView1Iterator" id="REditable">
+      <AttrNames>
+        <Item Value="REditable"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_DestKassaId" id="DestKassaId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <methodAction id="getOperationName" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getOperationName"
+                  IsViewObjectMethod="true" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.RkoView1"
+                  ReturnName="data.AppModuleDataControl.methodResults.getOperationName_AppModuleDataControl_RkoView1_getOperationName_result">
+      <NamedData NDName="Id" NDType="java.lang.String" NDValue="#{bindings.OperationId.inputValue}"/>
+    </methodAction>
+    <attributeValues IterBinding="RkoView1Iterator" id="Enbl">
+      <AttrNames>
+        <Item Value="Enbl"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="RkoView1Iterator" StaticList="false" Uses="LOV_OrderId" id="OrderId" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

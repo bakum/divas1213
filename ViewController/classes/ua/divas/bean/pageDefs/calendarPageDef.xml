@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="calendarPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="VwNotificationCalendarView1" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="VwNotificationCalendarView1Iterator"/>
+    <iterator Binds="UsersView1" RangeSize="25" DataControl="AppModuleDataControl" id="UsersView1Iterator"/>
+    <variableIterator id="variables">
+      <variable Type="void" Name="addNotification_return" IsQueriable="false" IsUpdateable="0"
+                DefaultValue="${bindings.addNotification.result}"/>
+      <variable Type="java.lang.String" Name="addNotification_cutid" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addNotification_desc" IsQueriable="false" IsNotNull="true"/>
+      <variable Type="java.util.Date" Name="addNotification_dat" IsQueriable="false" IsNotNull="true"/>
+      <variable Type="java.lang.String" Name="addNotification_ObjId" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="addNotification_ContId" IsQueriable="false"/>
+      <variable Name="regular" Type="java.lang.Integer" DefaultValue="0" IsNotNull="true"/>
+      <variable Name="one_time" Type="java.lang.Boolean" DefaultValue="true"/>
+      <variable Name="daily" Type="java.lang.Boolean" DefaultValue="false"/>
+      <variable Name="weekly" Type="java.lang.Boolean" DefaultValue="false"/>
+      <variable Name="monthly" Type="java.lang.Boolean" DefaultValue="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <action IterBinding="VwNotificationCalendarView1Iterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="StartDat" NDValue="#{bindings.VwNotificationCalendarView1.startDate}"
+                 NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="EndDat" NDValue="#{bindings.VwNotificationCalendarView1.endDate}"
+                 NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="tZ" NDValue="#{bindings.VwNotificationCalendarView1.timeZoneId}" NDType="java.lang.String"/>
+    </action>
+    <calendar IterBinding="VwNotificationCalendarView1Iterator" id="VwNotificationCalendarView1"
+              xmlns="http://xmlns.oracle.com/adf/faces/binding" ActionBindingName="ExecuteWithParams">
+      <nodeDefinition DefName="ua.divas.view.VwNotificationCalendarView">
+        <AttrNames>
+          <Item Type="id" Value="Id"/>
+          <Item Type="providerId" Value="UserId"/>
+          <Item Type="title" Value="Description"/>
+          <Item Type="startTime" Value="StartDate"/>
+          <Item Type="endTime" Value="EndDate"/>
+          <Item Type="custom" Value="Client"/>
+          <Item Type="custom" Value="Contact"/>
+          <Item Type="custom" Value="CronExpression"/>
+          <Item Type="custom" Value="Dat"/>
+          <Item Type="custom" Value="Description"/>
+          <Item Type="custom" Value="EndDate"/>
+          <Item Type="custom" Value="Id"/>
+          <Item Type="custom" Value="JobClassName"/>
+          <Item Type="custom" Value="JobDescription"/>
+          <Item Type="custom" Value="JobGroup"/>
+          <Item Type="custom" Value="JobName"/>
+          <Item Type="custom" Value="NextFireTime"/>
+          <Item Type="custom" Value="ObjectId"/>
+          <Item Type="custom" Value="PrevFireTime"/>
+          <Item Type="custom" Value="SchedName"/>
+          <Item Type="custom" Value="Server"/>
+          <Item Type="custom" Value="StartDate"/>
+          <Item Type="custom" Value="TrgDescription"/>
+          <Item Type="custom" Value="TriggerName"/>
+          <Item Type="custom" Value="TriggerType"/>
+          <Item Type="custom" Value="UserId"/>
+          <Item Type="custom" Value="UserLogin"/>
+        </AttrNames>
+      </nodeDefinition>
+      <providerDefinition IterBindingName="UsersView1Iterator">
+        <AttrNames>
+          <Item Type="id" Value="Id"/>
+          <Item Type="displayName" Value="Login"/>
+        </AttrNames>
+      </providerDefinition>
+    </calendar>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="SchedName">
+      <AttrNames>
+        <Item Value="SchedName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="NextFireTime">
+      <AttrNames>
+        <Item Value="NextFireTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="PrevFireTime">
+      <AttrNames>
+        <Item Value="PrevFireTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="CronExpression">
+      <AttrNames>
+        <Item Value="CronExpression"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="Dat">
+      <AttrNames>
+        <Item Value="Dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="Description">
+      <AttrNames>
+        <Item Value="Description"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="VwNotificationCalendarView1Iterator" StaticList="false" Uses="LOV_UserId" id="UserId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="Contact">
+      <AttrNames>
+        <Item Value="Contact"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="UserLogin">
+      <AttrNames>
+        <Item Value="UserLogin"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="ObjectId">
+      <AttrNames>
+        <Item Value="ObjectId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="StartDate">
+      <AttrNames>
+        <Item Value="StartDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="VwNotificationCalendarView1Iterator" id="EndDate">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="VwNotificationCalendarView1Iterator" id="Client" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Client"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <button IterBinding="VwNotificationCalendarView1Iterator" id="Server1" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Server"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <methodAction id="addNotification" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addNotification"
+                  IsViewObjectMethod="false" DataControl="AppModuleDataControl"
+                  InstanceName="data.AppModuleDataControl.dataProvider"
+                  ReturnName="data.AppModuleDataControl.methodResults.addNotification_AppModuleDataControl_dataProvider_addNotification_result">
+      <NamedData NDName="cutid" NDType="java.lang.String" NDValue="${bindings.addNotification_cutid}"/>
+      <NamedData NDName="desc" NDType="java.lang.String" NDValue="${bindings.addNotification_desc}"/>
+      <NamedData NDName="dat" NDType="java.util.Date" NDValue="${bindings.addNotification_dat}"/>
+      <NamedData NDName="ObjId" NDType="java.lang.String" NDValue="${bindings.addNotification_ObjId}"/>
+      <NamedData NDName="ContId" NDType="java.lang.String" NDValue="${bindings.addNotification_ContId}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="cutid">
+      <AttrNames>
+        <Item Value="addNotification_cutid"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="desc">
+      <AttrNames>
+        <Item Value="addNotification_desc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="dat">
+      <AttrNames>
+        <Item Value="addNotification_dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="ObjId">
+      <AttrNames>
+        <Item Value="addNotification_ObjId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="ContId">
+      <AttrNames>
+        <Item Value="addNotification_ContId"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="variables" StaticList="true" id="regular1">
+      <AttrNames>
+        <Item Value="regular"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>

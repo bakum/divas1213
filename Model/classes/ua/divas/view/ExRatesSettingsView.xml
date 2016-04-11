@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ExRatesSettingsView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="ExRatesSettings.ID, 
+       ExRatesSettings.CURR_ID, 
+       ExRatesSettings.VERSION"
+  FromList="EX_RATES_SETTINGS ExRatesSettings"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full">
+  <EntityUsage
+    Name="ExRatesSettings"
+    Entity="ua.divas.model.ExRatesSettings"/>
+  <ViewAttribute
+    Name="Id"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="ExRatesSettings"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="CurrId"
+    IsUnique="true"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CurrId"
+    EntityUsage="ExRatesSettings"
+    AliasName="CURR_ID"/>
+  <ViewAttribute
+    Name="Version"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Version"
+    EntityUsage="ExRatesSettings"
+    AliasName="VERSION"/>
+</ViewObject>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="VwKreditoryMove"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Partial"
+  FetchSize="50"
+  FetchMode="FETCH_AS_NEEDED"
+  RangeSize="50">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.VwKreditoryMove_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT VW_MOVE_5091.ID,
+  VW_MOVE_5091.FULLNAME,
+  VW_MOVE_5091.CODE,
+  VW_MOVE_5091.KREDIT,
+  VW_MOVE_5091.DEBET,
+  VW_MOVE_5091.REGISTRATOR_ID,
+  VW_MOVE_5091.TABLE_NAME,
+  VW_MOVE_5091.PERIOD,
+  VW_MOVE_5091.KEYID,
+  CASE
+      WHEN upper(VW_MOVE_5091.TABLE_NAME) LIKE upper('orders')
+      THEN 'Заказ №'
+        ||
+        (SELECT orders.NUM
+        FROM orders
+        WHERE orders.ID = VW_MOVE_5091.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT orders.DAT FROM orders WHERE orders.ID = VW_MOVE_5091.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+      WHEN upper(VW_MOVE_5091.TABLE_NAME) LIKE upper('pko')
+      THEN 'ПКО №'
+        ||
+        (SELECT pko.NUM
+        FROM pko
+        WHERE pko.ID = VW_MOVE_5091.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT pko.DAT FROM pko WHERE pko.ID = VW_MOVE_5091.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+      WHEN upper(VW_MOVE_5091.TABLE_NAME) LIKE upper('rko')
+      THEN 'РКО №'
+        ||
+        (SELECT rko.NUM
+        FROM rko
+        WHERE rko.ID = VW_MOVE_5091.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT rko.DAT FROM rko WHERE rko.ID = VW_MOVE_5091.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+      WHEN upper(VW_MOVE_5091.TABLE_NAME) LIKE upper('other_zatraty')
+      THEN 'Админ. затраты №'
+        ||
+        (SELECT other_zatraty.NUM
+        FROM other_zatraty
+        WHERE other_zatraty.ID = VW_MOVE_5091.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT other_zatraty.DAT
+        FROM other_zatraty
+        WHERE other_zatraty.ID = VW_MOVE_5091.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+      WHEN upper(VW_MOVE_5091.TABLE_NAME) LIKE upper('start_ost')
+      THEN 'Нач. остатки №'
+        ||
+        (SELECT start_ost.NUM
+        FROM start_ost
+        WHERE start_ost.ID = VW_MOVE_5091.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT start_ost.DAT
+        FROM start_ost
+        WHERE start_ost.ID = VW_MOVE_5091.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+      WHEN upper(VW_MOVE_5091.TABLE_NAME) LIKE upper('PROFIT_DISTRIB')
+      THEN 'Прибыль ('||(SELECT (select fullname from divisions where id = profit_distrib.division_id)
+        FROM PROFIT_DISTRIB
+        WHERE PROFIT_DISTRIB.ID = VW_MOVE_5091.REGISTRATOR_ID
+        )||') №'
+        ||
+        (SELECT PROFIT_DISTRIB.NUM
+        FROM PROFIT_DISTRIB
+        WHERE PROFIT_DISTRIB.ID = VW_MOVE_5091.REGISTRATOR_ID
+        )
+        || ' от '
+        || TO_CHAR(
+        (SELECT PROFIT_DISTRIB.DAT
+        FROM PROFIT_DISTRIB
+        WHERE PROFIT_DISTRIB.ID = VW_MOVE_5091.REGISTRATOR_ID
+        ), 'DD-MM-YYYY')
+    END AS REG_STRING
+FROM VW_MOVE_5091
+ORDER BY PERIOD DESC]]></SQLQuery>
+  <ViewAttribute
+    Name="Id"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ID"
+    Expression="ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Fullname"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FULLNAME"
+    Expression="FULLNAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Code"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="6"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CODE"
+    Expression="CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Kredit"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="KREDIT"
+    Expression="KREDIT"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Debet"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="DEBET"
+    Expression="DEBET"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="RegistratorId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REGISTRATOR_ID"
+    Expression="REGISTRATOR_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TableName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TABLE_NAME"
+    Expression="TABLE_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Period"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    AliasName="PERIOD"
+    Expression="PERIOD"
+    SQLType="TIMESTAMP"/>
+  <ViewAttribute
+    Name="Keyid"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KEYID"
+    Expression="KEYID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RegString"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="226"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REG_STRING"
+    Expression="REG_STRING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="226"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Keyid"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

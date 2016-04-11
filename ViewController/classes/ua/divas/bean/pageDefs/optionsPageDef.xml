@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="optionsPageDef"
+                Package="ua.divas.bean.pageDefs">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <page path="ua.divas.bean.pageDefs.mainTemplatePageDef" id="ptb1" Refresh="ifNeeded"/>
+        <taskFlow id="direct1" taskFlowId="/WEB-INF/directories.xml#direct" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="payconfig1" taskFlowId="/WEB-INF/pay-config.xml#pay-config" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="programconfig1" taskFlowId="/WEB-INF/program-config.xml#program-config" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="start_ostconfig1" taskFlowId="/WEB-INF/start_ost-config.xml#start_ost-config"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="profitconfig1" taskFlowId="/WEB-INF/profit-config.xml#profit-config" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="importpriceconfig1" taskFlowId="/WEB-INF/import-price-config.xml#import-price-config"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="entry1" taskFlowId="/WEB-INF/entry.xml#entry" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="plan_acc1" taskFlowId="/WEB-INF/plan_acc.xml#plan_acc" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="calendarconfig1" taskFlowId="/WEB-INF/calendar-config.xml#calendar-config" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="guiconfig1" taskFlowId="/WEB-INF/gui-config.xml#gui-config" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="infoconfig1" taskFlowId="/WEB-INF/info-config.xml#info-config" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <taskFlow id="users1" taskFlowId="/WEB-INF/users.xml#users" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    </executables>
+    <bindings/>
+</pageDefinition>

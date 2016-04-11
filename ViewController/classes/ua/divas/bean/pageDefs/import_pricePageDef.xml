@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="import_pricePageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ImportedPriceView1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ImportedPriceView1Iterator">
+      <sortCriteria>
+        <sort attribute="Artikul" ascending="true"/>
+      </sortCriteria>
+    </iterator>
+    <searchRegion Binds="ImportedPriceView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ImportedPriceView1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ImportedPriceView1Iterator" id="ImportedPriceView1">
+      <nodeDefinition DefName="ua.divas.view.ImportedPriceView" Name="ImportedPriceView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Dat"/>
+          <Item Value="Artikul"/>
+          <Item Value="Groups"/>
+          <Item Value="NomName"/>
+          <Item Value="EdIzm"/>
+          <Item Value="PriceUsl"/>
+          <Item Value="PriceGoods"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+  </bindings>
+</pageDefinition>

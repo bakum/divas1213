@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="GroupmembersView"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  SelectList="Groupmembers.ID, 
+       Groupmembers.G_NAME, 
+       Groupmembers.G_MEMBER"
+  FromList="GROUPMEMBERS Groupmembers"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  ComponentClass="ua.divas.view.GroupmembersViewImpl"
+  ComponentInterface="ua.divas.view.common.GroupmembersView"
+  ClientProxyName="ua.divas.view.client.GroupmembersViewClient">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="GroupsView1"
+    ViewObjectName="ua.divas.view.GroupsView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="UsersView1"
+    ViewObjectName="ua.divas.view.UsersView"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_GName"
+    ListVOName="GroupsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="GName"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_GMember"
+    ListVOName="UsersView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="GMember"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Login"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Login"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="Groupmembers"
+    Entity="ua.divas.model.Groupmembers"/>
+  <ViewAttribute
+    Name="Id"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Groupmembers"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="GName"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="GName"
+    EntityUsage="Groupmembers"
+    AliasName="G_NAME"
+    LOVName="LOV_GName">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="GMember"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="GMember"
+    EntityUsage="Groupmembers"
+    AliasName="G_MEMBER"
+    LOVName="LOV_GMember">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="addUserToGroup"
+      MethodName="addUserToGroup">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="userName"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="groupName"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
+</ViewObject>
