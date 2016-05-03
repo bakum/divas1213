@@ -64,6 +64,9 @@ public class RaitingsBean {
                         if (colName.equalsIgnoreCase("Cnt")) {
                             cellA1.setCellValue("Количество заказов");
                         }
+                        if (colName.equalsIgnoreCase("CntKg")) {
+                            cellA1.setCellValue("Количество клиентов");
+                        }
                         if (colName.equalsIgnoreCase("Total")) {
                             cellA1.setCellValue("Заказов на сумму");
                         }
@@ -72,6 +75,9 @@ public class RaitingsBean {
                         }
                         if (colName.equalsIgnoreCase("BallCnt")) {
                             cellA1.setCellValue("Баллов по количеству");
+                        }
+                        if (colName.equalsIgnoreCase("BallCntKg")) {
+                            cellA1.setCellValue("Баллов по клиентам");
                         }
                         if (colName.equalsIgnoreCase("BallTotal")) {
                             cellA1.setCellValue("Всего баллов");
@@ -103,6 +109,11 @@ public class RaitingsBean {
                             cell.setCellValue(row.getAttribute(colName).toString());
                         }
                     }
+                    if (colName.equalsIgnoreCase("CntKg")) {
+                        if (null != row.getAttribute(colName)) {
+                            cell.setCellValue(row.getAttribute(colName).toString());
+                        }
+                    }
                     if (colName.equalsIgnoreCase("Total")) {
                         if (null != row.getAttribute(colName)) {
                             cell.setCellValue(row.getAttribute(colName).toString());
@@ -114,6 +125,11 @@ public class RaitingsBean {
                         }
                     }
                     if (colName.equalsIgnoreCase("BallCnt")) {
+                        if (null != row.getAttribute(colName)) {
+                            cell.setCellValue(row.getAttribute(colName).toString());
+                        }
+                    }
+                    if (colName.equalsIgnoreCase("BallCntKg")) {
                         if (null != row.getAttribute(colName)) {
                             cell.setCellValue(row.getAttribute(colName).toString());
                         }

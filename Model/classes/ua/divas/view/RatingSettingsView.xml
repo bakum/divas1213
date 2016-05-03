@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="RatingSettingsView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -18,8 +18,10 @@
   <SQLQuery><![CDATA[SELECT RatingSettings.ID, 
        RatingSettings.SUM_DIVIDER, 
        RatingSettings.SUM_BAL, 
-       RatingSettings.CNT_DIVIDER, 
+       RatingSettings.CNT_DIVIDER,
+       RatingSettings.CNT_KG_DIVIDER,
        RatingSettings.CNT_BAL,
+       RatingSettings.CNT_KG_BAL,
        (select 0 from dual) Editable
 FROM  RATING_SETTINGS RatingSettings]]></SQLQuery>
   <EntityUsage
@@ -54,12 +56,24 @@ FROM  RATING_SETTINGS RatingSettings]]></SQLQuery>
     EntityUsage="RatingSettings"
     AliasName="CNT_DIVIDER"/>
   <ViewAttribute
+    Name="CntKgDivider"
+    PrecisionRule="true"
+    AliasName="CNT_KG_DIVIDER"
+    EntityAttrName="CntKgDivider"
+    EntityUsage="RatingSettings"/>
+  <ViewAttribute
     Name="CntBal"
     IsNotNull="true"
     PrecisionRule="true"
     EntityAttrName="CntBal"
     EntityUsage="RatingSettings"
     AliasName="CNT_BAL"/>
+  <ViewAttribute
+    Name="CntKgBal"
+    PrecisionRule="true"
+    AliasName="CNT_KG_BAL"
+    EntityAttrName="CntKgBal"
+    EntityUsage="RatingSettings"/>
   <ViewAttribute
     Name="Editable"
     IsPersistent="false"

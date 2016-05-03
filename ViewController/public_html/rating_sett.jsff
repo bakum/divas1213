@@ -34,7 +34,7 @@
                     </f:facet>
                     <af:panelGridLayout id="pgl2">
                         <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr2">
-                            <af:gridCell marginStart="5px" width="50%" id="gc2">
+                            <af:gridCell marginStart="5px" width="30%" id="gc2">
                                 <af:panelHeader text="Настройки количества" id="ph1">
                                     <f:facet name="context"/>
                                     <f:facet name="menuBar"/>
@@ -74,7 +74,7 @@
                                     </af:panelGroupLayout>
                                 </af:panelHeader>
                             </af:gridCell>
-                            <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc3">
+                            <af:gridCell marginStart="5px" width="30%" marginEnd="5px" id="gc3">
                                 <af:panelHeader text="Настройки суммы" id="ph2">
                                     <f:facet name="context"/>
                                     <f:facet name="menuBar"/>
@@ -114,6 +114,38 @@
                                             <af:convertNumber groupingUsed="false"
                                                               pattern="#{bindings.Editable.format}"/>
                                         </af:inputText>
+                                    </af:panelGroupLayout>
+                                </af:panelHeader>
+                            </af:gridCell>
+                            <af:gridCell id="gc4" width="40%" marginStart="5px" marginEnd="5px">
+                                <af:panelHeader text="Настройки клиентов" id="ph3">
+                                    <f:facet name="context"/>
+                                    <f:facet name="menuBar"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="legend"/>
+                                    <f:facet name="info"/>
+                                    <af:panelGroupLayout id="pgl6">
+                                        <af:inputNumberSpinbox value="#{bindings.CntKgDivider.inputValue}"
+                                                               label="#{bindings.CntKgDivider.hints.label}"
+                                                               required="#{bindings.CntKgDivider.hints.mandatory}"
+                                                               columns="#{bindings.CntKgDivider.hints.displayWidth}"
+                                                               shortDesc="#{bindings.CntKgDivider.hints.tooltip}"
+                                                               id="it8"
+                                                               readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.CntKgDivider.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.CntKgDivider.format}"/>
+                                        </af:inputNumberSpinbox>
+                                        <af:inputNumberSpinbox value="#{bindings.CntKgBal.inputValue}"
+                                                               label="#{bindings.CntKgBal.hints.label}"
+                                                               required="#{bindings.CntKgBal.hints.mandatory}"
+                                                               columns="#{bindings.CntKgBal.hints.displayWidth}"
+                                                               shortDesc="#{bindings.CntKgBal.hints.tooltip}" id="it7"
+                                                               readOnly="#{bindings.Editable.inputValue == 1 ? false : true}">
+                                            <f:validator binding="#{bindings.CntKgBal.validator}"/>
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.CntKgBal.format}"/>
+                                        </af:inputNumberSpinbox>
                                     </af:panelGroupLayout>
                                 </af:panelHeader>
                             </af:gridCell>

@@ -42,5 +42,15 @@
     </attributeValues>
     <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AppModuleDataControl"/>
     <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="CntKgBal">
+      <AttrNames>
+        <Item Value="CntKgBal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RatingSettingsView1Iterator" id="CntKgDivider">
+      <AttrNames>
+        <Item Value="CntKgDivider"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

@@ -22,6 +22,8 @@
           <Item Value="BallSum"/>
           <Item Value="BallCnt"/>
           <Item Value="BallTotal"/>
+          <Item Value="BallCntKg"/>
+          <Item Value="CntKg"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
@@ -61,5 +63,10 @@
                   ReturnName="data.AppModuleDataControl.methodResults.retrieveKontragName_AppModuleDataControl_VwRating1_retrieveKontragName_result">
       <NamedData NDName="Id" NDType="java.lang.String"/>
     </methodAction>
+    <attributeValues IterBinding="VwRating1Iterator" id="BallCntKg">
+      <AttrNames>
+        <Item Value="BallCntKg"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

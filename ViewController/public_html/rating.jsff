@@ -86,6 +86,22 @@
                                                   pattern="#{bindings.VwRating1.hints.Total.format}"/>
                             </af:outputText>
                         </af:column>
+                        <af:column headerText="#{bindings.VwRating1.hints.CntKg.label}" id="c9" align="center"
+                                   sortable="true" sortProperty="#{bindings.VwRating1.hints.CntKg.name}">
+                            <af:outputText value="#{row.CntKg}" shortDesc="#{bindings.VwRating1.hints.CntKg.tooltip}"
+                                           id="ot8">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwRating1.hints.CntKg.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.VwRating1.hints.BallCnt.name}" sortable="true"
+                                   headerText="#{bindings.VwRating1.hints.BallCnt.label}" id="c6" align="center">
+                            <af:outputText value="#{row.BallCnt}"
+                                           shortDesc="#{bindings.VwRating1.hints.BallCnt.tooltip}" id="ot5">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.VwRating1.hints.BallCnt.format}"/>
+                            </af:outputText>
+                        </af:column>
                         <af:column sortProperty="#{bindings.VwRating1.hints.BallSum.name}" sortable="true"
                                    headerText="#{bindings.VwRating1.hints.BallSum.label}" id="c5" width="100"
                                    align="center">
@@ -95,12 +111,12 @@
                                                   pattern="#{bindings.VwRating1.hints.BallSum.format}"/>
                             </af:outputText>
                         </af:column>
-                        <af:column sortProperty="#{bindings.VwRating1.hints.BallCnt.name}" sortable="true"
-                                   headerText="#{bindings.VwRating1.hints.BallCnt.label}" id="c6" align="center">
-                            <af:outputText value="#{row.BallCnt}"
-                                           shortDesc="#{bindings.VwRating1.hints.BallCnt.tooltip}" id="ot5">
+                        <af:column headerText="#{bindings.VwRating1.hints.BallCntKg.label}" id="c8" align="center"
+                                   sortable="true" sortProperty="#{bindings.VwRating1.hints.BallCntKg.name}">
+                            <af:outputText value="#{row.BallCntKg}"
+                                           shortDesc="#{bindings.VwRating1.hints.BallCntKg.tooltip}" id="ot7">
                                 <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.VwRating1.hints.BallCnt.format}"/>
+                                                  pattern="#{bindings.VwRating1.hints.BallCntKg.format}"/>
                             </af:outputText>
                         </af:column>
                         <af:column sortProperty="#{bindings.VwRating1.hints.BallTotal.name}" sortable="true"
@@ -116,7 +132,7 @@
                                     </dvt:gaugeBackground>
                                     <dvt:thresholdSet>
                                         <dvt:threshold thresholdMaxValue="#{bindings.BallSum.inputValue}"/>
-                                        <dvt:threshold thresholdMaxValue="#{bindings.BallSum.inputValue + bindings.BallCnt.inputValue}"/>
+                                        <dvt:threshold thresholdMaxValue="#{bindings.BallSum.inputValue + bindings.BallCnt.inputValue + bindings.BallCntKg.inputValue}"/>
                                         <dvt:threshold/>
                                     </dvt:thresholdSet>
                                     <dvt:indicatorBar/>

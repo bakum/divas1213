@@ -30,7 +30,9 @@ public class RatingSettingsImpl extends DivasEntityNoDelete {
         SumDivider,
         SumBal,
         CntDivider,
-        CntBal;
+        CntBal,
+        CntKgBal,
+        CntKgDivider;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -53,16 +55,26 @@ public class RatingSettingsImpl extends DivasEntityNoDelete {
             return vals;
         }
     }
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int SUMDIVIDER = AttributesEnum.SumDivider.index();
     public static final int SUMBAL = AttributesEnum.SumBal.index();
     public static final int CNTDIVIDER = AttributesEnum.CntDivider.index();
     public static final int CNTBAL = AttributesEnum.CntBal.index();
+    public static final int CNTKGBAL = AttributesEnum.CntKgBal.index();
+    public static final int CNTKGDIVIDER = AttributesEnum.CntKgDivider.index();
 
     /**
      * This is the default constructor (do not remove).
      */
     public RatingSettingsImpl() {
+    }
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        return EntityDefImpl.findDefObject("ua.divas.model.RatingSettings");
     }
 
     /**
@@ -146,6 +158,38 @@ public class RatingSettingsImpl extends DivasEntityNoDelete {
     }
 
     /**
+     * Gets the attribute value for CntKgBal, using the alias name CntKgBal.
+     * @return the value of CntKgBal
+     */
+    public BigDecimal getCntKgBal() {
+        return (BigDecimal) getAttributeInternal(CNTKGBAL);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for CntKgBal.
+     * @param value value to set the CntKgBal
+     */
+    public void setCntKgBal(BigDecimal value) {
+        setAttributeInternal(CNTKGBAL, value);
+    }
+
+    /**
+     * Gets the attribute value for CntKgDivider, using the alias name CntKgDivider.
+     * @return the value of CntKgDivider
+     */
+    public Long getCntKgDivider() {
+        return (Long) getAttributeInternal(CNTKGDIVIDER);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for CntKgDivider.
+     * @param value value to set the CntKgDivider
+     */
+    public void setCntKgDivider(Long value) {
+        setAttributeInternal(CNTKGDIVIDER, value);
+    }
+
+    /**
      * @param id key constituent
 
      * @return a Key object based on given key constituents.
@@ -154,11 +198,5 @@ public class RatingSettingsImpl extends DivasEntityNoDelete {
         return new Key(new Object[] { id });
     }
 
-    /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        return EntityDefImpl.findDefObject("ua.divas.model.RatingSettings");
-    }
 }
 
