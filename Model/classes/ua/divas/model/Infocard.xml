@@ -70,6 +70,24 @@
       </SchemaBasedProperties>
     </Properties>
   </Attribute>
+  <Attribute
+    Name="SummaKl"
+    ColumnName="SUMMA_KL"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="INFOCARD">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.Infocard.SummaKl_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.Infocard.SummaKl_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.Infocard.SummaKl_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
   <Key
     Name="InfocardPk"
     PrimaryKey="true">

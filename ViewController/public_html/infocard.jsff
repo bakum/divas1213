@@ -75,6 +75,18 @@
                                                                   pattern="#{bindings.InfocardView1.hints.Summa.format}"/>
                                             </af:inputNumberSpinbox>
                                         </af:column>
+                                        <af:column headerText="#{bindings.InfocardView1.hints.SummaKl.label}" id="c4">
+                                            <af:inputNumberSpinbox value="#{row.bindings.SummaKl.inputValue}"
+                                                                   label="#{bindings.InfocardView1.hints.SummaKl.label}"
+                                                                   required="#{bindings.InfocardView1.hints.SummaKl.mandatory}"
+                                                                   columns="#{bindings.InfocardView1.hints.SummaKl.displayWidth}"
+                                                                   shortDesc="#{bindings.InfocardView1.hints.SummaKl.tooltip}"
+                                                                   id="it1">
+                                                <f:validator binding="#{row.bindings.SummaKl.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.InfocardView1.hints.SummaKl.format}"/>
+                                            </af:inputNumberSpinbox>
+                                        </af:column>
                                     </af:table>
                                 </af:panelCollection>
                             </f:facet>

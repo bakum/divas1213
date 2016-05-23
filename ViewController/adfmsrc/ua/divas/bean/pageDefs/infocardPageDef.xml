@@ -15,6 +15,7 @@
           <Item Value="Fullname"/>
           <Item Value="Summa"/>
           <Item Value="Editable"/>
+          <Item Value="SummaKl"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

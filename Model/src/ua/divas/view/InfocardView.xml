@@ -22,6 +22,7 @@
   <SQLQuery><![CDATA[SELECT Infocard.ID, 
        Infocard.FULLNAME, 
        Infocard.SUMMA,
+       Infocard.SUMMA_KL,
        (select 0 from dual) Editable
 FROM  INFOCARD Infocard]]></SQLQuery>
   <EntityUsage
@@ -48,6 +49,12 @@ FROM  INFOCARD Infocard]]></SQLQuery>
     EntityAttrName="Summa"
     EntityUsage="Infocard"
     AliasName="SUMMA"/>
+  <ViewAttribute
+    Name="SummaKl"
+    PrecisionRule="true"
+    EntityAttrName="SummaKl"
+    EntityUsage="Infocard"
+    AliasName="SUMMA_KL"/>
   <ViewAttribute
     Name="Editable"
     IsPersistent="false"

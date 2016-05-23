@@ -26,7 +26,8 @@ public class InfocardImpl extends DivasEntityNoDelete {
     public enum AttributesEnum {
         Id,
         Fullname,
-        Summa;
+        Summa,
+        SummaKl;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -49,14 +50,23 @@ public class InfocardImpl extends DivasEntityNoDelete {
             return vals;
         }
     }
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int FULLNAME = AttributesEnum.Fullname.index();
     public static final int SUMMA = AttributesEnum.Summa.index();
+    public static final int SUMMAKL = AttributesEnum.SummaKl.index();
 
     /**
      * This is the default constructor (do not remove).
      */
     public InfocardImpl() {
+    }
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        return EntityDefImpl.findDefObject("ua.divas.model.Infocard");
     }
 
     /**
@@ -108,6 +118,22 @@ public class InfocardImpl extends DivasEntityNoDelete {
     }
 
     /**
+     * Gets the attribute value for SummaKl, using the alias name SummaKl.
+     * @return the value of SummaKl
+     */
+    public BigDecimal getSummaKl() {
+        return (BigDecimal) getAttributeInternal(SUMMAKL);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for SummaKl.
+     * @param value value to set the SummaKl
+     */
+    public void setSummaKl(BigDecimal value) {
+        setAttributeInternal(SUMMAKL, value);
+    }
+
+    /**
      * @param id key constituent
 
      * @return a Key object based on given key constituents.
@@ -116,11 +142,5 @@ public class InfocardImpl extends DivasEntityNoDelete {
         return new Key(new Object[] { id });
     }
 
-    /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        return EntityDefImpl.findDefObject("ua.divas.model.Infocard");
-    }
 }
 
