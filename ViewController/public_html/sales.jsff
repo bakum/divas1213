@@ -50,7 +50,7 @@
                                         <af:column sortProperty="#{bindings.VwSales1.hints.OrderId.name}"
                                                    filterable="true"
                                                    headerText="#{bindings.VwSales1.hints.OrderId.label}" id="c1"
-                                                   width="200">
+                                                   width="150">
                                             <af:selectOneChoice value="#{row.bindings.OrderId.inputValue}"
                                                                 label="#{row.bindings.OrderId.label}"
                                                                 required="#{bindings.VwSales1.hints.OrderId.mandatory}"
@@ -78,7 +78,7 @@
                                         <af:column sortProperty="#{bindings.VwSales1.hints.SalesSumma.name}"
                                                    filterable="true"
                                                    headerText="#{bindings.VwSales1.hints.SalesSumma.label}" id="c5"
-                                                   align="right">
+                                                   align="right" width="100">
                                             <af:outputText value="#{row.SalesSumma}"
                                                            shortDesc="#{bindings.VwSales1.hints.SalesSumma.tooltip}"
                                                            id="ot2"
@@ -94,7 +94,7 @@
                                         <af:column sortProperty="#{bindings.VwSales1.hints.PlanSebestSumma.name}"
                                                    filterable="true"
                                                    headerText="#{bindings.VwSales1.hints.PlanSebestSumma.label}" id="c7"
-                                                   align="right">
+                                                   align="right" width="100">
                                             <af:outputText value="#{row.PlanSebestSumma}"
                                                            shortDesc="#{bindings.VwSales1.hints.PlanSebestSumma.tooltip}"
                                                            id="ot4"
@@ -106,7 +106,7 @@
                                         <af:column sortProperty="#{bindings.VwSales1.hints.FactSebestSumma.name}"
                                                    filterable="true"
                                                    headerText="#{bindings.VwSales1.hints.FactSebestSumma.label}" id="c6"
-                                                   align="right">
+                                                   align="right" width="100">
                                             <af:outputText value="#{row.FactSebestSumma}"
                                                            shortDesc="#{bindings.VwSales1.hints.FactSebestSumma.tooltip}"
                                                            id="ot3"
@@ -129,7 +129,7 @@
                                             </af:outputText>
                                         </af:column>
                                         <af:column headerText="#{bindings.VwSales1.hints.MargaAbs.label}" id="c11"
-                                                   align="right">
+                                                   align="right" width="100">
                                             <af:outputText value="#{row.MargaAbs}"
                                                            shortDesc="#{bindings.VwSales1.hints.MargaAbs.tooltip}"
                                                            id="ot9"
@@ -143,7 +143,7 @@
                                             </f:facet>
                                         </af:column>
                                         <af:column headerText="#{bindings.VwSales1.hints.Rentabel.label}" id="c10"
-                                                   align="right">
+                                                   align="right" width="112">
                                             <af:outputText value="#{row.Rentabel}"
                                                            shortDesc="#{bindings.VwSales1.hints.Rentabel.tooltip}"
                                                            id="ot8"
@@ -154,7 +154,7 @@
                                         </af:column>
                                         <af:column sortProperty="#{bindings.VwSales1.hints.DivisionId.name}"
                                                    headerText="#{bindings.VwSales1.hints.DivisionId.label}" id="c3"
-                                                   align="center" width="150">
+                                                   align="center" width="138">
                                             <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
                                                                 label="#{row.bindings.DivisionId.label}"
                                                                 required="#{bindings.VwSales1.hints.DivisionId.mandatory}"
@@ -170,7 +170,7 @@
                                 </af:panelBox>
                             </f:facet>
                             <f:facet name="start">
-                                <af:panelDrawer id="pd1" height="60%" width="60%" position="left">
+                                <af:panelDrawer id="pd1" height="60%" width="70%" position="left">
                                     <af:showDetailItem text="Фильтр" id="sdi1" stretchChildren="first"
                                                        icon="/img/search.png">
                                         <af:panelGroupLayout layout="vertical" id="pgl2">

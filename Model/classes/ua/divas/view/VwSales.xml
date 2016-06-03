@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="VwSales"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -24,7 +24,8 @@
     Name="u_name"
     Kind="where"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getSessionUser()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
@@ -36,25 +37,42 @@
     Name="s_dat"
     Kind="viewcriteria"
     Type="java.sql.Timestamp">
-    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[adf.currentDate]]></TransientExpression>
   </Variable>
   <Variable
     Name="f_dat"
     Kind="viewcriteria"
     Type="java.sql.Timestamp">
-    <TransientExpression><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
   </Variable>
   <Variable
     Name="u_status_complete"
     Kind="viewcriteria"
     Type="java.lang.String">
-    <TransientExpression><![CDATA[viewObject.getCompleteStatus()]]></TransientExpression>
+    <TransientExpression
+      Name="expression"><![CDATA[viewObject.getCompleteStatus()]]></TransientExpression>
     <Properties>
       <SchemaBasedProperties>
         <DISPLAYHINT
           Value="Hide"/>
       </SchemaBasedProperties>
     </Properties>
+  </Variable>
+  <Variable
+    Name="u_status_in_work"
+    Kind="viewcriteria"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <TransientExpression
+      trustMode="untrusted"
+      Name="expression"><![CDATA[viewObject.getInWorkStatus()]]></TransientExpression>
   </Variable>
   <ViewAccessor
     Name="OrdersView1"
@@ -159,10 +177,11 @@
     VW_SALES.KONTRAG_ID KONTRAG_ID, 
     VW_SALES.DIVISION_ID DIVISION_ID, 
     VW_SALES.PERIOD PERIOD, 
-    VW_SALES.SALES_SUMMA SALES_SUMMA, 
+    VW_SALES.SALES_SUM SALES_SUMMA, 
     VW_SALES.FACT_SEBEST_SUMMA FACT_SEBEST_SUMMA, 
     VW_SALES.PLAN_SEBEST_SUMMA PLAN_SEBEST_SUMMA,
-    VW_SALES.STATUS_ID STATUS_ID
+    VW_SALES.STATUS_ID STATUS_ID,
+    VW_SALES.DAT_COMPLETE DAT_COMPLETE
 FROM 
  VW_SALES
 where
@@ -272,13 +291,16 @@ where
     ColumnType="NUMBER"
     AliasName="SALES_SUMMA"
     Expression="SALES_SUMMA"
-    SQLType="NUMERIC">
+    SQLType="NUMERIC"
+    IsQueriable="false">
     <Properties>
       <SchemaBasedProperties>
-        <LABEL
-          ResId="ua.divas.view.VwSales.SalesSumma_LABEL"/>
         <TOOLTIP
           ResId="ua.divas.view.VwSales.SalesSumma_TOOLTIP"/>
+        <LABEL
+          ResId="ua.divas.view.VwSales.SalesSumma_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwSales.SalesSumma_LABEL_PLURAL"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -347,6 +369,27 @@ where
     </Properties>
   </ViewAttribute>
   <ViewAttribute
+    Name="DatComplete"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    AliasName="DAT_COMPLETE"
+    Expression="DAT_COMPLETE"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.VwSales.DatComplete_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.VwSales.DatComplete_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.VwSales.DatComplete_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
     Name="DeltaSebest"
     IsUpdateable="false"
     IsSelected="false"
@@ -357,8 +400,8 @@ where
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC"
     IsQueriable="false">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[((PlanSebestSumma == null ? 0 : PlanSebestSumma)-(FactSebestSumma == null ? 0 : FactSebestSumma))]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Dependencies>
       <Item
         Value="FactSebestSumma"/>
@@ -384,8 +427,8 @@ where
     ColumnType="NUMBER"
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[((SalesSumma == null ? 0 : SalesSumma)-(FactSebestSumma == null ? 0 : FactSebestSumma))]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Dependencies>
       <Item
         Value="FactSebestSumma"/>
@@ -415,8 +458,8 @@ where
     ColumnType="NUMBER"
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC">
-    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <TransientExpression><![CDATA[(FactSebestSumma == null ? 100 : (MargaAbs*100/FactSebestSumma))]]></TransientExpression>
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Properties>
       <SchemaBasedProperties>
         <LABEL
@@ -465,17 +508,16 @@ where
       UpperColumns="1">
       <ViewCriteriaItem
         Name="Period"
-        ViewAttribute="Period"
+        ViewAttribute="DatComplete"
         Operator="BETWEEN"
         Conjunction="AND"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional">
         <ViewCriteriaItemValue
-          Name="VwSalesCriteriaDate_VwSalesCriteria_row_0_Period_vcval0"
+          Name="VwSalesCriteriaDate_VwSalesCriteria_row_0_DatComplete_vcval0"
           Value=":f_dat"
           IsBindVarValue="true"/>
         <ViewCriteriaItemValue
-          Name="VwSalesCriteriaDate_VwSalesCriteria_row_0_Period_vcval1"
+          Name="VwSalesCriteriaDate_VwSalesCriteria_row_0_DatComplete_vcval1"
           Value=":s_dat"
           IsBindVarValue="true"/>
       </ViewCriteriaItem>
@@ -511,18 +553,74 @@ where
       Name="VwSalesCriteria_row_0"
       UpperColumns="1">
       <ViewCriteriaItem
+        Name="StatusId"
+        ViewAttribute="StatusId"
+        Operator="="
+        Conjunction="AND"
+        Required="Optional"
+        Value=":u_status_complete"
+        IsBindVarValue="true"
+        Removable="true"/>
+      <ViewCriteriaItem
+        Name="Period"
+        ViewAttribute="DatComplete"
+        Operator="BETWEEN"
+        Conjunction="AND"
+        Required="Optional"
+        Removable="true">
+        <ViewCriteriaItemValue
+          Name="VwSalesCriteriaComplete_VwSalesCriteria_row_0_DatComplete_vcval0"
+          Value=":f_dat"
+          IsBindVarValue="true"/>
+        <ViewCriteriaItemValue
+          Name="VwSalesCriteriaComplete_VwSalesCriteria_row_0_DatComplete_vcval1"
+          Value=":s_dat"
+          IsBindVarValue="true"/>
+      </ViewCriteriaItem>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="VwSalesCriteriaInWork"
+    ViewObjectName="ua.divas.view.VwSales"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="displayName"
+          ResId="ua.divas.view.VwSales.VwSalesCriteriaInWork_displayName"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="VwSalesCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
         Name="Period"
         ViewAttribute="Period"
         Operator="BETWEEN"
         Conjunction="AND"
-        GenerateIsNullClauseForBindVars="false"
-        Required="Optional">
+        Required="Optional"
+        Removable="true">
         <ViewCriteriaItemValue
-          Name="VwSalesCriteriaComplete_VwSalesCriteria_row_0_Period_vcval0"
+          Name="VwSalesCriteriaInWork_VwSalesCriteria_row_0_Period_vcval0"
           Value=":f_dat"
           IsBindVarValue="true"/>
         <ViewCriteriaItemValue
-          Name="VwSalesCriteriaComplete_VwSalesCriteria_row_0_Period_vcval1"
+          Name="VwSalesCriteriaInWork_VwSalesCriteria_row_0_Period_vcval1"
           Value=":s_dat"
           IsBindVarValue="true"/>
       </ViewCriteriaItem>
@@ -531,10 +629,10 @@ where
         ViewAttribute="StatusId"
         Operator="="
         Conjunction="AND"
-        GenerateIsNullClauseForBindVars="false"
-        Required="Optional"
-        Value=":u_status_complete"
-        IsBindVarValue="true"/>
+        Value=":u_status_in_work"
+        IsBindVarValue="true"
+        Removable="true"
+        Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
   <AttrArray Name="KeyAttributes">

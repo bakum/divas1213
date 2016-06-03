@@ -67,6 +67,19 @@ public class VwSalesImpl extends DivasView {
         }
         return null;
     }
+    
+    public String getInWorkStatus() {
+        ViewObjectImpl vo = (ViewObjectImpl) this.getRootApplicationModule().findViewObject("OrderStatusView1");
+        ViewRowSetImpl rs =
+            (ViewRowSetImpl) vo
+            .findByViewCriteria(vo.getViewCriteria("FilterOrderStatusInWork"), -1, vo.QUERY_MODE_SCAN_DATABASE_TABLES);
+        Row row = rs.first();
+        if (row != null) {
+            String rv = (String) row.getAttribute("Id");
+            return rv;
+        }
+        return null;
+    }
 
 
     /**
@@ -131,6 +144,22 @@ public class VwSalesImpl extends DivasView {
      */
     public void setu_status_complete(String value) {
         ensureVariableManager().setVariableValue("u_status_complete", value);
+    }
+
+    /**
+     * Returns the variable value for u_status_in_work.
+     * @return variable value for u_status_in_work
+     */
+    public String getu_status_in_work() {
+        return (String) ensureVariableManager().getVariableValue("u_status_in_work");
+    }
+
+    /**
+     * Sets <code>value</code> for variable u_status_in_work.
+     * @param value value to bind as u_status_in_work
+     */
+    public void setu_status_in_work(String value) {
+        ensureVariableManager().setVariableValue("u_status_in_work", value);
     }
 
 

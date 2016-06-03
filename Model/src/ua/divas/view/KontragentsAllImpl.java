@@ -31,5 +31,8 @@ public class KontragentsAllImpl extends DivasView {
     public void setKonId(String value) {
         ensureVariableManager().setVariableValue("KonId", value);
     }
+    
+    public void addCard(Integer summa, String kId){
+        }
 }
 

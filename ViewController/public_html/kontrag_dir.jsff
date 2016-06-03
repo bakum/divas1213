@@ -61,9 +61,10 @@
                                            width="100">
                                     <af:outputText value="#{node.bindings.Okpo}" id="ot3"/>
                                 </af:column>
-                                <af:column id="c2" width="70" align="center">
+                                <af:column id="c2" width="100" align="center">
                                     <af:toolbar id="t1" rendered="#{node.ParentId == null ? false : true}">
-                                        <af:button id="b1" icon="/img/edit-16.gif" shortDesc="Редактировать">
+                                        <af:button id="b1" icon="/img/edit-16.gif" shortDesc="Редактировать"
+                                                   visible="#{node.IsGroup == 1 ? false : true}">
                                             <af:showPopupBehavior popupId="::pCreateEdit"/>
                                         </af:button>
                                         <af:button id="b5" icon="/img/format-bullet-list.png"
@@ -71,6 +72,9 @@
                                                    shortDesc="Настройки начислений">
                                             <af:showPopupBehavior popupId="::pSettings"/>
                                         </af:button>
+                                        <af:button id="b10" icon="/img/discount.png"
+                                                   visible="#{node.SuppSetting == 0 ? false : true}"
+                                                   shortDesc="Выдача скидочных карточек" immediate="true"/>
                                     </af:toolbar>
                                 </af:column>
                                 <f:facet name="contextMenu">

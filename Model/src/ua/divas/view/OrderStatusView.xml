@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="OrderStatusView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   SelectList="OrderStatus.ID, 
        OrderStatus.VERSION, 
@@ -76,7 +76,6 @@
         Operator="="
         Conjunction="AND"
         Value="Новый"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -112,7 +111,6 @@
         Operator="="
         Conjunction="AND"
         Value="Замер"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -148,7 +146,6 @@
         Operator="="
         Conjunction="AND"
         Value="НеОплачен"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -184,7 +181,6 @@
         Operator="="
         Conjunction="AND"
         Value="Контроль"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -220,7 +216,6 @@
         Operator="="
         Conjunction="AND"
         Value="Отказ"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -256,7 +251,41 @@
         Operator="="
         Conjunction="AND"
         Value="Выполнен"
-        GenerateIsNullClauseForBindVars="false"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="FilterOrderStatusInWork"
+    ViewObjectName="ua.divas.view.OrderStatusView"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="OrderStatusViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Name"
+        ViewAttribute="Name"
+        Operator="="
+        Conjunction="AND"
+        Value="ВРаботе"
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
