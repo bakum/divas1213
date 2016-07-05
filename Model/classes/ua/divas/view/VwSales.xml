@@ -458,7 +458,7 @@ where
     ColumnType="NUMBER"
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC">
-    <TransientExpression><![CDATA[(FactSebestSumma == null ? 100 : (MargaAbs*100/FactSebestSumma))]]></TransientExpression>
+    <TransientExpression><![CDATA[(SalesSumma == null ? 100 : (MargaAbs*100/SalesSumma))]]></TransientExpression>
     <RecalcCondition><![CDATA[true]]></RecalcCondition>
     <Properties>
       <SchemaBasedProperties>
@@ -474,7 +474,7 @@ where
     </Properties>
     <Dependencies>
       <Item
-        Value="FactSebestSumma"/>
+        Value="SalesSumma"/>
     </Dependencies>
   </ViewAttribute>
   <ViewCriteria
