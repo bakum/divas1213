@@ -1142,6 +1142,18 @@
   <ViewUsage
     Name="KreditOutTpPercentView2"
     ViewObjectName="ua.divas.view.KreditOutTpPercentView"/>
+  <ViewUsage
+    Name="DashSales1"
+    ViewObjectName="ua.divas.view.DashSales"/>
+  <ViewUsage
+    Name="StatusStrVO1"
+    ViewObjectName="ua.divas.view.StatusStrVO"/>
+  <ViewUsage
+    Name="DashDivisionSales1"
+    ViewObjectName="ua.divas.view.DashDivisionSales"/>
+  <ViewUsage
+    Name="DashSales2"
+    ViewObjectName="ua.divas.view.DashSales"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"
@@ -2353,6 +2365,12 @@
     ViewLinkObjectName="ua.divas.view.KreditOutTpPercentFk1Link"
     SrcViewUsageName="ua.divas.module.AppModule.KreditOutView1"
     DstViewUsageName="ua.divas.module.AppModule.KreditOutTpPercentView2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="DashDivisionSalesFkLink1"
+    ViewLinkObjectName="ua.divas.view.DashDivisionSalesFkLink"
+    SrcViewUsageName="ua.divas.module.AppModule.DashDivisionSales1"
+    DstViewUsageName="ua.divas.module.AppModule.DashSales2"
     Reversed="false"/>
   <ClientInterface
     Name="__clientInterface">

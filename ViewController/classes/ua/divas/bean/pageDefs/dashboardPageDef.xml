@@ -2,6 +2,56 @@
 <pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="dashboardPageDef"
                 Package="ua.divas.bean.pageDefs">
   <parameters/>
-  <executables/>
-  <bindings/>
+  <executables>
+    <iterator Binds="DashSales1" RangeSize="-1" DataControl="AppModuleDataControl" id="DashSales1Iterator"
+              RowCountThreshold="-1"/>
+    <searchRegion Binds="DashSales1Iterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="DashSales1Query"/>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="DashSales1.variablesMap.s_dat"
+                     Name="ExecuteWithParams_s_dat" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl" Binds="DashSales1.variablesMap.f_dat"
+                     Name="ExecuteWithParams_f_dat" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <tree IterBinding="DashSales1Iterator" id="DashSales1">
+      <nodeDefinition DefName="ua.divas.view.DashSales" Name="DashSales10">
+        <AttrNames>
+          <Item Value="DivisionId"/>
+          <Item Value="Status"/>
+          <Item Value="Sales"/>
+          <Item Value="Sebest"/>
+          <Item Value="Marga"/>
+          <Item Value="AdminZatraty"/>
+          <Item Value="Prib"/>
+          <Item Value="Rentabel"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="DashSales1Iterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="s_dat" NDType="java.sql.Timestamp" NDValue="${bindings.ExecuteWithParams_s_dat}"/>
+      <NamedData NDName="f_dat" NDType="java.sql.Timestamp" NDValue="${bindings.ExecuteWithParams_f_dat}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="s_dat">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_s_dat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="f_dat">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_f_dat"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="DashSales1Iterator" id="DashSales11" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="ua.divas.view.DashSales" Name="DashSales11">
+        <AttrNames>
+          <Item Value="Sebest"/>
+          <Item Value="Status"/>
+          <Item Value="Marga"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
 </pageDefinition>

@@ -12,7 +12,8 @@
   ComponentClass="ua.divas.view.VwZatratyImpl"
   FetchSize="100"
   FetchMode="FETCH_AS_NEEDED"
-  RangeSize="100">
+  RangeSize="100"
+  QueryHint="FIRST_ROWS">
   <DesignTime>
     <Attr Name="_isExpertMode" Value="true"/>
     <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>

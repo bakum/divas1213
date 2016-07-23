@@ -28,6 +28,7 @@ import ua.divas.view.CallLogViewImpl;
 import ua.divas.view.CompaignsViewImpl;
 import ua.divas.view.ContactDetailsViewImpl;
 import ua.divas.view.CurrencyViewImpl;
+import ua.divas.view.DashSalesImpl;
 import ua.divas.view.DivisionsRootViewImpl;
 import ua.divas.view.DivisionsViewImpl;
 import ua.divas.view.FirmsViewImpl;
@@ -4889,6 +4890,46 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
      */
     public ViewLinkImpl getKreditOutTpPercentFk1Link1() {
         return (ViewLinkImpl) findViewLink("KreditOutTpPercentFk1Link1");
+    }
+
+    /**
+     * Container's getter for DashSales1.
+     * @return DashSales1
+     */
+    public DashSalesImpl getDashSales1() {
+        return (DashSalesImpl) findViewObject("DashSales1");
+    }
+
+    /**
+     * Container's getter for StatusStrVO1.
+     * @return StatusStrVO1
+     */
+    public ViewObjectImpl getStatusStrVO1() {
+        return (ViewObjectImpl) findViewObject("StatusStrVO1");
+    }
+
+    /**
+     * Container's getter for DashDivisionSales1.
+     * @return DashDivisionSales1
+     */
+    public ViewObjectImpl getDashDivisionSales1() {
+        return (ViewObjectImpl) findViewObject("DashDivisionSales1");
+    }
+
+    /**
+     * Container's getter for DashSales2.
+     * @return DashSales2
+     */
+    public DashSalesImpl getDashSales2() {
+        return (DashSalesImpl) findViewObject("DashSales2");
+    }
+
+    /**
+     * Container's getter for DashDivisionSalesFkLink1.
+     * @return DashDivisionSalesFkLink1
+     */
+    public ViewLinkImpl getDashDivisionSalesFkLink1() {
+        return (ViewLinkImpl) findViewLink("DashDivisionSalesFkLink1");
     }
 }
 

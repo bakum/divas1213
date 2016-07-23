@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DashSales"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Partial"
+  ComponentClass="ua.divas.view.DashSalesImpl"
+  FetchSize="100"
+  QueryHint="FIRST_ROWS"
+  FetchMode="FETCH_AS_NEEDED"
+  RangeSize="100">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="ua.divas.view.DashSales_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="s_dat"
+    Kind="where"
+    Type="java.sql.Timestamp">
+    <TransientExpression
+      trustMode="untrusted"
+      Name="expression"><![CDATA[adf.currentDate]]></TransientExpression>
+  </Variable>
+  <Variable
+    Name="f_dat"
+    Kind="where"
+    Type="java.sql.Timestamp">
+    <TransientExpression
+      trustMode="untrusted"
+      Name="expression"><![CDATA[viewObject.getDateLast()]]></TransientExpression>
+  </Variable>
+  <ViewAccessor
+    Name="DivisionsView1"
+    ViewObjectName="ua.divas.view.DivisionsView"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="DivisionsViewItems"
+      FullName="ua.divas.view.DivisionsView.DivisionsViewItems"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="StatusStrVO1"
+    ViewObjectName="ua.divas.view.StatusStrVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_DivisionId"
+    ListVOName="DivisionsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DivisionId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Status"
+    ListVOName="StatusStrVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Status"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Status"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Status"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT VW_SALES.DIVISION_ID,
+  'Выполнено' status,
+  SUM(VW_SALES.SALES_SUM) sales,
+  SUM(VW_SALES.FACT_SEBEST_SUMMA) sebest,
+  SUM(VW_SALES.SALES_SUM-VW_SALES.FACT_SEBEST_SUMMA) marga,
+  0 admin_zatraty
+FROM VW_SALES
+WHERE VW_SALES.STATUS_ID IN
+  (SELECT os.ID FROM order_status os WHERE upper(os.NAME) in ('ВЫПОЛНЕН')
+  ) and (VW_SALES.DAT_COMPLETE between :f_dat and :s_dat)
+GROUP BY VW_SALES.DIVISION_ID,
+  'Выполнено'
+union
+SELECT VW_SALES.DIVISION_ID,
+  'В работе' status,
+  SUM(VW_SALES.SALES_SUM) sales,
+  SUM(VW_SALES.FACT_SEBEST_SUMMA) sebest,
+  SUM(VW_SALES.SALES_SUM-VW_SALES.FACT_SEBEST_SUMMA),
+  0 admin_zatraty
+FROM VW_SALES
+WHERE VW_SALES.STATUS_ID IN
+  (SELECT os.ID FROM order_status os WHERE upper(os.NAME) in ('ВРАБОТЕ','ВРАСЧЕТЕ','НЕОПЛАЧЕН')
+  ) and (VW_SALES.PERIOD between :f_dat and :s_dat)
+GROUP BY VW_SALES.DIVISION_ID,
+  'В работе'
+union  
+SELECT VW_ZATRATY.DIVISION_ID,
+'Выполнено' status,
+0 sales,
+0 sebest,
+0 marga,
+  SUM(VW_ZATRATY.SUMMA) admin_zatraty
+FROM VW_ZATRATY
+where VW_ZATRATY.PERIOD between :f_dat and :s_dat
+GROUP BY VW_ZATRATY.DIVISION_ID,
+'Выполнено']]></SQLQuery>
+  <ViewAttribute
+    Name="DivisionId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVISION_ID"
+    Expression="DIVISION_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_DivisionId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="ua.divas.view.DashSales.DivisionId_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.DivisionId_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.DivisionId_TOOLTIP"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Status"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STATUS"
+    Expression="STATUS"
+    SQLType="VARCHAR"
+    LOVName="LOV_Status">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.Status_LABEL_PLURAL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+        <AUTOSUBMIT
+          Value="true"/>
+        <LABEL
+          ResId="ua.divas.view.DashSales.Status_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.Status_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Sales"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SALES"
+    Expression="SALES"
+    SQLType="NUMERIC"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.Sales_LABEL_PLURAL"/>
+        <LABEL
+          ResId="ua.divas.view.DashSales.Sales_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.Sales_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Sebest"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SEBEST"
+    Expression="SEBEST"
+    SQLType="NUMERIC"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.Sebest_LABEL_PLURAL"/>
+        <LABEL
+          ResId="ua.divas.view.DashSales.Sebest_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.Sebest_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Marga"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="MARGA"
+    Expression="MARGA"
+    SQLType="NUMERIC"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.Marga_LABEL_PLURAL"/>
+        <LABEL
+          ResId="ua.divas.view.DashSales.Marga_LABEL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.Marga_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AdminZatraty"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="ADMIN_ZATRATY"
+    Expression="ADMIN_ZATRATY"
+    SQLType="NUMERIC"
+    IsQueriable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.DashSales.AdminZatraty_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.AdminZatraty_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.AdminZatraty_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Rentabel"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <TransientExpression
+      trustMode="untrusted"><![CDATA[(Sales == 0 ? 0 : (Marga/Sales))]]></TransientExpression>
+    <RecalcCondition
+      trustMode="untrusted"><![CDATA[true]]></RecalcCondition>
+    <Dependencies>
+      <Item
+        Value="Sales"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.DashSales.Rentabel_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.Rentabel_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.Rentabel_TOOLTIP"/>
+        <FMT_FORMAT
+          ResId="ua.divas.view.DashSales.Rentabel_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="ua.divas.view.DashSales.Rentabel_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Prib"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <TransientExpression
+      trustMode="untrusted"><![CDATA[Marga - AdminZatraty]]></TransientExpression>
+    <RecalcCondition
+      trustMode="untrusted"><![CDATA[true]]></RecalcCondition>
+    <Dependencies>
+      <Item
+        Value="AdminZatraty"/>
+      <Item
+        Value="Marga"/>
+    </Dependencies>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.DashSales.Prib_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.Prib_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.Prib_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="DivisionId"/>
+    <Item Value="Status"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>
