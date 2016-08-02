@@ -42,10 +42,6 @@
                                                    rendered="#{securityContext.taskflowViewable['/WEB-INF/plan_acc.xml#plan_acc']}">
                                     <af:region value="#{bindings.plan_acc1.regionModel}" id="r8"/>
                                 </af:showDetailItem>
-                                <af:showDetailItem text="Календарь" id="sdi20" stretchChildren="first"
-                                                   rendered="#{securityContext.taskflowViewable['/WEB-INF/calendar-config.xml#calendar-config']}">
-                                    <af:region value="#{bindings.calendarconfig1.regionModel}" id="r17"/>
-                                </af:showDetailItem>
                                 <af:showDetailItem text="Интерфейс (настройки)" id="sdi30" stretchChildren="first"
                                                    rendered="#{securityContext.taskflowViewable['/WEB-INF/gui-config.xml#gui-config']}">
                                     <af:region value="#{bindings.guiconfig1.regionModel}" id="r27"/>

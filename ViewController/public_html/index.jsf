@@ -89,6 +89,16 @@
                                 </af:showDetailItem>
                             </af:panelTabbed>
                         </af:showDetailItem>
+                        <af:showDetailItem text="Календарь" id="sdi4"
+                                           rendered="#{securityContext.taskflowViewable['/WEB-INF/calendar-config.xml#calendar-config']}"
+                                           icon="/img/calendar.png" stretchChildren="first">
+                            <af:decorativeBox id="db1" theme="medium">
+                                <f:facet name="center">
+                                    <af:region value="#{bindings.calendarconfig1.regionModel}" id="r1"/>
+                                </f:facet>
+                                <f:facet name="top"/>
+                            </af:decorativeBox>
+                        </af:showDetailItem>
                     </af:panelSpringboard>
                 </f:facet>
                 <f:facet name="wallet">

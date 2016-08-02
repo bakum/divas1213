@@ -163,7 +163,8 @@
                                             </af:inputListOfValues>
                                         </af:column>
                                         <af:column headerText="#{bindings.OrdersView1.hints.TotalSumOplaty.label}"
-                                                   id="c25" align="right" width="70" headerNoWrap="true">
+                                                   id="c25" align="right" width="70" headerNoWrap="true"
+                                                   visible="#{!securityContext.userInRole['manager']}">
                                             <af:inputText value="#{row.bindings.TotalSumOplaty.inputValue}"
                                                           label="#{bindings.OrdersView1.hints.TotalSumOplaty.label}"
                                                           required="#{bindings.OrdersView1.hints.TotalSumOplaty.mandatory}"
@@ -178,7 +179,8 @@
                                             <f:facet name="footer"/>
                                         </af:column>
                                         <af:column headerText="#{bindings.OrdersView1.hints.TotalSumm.label}" id="c73"
-                                                   align="right" width="80" headerNoWrap="true">
+                                                   align="right" width="80" headerNoWrap="true"
+                                                   visible="#{!securityContext.userInRole['manager']}">
                                             <af:inputText value="#{row.bindings.TotalSumm.inputValue}"
                                                           label="#{bindings.OrdersView1.hints.TotalSumm.label}"
                                                           required="#{bindings.OrdersView1.hints.TotalSumm.mandatory}"

@@ -90,7 +90,14 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
-  <SQLQuery><![CDATA[SELECT VW_SALES.DIVISION_ID,
+  <SQLQuery><![CDATA[SELECT DIVISION_ID,
+(select fullname from divisions where id = DIVISION_ID) div_name,
+status,
+sales,
+sebest,
+marga,
+admin_zatraty
+from (SELECT VW_SALES.DIVISION_ID,
   'Выполнено' status,
   SUM(VW_SALES.SALES_SUM) sales,
   SUM(VW_SALES.FACT_SEBEST_SUMMA) sebest,
@@ -112,7 +119,7 @@ SELECT VW_SALES.DIVISION_ID,
 FROM VW_SALES
 WHERE VW_SALES.STATUS_ID IN
   (SELECT os.ID FROM order_status os WHERE upper(os.NAME) in ('ВРАБОТЕ','ВРАСЧЕТЕ','НЕОПЛАЧЕН')
-  ) and (VW_SALES.PERIOD between :f_dat and :s_dat)
+  ) and (trunc(VW_SALES.DAT_PLAN_COMPLETE) <= trunc(:s_dat))
 GROUP BY VW_SALES.DIVISION_ID,
   'В работе'
 union  
@@ -125,7 +132,7 @@ SELECT VW_ZATRATY.DIVISION_ID,
 FROM VW_ZATRATY
 where VW_ZATRATY.PERIOD between :f_dat and :s_dat
 GROUP BY VW_ZATRATY.DIVISION_ID,
-'Выполнено']]></SQLQuery>
+'Выполнено')]]></SQLQuery>
   <ViewAttribute
     Name="DivisionId"
     IsUpdateable="false"
@@ -153,6 +160,32 @@ GROUP BY VW_ZATRATY.DIVISION_ID,
           ResId="ua.divas.view.DashSales.DivisionId_TOOLTIP"/>
         <AUTOSUBMIT
           Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="150"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIV_NAME"
+    Expression="DIV_NAME"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.DashSales.DivName_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.DashSales.DivName_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.DashSales.DivName_TOOLTIP"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

@@ -70,7 +70,8 @@
                                                 <af:group id="g1" title="Детали заказа">
                                                     <af:panelLabelAndMessage label="#{bindings.TotalSumOplaty.hints.label}"
                                                                              id="plam15"
-                                                                             labelStyle="color:Blue;font-weight: bold;">
+                                                                             labelStyle="color:Blue;font-weight: bold;"
+                                                                             rendered="#{!securityContext.userInRole['manager']}">
                                                         <af:outputText value="#{bindings.TotalSumOplaty.inputValue}"
                                                                        shortDesc="#{bindings.TotalSumOplaty.hints.tooltip}"
                                                                        id="ot9"
@@ -81,7 +82,8 @@
                                                     </af:panelLabelAndMessage>
                                                     <af:panelLabelAndMessage label="#{bindings.TotalSumm.hints.label}"
                                                                              id="plam16"
-                                                                             labelStyle="color:Blue;font-weight: bold;">
+                                                                             labelStyle="color:Blue;font-weight: bold;"
+                                                                             rendered="#{!securityContext.userInRole['manager']}">
                                                         <af:outputText value="#{bindings.TotalSumm.inputValue}"
                                                                        shortDesc="#{bindings.TotalSumm.hints.tooltip}"
                                                                        id="ot10"

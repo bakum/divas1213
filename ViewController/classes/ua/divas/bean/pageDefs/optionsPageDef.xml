@@ -21,8 +21,6 @@
                   xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
         <taskFlow id="plan_acc1" taskFlowId="/WEB-INF/plan_acc.xml#plan_acc" activation="deferred"
                   xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
-        <taskFlow id="calendarconfig1" taskFlowId="/WEB-INF/calendar-config.xml#calendar-config" activation="deferred"
-                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
         <taskFlow id="guiconfig1" taskFlowId="/WEB-INF/gui-config.xml#gui-config" activation="deferred"
                   xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
         <taskFlow id="infoconfig1" taskFlowId="/WEB-INF/info-config.xml#info-config" activation="deferred"

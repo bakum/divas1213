@@ -48,8 +48,18 @@
       <nodeDefinition DefName="ua.divas.view.DashSales" Name="DashSales11">
         <AttrNames>
           <Item Value="Sebest"/>
-          <Item Value="Status"/>
+          <Item Value="DivName"/>
           <Item Value="Marga"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="DashSales1Iterator" id="DashSales12" ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="ua.divas.view.DashSales" Name="DashSales12">
+        <AttrNames>
+          <Item Value="Marga"/>
+          <Item Value="DivisionId"/>
+          <Item Value="AdminZatraty"/>
+          <Item Value="DivName"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
