@@ -4,7 +4,7 @@
                   xmlns="http://xmlns.oracle.com/weblogic/jdbc-data-source">
     <name>divas</name>
     <jdbc-driver-params>
-        <url>jdbc:oracle:thin:@192.168.0.200:1521:db11g</url>
+        <url>jdbc:oracle:thin:@127.0.0.1:1521:db11g</url>
         <driver-name>oracle.jdbc.OracleDriver</driver-name>
         <properties>
             <property>
