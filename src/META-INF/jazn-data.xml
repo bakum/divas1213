@@ -36,6 +36,9 @@
           <display-name>agent</display-name>
           <description></description>
         </role>
+        <role>
+          <name>sys</name>
+        </role>
       </roles>
     </realm>
   </jazn-realm>
@@ -133,6 +136,16 @@
               <member>
                 <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
                 <name>agent</name>
+              </member>
+            </members>
+          </app-role>
+          <app-role>
+            <name>sys</name>
+            <class>oracle.security.jps.service.policystore.ApplicationRole</class>
+            <members>
+              <member>
+                <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
+                <name>sys</name>
               </member>
             </members>
           </app-role>
@@ -1751,6 +1764,23 @@
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/order-dialog-flow.xml#order-dialog-flow</name>
+                <actions>view</actions>
+              </permission>
+            </permissions>
+          </grant>
+          <grant>
+            <grantee>
+              <principals>
+                <principal>
+                  <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
+                  <name>sys</name>
+                </principal>
+              </principals>
+            </grantee>
+            <permissions>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.applicationsPageDef</name>
                 <actions>view</actions>
               </permission>
             </permissions>

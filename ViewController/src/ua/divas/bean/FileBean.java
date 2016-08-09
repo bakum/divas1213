@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.sql.SQLException;
 
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
 import javax.servlet.http.HttpServletResponse;
@@ -144,5 +145,19 @@ public class FileBean {
         }
         System.out.println("writeFromInputToOutput-FINISH");
         return count;
+    }
+
+    public void deleteFile(ActionEvent actionEvent) {
+        System.out.println("deletingFile - START");
+        try {
+            //Row row = fileVO.getCurrentRow();
+            fileVO.removeCurrentRow();
+            fileVO.getApplicationModule().getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            fileVO.getApplicationModule().getTransaction().rollback();
+        }
+        System.out.println("deletingFile-FINISH");
+
     }
 }

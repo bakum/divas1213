@@ -23,7 +23,8 @@
                     </af:navigationPane>
                 </f:facet>
                 <f:facet name="center">
-                    <af:panelGroupLayout id="pgl1" layout="horizontal">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                         rendered="#{securityContext.userInRole['sys']}">
                         <af:inputFile label="Загрузка файла" id="if1" valueChangeListener="#{FileBean.uploadFile}"/>
                         <af:button text="Загрузить" id="b1"/>
                     </af:panelGroupLayout>
@@ -42,11 +43,15 @@
                             <af:outputText value="#{row.FileName}"
                                            shortDesc="#{bindings.TempDocsView1.hints.FileName.tooltip}" id="ot3"/>
                         </af:column>
-                        <af:column id="c3">
-                            <af:button text="Скачать" id="b2">
-                                <af:fileDownloadActionListener contentType="application/x-download"
-                                                               method="#{FileBean.downloadFile}"/>
-                            </af:button>
+                        <af:column id="c3" width="200">
+                            <af:toolbar id="t2">
+                                <af:button text="Скачать" id="b2" immediate="true">
+                                    <af:fileDownloadActionListener contentType="application/x-download"
+                                                                   method="#{FileBean.downloadFile}"/>
+                                </af:button>
+                                <af:button text="Удалить" id="b3" rendered="#{securityContext.userInRole['sys']}"
+                                           actionListener="#{FileBean.deleteFile}" immediate="true"/>
+                            </af:toolbar>
                         </af:column>
                     </af:table>
                 </f:facet>
