@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <trinidad-config xmlns="http://myfaces.apache.org/trinidad/config">
-  <skin-family>#{facesContext.viewRoot.viewId =='/dashboard' ? 'sigrand' : 'divas'}</skin-family>
+  <skin-family>#{facesContext.viewRoot.viewId =='/dashboard' ? 'sigrand' : facesContext.viewRoot.viewId =='/applications' ? 'sigrand' : 'divas'}</skin-family>
 </trinidad-config>

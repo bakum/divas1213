@@ -1154,6 +1154,9 @@
   <ViewUsage
     Name="DashSales2"
     ViewObjectName="ua.divas.view.DashSales"/>
+  <ViewUsage
+    Name="TempDocsView1"
+    ViewObjectName="ua.divas.view.TempDocsView"/>
   <ViewLinkUsage
     Name="CallLogFk1Link1"
     ViewLinkObjectName="ua.divas.view.CallLogFk1Link"

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="applicationsPageDef"
+                Package="ua.divas.bean.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TempDocsView1" RangeSize="25" DataControl="AppModuleDataControl" id="TempDocsView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TempDocsView1Iterator" id="TempDocsView1">
+      <nodeDefinition DefName="ua.divas.view.TempDocsView" Name="TempDocsView10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="FileName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

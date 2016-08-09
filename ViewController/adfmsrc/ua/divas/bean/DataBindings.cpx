@@ -92,6 +92,7 @@
     <page path="/editKred.jsf" usageId="ua_divas_bean_editKredPageDef"/>
     <page path="/zatraty_new.jsff" usageId="ua_divas_bean_zatraty_newPageDef"/>
     <page path="/dashboard.jsf" usageId="ua_divas_bean_dashboardPageDef"/>
+    <page path="/applications.jsf" usageId="ua_divas_bean_applicationsPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="ua_divas_view_indexPageDef" path="ua.divas.bean.pageDefs.indexPageDef"/>
@@ -178,6 +179,7 @@
     <page id="ua_divas_bean_editKredPageDef" path="ua.divas.bean.pageDefs.editKredPageDef"/>
     <page id="ua_divas_bean_zatraty_newPageDef" path="ua.divas.bean.pageDefs.zatraty_newPageDef"/>
     <page id="ua_divas_bean_dashboardPageDef" path="ua.divas.bean.pageDefs.dashboardPageDef"/>
+    <page id="ua_divas_bean_applicationsPageDef" path="ua.divas.bean.pageDefs.applicationsPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="SupplierWallet" path="ua.divas.bean.SupplierWallet"/>

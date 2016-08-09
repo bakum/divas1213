@@ -4931,5 +4931,13 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
     public ViewLinkImpl getDashDivisionSalesFkLink1() {
         return (ViewLinkImpl) findViewLink("DashDivisionSalesFkLink1");
     }
+
+    /**
+     * Container's getter for TempDocsView1.
+     * @return TempDocsView1
+     */
+    public ViewObjectImpl getTempDocsView1() {
+        return (ViewObjectImpl) findViewObject("TempDocsView1");
+    }
 }
 

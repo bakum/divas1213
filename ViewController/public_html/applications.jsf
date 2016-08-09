@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+    xmlns:trh="http://myfaces.apache.org/trinidad/html">
+    <af:document title="SiGRAND CRM - Приложения" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1" usesUpload="true">
+            <af:pageTemplate viewId="/oracle/templates/tabletFirstTemplate.jspx" id="pt1">
+                <f:facet name="header">
+                    <af:outputText value="Приложения" id="ot1"/>
+                </f:facet>
+                <f:facet name="status"/>
+                <f:facet name="appNav"/>
+                <f:facet name="globalLinks"/>
+                <f:facet name="footer">
+                    <af:navigationPane hint="bar" id="np1" value="#{root_menu}" var="menuInfo">
+                        <f:facet name="nodeStamp">
+                            <af:commandNavigationItem id="ni1" text="#{menuInfo.label}"
+                                                      destination="#{menuInfo.destination}"
+                                                      rendered="#{menuInfo.rendered}" action="#{menuInfo.doAction}"
+                                                      icon="#{menuInfo.icon}"/>
+                        </f:facet>
+                    </af:navigationPane>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal">
+                        <af:inputFile label="Загрузка файла" id="if1" valueChangeListener="#{FileBean.uploadFile}"/>
+                        <af:button text="Загрузить" id="b1"/>
+                    </af:panelGroupLayout>
+                    <af:table value="#{bindings.TempDocsView1.collectionModel}" var="row"
+                              rows="#{bindings.TempDocsView1.rangeSize}"
+                              emptyText="#{bindings.TempDocsView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.TempDocsView1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.TempDocsView1.collectionModel.makeCurrent}"
+                              rowSelection="single" fetchSize="#{bindings.TempDocsView1.rangeSize}" id="t1">
+                        <af:column headerText="#{bindings.TempDocsView1.hints.Id.label}" id="c1" width="250">
+                            <af:outputText value="#{row.Id}" shortDesc="#{bindings.TempDocsView1.hints.Id.tooltip}"
+                                           id="ot2"/>
+                        </af:column>
+                        <af:column headerText="#{bindings.TempDocsView1.hints.FileName.label}" id="c2" width="400">
+                            <af:outputText value="#{row.FileName}"
+                                           shortDesc="#{bindings.TempDocsView1.hints.FileName.tooltip}" id="ot3"/>
+                        </af:column>
+                        <af:column id="c3">
+                            <af:button text="Скачать" id="b2">
+                                <af:fileDownloadActionListener contentType="application/x-download"
+                                                               method="#{FileBean.downloadFile}"/>
+                            </af:button>
+                        </af:column>
+                    </af:table>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:attribute name="startWidth" value="0px"/>
+                <f:attribute name="endWidth" value="0px"/>
+                <f:attribute name="brandingMaxWidth" value="1024px"/>
+                <f:attribute name="logoStyleClass" value="SiBrandingBarLogo"/>
+                <f:attribute name="showFooter" value="true"/>
+            </af:pageTemplate>
+        </af:form>
+        <f:facet name="metaContainer">
+            <trh:meta name="apple-mobile-web-app-capable" content="yes"/>
+            <trh:meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+            <af:group id="gp12">
+                <af:resource type="javascript" source="/js/jquery-2.1.3.min.js"/>
+                <af:resource type="javascript" source="/js/jquery.growl.js"/>
+                <af:resource type="javascript" source="/js/jquery_notification.js"/>
+                <af:resource type="javascript" source="/js/WebSocketCli.js"/>
+                <af:resource type="css" source="/css/jquery.growl.css"/>
+            </af:group>
+        </f:facet>
+    </af:document>
+</f:view>

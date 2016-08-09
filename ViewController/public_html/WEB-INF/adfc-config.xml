@@ -21,6 +21,9 @@
   <view id="dashboard">
     <page>/dashboard.jsf</page>
   </view>
+  <view id="applications">
+    <page>/applications.jsf</page>
+  </view>
   <control-flow-rule id="__1">
     <from-activity-id>index</from-activity-id>
     <control-flow-case id="__2">
@@ -71,6 +74,10 @@
     <control-flow-case id="__25">
       <from-outcome>adfMenu_dashboard</from-outcome>
       <to-activity-id>dashboard</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__26">
+      <from-outcome>adf_Menu_applications</from-outcome>
+      <to-activity-id>applications</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
   <managed-bean id="__6">
@@ -127,5 +134,10 @@
       <property-class>java.lang.String</property-class>
       <value>/WEB-INF/root_menu.xml</value>
     </managed-property>
+  </managed-bean>
+  <managed-bean id="__27">
+    <managed-bean-name>FileBean</managed-bean-name>
+    <managed-bean-class>ua.divas.bean.FileBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
   </managed-bean>
 </adfc-config>

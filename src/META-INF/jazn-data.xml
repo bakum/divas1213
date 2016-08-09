@@ -583,6 +583,11 @@
                 <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.applicationsPageDef</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1264,6 +1269,11 @@
                 <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.applicationsPageDef</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1443,6 +1453,11 @@
                 <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
                 <actions>view</actions>
               </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.applicationsPageDef</name>
+                <actions>view</actions>
+              </permission>
             </permissions>
           </grant>
           <grant>
@@ -1483,6 +1498,11 @@
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/zamnew-config.xml#zamnew-config</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>ua.divas.bean.pageDefs.applicationsPageDef</name>
                 <actions>view</actions>
               </permission>
             </permissions>

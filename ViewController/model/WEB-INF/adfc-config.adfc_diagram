@@ -245,4 +245,29 @@
       <property
          name="sdm:polyPoints">R55,50.0,177.625,245.0,332.10938,L50</property>
    </ControlFlowCase>
+   <View
+      id="View20">
+      <property
+         name="activityId">applications</property>
+      <property
+         name="page">/applications.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>applications&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">218.53125</property>
+      <property
+         name="x">411.22266</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase21"
+      from="WildcardControlFlowRule10"
+      to="View20">
+      <property
+         name="fromOutcome">adf_Menu_applications</property>
+      <property
+         name="sdm:polyPoints">R50,51.438213,174.125,370.22266,218.54688,L50</property>
+   </ControlFlowCase>
 </SDM>

@@ -158,7 +158,8 @@
                             </af:gridCell>
                         </af:gridRow>
                         <af:gridRow marginTop="5px" height="auto" id="gr2">
-                            <af:gridCell marginStart="5px" width="50%" id="gc2" halign="stretch">
+                            <af:gridCell marginStart="5px" id="gc2" halign="stretch" marginEnd="5px"
+                                         columnSpan="2">
                                 <af:panelBox text="Продажи (диаграмма)" id="pb2">
                                     <f:facet name="toolbar"/>
                                     <dvt:horizontalBarChart stack="on" id="horizontalBarChart1" var="row"
@@ -170,27 +171,6 @@
                                                                    series="#{bindings.DashSales11.hints.Sebest.label}"/>
                                                 <dvt:chartDataItem id="di2" value="#{row.Marga}" group="#{row.DivName}"
                                                                    series="#{bindings.DashSales11.hints.Marga.label}"/>
-                                            </af:group>
-                                        </f:facet>
-                                    </dvt:horizontalBarChart>
-                                </af:panelBox>
-                            </af:gridCell>
-                            <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc3" halign="stretch">
-                                <af:panelBox text="Прибыль(диаграмма)" id="pb3">
-                                    <f:facet name="toolbar"/>
-                                    <dvt:horizontalBarChart stack="on" id="horizontalBarChart2" var="row"
-                                                            value="#{bindings.DashSales12.collectionModel}"
-                                                            inlineStyle="height:120px;">
-                                        <f:facet name="dataStamp">
-                                            <af:group id="g2">
-                                                <dvt:chartDataItem id="di4" value="#{row.AdminZatraty}"
-                                                                   group="#{row.DivName}"
-                                                                   series="#{bindings.DashSales12.hints.AdminZatraty.label}"
-                                                                   shortDesc="Админ затраты"/>
-                                                <dvt:chartDataItem id="di3" value="#{row.Marga-row.AdminZatraty}"
-                                                                   group="#{row.DivName}"
-                                                                   series="#{bindings.DashSales12.hints.Marga.label}"
-                                                                   shortDesc="Прибыль"/>
                                             </af:group>
                                         </f:facet>
                                     </dvt:horizontalBarChart>

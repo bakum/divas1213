@@ -30,7 +30,7 @@
     Type="java.sql.Timestamp">
     <TransientExpression
       trustMode="untrusted"
-      Name="expression"><![CDATA[adf.currentDate]]></TransientExpression>
+      Name="expression"><![CDATA[viewObject.getDateFirst()]]></TransientExpression>
   </Variable>
   <Variable
     Name="f_dat"

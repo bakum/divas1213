@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="TempDocs"
+  Version="12.1.3.23.11"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="TEMP_DOCS"
+  AliasName="TempDocs"
+  BindingStyle="OracleName"
+  RowClass="ua.divas.model.TempDocsImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TEMP_DOCS"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TempDocs.Id_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.TempDocs.Id_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TempDocs.Id_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="FileName"
+    Precision="500"
+    ColumnName="FILE_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TEMP_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="500"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TempDocs.FileName_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.TempDocs.FileName_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TempDocs.FileName_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <Attribute
+    Name="FileCont"
+    IsQueriable="false"
+    ColumnName="FILE_CONT"
+    SQLType="BLOB"
+    Type="oracle.jbo.domain.BlobDomain"
+    ColumnType="BLOB"
+    TableName="TEMP_DOCS"/>
+  <Key
+    Name="TempDocsPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="TEMP_DOCS_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="ua.divas.model.TempDocs.Id"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="ua.divas.model.ModelBundle"/>
+  </ResourceBundle>
+</Entity>
