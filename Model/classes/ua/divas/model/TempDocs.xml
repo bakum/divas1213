@@ -69,6 +69,28 @@
     Type="oracle.jbo.domain.BlobDomain"
     ColumnType="BLOB"
     TableName="TEMP_DOCS"/>
+  <Attribute
+    Name="FileDiscription"
+    Precision="500"
+    ColumnName="FILE_DISCRIPTION"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TEMP_DOCS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="500"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.model.TempDocs.FileDiscription_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.model.TempDocs.FileDiscription_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.model.TempDocs.FileDiscription_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
   <Key
     Name="TempDocsPk"
     PrimaryKey="true">

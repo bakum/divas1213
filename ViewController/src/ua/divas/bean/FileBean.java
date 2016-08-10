@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import oracle.adf.model.binding.DCIteratorBinding;
 
+import oracle.adf.view.rich.component.rich.data.RichTable;
+
+import oracle.adf.view.rich.context.AdfFacesContext;
+
 import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
 import oracle.jbo.domain.BlobDomain;
@@ -27,6 +31,7 @@ public class FileBean {
     private static final String FILE_ITERATOR_NAME = "TempDocsView1Iterator";
     private DCIteratorBinding fileIterator;
     private ViewObjectImpl fileVO;
+    private RichTable table;
 
 
     public FileBean() {
@@ -86,6 +91,7 @@ public class FileBean {
             //     имя    файла    и    его    содержимое
             row.setAttribute("FileName", fileInfo.getFilename());
             row.setAttribute("FileCont", createBlobDomain(fileInfo));
+            row.setAttribute("FileDiscription", "SiGRAND Mobile for Android");
             //добавляем строку во VO
             fileVO.insertRow(row);
             fileVO.getApplicationModule().getTransaction().commit();
@@ -159,5 +165,18 @@ public class FileBean {
         }
         System.out.println("deletingFile-FINISH");
 
+    }
+
+    public void refreshFile(ActionEvent actionEvent) {
+        fileIterator.executeQuery();
+        AdfFacesContext.getCurrentInstance().addPartialTarget(getTable());
+    }
+
+    public void setTable(RichTable table) {
+        this.table = table;
+    }
+
+    public RichTable getTable() {
+        return table;
     }
 }

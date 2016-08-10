@@ -12,6 +12,7 @@
         <AttrNames>
           <Item Value="Id"/>
           <Item Value="FileName"/>
+          <Item Value="FileDiscription"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

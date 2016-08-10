@@ -25,7 +25,8 @@ public class TempDocsImpl extends DivasEntityNoDelete {
     public enum AttributesEnum {
         Id,
         FileName,
-        FileCont;
+        FileCont,
+        FileDiscription;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -48,14 +49,23 @@ public class TempDocsImpl extends DivasEntityNoDelete {
             return vals;
         }
     }
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int FILENAME = AttributesEnum.FileName.index();
     public static final int FILECONT = AttributesEnum.FileCont.index();
+    public static final int FILEDISCRIPTION = AttributesEnum.FileDiscription.index();
 
     /**
      * This is the default constructor (do not remove).
      */
     public TempDocsImpl() {
+    }
+
+    /**
+     * @return the definition object for this instance class.
+     */
+    public static synchronized EntityDefImpl getDefinitionObject() {
+        return EntityDefImpl.findDefObject("ua.divas.model.TempDocs");
     }
 
     /**
@@ -107,6 +117,22 @@ public class TempDocsImpl extends DivasEntityNoDelete {
     }
 
     /**
+     * Gets the attribute value for FileDiscription, using the alias name FileDiscription.
+     * @return the value of FileDiscription
+     */
+    public String getFileDiscription() {
+        return (String) getAttributeInternal(FILEDISCRIPTION);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for FileDiscription.
+     * @param value value to set the FileDiscription
+     */
+    public void setFileDiscription(String value) {
+        setAttributeInternal(FILEDISCRIPTION, value);
+    }
+
+    /**
      * @param id key constituent
 
      * @return a Key object based on given key constituents.
@@ -115,11 +141,5 @@ public class TempDocsImpl extends DivasEntityNoDelete {
         return new Key(new Object[] { id });
     }
 
-    /**
-     * @return the definition object for this instance class.
-     */
-    public static synchronized EntityDefImpl getDefinitionObject() {
-        return EntityDefImpl.findDefObject("ua.divas.model.TempDocs");
-    }
 }
 
