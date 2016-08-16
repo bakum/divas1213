@@ -91,7 +91,11 @@ public class FileBean {
             //     имя    файла    и    его    содержимое
             row.setAttribute("FileName", fileInfo.getFilename());
             row.setAttribute("FileCont", createBlobDomain(fileInfo));
-            row.setAttribute("FileDiscription", "SiGRAND Mobile for Android");
+            if (fileInfo.getFilename().indexOf(".apk") != -1) {
+                row.setAttribute("FileDiscription", "SiGRAND Mobile for Android");
+            } else {
+                row.setAttribute("FileDiscription", "Other file");
+            }
             //добавляем строку во VO
             fileVO.insertRow(row);
             fileVO.getApplicationModule().getTransaction().commit();

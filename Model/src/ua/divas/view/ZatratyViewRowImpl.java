@@ -17,8 +17,10 @@ import ua.divas.model.ZatratyImpl;
 // ---    Warning: Do not modify method signatures of generated methods.
 // ---------------------------------------------------------------------
 public class ZatratyViewRowImpl extends ViewRowImpl {
+
+
     public static final int ENTITY_ZATRATY = 0;
-    
+
     @Override
     public boolean isAttributeUpdateable(int i) {
         BigDecimal editable = this.getEditable();
@@ -52,7 +54,8 @@ public class ZatratyViewRowImpl extends ViewRowImpl {
         OrdersTpRashodyView,
         OtherZatratyTabPartZatratyView,
         VwZatraty;
-        private static AttributesEnum[] vals = null;
+        static AttributesEnum[] vals = null;
+        ;
         private static final int firstIndex = 0;
 
         public int index() {
@@ -74,6 +77,8 @@ public class ZatratyViewRowImpl extends ViewRowImpl {
             return vals;
         }
     }
+
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int ISGROUP = AttributesEnum.IsGroup.index();
     public static final int PARENTID = AttributesEnum.ParentId.index();

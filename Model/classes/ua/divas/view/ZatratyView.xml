@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="ZatratyView"
-  Version="12.1.2.66.68"
+  Version="12.1.3.23.11"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -30,7 +30,8 @@
        Zatraty.VERSION,   
        Zatraty.PREDEFINED, 
        (select 0 from dual) Editable 
-FROM  ZATRATY Zatraty]]></SQLQuery>
+FROM  ZATRATY Zatraty
+order by fullname]]></SQLQuery>
   <EntityUsage
     Name="Zatraty"
     Entity="ua.divas.model.Zatraty"/>
@@ -139,7 +140,6 @@ FROM  ZATRATY Zatraty]]></SQLQuery>
         Operator="="
         Conjunction="AND"
         Value="0"
-        GenerateIsNullClauseForBindVars="false"
         Required="Optional"/>
       <ViewCriteriaItem
         Name="Fullname"
@@ -147,7 +147,6 @@ FROM  ZATRATY Zatraty]]></SQLQuery>
         Operator="STARTSWITH"
         Conjunction="AND"
         Value=":Zatr"
-        GenerateIsNullClauseForBindVars="false"
         IsBindVarValue="true"
         Required="Optional"/>
     </ViewCriteriaRow>

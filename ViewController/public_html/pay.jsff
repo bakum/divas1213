@@ -5,7 +5,7 @@
         <af:gridRow height="100%" id="gr1">
             <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                 <!-- Content -->
-                <af:panelBox text="Автоматические начисления" id="pb1" type="flow">
+                <af:panelBox text="Автоматические начисления" id="pb1">
                     <f:facet name="toolbar">
                         <af:toolbar id="t3">
                             <af:button actionListener="#{bindings.CreateInsert.execute}" text="Добавить"
@@ -26,8 +26,7 @@
                               rowBandingInterval="0"
                               selectedRowKeys="#{bindings.PaySettingsView1.collectionModel.selectedRow}"
                               selectionListener="#{bindings.PaySettingsView1.collectionModel.makeCurrent}"
-                              rowSelection="#{bindings.Editable.inputValue == 1 ? 'none' : 'single'}" fetchSize="#{bindings.PaySettingsView1.rangeSize}" id="t1"
-                              scrollPolicy="page" editingMode="clickToEdit" partialTriggers="::b2"
+                              rowSelection="#{bindings.Editable.inputValue == 1 ? 'none' : 'single'}" fetchSize="#{bindings.PaySettingsView1.rangeSize}" id="t1" editingMode="clickToEdit" partialTriggers="::b2"
                               binding="#{pay.table}">
                         <af:column id="c8" width="60"
                                    inlineStyle="#{row.bindings.Editable.inputValue == 1 ? 'background-color:#DCF0AB' : ''}">
