@@ -121,200 +121,200 @@
          <list n="libraryDefinitions">
             <hash>
                <list n="classPath">
-                  <url path="../../../../itext-5.5.6/itext-pdfa-5.5.6.jar" jar-entry=""/>
+                  <url path="itext-5.5.6/itext-pdfa-5.5.6.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Itext-pdfa-5.5.6.jar"/>
-               <value n="id" v="Itext-pdfa-5.5.6.jar"/>
+               <value n="description" v="Itext-pdfa-5.5.6.jar1"/>
+               <value n="id" v="Itext-pdfa-5.5.6.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../itext-5.5.6/itext-xtra-5.5.6.jar" jar-entry=""/>
+                  <url path="itext-5.5.6/itext-xtra-5.5.6.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Itext-xtra-5.5.6.jar"/>
-               <value n="id" v="Itext-xtra-5.5.6.jar"/>
+               <value n="description" v="Itext-xtra-5.5.6.jar1"/>
+               <value n="id" v="Itext-xtra-5.5.6.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../itext-5.5.6/itextpdf-5.5.6.jar" jar-entry=""/>
+                  <url path="itext-5.5.6/itextpdf-5.5.6.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Itextpdf-5.5.6.jar"/>
-               <value n="id" v="Itextpdf-5.5.6.jar"/>
+               <value n="description" v="Itextpdf-5.5.6.jar1"/>
+               <value n="id" v="Itextpdf-5.5.6.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../poi-3.12/poi-3.12-20150511.jar" jar-entry=""/>
+                  <url path="poi-3.12/poi-3.12-20150511.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Poi-3.12-20150511.jar"/>
-               <value n="id" v="Poi-3.12-20150511.jar"/>
+               <value n="description" v="Poi-3.12-20150511.jar1"/>
+               <value n="id" v="Poi-3.12-20150511.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../poi-3.12/poi-examples-3.12-20150511.jar" jar-entry=""/>
+                  <url path="poi-3.12/poi-examples-3.12-20150511.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Poi-examples-3.12-20150511.jar"/>
-               <value n="id" v="Poi-examples-3.12-20150511.jar"/>
+               <value n="description" v="Poi-examples-3.12-20150511.jar1"/>
+               <value n="id" v="Poi-examples-3.12-20150511.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../poi-3.12/poi-excelant-3.12-20150511.jar" jar-entry=""/>
+                  <url path="poi-3.12/poi-excelant-3.12-20150511.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Poi-excelant-3.12-20150511.jar"/>
-               <value n="id" v="Poi-excelant-3.12-20150511.jar"/>
+               <value n="description" v="Poi-excelant-3.12-20150511.jar1"/>
+               <value n="id" v="Poi-excelant-3.12-20150511.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../poi-3.12/poi-ooxml-3.12-20150511.jar" jar-entry=""/>
+                  <url path="poi-3.12/poi-ooxml-3.12-20150511.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Poi-ooxml-3.12-20150511.jar"/>
-               <value n="id" v="Poi-ooxml-3.12-20150511.jar"/>
+               <value n="description" v="Poi-ooxml-3.12-20150511.jar1"/>
+               <value n="id" v="Poi-ooxml-3.12-20150511.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../poi-3.12/poi-ooxml-schemas-3.12-20150511.jar" jar-entry=""/>
+                  <url path="poi-3.12/poi-ooxml-schemas-3.12-20150511.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Poi-ooxml-schemas-3.12-20150511.jar"/>
-               <value n="id" v="Poi-ooxml-schemas-3.12-20150511.jar"/>
+               <value n="description" v="Poi-ooxml-schemas-3.12-20150511.jar1"/>
+               <value n="id" v="Poi-ooxml-schemas-3.12-20150511.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../poi-3.12/poi-scratchpad-3.12-20150511.jar" jar-entry=""/>
+                  <url path="poi-3.12/poi-scratchpad-3.12-20150511.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Poi-scratchpad-3.12-20150511.jar"/>
-               <value n="id" v="Poi-scratchpad-3.12-20150511.jar"/>
+               <value n="description" v="Poi-scratchpad-3.12-20150511.jar1"/>
+               <value n="id" v="Poi-scratchpad-3.12-20150511.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../quartz-2.2.1/lib/c3p0-0.9.1.1.jar" jar-entry=""/>
+                  <url path="quartz-2.2.1/lib/c3p0-0.9.1.1.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="C3p0-0.9.1.1.jar"/>
-               <value n="id" v="C3p0-0.9.1.1.jar"/>
+               <value n="description" v="C3p0-0.9.1.1.jar1"/>
+               <value n="id" v="C3p0-0.9.1.1.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../quartz-2.2.1/lib/log4j-1.2.16.jar" jar-entry=""/>
+                  <url path="quartz-2.2.1/lib/log4j-1.2.16.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Log4j-1.2.16.jar"/>
-               <value n="id" v="Log4j-1.2.16.jar"/>
+               <value n="description" v="Log4j-1.2.16.jar1"/>
+               <value n="id" v="Log4j-1.2.16.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../quartz-2.2.1/lib/quartz-2.2.1.jar" jar-entry=""/>
+                  <url path="quartz-2.2.1/lib/quartz-2.2.1.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Quartz-2.2.1.jar"/>
-               <value n="id" v="Quartz-2.2.1.jar"/>
+               <value n="description" v="Quartz-2.2.1.jar1"/>
+               <value n="id" v="Quartz-2.2.1.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../quartz-2.2.1/lib/quartz-jobs-2.2.1.jar" jar-entry=""/>
+                  <url path="quartz-2.2.1/lib/quartz-jobs-2.2.1.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Quartz-jobs-2.2.1.jar"/>
-               <value n="id" v="Quartz-jobs-2.2.1.jar"/>
+               <value n="description" v="Quartz-jobs-2.2.1.jar1"/>
+               <value n="id" v="Quartz-jobs-2.2.1.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../quartz-2.2.1/lib/slf4j-api-1.6.6.jar" jar-entry=""/>
+                  <url path="quartz-2.2.1/lib/slf4j-api-1.6.6.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Slf4j-api-1.6.6.jar"/>
-               <value n="id" v="Slf4j-api-1.6.6.jar"/>
+               <value n="description" v="Slf4j-api-1.6.6.jar1"/>
+               <value n="id" v="Slf4j-api-1.6.6.jar1"/>
                <value n="locked" v="true"/>
             </hash>
             <hash>
                <list n="classPath">
-                  <url path="../../../../quartz-2.2.1/lib/slf4j-log4j12-1.6.6.jar" jar-entry=""/>
+                  <url path="quartz-2.2.1/lib/slf4j-log4j12-1.6.6.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Slf4j-log4j12-1.6.6.jar"/>
-               <value n="id" v="Slf4j-log4j12-1.6.6.jar"/>
+               <value n="description" v="Slf4j-log4j12-1.6.6.jar1"/>
+               <value n="id" v="Slf4j-log4j12-1.6.6.jar1"/>
                <value n="locked" v="true"/>
             </hash>
          </list>
       </hash>
       <list n="libraryReferences">
          <hash>
-            <value n="id" v="Itext-pdfa-5.5.6.jar"/>
+            <value n="id" v="Itext-pdfa-5.5.6.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Itext-xtra-5.5.6.jar"/>
+            <value n="id" v="Itext-xtra-5.5.6.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Itextpdf-5.5.6.jar"/>
+            <value n="id" v="Itextpdf-5.5.6.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Poi-3.12-20150511.jar"/>
+            <value n="id" v="Poi-3.12-20150511.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Poi-examples-3.12-20150511.jar"/>
+            <value n="id" v="Poi-examples-3.12-20150511.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Poi-excelant-3.12-20150511.jar"/>
+            <value n="id" v="Poi-excelant-3.12-20150511.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Poi-ooxml-3.12-20150511.jar"/>
+            <value n="id" v="Poi-ooxml-3.12-20150511.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Poi-ooxml-schemas-3.12-20150511.jar"/>
+            <value n="id" v="Poi-ooxml-schemas-3.12-20150511.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Poi-scratchpad-3.12-20150511.jar"/>
+            <value n="id" v="Poi-scratchpad-3.12-20150511.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="C3p0-0.9.1.1.jar"/>
+            <value n="id" v="C3p0-0.9.1.1.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Log4j-1.2.16.jar"/>
+            <value n="id" v="Log4j-1.2.16.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Quartz-2.2.1.jar"/>
+            <value n="id" v="Quartz-2.2.1.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Quartz-jobs-2.2.1.jar"/>
+            <value n="id" v="Quartz-jobs-2.2.1.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Slf4j-api-1.6.6.jar"/>
+            <value n="id" v="Slf4j-api-1.6.6.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
-            <value n="id" v="Slf4j-log4j12-1.6.6.jar"/>
+            <value n="id" v="Slf4j-log4j12-1.6.6.jar1"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>
