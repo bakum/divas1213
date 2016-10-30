@@ -3441,7 +3441,7 @@ public class AppModuleImpl extends ApplicationModuleImpl implements AppModule {
         DateFormat formatter;
         java.util.Date date;
             
-        formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        formatter = new SimpleDateFormat("dd.MM.yy HH:mm");
         System.out.println("DatZam: "+DatZam);
         
         try {

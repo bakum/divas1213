@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="OrderZamerView"
-  Version="12.1.3.23.11"
+  Version="12.1.3.10.8"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -147,6 +147,10 @@
   <ViewAccessor
     Name="KontragOtherView1"
     ViewObjectName="ua.divas.view.KontragOtherView"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CityesView1"
+    ViewObjectName="ua.divas.view.CityesView"
     RowLevelBinds="true"/>
   <ListBinding
     Name="LOV_ActivitiesId"
@@ -406,13 +410,52 @@
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
+  <ListBinding
+    Name="LOV_CityId"
+    ListVOName="CityesView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CityId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_DivisionDest"
+    ListVOName="DivisionsView1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DivisionDest"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Id"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Fullname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery><![CDATA[SELECT Orders.ACTIVITIES_ID, 
        Orders.CURR_ID, 
        Orders.DAT, 
        Orders.DAT_ZAM,
        Orders.DELETED, 
        Orders.DISCRIPTION, 
-       Orders.DIVISION_ID, 
+       Orders.DIVISION_ID,
+       Orders.DIVISION_DEST,
        Orders.FIRM_ID, 
        Orders.ID, 
        Orders.KASSA_ID, 
@@ -428,6 +471,8 @@
        Orders.USER_ID, 
        Orders.VERSION, 
        Orders.ZAMER_ID,
+       (select city_id from kontragents where id = KONTRAG_ID and rownum = 1) City_ID,
+       (select fullname from cityes where id = (select city_id from kontragents where id = KONTRAG_ID and rownum = 1)) City_Name,
        (select fullname from kontragents where id = ZAMER_ID and rownum = 1) ZamerName,
        (select adress from contact_details where kontrag_id = Orders.KONTRAG_ID and rownum = 1) adress,
        (select phone from contact_details where kontrag_id = Orders.KONTRAG_ID and rownum = 1) phone,
@@ -520,6 +565,20 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u
           ResId="ua.divas.view.OrderZamerView.DivisionId_LABEL"/>
         <TOOLTIP
           ResId="ua.divas.view.OrderZamerView.DivisionId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DivisionDest"
+    PrecisionRule="true"
+    EntityAttrName="DivisionDest"
+    EntityUsage="Orders"
+    AliasName="DIVISION_DEST"
+    LOVName="LOV_DivisionDest">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
@@ -685,7 +744,8 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u
     EntityAttrName="UserId"
     EntityUsage="Orders"
     AliasName="USER_ID"
-    LOVName="LOV_UserId">
+    LOVName="LOV_UserId"
+    IsQueriable="false">
     <Properties>
       <SchemaBasedProperties>
         <CONTROLTYPE
@@ -716,6 +776,60 @@ upper(Orders.USER_ID) in (select upper(N) from table(cast(get_users_for_zamer(:u
       <SchemaBasedProperties>
         <CONTROLTYPE
           Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CityId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CITY_ID"
+    Expression="CITY_ID"
+    SQLType="VARCHAR"
+    LOVName="LOV_CityId">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.CityId_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.OrderZamerView.CityId_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.CityId_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CityName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CITY_NAME"
+    Expression="CITY_NAME"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="ua.divas.view.OrderZamerView.CityName_LABEL"/>
+        <LABEL_PLURAL
+          ResId="ua.divas.view.OrderZamerView.CityName_LABEL_PLURAL"/>
+        <TOOLTIP
+          ResId="ua.divas.view.OrderZamerView.CityName_TOOLTIP"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

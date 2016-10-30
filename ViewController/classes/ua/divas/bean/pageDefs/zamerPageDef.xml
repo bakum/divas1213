@@ -42,6 +42,9 @@
           <Item Value="ManagerId"/>
           <Item Value="Phone"/>
           <Item Value="Infocard"/>
+          <Item Value="CityId"/>
+          <Item Value="DivisionDest"/>
+          <Item Value="CityName"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

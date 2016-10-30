@@ -25,8 +25,8 @@ public class KontragentsImpl extends DivasEntity {
     @Override
     protected void doDML(int i, TransactionEvent transactionEvent) {
         super.doDML(i, transactionEvent);
-       // String _id = this.getId();
-       // callStoredProcedure("KONTRAG.kontrag_move_plan_acc(?)", new Object[] { _id });
+        String _id = this.getId();
+        callStoredProcedure("KONTRAG.manager_move_plan_acc(?)", new Object[] { _id });
     }
     
     @Override

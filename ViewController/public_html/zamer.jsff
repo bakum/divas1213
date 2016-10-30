@@ -227,18 +227,18 @@
                                                 <f:validator binding="#{row.bindings.CurrId.validator}"/>
                                             </af:selectOneChoice>
                                         </af:column>
-                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.DivisionId.name}"
+                                        <af:column sortProperty="#{bindings.OrderZamerView1.hints.DivisionDest.name}"
                                                    sortable="true"
-                                                   headerText="#{bindings.OrderZamerView1.hints.DivisionId.label}"
+                                                   headerText="#{bindings.OrderZamerView1.hints.DivisionDest.label}"
                                                    id="c8" width="100"
                                                    inlineStyle="#{row.bindings.OEditable.inputValue == 1 ? 'background-color:#DCF0AB;' : row.StatusName == 'Новый' ? 'background-color:#ffbc3c;' : row.StatusName == 'Контроль' ? 'background-color:Red;' : ''}">
-                                            <af:selectOneChoice value="#{row.bindings.DivisionId.inputValue}"
-                                                                label="#{row.bindings.DivisionId.label}"
-                                                                required="#{bindings.OrderZamerView1.hints.DivisionId.mandatory}"
+                                            <af:selectOneChoice value="#{row.bindings.DivisionDest.inputValue}"
+                                                                label="#{row.bindings.DivisionDest.label}"
+                                                                required="#{bindings.OrderZamerView1.hints.DivisionDest.mandatory}"
                                                                 shortDesc="#{bindings.OrderZamerView1.hints.DivisionId.tooltip}"
                                                                 id="soc3" readOnly="true">
-                                                <f:selectItems value="#{row.bindings.DivisionId.items}" id="si3"/>
-                                                <f:validator binding="#{row.bindings.DivisionId.validator}"/>
+                                                <f:selectItems value="#{row.bindings.DivisionDest.items}" id="si3"/>
+                                                <f:validator binding="#{row.bindings.DivisionDest.validator}"/>
                                             </af:selectOneChoice>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.OrderZamerView1.hints.FirmId.name}"
@@ -333,7 +333,7 @@
                                         <f:facet name="detailStamp">
                                             <af:panelLabelAndMessage label="#{bindings.OrderZamerView1.hints.Adress.label}"
                                                                      id="plam1">
-                                                <af:outputFormatted value="#{row.bindings.Adress.inputValue}" id="of1"/>
+                                                <af:outputFormatted value="#{row.bindings.CityName.inputValue}, #{row.bindings.Adress.inputValue}" id="of1"/>
                                             </af:panelLabelAndMessage>
                                             <af:panelLabelAndMessage label="#{bindings.OrderZamerView1.hints.Phone.label}"
                                                                      id="plam2">

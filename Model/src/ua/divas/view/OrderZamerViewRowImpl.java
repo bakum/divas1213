@@ -50,6 +50,7 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
         Deleted,
         Discription,
         DivisionId,
+        DivisionDest,
         FirmId,
         Id,
         KassaId,
@@ -65,6 +66,8 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
         UserId,
         Version,
         ZamerId,
+        CityId,
+        CityName,
         Zamername,
         Adress,
         Phone,
@@ -83,7 +86,8 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
         UsersView1,
         KontragentsBuyer1,
         KontragentsMeasurer1,
-        KontragOtherView1;
+        KontragOtherView1,
+        CityesView1;
         static AttributesEnum[] vals = null;
         ;
         private static final int firstIndex = 0;
@@ -116,6 +120,7 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
     public static final int DELETED = AttributesEnum.Deleted.index();
     public static final int DISCRIPTION = AttributesEnum.Discription.index();
     public static final int DIVISIONID = AttributesEnum.DivisionId.index();
+    public static final int DIVISIONDEST = AttributesEnum.DivisionDest.index();
     public static final int FIRMID = AttributesEnum.FirmId.index();
     public static final int ID = AttributesEnum.Id.index();
     public static final int KASSAID = AttributesEnum.KassaId.index();
@@ -131,6 +136,8 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
     public static final int USERID = AttributesEnum.UserId.index();
     public static final int VERSION = AttributesEnum.Version.index();
     public static final int ZAMERID = AttributesEnum.ZamerId.index();
+    public static final int CITYID = AttributesEnum.CityId.index();
+    public static final int CITYNAME = AttributesEnum.CityName.index();
     public static final int ZAMERNAME = AttributesEnum.Zamername.index();
     public static final int ADRESS = AttributesEnum.Adress.index();
     public static final int PHONE = AttributesEnum.Phone.index();
@@ -150,6 +157,7 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
     public static final int KONTRAGENTSBUYER1 = AttributesEnum.KontragentsBuyer1.index();
     public static final int KONTRAGENTSMEASURER1 = AttributesEnum.KontragentsMeasurer1.index();
     public static final int KONTRAGOTHERVIEW1 = AttributesEnum.KontragOtherView1.index();
+    public static final int CITYESVIEW1 = AttributesEnum.CityesView1.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -510,6 +518,22 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
     }
 
     /**
+     * Gets the attribute value for the calculated attribute CityId.
+     * @return the CityId
+     */
+    public String getCityId() {
+        return (String) getAttributeInternal(CITYID);
+    }
+
+    /**
+     * Gets the attribute value for the calculated attribute CityName.
+     * @return the CityName
+     */
+    public String getCityName() {
+        return (String) getAttributeInternal(CITYNAME);
+    }
+
+    /**
      * Gets the attribute value for the calculated attribute Zamername.
      * @return the Zamername
      */
@@ -563,6 +587,22 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
      */
     public String getInfocard() {
         return (String) getAttributeInternal(INFOCARD);
+    }
+
+    /**
+     * Gets the attribute value for DIVISION_DEST using the alias name DivisionDest.
+     * @return the DIVISION_DEST
+     */
+    public String getDivisionDest() {
+        return (String) getAttributeInternal(DIVISIONDEST);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for DIVISION_DEST using the alias name DivisionDest.
+     * @param value value to set the DIVISION_DEST
+     */
+    public void setDivisionDest(String value) {
+        setAttributeInternal(DIVISIONDEST, value);
     }
 
     /**
@@ -655,6 +695,13 @@ public class OrderZamerViewRowImpl extends ViewRowImpl {
      */
     public RowSet getKontragOtherView1() {
         return (RowSet) getAttributeInternal(KONTRAGOTHERVIEW1);
+    }
+
+    /**
+     * Gets the view accessor <code>RowSet</code> CityesView1.
+     */
+    public RowSet getCityesView1() {
+        return (RowSet) getAttributeInternal(CITYESVIEW1);
     }
 }
 
