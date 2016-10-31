@@ -1,5 +1,7 @@
 package ua.divas.model;
 
+import java.math.BigDecimal;
+
 import java.sql.Timestamp;
 
 import java.util.UUID;
@@ -41,6 +43,8 @@ public class DivisionsImpl extends DivasEntity {
         Predefined,
         MainUser,
         Prefix,
+        SummInfo,
+        SummReturn,
         Divisions,
         ParentIdDivisions,
         Kassa,
@@ -86,6 +90,8 @@ public class DivisionsImpl extends DivasEntity {
     public static final int PREDEFINED = AttributesEnum.Predefined.index();
     public static final int MAINUSER = AttributesEnum.MainUser.index();
     public static final int PREFIX = AttributesEnum.Prefix.index();
+    public static final int SUMMINFO = AttributesEnum.SummInfo.index();
+    public static final int SUMMRETURN = AttributesEnum.SummReturn.index();
     public static final int DIVISIONS = AttributesEnum.Divisions.index();
     public static final int PARENTIDDIVISIONS = AttributesEnum.ParentIdDivisions.index();
     public static final int KASSA = AttributesEnum.Kassa.index();
@@ -255,6 +261,38 @@ public class DivisionsImpl extends DivasEntity {
      */
     public void setPrefix(String value) {
         setAttributeInternal(PREFIX, value);
+    }
+
+    /**
+     * Gets the attribute value for SummInfo, using the alias name SummInfo.
+     * @return the value of SummInfo
+     */
+    public BigDecimal getSummInfo() {
+        return (BigDecimal) getAttributeInternal(SUMMINFO);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for SummInfo.
+     * @param value value to set the SummInfo
+     */
+    public void setSummInfo(BigDecimal value) {
+        setAttributeInternal(SUMMINFO, value);
+    }
+
+    /**
+     * Gets the attribute value for SummReturn, using the alias name SummReturn.
+     * @return the value of SummReturn
+     */
+    public BigDecimal getSummReturn() {
+        return (BigDecimal) getAttributeInternal(SUMMRETURN);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for SummReturn.
+     * @param value value to set the SummReturn
+     */
+    public void setSummReturn(BigDecimal value) {
+        setAttributeInternal(SUMMRETURN, value);
     }
 
     /**

@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="DivisionsView"
-  Version="12.1.3.23.11"
+  Version="12.1.3.10.8"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -86,7 +86,9 @@
        Divisions.PREDEFINED,
        (select 0 from dual) D_Editable,
        Divisions.MAIN_USER,
-       Divisions.PREFIX
+       Divisions.PREFIX,
+       Divisions.SUMM_INFO,
+       Divisions.SUMM_RETURN
 FROM  DIVISIONS Divisions
 where 
 upper(Divisions.ID) in (select upper(N) from table(cast(get_divisions(:u_name) as divisionTable)))
@@ -181,6 +183,20 @@ order by Divisions.IS_GROUP DESC]]></SQLQuery>
     EntityAttrName="Prefix"
     EntityUsage="Divisions"
     AliasName="PREFIX"/>
+  <ViewAttribute
+    Name="SummInfo"
+    PrecisionRule="true"
+    EntityAttrName="SummInfo"
+    EntityUsage="Divisions"
+    AliasName="SUMM_INFO"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="SummReturn"
+    PrecisionRule="true"
+    EntityAttrName="SummReturn"
+    EntityUsage="Divisions"
+    AliasName="SUMM_RETURN"
+    IsQueriable="false"/>
   <ViewAttribute
     Name="TotalActiveStart"
     IsUpdateable="false"

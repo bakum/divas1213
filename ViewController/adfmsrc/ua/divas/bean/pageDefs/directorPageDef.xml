@@ -239,5 +239,15 @@
         <Item Value="Prefix"/>
       </AttrNames>
     </attributeValues>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="SummInfo">
+      <AttrNames>
+        <Item Value="SummInfo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DivisionsView1Iterator" id="SummReturn">
+      <AttrNames>
+        <Item Value="SummReturn"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

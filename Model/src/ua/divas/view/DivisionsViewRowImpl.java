@@ -53,6 +53,8 @@ public class DivisionsViewRowImpl extends ViewRowImpl {
         DEditable,
         MainUser,
         Prefix,
+        SummInfo,
+        SummReturn,
         TotalActiveStart,
         TotalActiveOborot,
         DivisionsView,
@@ -105,6 +107,8 @@ public class DivisionsViewRowImpl extends ViewRowImpl {
     public static final int DEDITABLE = AttributesEnum.DEditable.index();
     public static final int MAINUSER = AttributesEnum.MainUser.index();
     public static final int PREFIX = AttributesEnum.Prefix.index();
+    public static final int SUMMINFO = AttributesEnum.SummInfo.index();
+    public static final int SUMMRETURN = AttributesEnum.SummReturn.index();
     public static final int TOTALACTIVESTART = AttributesEnum.TotalActiveStart.index();
     public static final int TOTALACTIVEOBOROT = AttributesEnum.TotalActiveOborot.index();
     public static final int DIVISIONSVIEW = AttributesEnum.DivisionsView.index();
@@ -295,6 +299,38 @@ public class DivisionsViewRowImpl extends ViewRowImpl {
      */
     public Number getTotalActiveOborot() {
         return (Number) getAttributeInternal(TOTALACTIVEOBOROT);
+    }
+
+    /**
+     * Gets the attribute value for SUMM_INFO using the alias name SummInfo.
+     * @return the SUMM_INFO
+     */
+    public BigDecimal getSummInfo() {
+        return (BigDecimal) getAttributeInternal(SUMMINFO);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for SUMM_INFO using the alias name SummInfo.
+     * @param value value to set the SUMM_INFO
+     */
+    public void setSummInfo(BigDecimal value) {
+        setAttributeInternal(SUMMINFO, value);
+    }
+
+    /**
+     * Gets the attribute value for SUMM_RETURN using the alias name SummReturn.
+     * @return the SUMM_RETURN
+     */
+    public BigDecimal getSummReturn() {
+        return (BigDecimal) getAttributeInternal(SUMMRETURN);
+    }
+
+    /**
+     * Sets <code>value</code> as attribute value for SUMM_RETURN using the alias name SummReturn.
+     * @param value value to set the SUMM_RETURN
+     */
+    public void setSummReturn(BigDecimal value) {
+        setAttributeInternal(SUMMRETURN, value);
     }
 
     /**

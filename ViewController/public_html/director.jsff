@@ -684,6 +684,31 @@
                                                                     <af:panelGroupLayout id="pgl2" layout="horizontal"
                                                                                          halign="right"/>
                                                                 </f:facet>
+                                                                <af:panelLabelAndMessage label="#{bindings.SummInfo.hints.label}" id="plam1">
+                                                                    <af:panelGroupLayout id="pgl27" layout="horizontal">
+                                                                        <af:inputNumberSpinbox value="#{bindings.SummInfo.inputValue}"
+                                                                                               required="#{bindings.SummInfo.hints.mandatory}"
+                                                                                               columns="#{bindings.SummInfo.hints.displayWidth}"
+                                                                                               shortDesc="#{bindings.SummInfo.hints.tooltip}"
+                                                                                               id="it26"
+                                                                                               readOnly="#{bindings.DEditable.inputValue == '1' ? false : true}">
+                                                                            <f:validator binding="#{bindings.SummInfo.validator}"/>
+                                                                            <af:convertNumber groupingUsed="false"
+                                                                                              pattern="#{bindings.SummInfo.format}"/>
+                                                                        </af:inputNumberSpinbox>
+                                                                        <af:inputNumberSpinbox value="#{bindings.SummReturn.inputValue}"
+                                                                                               label="#{bindings.SummReturn.hints.label}"
+                                                                                               required="#{bindings.SummReturn.hints.mandatory}"
+                                                                                               columns="#{bindings.SummReturn.hints.displayWidth}"
+                                                                                               shortDesc="#{bindings.SummReturn.hints.tooltip}"
+                                                                                               id="it27"
+                                                                                               readOnly="#{bindings.DEditable.inputValue == '1' ? false : true}">
+                                                                            <f:validator binding="#{bindings.SummReturn.validator}"/>
+                                                                            <af:convertNumber groupingUsed="false"
+                                                                                              pattern="#{bindings.SummReturn.format}"/>
+                                                                        </af:inputNumberSpinbox>
+                                                                    </af:panelGroupLayout>
+                                                                </af:panelLabelAndMessage>
                                                             </af:panelFormLayout>
                                                             <af:spacer width="10" height="10" id="s1"/>
                                                             <af:panelHeader text="Кассы филиала" id="ph1" type="flow">
