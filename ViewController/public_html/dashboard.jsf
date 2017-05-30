@@ -164,7 +164,7 @@
                                     <f:facet name="toolbar"/>
                                     <dvt:horizontalBarChart stack="on" id="horizontalBarChart1" var="row"
                                                             value="#{bindings.DashSales11.collectionModel}"
-                                                            inlineStyle="height:120px;">
+                                                            inlineStyle="height:120px; width:931px;">
                                         <f:facet name="dataStamp">
                                             <af:group id="g1">
                                                 <dvt:chartDataItem id="di1" value="#{row.Sebest}" group="#{row.DivName}"

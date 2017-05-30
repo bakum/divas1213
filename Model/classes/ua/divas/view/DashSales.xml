@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="DashSales"
-  Version="12.1.3.23.11"
+  Version="12.1.3.10.8"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -351,7 +351,7 @@ GROUP BY VW_ZATRATY.DIVISION_ID,
     AliasName="VIEW_ATTR"
     SQLType="NUMERIC">
     <TransientExpression
-      trustMode="untrusted"><![CDATA[Marga - AdminZatraty]]></TransientExpression>
+      trustMode="untrusted"><![CDATA[(Marga == null ? 0 : Marga) - (AdminZatraty == null ? 0 : AdminZatraty)]]></TransientExpression>
     <RecalcCondition
       trustMode="untrusted"><![CDATA[true]]></RecalcCondition>
     <Dependencies>
