@@ -59,8 +59,8 @@ public class LoginBean {
     static protected String USERNAMETOKEN = "_____demoOnlyUsernameAttrString___________";
     static protected String PASSWORDTOKEN = "_____demoOnlyPasswordAttrString___________";
     static protected String ENABLEDTOKEN = "UserEnabled";
-    public static final String VERSION = "Copyright by BMExpert 2016";
-    public static final String APP_VER = "SiGRAND CRM v0.1.21";
+    public static final String VERSION = "Copyright by BMExpert 2018";
+    public static final String APP_VER = "SiGRAND CRM v0.1.22";
 
     private String versionStr;
     private String versionApp;

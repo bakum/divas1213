@@ -218,11 +218,6 @@
               </permission>
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
-                <name>/WEB-INF/buyer_debt-config.xml#buyer_debt-config</name>
-                <actions>view</actions>
-              </permission>
-              <permission>
-                <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/call_center.xml#call_center</name>
                 <actions>view</actions>
               </permission>
@@ -640,11 +635,6 @@
               </principals>
             </grantee>
             <permissions>
-              <permission>
-                <class>oracle.adf.controller.security.TaskFlowPermission</class>
-                <name>/WEB-INF/buyer_debt-config.xml#buyer_debt-config</name>
-                <actions>view</actions>
-              </permission>
               <permission>
                 <class>oracle.adf.controller.security.TaskFlowPermission</class>
                 <name>/WEB-INF/call_center.xml#call_center</name>

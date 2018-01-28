@@ -4,7 +4,7 @@
                   xmlns="http://xmlns.oracle.com/weblogic/jdbc-data-source">
     <name>divas</name>
     <jdbc-driver-params>
-        <url>jdbc:oracle:thin:@127.0.0.1:1521:db11g</url>
+        <url>jdbc:oracle:thin:@127.0.0.1:db11g</url>
         <driver-name>oracle.jdbc.OracleDriver</driver-name>
         <properties>
             <property>
@@ -12,7 +12,7 @@
                 <value>dba_divas</value>
             </property>
         </properties>
-        <password-encrypted>{AES}U5H2YPDdq/EKTFMZDdV3tTUNqrQNp4stCIGiXJtpiX0=</password-encrypted>
+        <password-encrypted>{AES}y20Xochib/sj5rAmjIDBIRcRFURRL8D8b2MWjMqetU0=</password-encrypted>
     </jdbc-driver-params>
     <jdbc-connection-pool-params>
         <test-table-name>SQL SELECT 1 FROM DUAL</test-table-name>
