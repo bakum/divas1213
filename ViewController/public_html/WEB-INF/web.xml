@@ -224,6 +224,13 @@
         <param-name>org.apache.myfaces.trinidad.UPLOAD_TEMP_DIR</param-name>
         <param-value>/tmp/ADFUploads/</param-value>
     </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.COMPRESS_VIEW_STATE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
     <mime-mapping>
         <extension>swf</extension>
         <mime-type>application/x-shockwave-flash</mime-type>
